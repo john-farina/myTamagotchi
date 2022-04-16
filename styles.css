@@ -1,0 +1,23 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+#main-container {
+  display: flex;
+  background-color: darkgray;
+  padding: 20px;
+}
+
+#button-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 10px;
+}
+
+button {
+  padding: 6px 30px;
+}

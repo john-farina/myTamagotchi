@@ -18,8 +18,9 @@ let tamaHealth = 5;
 let tamaHappy = 1;
 let tamaDiscipline = 0;
 let tamaSpoiled = 0;
+let tamaNeglect = 0;
 let tamaPoop = 0;
-let tamaSick = false;
+let tamaSick = true;
 let timeState = {
   gameStart: new Date(),
   lastInteract: new Date(),
@@ -35,7 +36,7 @@ state.lastCheckedTime = new Date();
 console.log(state);
 
 const body = document.querySelector("body");
-body.style.backgroundColor = "red";
+body.style.backgroundColor = "gray";
 
 const mealButton = document.querySelector("#mealButton");
 mealButton.addEventListener("click", function () {
@@ -83,8 +84,8 @@ function updateFunctions() {
   givePoop();
   ifSick();
   autoAge();
-  autoDegenTwo();
-  autoUnHappy();
+  //   autoDegenTwo();
+  //   autoUnHappy();
   autoAttentionAlert();
 }
 
@@ -170,6 +171,8 @@ function autoDisciplineTest() {
       if (tamaAge < 1) {
       } else if (tamaAge > 1 && tamaAge <= 3) {
         //this is when all 10 happen
+        if (randomNum > 30 && randomNum < 70) {
+        }
       } else {
         if (tamaDiscipline == 10) {
           //none will happen
@@ -302,6 +305,10 @@ function playGame() {
   for (let i = 0; i < 5; i++) {
     let compChoice = randomNumGen(2);
     let playerChoice = prompt("Best out of 3: 0 or 1");
+    if (playerChoice == 8) {
+      tamaHappy++;
+      break;
+    }
     if (playerChoice == compChoice) {
       alert("nice you got it!");
       score++;
@@ -362,7 +369,7 @@ function getSick() {
 
 function ifSick() {
   if (tamaSick == true) {
-    if (Math.floor((new Date() - timeState.lastSick) / 1000) % 2 == 0) {
+    if (Math.floor((new Date() - timeState.lastSick) / 1000) % 15 == 0) {
       tamaHealth -= 0.5;
     }
   }
