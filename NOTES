@@ -1,8 +1,12 @@
 CODE PLANS (what i NEED to do):
--make the tamagotchi object.
--add hunger, play, and sick functions for the tamagotchi
--learn how to track time
-
+-make the tamagotchi object. - done+
+-add hunger, play, and sick functions for the tamagotchi. - done+
+        -Make hunger and health go down faster/slower for different poinr of life. (or personality trait) (IMPORTANT)
+-learn how to track time.  - done+
+-add a function that alerts you when its hungry or not happy
+        -add another function where it can alert you and not need anything (not hungry or unhappy), when you will have to discipline
+-add Discipline. and a discipline meter
+        -the meter will go up if you discipline him correctly. (when it asks for stuff when doesnt need it)
 
 CHARACTER PLANS:
 
