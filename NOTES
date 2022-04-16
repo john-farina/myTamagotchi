@@ -1,0 +1,32 @@
+CODE PLANS (what i NEED to do):
+-make the tamagotchi object.
+-add hunger, play, and sick functions for the tamagotchi
+-learn how to track time
+
+
+
+GAME FUNCTIONS (what it NEEDS to do):
+
+-Start Game (game is revolved around time, since thats how it grows)
+
+-Two meters that detect Happyness, and Hunger. (feed to releave hunger, play to make happy. if hungry and not happy it could get sick)
+
+-when sick will have squiggles coming up(hard to explain)
+
+-Have an egg state where it sits and waits to hatch (faster then original tamagotchi - 5 min top (randomized)) 
+
+-When egg spawns it has two random options it could be (2 baby states)
+
+-A pooping function where the tamagotchi will randomly poop and fill the space(if poop stays for too long tamagotchi will get sick)
+
+
+-A cleaning function that will clean all poop
+
+-A health function where it will fill the health bar when pressed(but it will get less happy when u do it)
+
+-A mini game to increase the happy meter, (will be the minigame where you try to guess what way the tamagotchi will be facing(Left or Right - randomized 50/50 chance))
+
+-A feed function where you choose a meal or snack (meal increases the hunger bar more then the snack will(Wont be able to eat meal when full- cannot over feed with snacks))
+
+-A sick button
+
