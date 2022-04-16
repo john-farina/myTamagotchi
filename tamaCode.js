@@ -15,7 +15,9 @@ let tamaState = {
 let tamaName = "Larry";
 let tamaAge = 0;
 let tamaHealth = 5;
-let tamaHappy = 4;
+let tamaHappy = 1;
+let tamaDiscipline = 0;
+let tamaSpoiled = 0;
 let tamaPoop = 0;
 let tamaSick = false;
 let timeState = {
@@ -75,6 +77,17 @@ function start() {
   timeState.gameStart = new Date();
 }
 
+function updateFunctions() {
+  timeKeeping();
+  getSick();
+  givePoop();
+  ifSick();
+  autoAge();
+  autoDegenTwo();
+  autoUnHappy();
+  autoAttentionAlert();
+}
+
 function gameLoop() {
   let tamagotchi = {
     name: tamaName,
@@ -84,13 +97,8 @@ function gameLoop() {
     sick: tamaSick,
     poop: tamaPoop
   };
-  timeKeeping();
-  getSick();
-  givePoop();
-  ifSick();
-  autoAge();
-  autoDegenTwo();
-  autoUnHappy();
+  updateFunctions();
+  //   console.log(timeMath(timeState.gameStart));
   // console.log(Math.floor((new Date() - timeState.gameStart) / 1000));
   // timeKeeping();
   tamaText.textContent =
@@ -113,66 +121,128 @@ function randomNumGen(percent) {
   return randomNum;
 }
 
-function autoDegenTwo() {
-  if (Math.floor((new Date() - timeState.gameStart) / 1000) % 2 == 0) {
-    let randomNum = randomNumGen(2000);
-    if (tamaHappy <= 2) {
-      //not happy more health loss
-      if (
-        (randomNum > 10 && randomNum < 100) ||
-        (randomNum > 800 && randomNum < 900)
-      ) {
-        tamaHealth--;
-        timeState.lastHealth = new Date();
+function timeMathToSec(timeStateStamp) {
+  let timeMath = Math.floor((new Date() - timeStateStamp) / 1000);
+  return timeMath;
+}
+
+function autoHealthDegen() {
+  if (tamaHealth == 5) {
+  } else if (tamaHealth <= 2) {
+    //MORE HEALTH DEGEN
+  } else {
+    //NORMAL HEALTH DEGEN
+  }
+}
+
+function autoHappyDegen() {
+  if (tamaHappy == 5) {
+    //LESS JAPPY DEGEN
+  } else if (tamaHappy <= 2) {
+    //MORE HEALTH DEGEN
+  } else {
+    //NORMAL HEALTH DEGEN
+  }
+}
+
+const hungerMeter = document.querySelector("#hungerMeter");
+
+function autoAttentionAlert() {
+  if (tamaHappy <= 2 && tamaHealth <= 2) {
+    hungerMeter.textContent = "im not happy and hungry";
+  } else if (tamaHappy <= 2) {
+    hungerMeter.textContent = "im not happy";
+  } else if (tamaHealth <= 2) {
+    hungerMeter.textContent = "im hungry";
+  } else if (tamaHappy >= 2) {
+    hungerMeter.textContent = "";
+  } else if (tamaHealth >= 2) {
+    hungerMeter.textContent = "";
+  }
+}
+
+function autoDisciplineTest() {
+  //make a noise when full (if dont disicpline increses spoil meter by one)
+  let randomNum = randomNumGen(500);
+  if (tamaHappy == 5 && tamaHealth == 5) {
+    // if full and happy it can do it
+    if (tamaDiscipline < 10) {
+      if (tamaAge < 1) {
+      } else if (tamaAge > 1 && tamaAge <= 3) {
+        //this is when all 10 happen
+      } else {
+        if (tamaDiscipline == 10) {
+          //none will happen
+        } else if (tamaSpoiled >= 6 && tamaDiscipline <= 5) {
+          //will continue even if adult
+        } else if (tamaSpoiled <= 5 && tamaDiscipline < 10) {
+          //less of a chance to continue but still can
+        }
       }
-    } else if (Math.floor((new Date() - timeState.lastHealth) / 1000) > 35) {
-      if (randomNum > 10 && randomNum < 100) {
-        tamaHealth--;
-        timeState.lastHealth = new Date();
-      }
+    } else {
+      //dont make attention calls anymore
     }
   }
 }
 
-function autoDegen() {
-  let randomNum = randomNumGen(200);
+function autoDegenTwo() {
+  let randomNum = randomNumGen(100);
   if (tamaHappy <= 2) {
-    //IF UNHAPPY WILL LOOSE HEALTH FASTER
-    if (randomNum >= 50 && randomNum <= 105) {
+    //not happy more health loss
+    if (
+      (randomNum > 0 && randomNum < 100) ||
+      (randomNum > 800 && randomNum < 900)
+    ) {
       tamaHealth--;
+      timeState.lastHealth = new Date();
     }
-  }
-  //if 5 min from interacting will have less chance to loose health
-  if (Math.floor((new Date() - timeState.lastInteract) / 1000) < 300) {
-    if (randomNum >= 10 && randomNum <= 30) {
+  } else if (timeMathToSec(timeState.lastHealth) > 2) {
+    if (randomNum > 0 && randomNum < 100) {
       tamaHealth--;
-    }
-  } else {
-    //if u dont interact for 5 min
-    if (randomNum == 69) {
-      tamaHealth--;
-    }
-    //30 sex
-    if (Math.floor((new Date() - timeState.gameStart) / 1000) % 30 == 0) {
-      //10% chance to decrease
-      if (randomNum >= 40 && randomNum <= 70) {
-        tamaHealth--;
-      }
-    } //5 min
-    else if (Math.floor((new Date() - timeState.gameStart) / 1000) % 300 == 0) {
-      //40% chance to decrease
-      if (randomNum >= 30 && randomNum <= 80) {
-        tamaHealth--;
-      }
-    } //10 min
-    else if (Math.floor((new Date() - timeState.gameStart) / 1000) % 600 == 0) {
-      //60% chance to decrease
-      if (randomNum >= 20 && randomNum <= 120) {
-        tamaHealth--;
-      }
+      timeState.lastHealth = new Date();
     }
   }
 }
+
+// function autoDegen() {
+//   let randomNum = randomNumGen(200);
+//   if (tamaHappy <= 2) {
+//     //IF UNHAPPY WILL LOOSE HEALTH FASTER
+//     if (randomNum >= 50 && randomNum <= 105) {
+//       tamaHealth--;
+//     }
+//   }
+//   //if 5 min from interacting will have less chance to loose health
+//   if (Math.floor((new Date() - timeState.lastInteract) / 1000) < 300) {
+//     if (randomNum >= 10 && randomNum <= 30) {
+//       tamaHealth--;
+//     }
+//   } else {
+//     //if u dont interact for 5 min
+//     if (randomNum == 69) {
+//       tamaHealth--;
+//     }
+//     //30 sex
+//     if (Math.floor((new Date() - timeState.gameStart) / 1000) % 30 == 0) {
+//       //10% chance to decrease
+//       if (randomNum >= 40 && randomNum <= 70) {
+//         tamaHealth--;
+//       }
+//     } //5 min
+//     else if (Math.floor((new Date() - timeState.gameStart) / 1000) % 300 == 0) {
+//       //40% chance to decrease
+//       if (randomNum >= 30 && randomNum <= 80) {
+//         tamaHealth--;
+//       }
+//     } //10 min
+//     else if (Math.floor((new Date() - timeState.gameStart) / 1000) % 600 == 0) {
+//       //60% chance to decrease
+//       if (randomNum >= 20 && randomNum <= 120) {
+//         tamaHealth--;
+//       }
+//     }
+//   }
+// }
 
 function autoUnHappy() {
   let randomNum = randomNumGen(200);
