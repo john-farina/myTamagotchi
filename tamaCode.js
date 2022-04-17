@@ -15,12 +15,12 @@ let tamaState = {
 let tamaName = "Larry";
 let tamaAge = 0;
 let tamaHealth = 5;
-let tamaHappy = 1;
+let tamaHappy = 5;
 let tamaDiscipline = 0;
 let tamaSpoiled = 0;
 let tamaNeglect = 0;
-let tamaPoop = 0;
-let tamaSick = true;
+let tamaPoop = 6;
+let tamaSick = false;
 let timeState = {
   gameStart: new Date(),
   lastInteract: new Date(),
@@ -28,16 +28,10 @@ let timeState = {
   lastSick: new Date(),
   lastHealth: new Date()
 };
-
-console.log(tamaState[9]);
-
-const state = { lastCheckedTime: new Date() };
-state.lastCheckedTime = new Date();
-console.log(state);
+console.log(timeState.gameStart + timeState.lastHealth);
 
 const body = document.querySelector("body");
 body.style.backgroundColor = "gray";
-
 const mealButton = document.querySelector("#mealButton");
 mealButton.addEventListener("click", function () {
   feed(1);
@@ -48,7 +42,6 @@ snackButton.addEventListener("click", function () {
   feed(2);
   timeState.lastInteract = new Date();
 });
-
 const healButton = document.querySelector("#healButton");
 healButton.addEventListener("click", function () {
   heal();
@@ -59,13 +52,11 @@ cleanButton.addEventListener("click", function () {
   clean();
   timeState.lastInteract = new Date();
 });
-
 const playButton = document.querySelector("#playButton");
 playButton.addEventListener("click", function () {
   playGame();
   timeState.lastInteract = new Date();
 });
-
 const nameButton = document.querySelector("#nameButton");
 nameButton.addEventListener("click", function () {
   tamaName = prompt("what do u wanna name it?", "larry");
@@ -84,7 +75,7 @@ function updateFunctions() {
   givePoop();
   ifSick();
   autoAge();
-  //   autoDegenTwo();
+  autoHealthDegen();
   //   autoUnHappy();
   autoAttentionAlert();
 }
@@ -99,9 +90,7 @@ function gameLoop() {
     poop: tamaPoop
   };
   updateFunctions();
-  //   console.log(timeMath(timeState.gameStart));
-  // console.log(Math.floor((new Date() - timeState.gameStart) / 1000));
-  // timeKeeping();
+
   tamaText.textContent =
     tamagotchi.name +
     ": " +
@@ -121,28 +110,48 @@ function randomNumGen(percent) {
   let randomNum = Math.floor(Math.random() * percent);
   return randomNum;
 }
-
 function timeMathToSec(timeStateStamp) {
   let timeMath = Math.floor((new Date() - timeStateStamp) / 1000);
   return timeMath;
 }
 
 function autoHealthDegen() {
-  if (tamaHealth == 5) {
-  } else if (tamaHealth <= 2) {
-    //MORE HEALTH DEGEN
-  } else {
-    //NORMAL HEALTH DEGEN
+  let randomNum = randomNumGen(3000);
+  if (timeMathToSec(timeState.gameStart) % 5 == 0) {
+    //every 5 seconds check
+    if (tamaHappy <= 2) {
+      // if not happy
+      if (
+        //15% chance to loose health 200/3000
+        (randomNum >= 10 && randomNum <= 70) ||
+        (randomNum >= 900 && randomNum <= 970) ||
+        (randomNum >= 2300 && randomNum <= 2370)
+      ) {
+        tamaHealth -= 1;
+        timeState.lastHealth = new Date();
+      }
+    } else {
+      //NORMAL HEALTH DEGEN
+      if (
+        //3% chance to loose health 90/3000
+        (randomNum >= 10 && randomNum <= 30) ||
+        (randomNum >= 900 && randomNum <= 930) ||
+        (randomNum >= 2300 && randomNum <= 2330)
+      ) {
+        tamaHealth -= 1;
+        timeState.lastHealth = new Date();
+      }
+    }
   }
 }
 
 function autoHappyDegen() {
   if (tamaHappy == 5) {
     //LESS JAPPY DEGEN
-  } else if (tamaHappy <= 2) {
-    //MORE HEALTH DEGEN
+  } else if (tamaHealth <= 2) {
+    //MORE HAPPY DEGEN
   } else {
-    //NORMAL HEALTH DEGEN
+    //NORMAL HEAPPY DEGEN
   }
 }
 
@@ -206,46 +215,6 @@ function autoDegenTwo() {
     }
   }
 }
-
-// function autoDegen() {
-//   let randomNum = randomNumGen(200);
-//   if (tamaHappy <= 2) {
-//     //IF UNHAPPY WILL LOOSE HEALTH FASTER
-//     if (randomNum >= 50 && randomNum <= 105) {
-//       tamaHealth--;
-//     }
-//   }
-//   //if 5 min from interacting will have less chance to loose health
-//   if (Math.floor((new Date() - timeState.lastInteract) / 1000) < 300) {
-//     if (randomNum >= 10 && randomNum <= 30) {
-//       tamaHealth--;
-//     }
-//   } else {
-//     //if u dont interact for 5 min
-//     if (randomNum == 69) {
-//       tamaHealth--;
-//     }
-//     //30 sex
-//     if (Math.floor((new Date() - timeState.gameStart) / 1000) % 30 == 0) {
-//       //10% chance to decrease
-//       if (randomNum >= 40 && randomNum <= 70) {
-//         tamaHealth--;
-//       }
-//     } //5 min
-//     else if (Math.floor((new Date() - timeState.gameStart) / 1000) % 300 == 0) {
-//       //40% chance to decrease
-//       if (randomNum >= 30 && randomNum <= 80) {
-//         tamaHealth--;
-//       }
-//     } //10 min
-//     else if (Math.floor((new Date() - timeState.gameStart) / 1000) % 600 == 0) {
-//       //60% chance to decrease
-//       if (randomNum >= 20 && randomNum <= 120) {
-//         tamaHealth--;
-//       }
-//     }
-//   }
-// }
 
 function autoUnHappy() {
   let randomNum = randomNumGen(200);
@@ -331,45 +300,59 @@ function playGame() {
 }
 
 function givePoop() {
+  let randomNum = randomNumGen(300);
   if (tamaPoop == 6) {
-    tamaSick = true;
-  } else {
-    if (tamaHealth == 5) {
-      let randomNum = randomNumGen(2000);
-      if (
-        randomNum == 1000 ||
-        randomNum == 500 ||
-        randomNum == 1648 ||
-        randomNum == 120
-      ) {
-        tamaPoop += 1;
-        tamaHealth -= 1;
+    //cant poop anymore
+  } else if (tamaSick == true) {
+    if (timeMathToSec(timeState.lastPoop) % 10 == 0) {
+      if (randomNum % 5 == 0) {
+        //1.6% chance of poop every 10 seconds if sick
+        tamaPoop++;
+        tamaHealth--;
+        timeState.lastPoop = new Date();
       }
-    } else {
-      let randomNum2 = randomNumGen(3000);
-      if (randomNum2 == 1212 || randomNum2 == 74 || randomNum2 == 2121) {
-        tamaPoop += 1;
-        tamaHealth -= 0.5;
+    }
+  } else {
+    //normally
+    if (timeMathToSec(timeState.lastPoop) % 30 == 0) {
+      if (randomNum % 5 == 0) {
+        //1.6% chance of poop every 30 seconds
+        tamaPoop++;
+        tamaHealth--;
+        timeState.lastPoop = new Date();
       }
     }
   }
 }
 
 function getSick() {
-  let randomNumber = randomNumGen(5000);
-  //add a if statement that makes it so it cant get sick after just getting sick
+  let randomNumber = randomNumGen(4000);
 
-  // console.log(randomNumber);
-  if (randomNumber == 8 || randomNumber == 573 || randomNumber == 1362) {
-    tamaSick = true;
-    timeState.lastSick = new Date();
+  if (tamaPoop == 6) {
+    if (timeMathToSec(timeState.lastPoop) > 15) {
+      //if 6 poop for 15 sec get sick
+      tamaSick = true;
+      timeState.lastSick = new Date();
+    }
   }
-  return randomNumber;
+
+  if (
+    timeMathToSec(timeState.lastSick) > 60 ||
+    timeState.lastSick == timeState.gameStart
+  ) {
+    //cant get sick 2 min after getting sick
+    if (randomNumber == 8 || randomNumber == 573 || randomNumber == 1362) {
+      tamaSick = true;
+      timeState.lastSick = new Date();
+    }
+  } else {
+    //no poop
+  }
 }
 
 function ifSick() {
   if (tamaSick == true) {
-    if (Math.floor((new Date() - timeState.lastSick) / 1000) % 15 == 0) {
+    if (timeMathToSec(timeState.lastSick) % 15 == 0) {
       tamaHealth -= 0.5;
     }
   }
@@ -380,7 +363,11 @@ function heal() {
   tamaHappy -= 1;
 }
 function clean() {
-  tamaPoop = 0;
+  if (tamaPoop == 0) {
+  } else {
+    tamaPoop = 0;
+    tamaHappy++;
+  }
 }
 
 const timeText = document.querySelector("#timeText");
