@@ -7,6 +7,11 @@ CODE PLANS (what i NEED to do):
         -add another function where it can alert you and not need anything (not hungry or unhappy), when you will have to discipline
 -add Discipline. and a discipline meter
         -the meter will go up if you discipline him correctly. (when it asks for stuff when doesnt need it)
+-add Hatching feature
+            - and an age feature where its random chance for which character you get (sometimes based off of the character itself)
+-add a start Game button that starts it in the egg state 
+            -add a reset button that gives a warning if pressed
+            
 
 CHARACTER PLANS:
 
