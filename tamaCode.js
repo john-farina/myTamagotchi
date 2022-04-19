@@ -6,10 +6,10 @@ let tamaState = [
   "Teen_2", //4 (for Child_2)
   "Secret_Adult", //5 (for Teen_1 (small chance of getting))
   "Secret_Adult_2", //6 (for Teen_2 (small chance of getting)))
-  "Adult_1", //7 (for Teen_1 && Teen_2)
-  "Adult_2", //8 (for Teen_1 && Teen_2)
-  "Adult_3", //9 (for Teen_1 && Teen_2)
-  "Adult_4", //10 (for Teen_1 && Teen_2)
+  "Adult_1", //7 (for Teen_1 && Teen_2) (healthy and good care)
+  "Adult_2", //8 (for Teen_1 && Teen_2) (healthy)
+  "Adult_3", //9 (for Teen_1 && Teen_2) (healthy)
+  "Adult_4", //10 (for Teen_1 && Teen_2) (sick and unhealthy)
   "Secret_Adult_Evolve" //11 (ONLY for Secret_Adult_2)
 ];
 const state = {
@@ -32,7 +32,8 @@ const state = {
     lastPoop: new Date(),
     lastSick: new Date(),
     lastHealth: new Date(),
-    lastHappy: new Date()
+    lastHappy: new Date(),
+    lastComplain: new Date()
   }
 };
 let count = 0;
@@ -236,10 +237,7 @@ function babyToTeen() {
   }
 }
 
-function autoAge() {
-  eggToBaby();
-  babyToTeen();
-  //TEEN TO ADULT
+function teenToAdult() {
   if (
     (state.tamaStage == tamaState[3] || state.tamaStage == tamaState[4]) &&
     timeMathToSec(state.timeState.lastEvolve) > 10 //60 min
@@ -259,7 +257,7 @@ function autoAge() {
           //24%
           state.tamaStage = tamaState[10];
         } else if (teenChoice >= 96) {
-          //4%
+          //4% - SECRET CHARACTER
           if (state.tamaStage == tamaState[3]) {
             state.tamaStage = tamaState[5]; //secret characters for that character
           } else if (state.tamaStage == tamaState[4]) {
@@ -269,11 +267,18 @@ function autoAge() {
       }
     }
   }
+}
+
+function autoAge() {
   if (timeMathToSec(state.timeState.gameStart) % 86400 == 0) {
     //1 DAY
     state.tamaAge++;
     console.log(tamaState);
   }
+
+  eggToBaby();
+  babyToTeen();
+  teenToAdult();
 }
 
 function autoDeath() {
@@ -438,26 +443,19 @@ function autoAttentionAlert() {
 
 function autoDisciplineTest() {
   //make a noise when full (if dont disicpline increses spoil meter by one)
-  let randomNum = randomNumGen(500);
-  if (state.tamaHappy == 5 && state.tamaHealth == 5) {
-    // if full and happy it can do it
-    if (state.tamaDiscipline < 10) {
-      if (state.tamaAge < 1) {
-      } else if (state.tamaAge > 1 && state.tamaAge <= 3) {
-        //this is when all 10 happen
-        if (randomNum > 30 && randomNum < 70) {
-        }
-      } else {
-        if (state.tamaDiscipline == 10) {
-          //none will happen
-        } else if (state.tamaSpoiled >= 6 && state.tamaDiscipline <= 5) {
-          //will continue even if adult
-        } else if (state.tamaSpoiled <= 5 && state.tamaDiscipline < 10) {
-          //less of a chance to continue but still can
+  if (state.tamaStage == tamaState[1] || state.tamaStage == tamaState[2]) {
+    //only happen when in child state
+    if (state.tamaDiscipline == 10) {
+      //if disciplined dont happen
+    } else if (state.tamaDiscipline < 10) {
+      if (timeMathToSec(state.timeState.lastComplain) > 30) {
+        //only chance to happen 30 min after last happened
+        let randomNum = randomNumGen(100);
+        if (randomNum >= 10 && randomNum <= 20) {
+          //make an attention call
+          state.timeState.lastComplain = new Date();
         }
       }
-    } else {
-      //dont make attention calls anymore
     }
   }
 }
