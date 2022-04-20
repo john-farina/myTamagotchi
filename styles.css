@@ -63,3 +63,20 @@ button {
   width: 300px;
   image-rendering: pixelated;
 }
+
+#stats-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 600px;
+}
+
+.stat-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: beige;
+  padding: 13px;
+  width: 200px;
+  height: 50px;
+}

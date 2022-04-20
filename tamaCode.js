@@ -86,6 +86,7 @@ const lastPoopText = document.querySelector("#lastPoopText");
 const lastComplainText = document.querySelector("#lastComplainText");
 
 const tamaPictures = document.querySelector("#tamaPictures");
+const eggAnimation = document.querySelector("#eggAnimation");
 
 function changePicture() {
   if (state.tamaHatch === 0) {
@@ -103,8 +104,13 @@ function changePicture() {
   ) {
     tamaPictures.src = "./tamaPictures/egg4.png";
   }
-}
 
+  if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
+    eggAnimation.src = "./tamaPictures/eggStateOne.svg";
+  } else {
+    eggAnimation.src = "./tamaPictures/eggStateTwo.svg";
+  }
+}
 /////////////////////////////////////USEFUL FUNCTIONS
 function randomNumGen(percent) {
   let randomNum = Math.floor(Math.random() * percent);
@@ -718,7 +724,7 @@ function updateFunctions() {
 }
 
 function start() {
-  myInterval = setInterval(gameLoop, 5000);
+  myInterval = setInterval(gameLoop, 1000);
   state.gameStarted = true;
   state.tamaDead = false;
   state.timeState.gameStart = new Date();
