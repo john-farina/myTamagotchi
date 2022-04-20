@@ -3,14 +3,14 @@ CODE PLANS (what i NEED to do):
 -add hunger, play, and sick functions for the tamagotchi. - done+
         -Make hunger and health go down faster/slower for different poinr of life. (or personality trait) (IMPORTANT)
 -learn how to track time.  - done+
--add a function that alerts you when its hungry or not happy
+-add a function that alerts you when its hungry or not happy - done+
         -add another function where it can alert you and not need anything (not hungry or unhappy), when you will have to discipline
 -add Discipline. and a discipline meter
         -the meter will go up if you discipline him correctly. (when it asks for stuff when doesnt need it)
--add Hatching feature
-            - and an age feature where its random chance for which character you get (sometimes based off of the character itself)
--add a start Game button that starts it in the egg state 
-            -add a reset button that gives a warning if pressed
+-add Hatching feature - done+
+            - and an age feature where its random chance for which character you get (sometimes based off of the character itself-done+
+-add a start Game button that starts it in the egg state - done+
+            -add a reset button that gives a warning if pressed -(not done but know how too)
             
 
 CHARACTER PLANS:
@@ -18,7 +18,7 @@ CHARACTER PLANS:
 1: Egg 
 2: Child (2 variations)
 3: Teen (2 variations dependent on which one)
-4: Adult (4 variations)
+4: Adult (6 variations)
 
 
 

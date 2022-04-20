@@ -7,17 +7,59 @@ body {
 
 #main-container {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: darkgray;
   padding: 20px;
+  border-radius: 2000px 2000px 1200px 1200px;
+  width: 430px;
 }
 
-#button-container {
+#button-container1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 60px;
+  margin-bottom: -20px;
+  gap: 10px;
+  width: 10px;
+}
+
+#food-button-container {
+}
+
+#hidden-food-button-container {
+}
+#text-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: -100px;
+  margin-bottom: -40px;
+  flex: 1;
+  gap: -10px;
+}
+
+#button-container2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
   padding: 20px;
   gap: 10px;
+  width: 100px;
+  margin: 40px;
 }
 
 button {
   padding: 6px 30px;
+}
+
+.tamaPictures {
+  height: 300px;
+  width: 300px;
+  image-rendering: pixelated;
 }

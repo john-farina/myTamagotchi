@@ -7,24 +7,46 @@
     <title>Document</title>
     <script src="./tamaCode.js" defer></script>
   <link rel="stylesheet" href="./styles.css"/>
-<body>
+</head>
     <div id="main-container">
-<div id="button-container">
-    <button id="mealButton">Meal</button>
-    <button id="snackButton">Snack</button>
-    <button id="healButton">Heal</button>
-    <button id="cleanButton">Clean</button>
-    <button id="playButton">Play</button>
-    <button id="nameButton">Name</button>
-    <button id="startButton">Stop</button>
-</div>
 
-<div id ="text-container">
-    <h1 id="tamaStateText">adult</h1>
-    <h2 id="hungerMeter">all good</h2>
-    <h2 id="tamaText">0 hour 0 Min 0 seconds</h2>
-    <h2 id="timeText">time</h2>
-</div>
-</div>
+            <div id ="text-container">
+                <h2 id="hungerMeter">how can i be hungry</h2>
+                <h2 id="attentionText"></h2>
+                <h1 id="tamaStateText">adult</h1>
+                <h2 id="tamaHealthText"></h2>
+                <h2 id="tamaSickText"></h2>
+                <h2 id="tamaDisciplineText"></h2>
+                <h2 id="timeText">it is 0:00:00</h2>
+            </div>
+
+            <div id="button-container1">
+                <!-- <div id="food-button-container"> -->
+                    <!-- <button id="foodButton">Feed</button> -->
+                        <button id="mealButton">Meal</button>
+                        <button id="snackButton">Snack</button>
+                    <!-- </div> -->
+                <!-- </div> -->
+            <button id="healButton">Heal</button>
+            <button id="cleanButton">Clean</button>
+            <button id="playButton">Play</button>
+            </div>  
+
+            <div id="button-container2">
+            <button id="disciplineButton">Discipline</button>
+            <button id="nameButton">Name</button>
+            <button id="startButton">Stop</button>
+            <button onclick="changePicture()">click</button>
+        </div>
+    </div>  
+
+    <div id="stats-container">
+        <h3 id="gameStartText">start</h3>
+        <h3 id="lastInteractText">interact</h3>
+        <h3 id="lastEvolveText">Evolve</h3>
+        <h3 id="lastComplainText">Complain</h3>
+    </div>
+
+    <img id="tamaPictures" class="tamaPictures" src="./tamaPictures/egg1.png">
 </body>
 </html>
