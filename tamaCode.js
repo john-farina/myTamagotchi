@@ -90,6 +90,7 @@ const eggAnimation = document.querySelector("#eggAnimation");
 
 function changePicture() {
   if (state.tamaStage === tamaState[0]) {
+    //hello
     if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
       eggAnimation.src = "./tamaPictures/eggStateOne.svg";
     } else {
