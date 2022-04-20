@@ -5,8 +5,8 @@ CODE PLANS (what i NEED to do):
 -learn how to track time.  - done+
 -add a function that alerts you when its hungry or not happy - done+
         -add another function where it can alert you and not need anything (not hungry or unhappy), when you will have to discipline
--add Discipline. and a discipline meter
-        -the meter will go up if you discipline him correctly. (when it asks for stuff when doesnt need it)
+-add Discipline. and a discipline meter - done+
+        -the meter will go up if you discipline him correctly. (when it asks for stuff when doesnt need it) - done+
 -add Hatching feature - done+
             - and an age feature where its random chance for which character you get (sometimes based off of the character itself-done+
 -add a start Game button that starts it in the egg state - done+
@@ -15,12 +15,47 @@ CODE PLANS (what i NEED to do):
 
 CHARACTER PLANS:
 
-1: Egg 
-2: Child (2 variations)
-3: Teen (2 variations dependent on which one)
-4: Adult (6 variations)
+1: Egg [0]
+2: Child (2 stages) [1] [2]
+        STAGE 1: [1]
+                -needs constant care & attention in stage 1
+                -never dies in the child stage 1
+        STAGE 2: [2]
+                -it could die now
+                -starts complaining randomly
+3: Teen (2 variations random) [3] [4]
+        -both variations are the same basically
 
+4: Adult (6 variations) :
+  - "Secret_Adult", [5](for Teen_1 (small chance of getting))
+  - "Secret_Adult_2", [6] (for Teen_2 (small chance of getting)))
 
+  - "Adult_1",[7] (for Teen_1 && Teen_2)
+        NEEDS:
+                (nothing needed, always random chance)
+        PERSONALITY:
+                - Good Health, and Long life (less health goes down)
+
+  - "Adult_2", [8] (for Teen_1 && Teen_2)
+        NEEDS:
+                (nothing needed, always random chance)
+        PERSONALITY:
+                - average, health goes down normal amount
+
+  - "Adult_3", [9] (for Teen_1 && Teen_2)
+        NEEDS:
+               (nothing needed, always random chance)
+        PERSONALITY:
+                - is the main character
+
+  - "Adult_4", [10] (for Teen_1 && Teen_2)
+                NEEDS:
+                -Good health through out childhood
+        PERSONALITY:
+                - gets up late, sleeps late, selfish
+
+  - "Secret_Adult_Evolve" [11]
+        - (ONLY for Secret_Adult_2)
 
 GAME FUNCTIONS (what it NEEDS to do):
 

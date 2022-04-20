@@ -16,10 +16,10 @@ const state = {
   gameStarted: false,
   tamaName: "Larry",
   tamaAge: 0,
-  tamaHatch: 0,
+  tamaHatch: 4,
   tamaStage: tamaState,
   tamaDead: false,
-  tamaHealth: 4,
+  tamaHealth: 0,
   tamaHappy: 3,
   needAttention: false,
   tamaDiscipline: 0,
@@ -89,26 +89,34 @@ const tamaPictures = document.querySelector("#tamaPictures");
 const eggAnimation = document.querySelector("#eggAnimation");
 
 function changePicture() {
-  if (state.tamaHatch === 0) {
-    tamaPictures.src = "./tamaPictures/egg1.png";
-  }
-  if (state.tamaHatch === 1) {
-    tamaPictures.src = "./tamaPictures/egg2.png";
-  }
-  if (state.tamaHatch === 2) {
-    tamaPictures.src = "./tamaPictures/egg3.png";
-  }
-  if (
-    state.tamaHatch === 3 ||
-    (state.tamaHatch === 4 && state.tamaStage === tamaState[0])
-  ) {
-    tamaPictures.src = "./tamaPictures/egg4.png";
-  }
-
-  if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
-    eggAnimation.src = "./tamaPictures/eggStateOne.svg";
+  if (state.tamaStage === tamaState[0]) {
+    if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
+      eggAnimation.src = "./tamaPictures/eggStateOne.svg";
+    } else {
+      eggAnimation.src = "./tamaPictures/eggStateTwo.svg";
+    }
+  } else if (state.tamaStage === tamaState[1]) {
+    eggAnimation.src = "./tamaPictures/tamaStages/childState.svg";
+  } else if (state.tamaStage === tamaState[2]) {
+    eggAnimation.src = "./tamaPictures/tamaStages/childState2.svg";
+  } else if (state.tamaStage === tamaState[3]) {
+    eggAnimation.src = "./tamaPictures/tamaStages/teen1.svg";
+  } else if (state.tamaStage === tamaState[4]) {
+    eggAnimation.src = "./tamaPictures/tamaStages/teen2.svg";
+  } else if (state.tamaStage === tamaState[7]) {
+    eggAnimation.src = "./tamaPictures/tamaStages/adult1.svg";
+  } else if (state.tamaStage === tamaState[8]) {
+    eggAnimation.src = "./tamaPictures/tamaStages/adult2.svg";
+  } else if (state.tamaStage === tamaState[9]) {
+    eggAnimation.src = "./tamaPictures/tamaStages/adult3.svg";
+  } else if (state.tamaStage === tamaState[10]) {
+    eggAnimation.src = "./tamaPictures/tamaStages/adult4.svg";
   } else {
-    eggAnimation.src = "./tamaPictures/eggStateTwo.svg";
+    if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
+      eggAnimation.src = "./tamaPictures/eggStateOne.svg";
+    } else {
+      eggAnimation.src = "./tamaPictures/eggStateTwo.svg";
+    }
   }
 }
 /////////////////////////////////////USEFUL FUNCTIONS
@@ -231,16 +239,7 @@ function eggHatch() {
 }
 
 function eggToBaby() {
-  //EGG TO BABY
-  // if (
-  //   timeMathtoSec(state.timeSate.lastHatchCycle) < 10 &&
-  //   state.tamaHatch == 4
-  // ) {
-  // }
-  // if (timeMathToSec(state.timeState.gameStart) < 10) {
-  //   // 1 min
-  //   state.tamaStage = tamaState[0]; //EGG
-  // } else
+  //first KID evolve
   if (
     state.tamaStage == tamaState[0] && //if stil egg
     state.tamaHatch == 4 && //and egg is at hatch level 3
@@ -249,26 +248,12 @@ function eggToBaby() {
   ) {
     if (timeMathToSec(state.timeState.gameStart) % 2 == 0) {
       let randomNum = randomNumGen(100);
-      if (randomNum >= 00 && randomNum <= 80) {
+      if (randomNum >= 75 && randomNum <= 80) {
         //5% chance every 4 sec to hatch early
-        let babyChoice = randomNumGen(2);
-        if (babyChoice == 0) {
-          state.tamaStage = tamaState[1];
-          state.tamaName = prompt(
-            "Congrats! you got Child 1 what would u like to name it?",
-            "Larry"
-          );
-          tamaPictures.src = "./tamaPictures/happy1.png";
-          state.timeState.lastEvolve = new Date();
-        } else if (babyChoice == 1) {
-          state.tamaStage = tamaState[2];
-          state.tamaName = prompt(
-            "Congrats! you got Child 2 what would u like to name it?",
-            "Larry"
-          );
-          tamaPictures.src = "./tamaPictures/happy1.png";
-          state.timeState.lastEvolve = new Date();
-        }
+        state.tamaStage = tamaState[1];
+        state.tamaName = state.tamaStage;
+        tamaPictures.src = "./tamaPictures/happy1.png";
+        state.timeState.lastEvolve = new Date();
       }
     }
   } else if (
@@ -276,60 +261,69 @@ function eggToBaby() {
     timeMathToSec(state.timeState.lastHatchCycle) > 120 //2 min
   ) {
     //100% chance to hatch
-    let babyChoice2 = randomNumGen(2);
-    if (babyChoice2 == 0) {
-      state.tamaStage = tamaState[1];
-      state.timeState.lastEvolve = new Date();
-    } else if (babyChoice2 == 1) {
-      state.tamaStage = tamaState[2];
-      state.timeState.lastEvolve = new Date();
+    state.tamaStage = tamaState[1];
+    state.timeState.lastEvolve = new Date();
+  }
+
+  //second KID evolve
+  if (
+    state.tamaStage == tamaState[1] &&
+    timeMathToSec(state.timeState.lastEvolve) > 10 &&
+    timeMathToSec(state.timeState.lastEvolve) < 120
+  ) {
+    if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
+      let randomNum = randomNumGen(500);
+      if (randomNum >= 35 && randomNum <= 45) {
+        state.tamaStage = tamaState[2];
+        state.timeState.lastEvolve = new Date();
+      }
     }
+  } else if (
+    state.tamaStage === tamaState[1] &&
+    timeMathToSec(state.timeState.lastEvolve) > 120
+  ) {
+    state.tamaStage = tamaState[2];
+    state.timeState.lastEvolve = new Date();
   }
 }
 
 function babyToTeen() {
   //BABY TO TEEN
   if (
-    state.tamaStage == tamaState[1] ||
-    (state.tamaStage == tamaState[2] &&
-      timeMathToSec(state.timeState.lastEvolve) >= 60) //10 min
+    state.tamaStage == tamaState[2] &&
+    timeMathToSec(state.timeState.lastEvolve) >= 60 //10 min
   ) {
     //1% percent chance to grow early every 60 seconds
     if (timeMathToSec(state.gameStarted) % 30 == 0) {
-      let randomNum = randomNumGen(100);
-      if (randomNum >= 46 && randomNum <= 56) {
-        if (state.tamaStage == tamaState[1]) {
-          state.tamaStage = tamaState[3];
-        } else if (state.tamaStage == tamaState[2]) {
-          state.tamaStage = tamaState[4];
-        }
+      let randomNum = randomNumGen(2);
+      if (randomNum === 0) {
+        state.tamaStage = tamaState[3];
+      } else {
+        state.tamaStage = tamaState[4];
       }
     }
   } else if (
-    state.tamaStage == tamaState[1] ||
-    (state.tamaStage == tamaState[2] &&
-      timeMathToSec(state.timeState.lastEvolve > 43200)) //.5 day
+    state.tamaStage == tamaState[2] &&
+    timeMathToSec(state.timeState.lastEvolve > 43200) //.5 day
   ) {
     //10% every 60 seconds
     if (timeMathToSec(state.gameStarted) % 60 == 0) {
-      let randomNum = randomNumGen(100);
-      if (randomNum >= 10 && randomNum <= 20) {
-        if (state.tamaStage == tamaState[1]) {
-          state.tamaStage = tamaState[3];
-        } else if (state.tamaStage == tamaState[2]) {
-          state.tamaStage = tamaState[4];
-        }
+      let randomNum = randomNumGen(2);
+      if (randomNum === 0) {
+        state.tamaStage = tamaState[3];
+      } else {
+        state.tamaStage = tamaState[4];
       }
     }
   } else if (
-    state.tamaStage == tamaState[1] ||
-    (state.tamaStage == tamaState[2] &&
-      timeMathToSec(state.timeState.lastEvolve > 86400)) //1 day
+    state.tamaStage == tamaState[2] &&
+    timeMathToSec(state.timeState.lastEvolve > 86400) //1 day
   ) {
     //grow up no matter what
-    if (state.tamaStage == tamaState[1]) {
+    let randomNum = randomNumGen(2);
+    if (randomNum === 0) {
       state.tamaStage = tamaState[3];
-    } else if (state.tamaStage == tamaState[2]) {
+    } else {
       state.tamaStage = tamaState[4];
     }
   }
@@ -372,7 +366,13 @@ function secretAdultToSpecial() {
 }
 
 function autoDeath() {
-  if (state.tamaHealth == 0) {
+  if (
+    //cant die as an egg or stage one child
+    (state.tamaStage === tamaState[1] || state.tamaStage === tamaState[0]) &&
+    state.tamaHealth === 0
+  ) {
+    state.tamaHealth = 1;
+  } else if (state.tamaHealth == 0) {
     stop();
     state.tamaDead = true;
   }
@@ -657,7 +657,7 @@ function setText() {
       state.tamaSpoiled;
   }
   if (state.tamaDead == true) {
-    tamaText.textContent =
+    tamaHealthText.textContent =
       state.tamaName + " died at age " + state.tamaAge + ". :( rip";
   }
   if (state.tamaDead == false) {
