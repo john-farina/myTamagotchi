@@ -1,0 +1,52 @@
+#tamagochi-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: red;
+  height: 300px;
+  width: 300px;
+  padding: 60px;
+  border-radius: 100px;
+}
+
+#main-screen {
+  display: flex;
+  flex-direction: column;
+  background-color: gray;
+  width: 300px;
+  height: 300px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#screen-top-items {
+  display: flex;
+  background-color: rgb(78, 70, 83);
+  width: 300px;
+  height: 40px;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#screen-bottom-items {
+  display: flex;
+  background-color: rgb(78, 70, 83);
+  width: 300px;
+  height: 40px;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.screen-buttons {
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+  border: none;
+}
+
+.screen-buttons:hover {
+  background-color: gray;
+  width: 22px;
+  height: 22px;
+}
