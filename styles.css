@@ -115,6 +115,10 @@ button {
   height: 40px;
 }
 
-.teen-adult {
+.teen {
+  height: 50px;
+}
+
+.adult {
   height: 60px;
 }

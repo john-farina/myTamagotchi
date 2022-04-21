@@ -19,7 +19,7 @@ const state = {
   tamaHatch: 4,
   tamaStage: tamaState,
   tamaDead: false,
-  tamaHealth: 0,
+  tamaHealth: 5,
   tamaHappy: 3,
   needAttention: false,
   tamaDiscipline: 0,
@@ -120,20 +120,33 @@ function changePicture() {
   } else if (state.tamaStage === tamaState[3]) {
     eggAnimation.classList.remove("child");
     eggAnimation.classList.remove("child2");
-    eggAnimation.classList.add("teen-adult");
+    eggAnimation.classList.add("teen");
     eggAnimation.src = "./tamaPictures2/tamaCharacter/teen1/tama_teen1.svg";
   } else if (state.tamaStage === tamaState[4]) {
     eggAnimation.classList.remove("child");
     eggAnimation.classList.remove("child2");
-    eggAnimation.classList.add("teen-adult");
+    eggAnimation.classList.add("teen");
     eggAnimation.src = "./tamaPictures2/tamaCharacter/teen2/tama_teen2.svg";
   } else if (state.tamaStage === tamaState[7]) {
+    eggAnimation.classList.remove("teen");
+    eggAnimation.classList.add("adult");
     eggAnimation.src = "./tamaPictures2/tamaCharacter/adult1/tama_adult1.svg";
+    if (timeMathToSec(state.timeState.gameStart) % 2) {
+      document.querySelector(".adult").style.scaleX = "-1";
+    } else {
+      document.querySelector(".adult").style.scaleX = "-1";
+    }
   } else if (state.tamaStage === tamaState[8]) {
+    eggAnimation.classList.remove("teen");
+    eggAnimation.classList.add("adult");
     eggAnimation.src = "./tamaPictures2/tamaCharacter/adult2/tama_adult2.svg";
   } else if (state.tamaStage === tamaState[9]) {
+    eggAnimation.classList.remove("teen");
+    eggAnimation.classList.add("adult");
     eggAnimation.src = "./tamaPictures2/tamaCharacter/adult3/tama_adult3.svg";
   } else if (state.tamaStage === tamaState[10]) {
+    eggAnimation.classList.remove("teen");
+    eggAnimation.classList.add("adult");
     eggAnimation.src = "./tamaPictures2/tamaCharacter/adult4/tama_adult4.svg";
   } else {
     if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
@@ -225,7 +238,7 @@ function autoHappyDegen() {
 
 function letThereBeLife() {
   if (timeMathToSec(state.timeState.gameStart) < 10) {
-    state.tamaStage = tamaState[0];
+    state.tamaStage = tamaState[7];
   }
 }
 
