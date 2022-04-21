@@ -238,7 +238,7 @@ function autoHappyDegen() {
 
 function letThereBeLife() {
   if (timeMathToSec(state.timeState.gameStart) < 10) {
-    state.tamaStage = tamaState[7];
+    state.tamaStage = tamaState[10];
   }
 }
 
@@ -259,7 +259,7 @@ function eggHatch() {
       //every 2 seconds have a chance to hatch
       let randomNum = randomNumGen(500);
       if (
-        (randomNum >= 10 && randomNum <= 20) ||
+        (randomNum >= 0 && randomNum <= 400) ||
         (randomNum >= 300 && randomNum <= 310)
       ) {
         if (state.tamaHatch == 3) {
