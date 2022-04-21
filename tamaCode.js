@@ -238,7 +238,7 @@ function autoHappyDegen() {
 
 function letThereBeLife() {
   if (timeMathToSec(state.timeState.gameStart) < 10) {
-    state.tamaStage = tamaState[10];
+    state.tamaStage = tamaState[0];
   }
 }
 
