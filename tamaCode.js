@@ -87,31 +87,54 @@ const lastComplainText = document.querySelector("#lastComplainText");
 
 const tamaPictures = document.querySelector("#tamaPictures");
 const eggAnimation = document.querySelector("#eggAnimation");
+const poopPicture = document.querySelector(".poop");
 
 function changePicture() {
   if (state.tamaStage === tamaState[0]) {
     //hello
+    eggAnimation.classList.add("egg");
     if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
-      eggAnimation.src = "./tamaPictures/eggStateOne.svg";
+      eggAnimation.src = "./tamaPictures2/tamaEgg/tama_eggState1.svg";
     } else {
-      eggAnimation.src = "./tamaPictures/eggStateTwo.svg";
+      eggAnimation.src = "./tamaPictures2/tamaEgg/tama_eggState2.svg";
     }
   } else if (state.tamaStage === tamaState[1]) {
-    eggAnimation.src = "./tamaPictures/tamaStages/childState.svg";
+    eggAnimation.classList.remove("egg");
+    eggAnimation.classList.add("child");
+    if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
+      if (randomNumGen(3) === 1) {
+        eggAnimation.classList.add("child-low");
+        eggAnimation.src =
+          "./tamaPictures2/tamaCharacter/childState1/tama_child1-lower.svg";
+      }
+    } else {
+      eggAnimation.classList.remove("child-low");
+      eggAnimation.src =
+        "./tamaPictures2/tamaCharacter/childState1/tama_childState1.svg";
+    }
   } else if (state.tamaStage === tamaState[2]) {
-    eggAnimation.src = "./tamaPictures/tamaStages/childState2.svg";
+    eggAnimation.classList.remove("child");
+    eggAnimation.classList.add("child2");
+    eggAnimation.src =
+      "./tamaPictures2/tamaCharacter/childState2/tama_childState2.svg";
   } else if (state.tamaStage === tamaState[3]) {
-    eggAnimation.src = "./tamaPictures/tamaStages/teen1.svg";
+    eggAnimation.classList.remove("child");
+    eggAnimation.classList.remove("child2");
+    eggAnimation.classList.add("teen-adult");
+    eggAnimation.src = "./tamaPictures2/tamaCharacter/teen1/tama_teen1.svg";
   } else if (state.tamaStage === tamaState[4]) {
-    eggAnimation.src = "./tamaPictures/tamaStages/teen2.svg";
+    eggAnimation.classList.remove("child");
+    eggAnimation.classList.remove("child2");
+    eggAnimation.classList.add("teen-adult");
+    eggAnimation.src = "./tamaPictures2/tamaCharacter/teen2/tama_teen2.svg";
   } else if (state.tamaStage === tamaState[7]) {
-    eggAnimation.src = "./tamaPictures/tamaStages/adult1.svg";
+    eggAnimation.src = "./tamaPictures2/tamaCharacter/adult1/tama_adult1.svg";
   } else if (state.tamaStage === tamaState[8]) {
-    eggAnimation.src = "./tamaPictures/tamaStages/adult2.svg";
+    eggAnimation.src = "./tamaPictures2/tamaCharacter/adult2/tama_adult2.svg";
   } else if (state.tamaStage === tamaState[9]) {
-    eggAnimation.src = "./tamaPictures/tamaStages/adult3.svg";
+    eggAnimation.src = "./tamaPictures2/tamaCharacter/adult3/tama_adult3.svg";
   } else if (state.tamaStage === tamaState[10]) {
-    eggAnimation.src = "./tamaPictures/tamaStages/adult4.svg";
+    eggAnimation.src = "./tamaPictures2/tamaCharacter/adult4/tama_adult4.svg";
   } else {
     if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
       eggAnimation.src = "./tamaPictures/eggStateOne.svg";
@@ -253,7 +276,6 @@ function eggToBaby() {
         //5% chance every 4 sec to hatch early
         state.tamaStage = tamaState[1];
         state.tamaName = state.tamaStage;
-        tamaPictures.src = "./tamaPictures/happy1.png";
         state.timeState.lastEvolve = new Date();
       }
     }
@@ -407,6 +429,7 @@ function givePoop() {
       ) {
         state.tamaPoop++;
         state.timeState.lastPoop = new Date();
+        poopPicture.style.display = "block";
       }
     }
   } else {
@@ -420,6 +443,7 @@ function givePoop() {
       ) {
         state.tamaPoop++;
         state.timeState.lastPoop = new Date();
+        poopPicture.style.display = "block";
         let randomNum2 = randomNumGen(4);
         if (randomNum2 == 2) {
           //25%: 1/4
@@ -428,6 +452,10 @@ function givePoop() {
         }
       }
     }
+  }
+
+  if (state.tamaPoop === 0) {
+    poopPicture.style.display = "none";
   }
 }
 
