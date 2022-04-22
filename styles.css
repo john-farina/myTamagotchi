@@ -100,11 +100,19 @@ button {
 }
 
 .egg {
-  height: 60px;
+  height: 55px;
 }
 
 .child {
   height: 30px;
+}
+
+.left {
+  margin-left: -50px;
+}
+
+.right {
+  margin-right: -50px;
 }
 
 .child-low {
@@ -121,4 +129,14 @@ button {
 
 .adult {
   height: 60px;
+}
+
+#hearts-container,
+#happy-container {
+  display: flex;
+  gap: 2px;
+}
+
+.heart {
+  height: 30px;
 }

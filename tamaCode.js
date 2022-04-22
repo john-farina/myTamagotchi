@@ -19,8 +19,8 @@ const state = {
   tamaHatch: 4,
   tamaStage: tamaState,
   tamaDead: false,
-  tamaHealth: 5,
-  tamaHappy: 3,
+  tamaHealth: 1,
+  tamaHappy: 1,
   needAttention: false,
   tamaDiscipline: 0,
   tamaSpoiled: 0,
@@ -89,7 +89,181 @@ const tamaPictures = document.querySelector("#tamaPictures");
 const eggAnimation = document.querySelector("#eggAnimation");
 const poopPicture = document.querySelector(".poop");
 
+const heart1 = document.querySelector("#heart1");
+const heart2 = document.querySelector("#heart2");
+const heart3 = document.querySelector("#heart3");
+const heart4 = document.querySelector("#heart4");
+const heart5 = document.querySelector("#heart5");
+
+const happy1 = document.querySelector("#happy1");
+const happy2 = document.querySelector("#happy2");
+const happy3 = document.querySelector("#happy3");
+const happy4 = document.querySelector("#happy4");
+const happy5 = document.querySelector("#happy5");
+
+function updateHeartSvg() {
+  if (state.tamaHealth === 0) {
+    heart1.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart2.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart3.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart4.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart5.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+  } else if (state.tamaHealth === 0.5) {
+    heart1.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    heart2.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart3.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart4.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart5.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+  } else if (state.tamaHealth === 1) {
+    heart1.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart2.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart3.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart4.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart5.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+  } else if (state.tamaHealth === 1.5) {
+    heart1.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart2.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    heart3.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart4.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart5.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+  } else if (state.tamaHealth === 2) {
+    heart1.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart2.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart3.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart4.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart5.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+  } else if (state.tamaHealth === 2.5) {
+    heart1.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart2.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart3.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    heart4.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart5.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+  } else if (state.tamaHealth === 3) {
+    heart1.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart2.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart3.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart4.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart5.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+  } else if (state.tamaHealth === 3.5) {
+    heart1.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart2.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart3.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart4.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    heart5.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+  } else if (state.tamaHealth === 4) {
+    heart1.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart2.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart3.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart4.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart5.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+  } else if (state.tamaHealth === 4.5) {
+    heart1.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart2.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart3.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart4.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart5.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartHalf.svg";
+  } else if (state.tamaHealth === 5) {
+    heart1.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart2.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart3.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart4.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart5.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+  }
+
+  if (state.tamaHappy === 0) {
+    happy1.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy2.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy3.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy4.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy5.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+  } else if (state.tamaHappy === 0.5) {
+    happy1.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    happy2.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy3.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy4.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy5.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+  } else if (state.tamaHappy === 1) {
+    happy1.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy2.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy3.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy4.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy5.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+  } else if (state.tamaHappy === 1.5) {
+    happy1.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy2.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    happy3.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy4.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy5.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+  } else if (state.tamaHappy === 2) {
+    happy1.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy2.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy3.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy4.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy5.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+  } else if (state.tamaHappy === 2.5) {
+    happy1.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy2.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy3.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    happy4.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy5.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+  } else if (state.tamaHappy === 3) {
+    happy1.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy2.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy3.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy4.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy5.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+  } else if (state.tamaHappy === 3.5) {
+    happy1.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy2.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy3.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy4.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    happy5.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+  } else if (state.tamaHappy === 4) {
+    happy1.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy2.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy3.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy4.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy5.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+  } else if (state.tamaHappy === 4.5) {
+    happy1.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy2.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy3.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy4.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy5.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartHalf.svg";
+  } else if (state.tamaHappy === 5) {
+    happy1.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy2.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy3.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy4.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy5.src = "./tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+  }
+}
+
+function randomLeftOrRight() {
+  if (state.timeState.gameStart % 2 == 0) {
+    if (state.tamaStage === tamaState[0]) {
+    } else {
+      let randomChoice1 = randomNumGen(5);
+      if (randomChoice1 === 2) {
+        let randomChoice2 = randomNumGen(3);
+        if (randomChoice2 === 0) {
+          eggAnimation.classList.remove("right");
+          eggAnimation.classList.add("left");
+        } else if (randomChoice2 === 1) {
+          eggAnimation.classList.remove("left");
+          eggAnimation.classList.add("right");
+        } else {
+          eggAnimation.classList.remove("right");
+          eggAnimation.classList.remove("left");
+        }
+      }
+    }
+  }
+}
+
 function changePicture() {
+  randomLeftOrRight();
+  updateHeartSvg();
   if (state.tamaStage === tamaState[0]) {
     //hello
     eggAnimation.classList.add("egg");
@@ -99,18 +273,24 @@ function changePicture() {
       eggAnimation.src = "./tamaPictures2/tamaEgg/tama_eggState2.svg";
     }
   } else if (state.tamaStage === tamaState[1]) {
-    eggAnimation.classList.remove("egg");
-    eggAnimation.classList.add("child");
-    if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
-      if (randomNumGen(3) === 1) {
-        eggAnimation.classList.add("child-low");
-        eggAnimation.src =
-          "./tamaPictures2/tamaCharacter/childState1/tama_child1-lower.svg";
-      }
+    if (timeMathToSec(state.timeState.lastEvolve) < 4) {
+      eggAnimation.src = "./tamaPictures2/tamaEgg/tama_eggState3.svg";
     } else {
-      eggAnimation.classList.remove("child-low");
+      eggAnimation.classList.remove("egg");
+      eggAnimation.classList.add("child");
       eggAnimation.src =
         "./tamaPictures2/tamaCharacter/childState1/tama_childState1.svg";
+      if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
+        if (randomNumGen(3) === 1) {
+          eggAnimation.classList.add("child-low");
+          eggAnimation.src =
+            "./tamaPictures2/tamaCharacter/childState1/tama_child1-lower.svg";
+        }
+      } else {
+        eggAnimation.classList.remove("child-low");
+        eggAnimation.src =
+          "./tamaPictures2/tamaCharacter/childState1/tama_childState1.svg";
+      }
     }
   } else if (state.tamaStage === tamaState[2]) {
     eggAnimation.classList.remove("child");
@@ -409,6 +589,8 @@ function autoDeath() {
   ) {
     state.tamaHealth = 1;
   } else if (state.tamaHealth == 0) {
+    eggAnimation.src =
+      "./tamaPictures2/tamaAlert/tama_graveStone and Ghost.svg";
     stop();
     state.tamaDead = true;
   }
