@@ -56,6 +56,8 @@ const happy3 = document.querySelector("#hunger3");
 const happy4 = document.querySelector("#hunger4");
 const happy5 = document.querySelector("#hunger5");
 
+const sickAlert = document.querySelector("#sickAlert");
+
 const eggClass = document.querySelector(".egg");
 const eggState1 = document.querySelector("#eggState1");
 const eggState2 = document.querySelector("#eggState2");
@@ -67,13 +69,24 @@ const child1Low = document.querySelector("#child1-low");
 const child1Sick = document.querySelector("#child1-sick");
 const child2 = document.querySelector("#child2");
 
+const teenClass = document.querySelector(".teen");
 const teen1 = document.querySelector("#teen1");
 const teen2 = document.querySelector("#teen2");
 
+const adultClass = document.querySelector(".adult");
 const adult1 = document.querySelector("#adult1");
 const adult2 = document.querySelector("#adult2");
 const adult3 = document.querySelector("#adult3");
 const adult4 = document.querySelector("#adult4");
+const adult5 = document.querySelector("#adult5");
+const adult6 = document.querySelector("#adult6");
+
+const poop1 = document.querySelector("#poop1");
+const poop2 = document.querySelector("#poop2");
+const poop3 = document.querySelector("#poop3");
+const poop4 = document.querySelector("#poop4");
+
+const gravestone = document.querySelector("#gravestone");
 
 /////////////////////////////////////USEFUL FUNCTIONS
 function randomNumGen(percent) {
@@ -93,7 +106,98 @@ if (greaterAndLessThen(10, 20, randomNumGen(30)) === true) {
   console.log("its true!");
 }
 
+/////////////////////////////////////MOVEMENTS/ANIMATION
+function moveLeftToRightRandom(character) {
+  if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
+    let randomChoice = randomNumGen(3);
+    if (randomChoice === 1) {
+      let randomChoice2 = randomNumGen(5);
+      if (randomChoice2 === 3) {
+        character.classList.remove("left");
+        character.classList.remove("right");
+        character.classList.remove("rightSmall");
+        character.classList.add("leftSmall");
+      } else {
+        let randomChoice3 = randomNumGen(5);
+        if (randomChoice3 === 3) {
+          character.classList.remove("right");
+          character.classList.remove("rightSmall");
+          character.classList.remove("leftSmall");
+          character.classList.add("left");
+        }
+      }
+    } else if (randomChoice === 2) {
+      let randomChoice4 = randomNumGen(5);
+      if (randomChoice4 === 3) {
+        character.classList.remove("left");
+        character.classList.remove("leftSmall");
+        character.classList.remove("right");
+        character.classList.add("rightSmall");
+      } else {
+        let randomChoice5 = randomNumGen(5);
+        if (randomChoice5 === 3) {
+          character.classList.remove("left");
+          character.classList.remove("leftSmall");
+          character.classList.remove("rightSmall");
+          character.classList.add("right");
+        }
+      }
+    } else {
+      character.classList.remove("left");
+      character.classList.remove("leftSmall");
+      character.classList.remove("rightSmall");
+      character.classList.remove("right");
+    }
+  }
+}
+
+function autoRandomFlip(character) {
+  if (timeMathToSec(state.timeState.gameStart) % 1 === 0) {
+    let randomChoice = randomNumGen(3);
+    if (randomChoice === 1 || randomChoice === 2) {
+      character.classList.add("flip");
+    } else {
+      character.classList.remove("flip");
+    }
+  }
+}
+
+function autoLips(character) {}
+
+function randomMovement(character) {}
+
+function autoAlert() {
+  if (state.tamaSick === true) {
+    sickAlert.style.visibility = "visible";
+  } else {
+    sickAlert.style.visibility = "hidden";
+  }
+}
+
+function placePoop() {
+  if (state.tamaPoop === 1) {
+    poop1.style.visibility = "visible";
+  }
+  if (state.tamaPoop === 2) {
+    poop2.style.visibility = "visible";
+  }
+  if (state.tamaPoop === 3) {
+    poop3.style.visibility = "visible";
+  }
+  if (state.tamaPoop === 4) {
+    poop4.style.visibility = "visible";
+  }
+  if (state.tamaPoop === 0) {
+    poop1.style.visibility = "hidden";
+    poop2.style.visibility = "hidden";
+    poop3.style.visibility = "hidden";
+    poop4.style.visibility = "hidden";
+  }
+}
+
 function changePicture() {
+  placePoop();
+  autoAlert();
   if (state.tamaStage === tamaState[0]) {
     if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
       eggState2.style.visibility = "hidden";
@@ -105,6 +209,7 @@ function changePicture() {
   }
 
   if (state.tamaStage === tamaState[1] && state.tamaSick === true) {
+    eggClass.style.visibility = "hidden";
     child1Sick.style.visibility = "hidden";
     child1Low.style.visibility = "visible";
     if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
@@ -118,16 +223,20 @@ function changePicture() {
       }
     }
   } else if (state.tamaStage === tamaState[1]) {
+    eggClass.style.visibility = "hidden";
     child1.style.visibility = "visible";
     child1Low.style.visibility = "hidden";
+    moveLeftToRightRandom(child1);
     if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
-      let randomChoice = randomNumGen(5);
+      let randomChoice = randomNumGen(4);
       if (randomChoice === 3) {
         child1.style.visibility = "hidden";
         child1Low.style.visibility = "visible";
+        moveLeftToRightRandom(child1Low);
       } else {
         child1Low.style.visibility = "hidden";
         child1.style.visibility = "visible";
+        moveLeftToRightRandom(child1);
       }
     }
   }
@@ -137,15 +246,51 @@ function changePicture() {
     child1Low.style.visibility = "hidden";
     child1Sick.style.visibility = "hidden";
     child2.style.visibility = "visible";
+    moveLeftToRightRandom(child2);
   }
 
   if (state.tamaStage === tamaState[3]) {
     child2.style.visibility = "hidden";
     teen1.style.visibility = "visible";
+    autoRandomFlip(teen1);
   }
   if (state.tamaStage === tamaState[4]) {
     child2.style.visibility = "hidden";
     teen2.style.visibility = "visible";
+    autoRandomFlip(teen2);
+  }
+
+  // SPECIAL CHARACTERS
+  if (state.tamaStage === tamaState[5]) {
+    teenClass.style.visibility = "hidden";
+    adult5.style.visibility = "visible";
+    autoRandomFlip(adult5);
+  }
+  if (state.tamaStage === tamaState[6]) {
+    teenClass.style.visibility = "hidden";
+    adult6.style.visibility = "visible";
+    autoRandomFlip(adult6);
+  }
+
+  if (state.tamaStage === tamaState[7]) {
+    teenClass.style.visibility = "hidden";
+    adult1.style.visibility = "visible";
+    autoRandomFlip(adult1);
+  }
+  if (state.tamaStage === tamaState[8]) {
+    teenClass.style.visibility = "hidden";
+    adult2.style.visibility = "visible";
+    autoRandomFlip(adult2);
+  }
+  if (state.tamaStage === tamaState[9]) {
+    teenClass.style.visibility = "hidden";
+    adult3.style.visibility = "visible";
+    autoRandomFlip(adult3);
+  }
+  if (state.tamaStage === tamaState[10]) {
+    teenClass.style.visibility = "hidden";
+    adult4.style.visibility = "visible";
+    autoRandomFlip(adult4);
   }
 }
 
@@ -295,8 +440,10 @@ function autoDeath() {
   ) {
     state.tamaHealth = 1;
   } else if (state.tamaHealth == 0) {
-    eggAnimation.src =
-      "./tamaPictures2/tamaAlert/tama_graveStone and Ghost.svg";
+    childClass.style.visibility = "hidden";
+    teenClass.style.visibility = "hidden";
+    adultClass.style.visibility = "hidden";
+    gravestone.style.visibility = "visible";
     stop();
     state.tamaDead = true;
   }
@@ -318,7 +465,7 @@ function autoAge() {
 
 function givePoop() {
   let randomNum = randomNumGen(1000);
-  if (state.tamaPoop == 6) {
+  if (state.tamaPoop == 4) {
     //cant poop anymore
   } else if (state.tamaSick == true) {
     if (timeMathToSec(state.timeState.lastPoop) % 10 == 0) {
@@ -420,7 +567,7 @@ function autoHappyDegen() {
 function getSick() {
   let randomNumber = randomNumGen(4000);
 
-  if (state.tamaPoop == 6) {
+  if (state.tamaPoop == 4) {
     if (timeMathToSec(state.timeState.lastPoop) > 15) {
       //if 6 poop for 15 sec get sick
       state.tamaSick = true;
@@ -619,7 +766,7 @@ function spoiledAdultAttention() {
 
 function letThereBeLife() {
   if (timeMathToSec(state.timeState.gameStart) < 10) {
-    state.tamaStage = tamaState[0];
+    state.tamaStage = tamaState[1];
   }
 }
 
@@ -789,8 +936,10 @@ function autoDeath() {
   ) {
     state.tamaHealth = 1;
   } else if (state.tamaHealth == 0) {
-    eggAnimation.src =
-      "./tamaPictures2/tamaAlert/tama_graveStone and Ghost.svg";
+    childClass.style.visibility = "hidden";
+    teenClass.style.visibility = "hidden";
+    adultClass.style.visibility = "hidden";
+    gravestone.style.visibility = "visible";
     stop();
     state.tamaDead = true;
   }

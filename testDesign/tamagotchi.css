@@ -61,7 +61,7 @@ body {
   width: 200px;
 }
 
-#top-bar--X-,
+#top-bar,
 #bottom-bar {
   background-color: rgb(217, 217, 217);
   height: 25px;
@@ -83,6 +83,20 @@ body {
   height: 50px;
 }
 
+.right {
+  margin-right: -90px;
+}
+.rightSmall {
+  margin-right: -40px;
+}
+
+.left {
+  margin-left: -90px;
+}
+.leftSmall {
+  margin-left: -40px;
+}
+
 .egg {
   height: 55px;
 }
@@ -96,8 +110,8 @@ body {
   height: 10px;
 }
 
-.child2 {
-  height: 30px;
+#child2 {
+  height: 35px;
 }
 
 .teen {
@@ -106,6 +120,11 @@ body {
 
 .adult {
   height: 50px;
+}
+
+.flip {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
 }
 
 .poopEmote {
@@ -118,7 +137,7 @@ body {
 #poop1 {
   height: 24px;
   margin-left: 170px;
-  visibility: visible;
+  visibility: hidden;
 }
 #poop3 {
   margin-left: 100px;
@@ -127,7 +146,7 @@ body {
 /* LEFT */
 #poop2 {
   margin-right: 170px;
-  visibility: visible;
+  visibility: hidden;
 }
 #poop4 {
   height: 22px;
@@ -141,6 +160,11 @@ body {
   margin-left: 150px;
   margin-bottom: 80px;
   visibility: visible;
+}
+
+#gravestone {
+  height: 60px;
+  visibility: hidden;
 }
 
 #health-screen {
@@ -164,7 +188,7 @@ body {
   margin: 0;
 }
 
-#hunger-hearts--X-,
+#hunger-hearts,
 #happy-hearts {
   display: flex;
   gap: 5px;
@@ -189,7 +213,7 @@ body {
   width: 20;
 }
 
-#mealButton--X-,
+#mealButton,
 #snackButton {
   font-weight: bolder;
   font-size: 20px;
@@ -197,8 +221,28 @@ body {
   border-color: rgba(0, 0, 0, 0);
 }
 
-#mealButton--X-:hover,
-#snackButton--X-:hover {
+.foodSprite {
+  position: absolute;
+  margin-right: 100px;
+  height: 20px;
+  visibility: hidden;
+}
+
+#meal2 {
+  height: 22px;
+  margin-bottom: 24px;
+}
+
+#snack1 {
+  margin-bottom: 52px;
+}
+
+#snack2 {
+  margin-bottom: 80px;
+}
+
+#mealButton:hover,
+#snackButton:hover {
   color: white;
 }
 
@@ -209,8 +253,8 @@ body {
 }
 
 /* FLIP */
-#character--X-:hover,
-.poopEmote--X-:hover {
+#character:hover,
+.poopEmote:hover {
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
 }
