@@ -1,62 +1,62 @@
-let healthIsActive = false;
-let foodIsActive = false;
+let healthIsActiveXXXX = false;
+let foodIsActiveXXXX = false;
 
-const healthButton = document.querySelector("#healthButton");
-const healthScreen = document.querySelector("#health-screen");
+const healthButtonXXXX = document.querySelector("#healthButton");
+const healthScreenXXXX = document.querySelector("#health-screen");
 
-const foodButton = document.querySelector("#foodButton");
-const foodScreen = document.querySelector("#food-screen");
-const mealButton = document.querySelector("#mealButton");
-const snackButton = document.querySelector("#snackButton");
+const foodButtonXXXX = document.querySelector("#foodButton");
+const foodScreenXXXX = document.querySelector("#food-screen");
+const mealButtonXXXX = document.querySelector("#mealButton");
+const snackButtonXXXX = document.querySelector("#snackButton");
 
-const buttonThree = document.querySelector("#buttonThree");
+const buttonThreeXXXX = document.querySelector("#buttonThree");
 
-healthButton.addEventListener("click", function () {
-  if (foodIsActive === true) {
-    foodIsActive = false;
-    foodScreen.style.visibility = "hidden";
-    healthScreen.style.visibility = "visible";
-    healthIsActive = true;
-  } else if (healthIsActive === false) {
-    healthScreen.style.visibility = "visible";
-    healthIsActive = true;
-  } else if (healthIsActive === true) {
-    healthScreen.style.visibility = "hidden";
-    healthIsActive = false;
+healthButtonXXXX.addEventListener("click", function () {
+  if (foodIsActiveXXXX === true) {
+    foodIsActiveXXXX = false;
+    foodScreenXXXX.style.visibility = "hidden";
+    healthScreenXXXX.style.visibility = "visible";
+    healthIsActiveXXXX = true;
+  } else if (healthIsActiveXXXX === false) {
+    healthScreenXXXX.style.visibility = "visible";
+    healthIsActiveXXXX = true;
+  } else if (healthIsActiveXXXX === true) {
+    healthScreenXXXX.style.visibility = "hidden";
+    healthIsActiveXXXX = false;
   }
 });
 
-foodButton.addEventListener("click", function () {
-  if (healthIsActive === true) {
-    healthIsActive = false;
-    healthScreen.style.visibility = "hidden";
-    foodScreen.style.visibility = "visible";
-    foodIsActive = true;
-  } else if (foodIsActive === false) {
-    foodScreen.style.visibility = "visible";
-    foodIsActive = true;
-  } else if (foodIsActive === true) {
-    foodScreen.style.visibility = "hidden";
-    foodIsActive = false;
+foodButtonXXXX.addEventListener("click", function () {
+  if (healthIsActiveXXXX === true) {
+    healthIsActiveXXXX = false;
+    healthScreenXXXX.style.visibility = "hidden";
+    foodScreenXXXX.style.visibility = "visible";
+    foodIsActiveXXXX = true;
+  } else if (foodIsActiveXXXX === false) {
+    foodScreenXXXX.style.visibility = "visible";
+    foodIsActiveXXXX = true;
+  } else if (foodIsActiveXXXX === true) {
+    foodScreenXXXX.style.visibility = "hidden";
+    foodIsActiveXXXX = false;
   }
 });
 
-mealButton.addEventListener("click", function () {
-  foodScreen.style.visibility = "hidden";
-  foodIsActive = false;
+mealButtonXXXX.addEventListener("click", function () {
+  foodScreenXXXX.style.visibility = "hidden";
+  foodIsActiveXXXX = false;
   //feed meal animation
 });
 
-snackButton.addEventListener("click", function () {
-  foodScreen.style.visibility = "hidden";
-  foodIsActive = false;
+snackButtonXXXX.addEventListener("click", function () {
+  foodScreenXXXX.style.visibility = "hidden";
+  foodIsActiveXXXX = false;
   //feed meal animation
 });
 
-buttonThree.addEventListener("click", function () {
-  healthIsActive = false;
-  foodIsActive = false;
+buttonThreeXXXX.addEventListener("click", function () {
+  healthIsActiveXXXX = false;
+  foodIsActiveXXXX = false;
 
-  healthScreen.style.visibility = "hidden";
-  foodScreen.style.visibility = "hidden";
+  healthScreenXXXX.style.visibility = "hidden";
+  foodScreenXXXX.style.visibility = "hidden";
 });

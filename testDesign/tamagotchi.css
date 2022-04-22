@@ -2,12 +2,66 @@ body {
   background-color: beige;
 }
 
+/* ALL CHARACTERS*/
+
+#eggState1 {
+  visibility: hidden;
+}
+#eggState2 {
+  visibility: hidden;
+}
+#eggState3 {
+  visibility: hidden;
+}
+
+#child1 {
+  visibility: hidden;
+}
+#child1-low {
+  visibility: hidden;
+}
+#child1-sick {
+  visibility: hidden;
+}
+
+#child2 {
+  visibility: hidden;
+}
+
+#teen1 {
+  visibility: hidden;
+}
+#teen2 {
+  visibility: hidden;
+}
+
+#adult1 {
+  visibility: hidden;
+}
+#adult2 {
+  visibility: hidden;
+}
+#adult3 {
+  visibility: hidden;
+}
+#adult4 {
+  visibility: hidden;
+}
+#adult5 {
+  visibility: hidden;
+}
+#adult6 {
+  visibility: hidden;
+}
+
+/* END OF LIST */
+
 #screen-container {
   background-color: gray;
   width: 200px;
 }
 
-#top-bar,
+#top-bar--X-,
 #bottom-bar {
   background-color: rgb(217, 217, 217);
   height: 25px;
@@ -24,12 +78,34 @@ body {
   width: inherit;
 }
 
-#character {
+.character {
   position: absolute;
-  height: 60px;
-  /* animation-name: leftToRight;
-  animation-iteration-count: infinite;
-  animation-duration: 4s; */
+  height: 50px;
+}
+
+.egg {
+  height: 55px;
+}
+
+.child {
+  height: 20px;
+}
+
+#child1-low,
+#child1-sick {
+  height: 10px;
+}
+
+.child2 {
+  height: 30px;
+}
+
+.teen {
+  height: 40px;
+}
+
+.adult {
+  height: 50px;
 }
 
 .poopEmote {
@@ -40,14 +116,23 @@ body {
 
 /* RIGHT */
 #poop1 {
+  height: 24px;
   margin-left: 170px;
   visibility: visible;
 }
-
+#poop3 {
+  margin-left: 100px;
+  visibility: hidden;
+}
 /* LEFT */
 #poop2 {
   margin-right: 170px;
   visibility: visible;
+}
+#poop4 {
+  height: 22px;
+  margin-right: 90px;
+  visibility: hidden;
 }
 
 #sickAlert {
@@ -79,7 +164,7 @@ body {
   margin: 0;
 }
 
-#hunger-hearts,
+#hunger-hearts--X-,
 #happy-hearts {
   display: flex;
   gap: 5px;
@@ -100,7 +185,11 @@ body {
   visibility: hidden;
 }
 
-#mealButton,
+#foodButton {
+  width: 20;
+}
+
+#mealButton--X-,
 #snackButton {
   font-weight: bolder;
   font-size: 20px;
@@ -108,8 +197,8 @@ body {
   border-color: rgba(0, 0, 0, 0);
 }
 
-#mealButton:hover,
-#snackButton:hover {
+#mealButton--X-:hover,
+#snackButton--X-:hover {
   color: white;
 }
 
@@ -120,8 +209,8 @@ body {
 }
 
 /* FLIP */
-#character:hover,
-.poopEmote:hover {
+#character--X-:hover,
+.poopEmote--X-:hover {
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
 }
