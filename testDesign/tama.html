@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./tamagotchi.css"/>
+    <script src="./buttons.js" defer></script>
+</head>
+<body>
+    
+    <div id="screen-container">
+
+        <div id="top-bar">
+            <button id="foodButton"></button>
+            <button id="healthButton"></button>
+            </div>
+
+            <div id="main-screen">
+                <!-- CHARACTER AND MAINSCREEN -->
+                <img id="character" src="/tamaPictures2/tamaCharacter/adult3/tama_adult3.svg">
+                <img id="poop1" class="poopEmote" src="/tamaPictures2/tamaAlert/tama_poopAlert.svg">
+                <img id="poop2" class="poopEmote" src="/tamaPictures2/tamaAlert/tama_poopAlert.svg">
+
+                <img id="sickAlert" src="/tamaPictures2/tamaAlert/tama_sickAlert.svg">
+
+
+                <!-- MENU SCREENS -->
+                <div id="health-screen">
+                    <h3 class="health-text">Hunger</h3>
+                    <div id="hunger-hearts" class="hearts-container">
+                        <img class="hearts" src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg">
+                        <img class="hearts" src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg">
+                        <img class="hearts" src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg">
+                        <img class="hearts" src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg">
+                        <img class="hearts" src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg">
+                    </div>
+                    <h3 class="health-text">Happy</h3>
+                    <div id="happy-hearts" class="hearts-container">
+                        <img class="hearts" src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg">
+                        <img class="hearts" src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg">
+                        <img class="hearts" src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg">
+                        <img class="hearts" src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg">
+                        <img class="hearts" src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg">
+                    </div>
+                </div>
+
+                <div id="food-screen">
+                    <button id="mealButton">
+                        MEAL
+                    </button>
+                    <button id="snackButton">
+                        SNACK
+                    </button>
+                </div>
+
+            </div>
+
+        <div id="bottom-bar">
+
+        </div>
+
+    </div>
+
+    <div id="device-buttons">
+        <button class="bottom-buttons" id="buttonOne">1</button>
+        <button class="bottom-buttons" id="buttonTwo">2</button>
+        <button class="bottom-buttons" id="buttonThree">3</button>
+    </div>
+
+</body>
+</html>

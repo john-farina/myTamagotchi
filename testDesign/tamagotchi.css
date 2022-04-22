@@ -1,0 +1,181 @@
+body {
+  background-color: beige;
+}
+
+#screen-container {
+  background-color: gray;
+  width: 200px;
+}
+
+#top-bar,
+#bottom-bar {
+  background-color: rgb(217, 217, 217);
+  height: 25px;
+  width: inherit;
+}
+
+#main-screen {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background-color: rgb(154, 154, 154);
+  height: 120px;
+  width: inherit;
+}
+
+#character {
+  position: absolute;
+  height: 60px;
+  /* animation-name: leftToRight;
+  animation-iteration-count: infinite;
+  animation-duration: 4s; */
+}
+
+.poopEmote {
+  position: absolute;
+  flex-wrap: nowrap;
+  height: 27px;
+}
+
+/* RIGHT */
+#poop1 {
+  margin-left: 170px;
+  visibility: visible;
+}
+
+/* LEFT */
+#poop2 {
+  margin-right: 170px;
+  visibility: visible;
+}
+
+#sickAlert {
+  position: absolute;
+  height: 30px;
+  margin-left: 150px;
+  margin-bottom: 80px;
+  visibility: visible;
+}
+
+#health-screen {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: inherit;
+  height: inherit;
+  z-index: 9;
+  background-color: rgb(154, 154, 154);
+  visibility: hidden;
+}
+
+.hearts {
+  height: 25px;
+}
+
+.health-text {
+  margin: 0;
+}
+
+#hunger-hearts,
+#happy-hearts {
+  display: flex;
+  gap: 5px;
+  padding: 5px;
+}
+
+#food-screen {
+  display: flex;
+  position: absolute;
+  align-items: stretch;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  background-color: rgb(154, 154, 154);
+  width: inherit;
+  height: inherit;
+  z-index: 9;
+  visibility: hidden;
+}
+
+#mealButton,
+#snackButton {
+  font-weight: bolder;
+  font-size: 20px;
+  background-color: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
+}
+
+#mealButton:hover,
+#snackButton:hover {
+  color: white;
+}
+
+#top-bar {
+}
+
+#bottom-bar {
+}
+
+/* FLIP */
+#character:hover,
+.poopEmote:hover {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+@keyframes leftToRight {
+  0% {
+    margin-left: 0px;
+  }
+  24% {
+    margin-left: 0px;
+  }
+  25% {
+    margin-left: 70px;
+  }
+  49% {
+    margin-left: 70px;
+  }
+  50% {
+    margin-left: 0px;
+  }
+  74% {
+    margin-left: 0px;
+  }
+  75% {
+    margin-right: 70px;
+  }
+  99% {
+    margin-right: 70px;
+  }
+  100% {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+}
+
+@keyframes flippy {
+  0% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+  49% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+  50% {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
+  99% {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+}
