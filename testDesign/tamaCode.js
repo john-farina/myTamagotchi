@@ -19,8 +19,8 @@ const state = {
   tamaHatch: 4,
   tamaStage: tamaState,
   tamaDead: false,
-  tamaHealth: 3,
-  tamaHappy: 5,
+  tamaHealth: 1,
+  tamaHappy: 3,
   needAttention: false,
   tamaDiscipline: 0,
   tamaSpoiled: 0,
@@ -36,7 +36,8 @@ const state = {
     lastSick: new Date(),
     lastHealth: new Date(),
     lastHappy: new Date(),
-    lastComplain: new Date()
+    lastComplain: new Date(),
+    lastAnimation: new Date()
   }
 };
 let count = 0;
@@ -86,7 +87,16 @@ const poop2 = document.querySelector("#poop2");
 const poop3 = document.querySelector("#poop3");
 const poop4 = document.querySelector("#poop4");
 
+const mealButton = document.querySelector("#mealButton");
+const snackButton = document.querySelector("#snackButton");
+const meal1 = document.querySelector("#meal1");
+const meal2 = document.querySelector("#meal2");
+const snack1 = document.querySelector("#snack1");
+const snack2 = document.querySelector("#snack2");
+
 const gravestone = document.querySelector("#gravestone");
+
+const hungerMeter = document.querySelector("#hungerMeter");
 
 /////////////////////////////////////USEFUL FUNCTIONS
 function randomNumGen(percent) {
@@ -195,7 +205,17 @@ function placePoop() {
   }
 }
 
+function updateFood() {
+  if (timeMathToSec(state.timeState.lastAnimation) > 1) {
+    meal1.style.visibility = "hidden";
+    meal2.style.visibility = "hidden";
+    snack1.style.visibility = "hidden";
+    snack2.style.visibility = "hidden";
+  }
+}
+
 function changePicture() {
+  updateFood();
   placePoop();
   autoAlert();
   if (state.tamaStage === tamaState[0]) {
@@ -608,10 +628,16 @@ function feed(type) {
 
   if (type == 1 && state.tamaHealth < 5) {
     state.tamaHealth++;
-  } else if (type == 2 && tamaHealth < 5) {
+  } else if (type == 2 && state.tamaHealth < 5) {
     state.tamaHealth = state.tamaHealth + 0.5;
+    if (state.tamaHappy < 5) {
+      state.tamaHappy = state.tamaHappy + 0.5;
+    }
   } else if (type == 2) {
     state.tamaHealth = state.tamaHealth + 0;
+    if (state.tamaHappy < 5) {
+      state.tamaHappy = state.tamaHappy + 0.5;
+    }
   }
   if (state.tamaHealth >= 5) {
     state.tamaHealth += 0;
@@ -717,9 +743,9 @@ function autoDisciplineTest() {
           state.needAttention == true &&
           timeMathToSec(state.timeState.lastComplain) < 30
         ) {
-          attentionText.textContent = " i want attention";
+          hungerMeter.textContent = " i want attention";
         } else {
-          attentionText.textContent = "";
+          hungerMeter.textContent = "";
           state.needAttention = false;
           if (randomNumGen(5) === 2) {
             state.tamaNeglect++;
@@ -999,3 +1025,41 @@ function gameLoop() {
   updateFunctions();
 }
 start();
+
+function randomMeal(type) {
+  if (state.tamaHealth < 5) {
+    if (type === 1) {
+      let randmNum = randomNumGen(2);
+      if (randmNum === 1) {
+        meal2.style.visibility = "hidden";
+        meal1.style.visibility = "visible";
+        state.timeState.lastAnimation = new Date();
+      } else {
+        meal1.style.visibility = "hidden";
+        meal2.style.visibility = "visible";
+        state.timeState.lastAnimation = new Date();
+      }
+    } else if (type === 2) {
+      let randmNum = randomNumGen(2);
+      if (randmNum === 1) {
+        snack2.style.visibility = "hidden";
+        snack1.style.visibility = "visible";
+        state.timeState.lastAnimation = new Date();
+      } else {
+        snack1.style.visibility = "hidden";
+        snack2.style.visibility = "visible";
+        state.timeState.lastAnimation = new Date();
+      }
+    }
+  }
+}
+
+mealButton.addEventListener("click", function () {
+  feed(1);
+  randomMeal(1);
+});
+
+snackButton.addEventListener("click", function () {
+  feed(2);
+  randomMeal(2);
+});
