@@ -223,22 +223,25 @@ body {
 
 .foodSprite {
   position: absolute;
-  margin-right: 100px;
   height: 20px;
   visibility: hidden;
+  margin-left: -35px;
 }
 
 #meal2 {
   height: 22px;
   margin-bottom: 24px;
+  margin-left: -80px;
 }
 
 #snack1 {
   margin-bottom: 52px;
+  margin-right: 100px;
 }
 
 #snack2 {
   margin-bottom: 80px;
+  margin-right: 100px;
 }
 
 #mealButton:hover,
