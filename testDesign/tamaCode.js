@@ -255,6 +255,8 @@ function childEatFoodAnimation() {
   }
 }
 
+// TEST
+
 function removeAllChildAndTeen() {
   eggState1.style.visibility = "hidden";
   eggState2.style.visibility = "hidden";
