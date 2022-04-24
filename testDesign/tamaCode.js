@@ -27,6 +27,8 @@ const state = {
   tamaNeglect: 0,
   tamaPoop: 0,
   tamaSick: false,
+  animationCount: 0,
+  foodAnimationGoing: false,
   timeState: {
     gameStart: new Date(),
     lastHatchCycle: new Date(),
@@ -68,6 +70,9 @@ const childClass = document.querySelector(".child");
 const child1 = document.querySelector("#child1");
 const child1Low = document.querySelector("#child1-low");
 const child1Sick = document.querySelector("#child1-sick");
+const child1Side = document.querySelector("#child1-side");
+const child1Eat = document.querySelector("#child1-eat");
+
 const child2 = document.querySelector("#child2");
 
 const teenClass = document.querySelector(".teen");
@@ -117,6 +122,13 @@ if (greaterAndLessThen(10, 20, randomNumGen(30)) === true) {
 }
 
 /////////////////////////////////////MOVEMENTS/ANIMATION
+function hideImage(character) {
+  character.style.visibility = "hidden";
+}
+function showImage(character) {
+  character.style.visibility = "visible";
+}
+
 function moveLeftToRightRandom(character) {
   if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
     let randomChoice = randomNumGen(3);
@@ -174,8 +186,6 @@ function autoRandomFlip(character) {
 
 function autoLips(character) {}
 
-function randomMovement(character) {}
-
 function autoAlert() {
   if (state.tamaSick === true) {
     sickAlert.style.visibility = "visible";
@@ -214,10 +224,55 @@ function updateFood() {
   }
 }
 
-function changePicture() {
-  updateFood();
-  placePoop();
-  autoAlert();
+function childEatFoodAnimation() {
+  if (state.foodAnimationGoing === true) {
+    if (
+      timeMathToSec(state.timeState.gameStart) % 1 === 0 &&
+      state.animationCount <= 6
+    ) {
+      state.animationCount++;
+      console.log(state.animationCount);
+    }
+    if (state.animationCount == 1) {
+      hideImage(child1);
+      hideImage(child1Sick);
+      hideImage(child1Low);
+      showImage(child1Side);
+    }
+    if (state.animationCount == 2 || state.animationCount == 4) {
+      hideImage(child1Side);
+      showImage(child1Eat);
+    }
+    if (state.animationCount == 3 || state.animationCount == 5) {
+      hideImage(child1Eat);
+      showImage(child1Side);
+    }
+    if (state.animationCount == 6) {
+      hideImage(child1Side);
+      state.foodAnimationGoing = false;
+      state.animationCount = 0;
+    }
+  }
+}
+
+function removeAllChildAndTeen() {
+  eggState1.style.visibility = "hidden";
+  eggState2.style.visibility = "hidden";
+  eggState3.style.visibility = "hidden";
+
+  child1.style.visibility = "hidden";
+  child1Low.style.visibility = "hidden";
+  child1Sick.style.visibility = "hidden";
+
+  child2.style.visibility = "hidden";
+  childClass.style.visibility = "hidden";
+
+  teen1.style.visibility = "hidden";
+  teen2.style.visibility = "hidden";
+  teenClass.style.visibility = "hidden";
+}
+
+function eggHatchAnimation() {
   if (state.tamaStage === tamaState[0]) {
     if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
       eggState2.style.visibility = "hidden";
@@ -227,7 +282,14 @@ function changePicture() {
       eggState2.style.visibility = "visible";
     }
   }
+}
 
+function changePicture() {
+  updateFood();
+  placePoop();
+  autoAlert();
+  eggHatchAnimation();
+  childEatFoodAnimation();
   if (state.tamaStage === tamaState[1] && state.tamaSick === true) {
     eggClass.style.visibility = "hidden";
     child1Sick.style.visibility = "hidden";
@@ -242,7 +304,10 @@ function changePicture() {
         child1Low.style.visibility = "visible";
       }
     }
-  } else if (state.tamaStage === tamaState[1]) {
+  } else if (
+    state.tamaStage === tamaState[1] &&
+    state.foodAnimationGoing === false
+  ) {
     eggClass.style.visibility = "hidden";
     child1.style.visibility = "visible";
     child1Low.style.visibility = "hidden";
@@ -282,33 +347,33 @@ function changePicture() {
 
   // SPECIAL CHARACTERS
   if (state.tamaStage === tamaState[5]) {
-    teenClass.style.visibility = "hidden";
+    removeAllChildAndTeen();
     adult5.style.visibility = "visible";
     autoRandomFlip(adult5);
   }
   if (state.tamaStage === tamaState[6]) {
-    teenClass.style.visibility = "hidden";
+    removeAllChildAndTeen();
     adult6.style.visibility = "visible";
     autoRandomFlip(adult6);
   }
 
   if (state.tamaStage === tamaState[7]) {
-    teenClass.style.visibility = "hidden";
+    removeAllChildAndTeen();
     adult1.style.visibility = "visible";
     autoRandomFlip(adult1);
   }
   if (state.tamaStage === tamaState[8]) {
-    teenClass.style.visibility = "hidden";
+    removeAllChildAndTeen();
     adult2.style.visibility = "visible";
     autoRandomFlip(adult2);
   }
   if (state.tamaStage === tamaState[9]) {
-    teenClass.style.visibility = "hidden";
+    removeAllChildAndTeen();
     adult3.style.visibility = "visible";
     autoRandomFlip(adult3);
   }
   if (state.tamaStage === tamaState[10]) {
-    teenClass.style.visibility = "hidden";
+    removeAllChildAndTeen();
     adult4.style.visibility = "visible";
     autoRandomFlip(adult4);
   }
@@ -1055,11 +1120,17 @@ function randomMeal(type) {
 }
 
 mealButton.addEventListener("click", function () {
-  feed(1);
-  randomMeal(1);
+  if (state.foodAnimationGoing === false && state.tamaHealth < 5) {
+    state.foodAnimationGoing = true;
+    feed(1);
+    randomMeal(1);
+  }
 });
 
 snackButton.addEventListener("click", function () {
-  feed(2);
-  randomMeal(2);
+  if (state.foodAnimationGoing === false && state.tamaHappy < 5) {
+    state.foodAnimationGoing = true;
+    feed(2);
+    randomMeal(2);
+  }
 });
