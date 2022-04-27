@@ -34,29 +34,98 @@ body {
 #child2 {
   visibility: hidden;
 }
+#child2-small {
+  visibility: hidden;
+}
+#child2-side {
+  visibility: hidden;
+}
+#child2-eat {
+  visibility: hidden;
+}
 
 #teen1 {
   visibility: hidden;
 }
+#teen1-eat {
+  visibility: hidden;
+}
+#teen1-sick {
+  visibility: hidden;
+}
+
 #teen2 {
+  visibility: hidden;
+}
+#teen2-lips {
+  visibility: hidden;
+}
+#teen2-eat {
+  visibility: hidden;
+}
+#teen2-sick {
   visibility: hidden;
 }
 
 #adult1 {
   visibility: hidden;
 }
+#adult1-eat {
+  visibility: hidden;
+}
+#adult1-sick {
+  visibility: hidden;
+}
+
 #adult2 {
   visibility: hidden;
 }
+#adult2-eat {
+  visibility: hidden;
+}
+#adult2-sick {
+  visibility: hidden;
+}
+#adult2-lips {
+  visibility: hidden;
+}
+
 #adult3 {
   visibility: hidden;
 }
+#adult3-eat {
+  visibility: hidden;
+}
+#adult3-sick {
+  visibility: hidden;
+}
+
 #adult4 {
   visibility: hidden;
 }
+#adult4-eat {
+  visibility: hidden;
+}
+#adult4-sick {
+  visibility: hidden;
+}
+#adult3-eat {
+  visibility: hidden;
+}
+#adult4-lips {
+  visibility: hidden;
+}
+
 #adult5 {
   visibility: hidden;
 }
+#adult5-eat {
+  visibility: hidden;
+}
+#adult5-sick {
+  visibility: hidden;
+}
+
 #adult6 {
   visibility: hidden;
 }
@@ -126,9 +195,29 @@ body {
 #child2 {
   height: 35px;
 }
+#child2-small {
+  height: 32px;
+}
+#child2-side {
+  height: 36px;
+}
+#child2-eat {
+  height: 36px;
+}
 
 .teen {
   height: 40px;
+}
+#teen1-eat {
+}
+#teen1-sick {
+}
+
+#teen2-lips {
+}
+#teen2-eat {
+}
+#teen2-sick {
 }
 
 .adult {
@@ -165,6 +254,18 @@ body {
   height: 22px;
   margin-right: 90px;
   visibility: hidden;
+}
+
+#cleaning-line {
+  position: absolute;
+  height: 7.5rem;
+  margin-right: -190px;
+}
+
+.cleanAnimation {
+  visibility: visible;
+  animation: cleaning;
+  animation-duration: 0.9s;
 }
 
 #sickAlert {
@@ -247,13 +348,15 @@ body {
   margin-left: -80px;
 }
 
-#snack1 {
+#snack1,
+#snack1Half {
   margin-bottom: 52px;
   margin-right: 100px;
 }
 
-#snack2 {
-  margin-bottom: 80px;
+#snack2,
+#snack2Half {
+  visibility: hidden;
   margin-right: 100px;
 }
 
@@ -326,5 +429,14 @@ body {
   100% {
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
+  }
+}
+
+@keyframes cleaning {
+  0% {
+    margin-right: -190px;
+  }
+  100% {
+    margin-right: 190px;
   }
 }
