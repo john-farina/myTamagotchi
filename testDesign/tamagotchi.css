@@ -20,10 +20,19 @@ button {
 :root {
   /* --mintGreen: rgb(113, 249, 177); */
   --mintGreen: rgb(113, 249, 177);
+  --redButton: rgb(238, 84, 84);
+  --darkerRedButton: rgb(204, 70, 70);
+
   --offWhite: rgb(251, 252, 228);
+  --blackButton: rgb(55, 55, 55);
+  --darkerBlackButton: rgb(37, 37, 37);
+
+  --lightYellow: rgb(245, 251, 132);
+  --purpleButton: rgb(206, 72, 224);
+  --darkerPurpleButton: rgb(150, 49, 163);
+
   --hotPink: rgb(179, 79, 186);
   --darkRed: rgb(206, 35, 35);
-  --lightYellow: rgb(245, 251, 132);
 }
 
 #tamagotchi-container {
@@ -37,8 +46,8 @@ button {
   width: 300px;
   height: 240px;
   /* box-shadow: 0px 50px 700px 10px black; */
-  background-color: var(--offWhite);
-	box-shadow: inset -25px -15px 40px rgba(0,0,0,.5), 30px 20px 200px 2px black;
+  background-color: var(--mintGreen);
+	box-shadow: inset -25px -15px 40px rgba(0,0,0,.5), 30px 20px 100px 0px rgba(0,0,0,50%);
 	background-image: linear-gradient(-145deg, rgba(65, 65, 65, 0.3) 0%, transparent 100%);
 }
 #screen-container {
@@ -61,7 +70,7 @@ button {
 }
 
 #signatureText {
-  color: var(--offWhite);
+  color: var(--mintGreen);
   text-shadow:2px 1px 3px rgba(0, 0, 0, 0.2);
   position: absolute;
   font-size: 15px;
@@ -77,7 +86,10 @@ button {
   gap: 19px;
 }
 .bottom-buttons {
+  background-color: var(--redButton);
+  border-color: var(--darkerRedButton);
   border-radius: 100%;
+  border-style: solid;
   height: 20px;
   width: 20px;
 }
@@ -129,6 +141,10 @@ button {
   background-color: var(--offWhite);
 }
 
+
+.bottom-buttons {
+
+}
 /* ALL CHARACTERS*/
 
 #eggState1 {
