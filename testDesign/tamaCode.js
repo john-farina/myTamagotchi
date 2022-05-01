@@ -19,8 +19,10 @@ const state = {
   tamaHatch: 4,
   tamaStage: tamaState,
   tamaDead: false,
-  tamaHealth: 1,
-  tamaHappy: 3,
+  tamaHealth: 4,
+  tamaHappy: 4,
+  tamaIsHappy: false,
+  tamaIsMad: false,
   needAttention: false,
   tamaDiscipline: 0,
   tamaSpoiled: 0,
@@ -28,6 +30,7 @@ const state = {
   tamaPoop: 0,
   tamaSick: false,
   animationCount: 0,
+  lightIsOff: false,
   foodAnimationGoing: false,
   timeState: {
     gameStart: new Date(),
@@ -47,15 +50,29 @@ let minCount = 0;
 let hourCount = 0;
 let myInterval;
 let myInterval2;
-let healthIsActive = false;
 let foodIsActive = false;
+let lightsIsActive = false;
+let healthIsActive = false;
+let animateCount = 0;
+
+const foodScreen = document.querySelector("#food-screen");
 
 const healthButton = document.querySelector("#healthButton");
+
+const lightsScreen = document.querySelector("#lights-screen");
+const lightsOffScreen = document.querySelector("#lights-off-screen");
+const lightButton = document.querySelector("#lightsButton");
+const lightsOn = document.querySelector("#lightsOnButton");
+const lightsOff = document.querySelector("#lightsOffButton");
+
+const healButton = document.querySelector("#healButton");
+
 const healthScreen = document.querySelector("#health-screen");
-const foodScreen = document.querySelector("#food-screen");
 
 const cleanButton = document.querySelector("#clean-button");
 const cleaningLine = document.querySelector("#cleaning-line");
+
+const alertButton = document.querySelector("#alertButtonImage");
 
 const heart1 = document.querySelector("#heart1");
 const heart2 = document.querySelector("#heart2");
@@ -70,12 +87,16 @@ const happy4 = document.querySelector("#hunger4");
 const happy5 = document.querySelector("#hunger5");
 
 const sickAlert = document.querySelector("#sickAlert");
+const madAlert1 = document.querySelector("#madAlert1");
+const madAlert2 = document.querySelector("#madAlert2");
+const happyAlert = document.querySelector("#happyAlert");
 
 const eggClass = document.querySelector(".egg");
 const eggState1 = document.querySelector("#eggState1");
 const eggState2 = document.querySelector("#eggState2");
 const eggState3 = document.querySelector("#eggState3");
 
+const characterClass = document.querySelector(".character");
 const childClass = document.querySelector(".child");
 
 const child1 = document.querySelector("#child1");
@@ -813,6 +834,41 @@ function updateHeartSvg() {
   }
 }
 
+function madAlertAnimate() {
+  if (animateCount <= 11 && state.tamaIsMad === true) {
+    if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
+      animateCount++;
+      hideImage(madAlert2);
+      showImage(madAlert1);
+    } else {
+      animateCount++;
+      hideImage(madAlert1);
+      showImage(madAlert2);
+    }
+  } else if (animateCount > 11 && state.tamaIsMad === true) {
+    state.tamaIsMad = false;
+    animateCount = 0;
+    hideImage(madAlert1);
+    hideImage(madAlert2);
+  }
+}
+
+function happyAlertAnimate() {
+  if (animateCount <= 5 && state.tamaIsHappy === true) {
+    if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
+      animateCount++;
+      showImage(happyAlert);
+    } else {
+      animateCount++;
+      hideImage(happyAlert);
+    }
+  } else if (animateCount > 5 && state.tamaIsHappy === true) {
+    state.tamaIsHappy = false;
+    animateCount = 0;
+    hideImage(happyAlert);
+  }
+}
+
 function startAnimation() {
   myInterval = setInterval(updatePictures, 400);
   state.gameStarted = true;
@@ -821,6 +877,8 @@ function startAnimation() {
 }
 
 function updatePictures() {
+  happyAlertAnimate();
+  madAlertAnimate();
   updateFood();
   placePoop();
   autoAlert();
@@ -1167,15 +1225,20 @@ function autoAttentionAlert() {
     //doesnt tell you when its actually hungry
   } else {
     if (state.tamaHappy <= 2 && state.tamaHealth <= 2) {
-      hungerMeter.textContent = "im not happy and hungry";
+      alertButton.style.backgroundColor = "red";
+      // hungerMeter.textContent = "im not happy and hungry";
     } else if (state.tamaHappy <= 2) {
-      hungerMeter.textContent = "im not happy";
+      alertButton.style.backgroundColor = "red";
+      // hungerMeter.textContent = "im not happy";
     } else if (state.tamaHealth <= 2) {
-      hungerMeter.textContent = "im hungry";
-    } else if (state.tamaHappy >= 2) {
-      hungerMeter.textContent = "";
+      alertButton.style.backgroundColor = "red";
+      // hungerMeter.textContent = "im hungry";
+    } else if (state.tamaHappy > 2) {
+      alertButton.style.backgroundColor = "green";
+      // hungerMeter.textContent = "";
     } else if (state.tamaHealth >= 2) {
-      hungerMeter.textContent = "";
+      alertButton.style.backgroundColor = "green";
+      // hungerMeter.textContent = "";
     }
   }
 }
@@ -1496,6 +1559,11 @@ foodButton.addEventListener("click", function () {
       healthScreen.style.visibility = "hidden";
       foodScreen.style.visibility = "visible";
       foodIsActive = true;
+    } else if (lightsIsActive === true) {
+      lightsIsActive = false;
+      hideImage(lightsScreen);
+      showImage(foodScreen);
+      foodIsActive = true;
     } else if (foodIsActive === false) {
       foodScreen.style.visibility = "visible";
       foodIsActive = true;
@@ -1510,7 +1578,7 @@ mealButton.addEventListener("click", function () {
   if (state.foodAnimationGoing === false && state.tamaHealth < 5) {
     state.foodAnimationGoing = true;
     feed(1);
-    childEatSnackAnimation();
+    allEatSnackAnimations();
   }
 });
 
@@ -1519,6 +1587,50 @@ snackButton.addEventListener("click", function () {
     state.foodAnimationGoing = true;
     feed(2);
     allEatSnackAnimations();
+  }
+});
+
+lightButton.addEventListener("click", function () {
+  if (state.lightIsOff === true && lightsIsActive === false) {
+    hideImage(lightsOffScreen);
+    showImage(lightsScreen);
+    lightsIsActive = true;
+  } else if (state.lightIsOff === true && lightsIsActive === true) {
+    hideImage(lightsScreen);
+    showImage(lightsOffScreen);
+    lightsIsActive = false;
+  } else if (foodIsActive === true) {
+    hideImage(foodScreen);
+    foodIsActive = false;
+    showImage(lightsScreen);
+  } else if (lightsIsActive === false) {
+    lightsScreen.style.visibility = "visible";
+    lightsIsActive = true;
+  } else if (lightsIsActive === true) {
+    lightsScreen.style.visibility = "hidden";
+    lightsIsActive = false;
+  }
+});
+lightsOn.addEventListener("click", function () {
+  hideImage(lightsScreen);
+  lightsIsActive = false;
+  hideImage(lightsOffScreen);
+  state.lightIsOff = false;
+  console.log(state.lightIsOff);
+});
+lightsOff.addEventListener("click", function () {
+  state.lightIsOff = true;
+  hideImage(lightsScreen);
+  lightsIsActive = false;
+  showImage(lightsOffScreen);
+  console.log(state.lightIsOff);
+});
+
+healButton.addEventListener("click", function () {
+  if (state.tamaIsMad != true) {
+    heal();
+    state.tamaIsMad = true;
+    //add a angry animation here
   }
 });
 
@@ -1538,6 +1650,21 @@ healthButton.addEventListener("click", function () {
 });
 
 cleanButton.addEventListener("click", function () {
-  clean();
-  cleaningLine.classList.add("cleanAnimation");
+  if (state.tamaPoop > 0) {
+    clean();
+    cleaningLine.classList.add("cleanAnimation");
+    showImage(cleaningLine);
+    setTimeout(function () {
+      cleaningLine.classList.remove("cleanAnimation");
+      hideImage(cleaningLine);
+      state.tamaIsHappy = true;
+    }, 800);
+  } else {
+    cleaningLine.classList.add("cleanAnimation");
+    showImage(cleaningLine);
+    setTimeout(function () {
+      cleaningLine.classList.remove("cleanAnimation");
+      hideImage(cleaningLine);
+    }, 800);
+  }
 });

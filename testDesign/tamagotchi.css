@@ -1,5 +1,72 @@
 body {
-  background-color: beige;
+  background-color: rgb(230, 255, 236);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  margin-top: 50px;
+}
+#options {
+  margin-top: 10rem;
+}
+#optionsButton {
+  height: 60px;
+  width: 60px;
+  border-radius: 100%;
+}
+
+:root {
+  /* --mintGreen: rgb(113, 249, 177); */
+  --mintGreen: rgb(113, 249, 177);
+  --offWhite: rgb(251, 252, 228);
+  --hotPink: rgb(179, 79, 186);
+  --darkRed: rgb(206, 35, 35);
+  --lightYellow: rgb(245, 251, 132);
+}
+
+#tamagotchi-container {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 10px 50px 10px;
+  border-radius: 95% 95% 69% 69%;
+  flex-direction: column;
+  width: 300px;
+  height: 240px;
+  /* box-shadow: 0px 50px 700px 10px black; */
+  background-color: var(--offWhite);
+	box-shadow: inset -25px -15px 40px rgba(0,0,0,.5), 30px 20px 200px 2px black;
+	background-image: linear-gradient(-145deg, rgba(65, 65, 65, 0.3) 0%, transparent 100%);
+}
+#screen-container {
+  margin-top: 30px;
+  size-adjust: 20px 20px;
+  box-shadow: 0px 0px 13px -5px black;
+}
+
+.screen-texture {
+  pointer-events: none;
+  position: absolute;
+  z-index: 20;
+  width: inherit;
+  height: inherit;
+  opacity: 25%;
+}
+#bottom-texture,
+#top-texture {
+  opacity: 20%;
+}
+
+#signatureText {
+  color: var(--offWhite);
+  text-shadow:2px 1px 3px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  font-size: 15px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin-left: -285px;
+  margin-top: 40px;
+  transform: rotate(90deg);
 }
 
 /* ALL CHARACTERS*/
@@ -257,13 +324,13 @@ body {
 }
 
 #cleaning-line {
+  visibility: hidden;
   position: absolute;
   height: 7.5rem;
   margin-right: -190px;
 }
 
 .cleanAnimation {
-  visibility: visible;
   animation: cleaning;
   animation-duration: 0.9s;
 }
@@ -365,7 +432,94 @@ body {
   color: white;
 }
 
-#top-bar {
+#lights-screen {
+  visibility: hidden;
+  position: absolute;
+  height: inherit;
+  width: inherit;
+  background-color: rgb(154, 154, 154);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 30px;
+}
+#lightsOnButton,
+#lightsOffButton {
+  font-weight: bolder;
+  font-size: 20px;
+  background-color: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
+}
+#lightsOnButton:hover,
+#lightsOffButton:hover {
+  color: white;
+}
+#lights-off-screen {
+  visibility: hidden;
+  position: absolute;
+  z-index: 10;
+  background-color: rgb(0, 0, 0);
+  height: inherit;
+  width: inherit;
+  display: flex;
+  justify-content: right;
+}
+#sleeping-alert {
+  display: flex;
+  color: white;
+  width: inherit;
+  height: inherit;
+  margin-left: 130px;
+  margin-top: 24px;
+}
+
+#top-bar,
+#bottom-bar {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+  align-items: center;
+}
+
+.screenButons {
+  height: 15px;
+  width: 15px;
+}
+
+#happyAlert {
+  visibility: hidden;
+  position: absolute;
+  margin-bottom: 60px;
+  margin-right: -100px;
+  height: 28px;
+}
+
+#madAlert1 {
+  visibility: hidden;
+  height: 13px;
+  margin-right: -100px;
+}
+#madAlert2 {
+  visibility: hidden;
+  height: 30px;
+  margin-right: -117px;
+}
+
+.madAlerts {
+  position:absolute;
+  margin-bottom: 60px;
+}
+
+#alertButtonImage {
+  border-radius: 2px;
+  border-color: black;
+  border-style: solid;
+  border-width: 1.5px;
+  background-color: black;
+  height: 12px;
+  width: 12px;
 }
 
 #bottom-bar {

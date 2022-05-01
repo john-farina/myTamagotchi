@@ -9,11 +9,17 @@
     <script src="./buttons.js" defer></script>
     <script src="./tamaCode.js" defer></script>
 <body>
-    <p id="hungerMeter">hi</p>
-    <div id="screen-container">
+    <p id="hungerMeter"></p>
 
+<div id="tamagotchi-container">
+    <h2 id="signatureText">farina</h2>
+    <div id="screen-container">
         <div id="top-bar">
-            <button id="foodButton"></button>
+            <button id="foodButton" class="screenButons"></button>
+            <button id="lightsButton" class="screenButons"></button>
+            <button id="gameButton" class="screenButons"></button>
+            <button id="healButton" class="screenButons"></button>
+            <img id="top-texture" class="screen-texture"" src="/tamaPictures2/screentexture.jpeg">
             </div>
 
             <div id="main-screen">
@@ -80,6 +86,10 @@
                   <img id="cleaning-line" src="/tamaPictures2/tamaAlert/tama_cleaningAnimation.svg">
                             <!-- SICK -->
                 <img id="sickAlert" src="/tamaPictures2/tamaAlert/tama_sickAlert.svg">
+                            <!-- HAPPY&SAD -->
+                <img id="happyAlert" src="/tamaPictures2/tamaAlert/tama_happyAlert.svg">
+                <img id="madAlert1" class="madAlerts" src="/tamaPictures2/tamaAlert/tama_madAlert1.svg">
+                <img id="madAlert2" class="madAlerts" src="/tamaPictures2/tamaAlert/tama_madAlert2.svg">
                             <!-- FOOD SPRITES -->
                 <img id="meal1" class="foodSprite" src="/tamaPictures2/tamaFood/tama_mealToast.svg">
 
@@ -94,6 +104,31 @@
                             <!-- GRAVESTONE -->
                 <img src="/tamaPictures2/tamaAlert/tama_graveStone and Ghost.svg" id="gravestone">
                 <!------------------------------------------------ MENU SCREENS -->
+                <div id="food-screen">
+                    <button id="mealButton">
+                        MEAL
+                    </button>
+                    <button id="snackButton">
+                        SNACK
+                    </button>
+                </div>
+
+                <div id="lights-screen">
+                    <button id="lightsOnButton">
+                        ON
+                    </button>
+                    <button id="lightsOffButton">
+                        OFF
+                    </button>
+                </div>
+                <div id="lights-off-screen">
+                    <div id="sleeping-alert">
+                        zzz
+                    </div>
+                </div>
+
+                <img class="screen-texture" src="/tamaPictures2/screentexture.jpeg">
+
                 <div id="health-screen">
                     <h3 class="health-text">Hunger</h3>
                     <div id="hunger-hearts" class="hearts-container">
@@ -113,20 +148,14 @@
                     </div>
                 </div>
 
-                <div id="food-screen">
-                    <button id="mealButton">
-                        MEAL
-                    </button>
-                    <button id="snackButton">
-                        SNACK
-                    </button>
-                </div>
-
             </div>
 
         <div id="bottom-bar">
-            <button id="clean-button"></button>
-            <button id="healthButton"></button>
+            <button id="clean-button" class="screenButons"></button>
+            <button id="healthButton" class="screenButons"></button>
+            <button id="discipline-button" class="screenButons"></button>
+            <div id="alertButtonImage"></div>
+            <img id="bottom-texture" class="screen-texture"" src="/tamaPictures2/screentexture.jpeg">
         </div>
 
     </div>
@@ -136,6 +165,11 @@
         <button class="bottom-buttons" id="buttonTwo">2</button>
         <button class="bottom-buttons" id="buttonThree">3</button>
     </div>
+    
+</div>
 
+<div id="options">
+    <button id="optionsButton">menu</button>
+</div>
 </body>
 </html>

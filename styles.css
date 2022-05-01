@@ -65,8 +65,8 @@ body {
   margin-bottom: 100px;
 }
 
-#top-bar--X-,
-#bottom-bar--X- {
+#top-bar,
+#bottom-bar {
   background-color: rgb(217, 217, 217);
   height: 25px;
   width: inherit;
@@ -202,10 +202,11 @@ body {
   color: white;
 }
 
-#top-bar--X- {
+#top-bar,
+#bottom-bar {
 }
 
-#bottom-bar--X- {
+#bottom-bar {
 }
 
 /* FLIP */
