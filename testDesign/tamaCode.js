@@ -28,7 +28,7 @@ const state = {
   tamaDiscipline: 0,
   tamaSpoiled: 0,
   tamaNeglect: 0,
-  tamaPoop: 0,
+  tamaPoop: 3,
   tamaSick: false,
   animationCount: 0,
   lightIsOff: false,
@@ -53,6 +53,7 @@ let myInterval;
 let myInterval2;
 let foodIsActive = false;
 let lightsIsActive = false;
+let gameIsRunning = false;
 let healthIsActive = false;
 let animateCount = 0;
 let menuIsOpen = false;
@@ -208,56 +209,62 @@ function showImage(character) {
 }
 
 function moveLeftToRightRandom(character) {
-  if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
-    let randomChoice = randomNumGen(3);
-    if (randomChoice === 1) {
-      let randomChoice2 = randomNumGen(5);
-      if (randomChoice2 === 3) {
-        character.classList.remove("left");
-        character.classList.remove("right");
-        character.classList.remove("rightSmall");
-        character.classList.add("leftSmall");
-      } else {
-        let randomChoice3 = randomNumGen(5);
-        if (randomChoice3 === 3) {
-          character.classList.remove("right");
-          character.classList.remove("rightSmall");
-          character.classList.remove("leftSmall");
-          character.classList.add("left");
-        }
-      }
-    } else if (randomChoice === 2) {
-      let randomChoice4 = randomNumGen(5);
-      if (randomChoice4 === 3) {
-        character.classList.remove("left");
-        character.classList.remove("leftSmall");
-        character.classList.remove("right");
-        character.classList.add("rightSmall");
-      } else {
-        let randomChoice5 = randomNumGen(5);
-        if (randomChoice5 === 3) {
+  if (state.foodAnimationGoing != true) {
+    if (state.tamaPoop <= 2) {
+      if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
+        let randomChoice = randomNumGen(3);
+        if (randomChoice === 1) {
+          let randomChoice2 = randomNumGen(5);
+          if (randomChoice2 === 3) {
+            character.classList.remove("left");
+            character.classList.remove("right");
+            character.classList.remove("rightSmall");
+            character.classList.add("leftSmall");
+          } else {
+            let randomChoice3 = randomNumGen(5);
+            if (randomChoice3 === 3) {
+              character.classList.remove("right");
+              character.classList.remove("rightSmall");
+              character.classList.remove("leftSmall");
+              character.classList.add("left");
+            }
+          }
+        } else if (randomChoice === 2) {
+          let randomChoice4 = randomNumGen(5);
+          if (randomChoice4 === 3) {
+            character.classList.remove("left");
+            character.classList.remove("leftSmall");
+            character.classList.remove("right");
+            character.classList.add("rightSmall");
+          } else {
+            let randomChoice5 = randomNumGen(5);
+            if (randomChoice5 === 3) {
+              character.classList.remove("left");
+              character.classList.remove("leftSmall");
+              character.classList.remove("rightSmall");
+              character.classList.add("right");
+            }
+          }
+        } else {
           character.classList.remove("left");
           character.classList.remove("leftSmall");
           character.classList.remove("rightSmall");
-          character.classList.add("right");
+          character.classList.remove("right");
         }
       }
-    } else {
-      character.classList.remove("left");
-      character.classList.remove("leftSmall");
-      character.classList.remove("rightSmall");
-      character.classList.remove("right");
     }
   }
 }
 
 function autoRandomFlip(character) {
-  if (timeMathToSec(state.timeState.gameStart) % 1 === 0) {
-    let randomChoice = randomNumGen(3);
-    if (randomChoice === 1 || randomChoice === 2) {
-      character.classList.add("flip");
-    } else {
-      character.classList.remove("flip");
+  if (state.foodAnimationGoing != true) {
+    if (timeMathToSec(state.timeState.gameStart) % 1 === 0) {
+      let randomChoice = randomNumGen(3);
+      if (randomChoice === 1 || randomChoice === 2) {
+        character.classList.add("flip");
+      } else {
+        character.classList.remove("flip");
+      }
     }
   }
 }
@@ -277,12 +284,18 @@ function placePoop() {
     poop1.style.visibility = "visible";
   }
   if (state.tamaPoop === 2) {
+    poop1.style.visibility = "visible";
     poop2.style.visibility = "visible";
   }
   if (state.tamaPoop === 3) {
+    poop1.style.visibility = "visible";
+    poop2.style.visibility = "visible";
     poop3.style.visibility = "visible";
   }
   if (state.tamaPoop === 4) {
+    poop1.style.visibility = "visible";
+    poop2.style.visibility = "visible";
+    poop3.style.visibility = "visible";
     poop4.style.visibility = "visible";
   }
   if (state.tamaPoop === 0) {
@@ -690,12 +703,22 @@ function removeAllChildAndTeen() {
   child1.style.visibility = "hidden";
   child1Low.style.visibility = "hidden";
   child1Sick.style.visibility = "hidden";
+  child1Eat.style.visibility = "hidden";
 
   child2.style.visibility = "hidden";
+  child2Side.style.visibility = "hidden";
+  child2Eat.style.visibility = "hidden";
+  child2Small.style.visibility = "hidden";
   childClass.style.visibility = "hidden";
 
   teen1.style.visibility = "hidden";
+  teen1Eat.style.visibility = "hidden";
+  teen1Sick.style.visibility = "hidden";
   teen2.style.visibility = "hidden";
+
+  teen2Eat.style.visibility = "hidden";
+  teen2Sick.style.visibility = "hidden";
+  teen2Lips.style.visibility = "hidden";
   teenClass.style.visibility = "hidden";
 }
 
@@ -915,6 +938,125 @@ function updateTheme() {
   }
 }
 
+function childOneSickAnimation() {
+  if (state.tamaStage === tamaState[1] && state.tamaSick === true) {
+    eggClass.style.visibility = "hidden";
+    child1Sick.style.visibility = "hidden";
+    child1Low.style.visibility = "visible";
+    if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
+      let randomChoice = randomNumGen(5);
+      if (randomChoice === 3) {
+        child1Low.style.visibility = "hidden";
+        child1Sick.style.visibility = "visible";
+      } else {
+        child1Sick.style.visibility = "hidden";
+        child1Low.style.visibility = "visible";
+      }
+    }
+  }
+}
+function childOneMovement() {
+  if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
+    let randomChoice = randomNumGen(4);
+    if (randomChoice === 3) {
+      child1.style.visibility = "hidden";
+      child1Low.style.visibility = "visible";
+      moveLeftToRightRandom(child1Low);
+    } else {
+      child1Low.style.visibility = "hidden";
+      child1.style.visibility = "visible";
+      moveLeftToRightRandom(child1);
+    }
+  }
+}
+
+function updateChracterPicture() {
+  childOneSickAnimation();
+  if (
+    state.tamaStage === tamaState[1] &&
+    state.tamaSick === false &&
+    state.foodAnimationGoing === false &&
+    gameIsRunning === false
+  ) {
+    eggClass.style.visibility = "hidden";
+    child1Low.style.visibility = "hidden";
+    child1.style.visibility = "visible";
+    childOneMovement();
+    if (state.tamaHealth > 1 || state.tamaHappy > 2 || state.tamaPoop < 1) {
+      moveLeftToRightRandom(child1);
+    }
+  }
+
+  if (state.tamaStage === tamaState[2] && state.foodAnimationGoing === false) {
+    child1.style.visibility = "hidden";
+    child1Low.style.visibility = "hidden";
+    child1Sick.style.visibility = "hidden";
+    child2.style.visibility = "visible";
+
+    moveLeftToRightRandom(child2);
+  }
+
+  if (state.tamaStage === tamaState[3] && state.foodAnimationGoing === false) {
+    child2.style.visibility = "hidden";
+    teen1.style.visibility = "visible";
+    autoRandomFlip(teen1);
+
+    moveLeftToRightRandom(teen1);
+  }
+  if (state.tamaStage === tamaState[4] && state.foodAnimationGoing === false) {
+    child2.style.visibility = "hidden";
+    teen2.style.visibility = "visible";
+    autoRandomFlip(teen2);
+
+    moveLeftToRightRandom(teen2);
+  }
+
+  // SPECIAL CHARACTERS
+  if (state.tamaStage === tamaState[5] && state.foodAnimationGoing === false) {
+    removeAllChildAndTeen();
+    adult5.style.visibility = "visible";
+    autoRandomFlip(adult5);
+
+    moveLeftToRightRandom(adult5);
+  }
+  if (state.tamaStage === tamaState[6] && state.foodAnimationGoing === false) {
+    removeAllChildAndTeen();
+    adult6.style.visibility = "visible";
+    autoRandomFlip(adult6);
+
+    moveLeftToRightRandom(adult6);
+  }
+
+  if (state.tamaStage === tamaState[7] && state.foodAnimationGoing === false) {
+    removeAllChildAndTeen();
+    adult1.style.visibility = "visible";
+    autoRandomFlip(adult1);
+
+    moveLeftToRightRandom(adult1);
+  }
+  if (state.tamaStage === tamaState[8] && state.foodAnimationGoing === false) {
+    removeAllChildAndTeen();
+    adult2.style.visibility = "visible";
+    autoRandomFlip(adult2);
+
+    moveLeftToRightRandom(adult2);
+  }
+  if (state.tamaStage === tamaState[9] && state.foodAnimationGoing === false) {
+    removeAllChildAndTeen();
+    adult3.style.visibility = "visible";
+    autoRandomFlip(adult3);
+
+    moveLeftToRightRandom(adult3);
+  }
+  if (state.tamaStage === tamaState[10] && state.foodAnimationGoing === false) {
+    removeAllChildAndTeen();
+    adult4.style.visibility = "visible";
+    autoRandomFlip(adult4);
+
+    moveLeftToRightRandom(adult4);
+  }
+}
+
 function startAnimation() {
   myInterval = setInterval(updatePictures, 400);
   state.gameStarted = true;
@@ -932,93 +1074,7 @@ function updatePictures() {
   eggHatchAnimation();
   allEatSnackAnimations();
   updateHeartSvg();
-  if (state.tamaStage === tamaState[1] && state.tamaSick === true) {
-    eggClass.style.visibility = "hidden";
-    child1Sick.style.visibility = "hidden";
-    child1Low.style.visibility = "visible";
-    if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
-      let randomChoice = randomNumGen(5);
-      if (randomChoice === 3) {
-        child1Low.style.visibility = "hidden";
-        child1Sick.style.visibility = "visible";
-      } else {
-        child1Sick.style.visibility = "hidden";
-        child1Low.style.visibility = "visible";
-      }
-    }
-  } else if (
-    state.tamaStage === tamaState[1] &&
-    state.foodAnimationGoing === false
-  ) {
-    eggClass.style.visibility = "hidden";
-    child1.style.visibility = "visible";
-    child1Low.style.visibility = "hidden";
-    moveLeftToRightRandom(child1);
-    if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
-      let randomChoice = randomNumGen(4);
-      if (randomChoice === 3) {
-        child1.style.visibility = "hidden";
-        child1Low.style.visibility = "visible";
-        moveLeftToRightRandom(child1Low);
-      } else {
-        child1Low.style.visibility = "hidden";
-        child1.style.visibility = "visible";
-        moveLeftToRightRandom(child1);
-      }
-    }
-  }
-
-  if (state.tamaStage === tamaState[2] && state.foodAnimationGoing === false) {
-    child1.style.visibility = "hidden";
-    child1Low.style.visibility = "hidden";
-    child1Sick.style.visibility = "hidden";
-    child2.style.visibility = "visible";
-    moveLeftToRightRandom(child2);
-  }
-
-  if (state.tamaStage === tamaState[3] && state.foodAnimationGoing === false) {
-    child2.style.visibility = "hidden";
-    teen1.style.visibility = "visible";
-    autoRandomFlip(teen1);
-  }
-  if (state.tamaStage === tamaState[4] && state.foodAnimationGoing === false) {
-    child2.style.visibility = "hidden";
-    teen2.style.visibility = "visible";
-    autoRandomFlip(teen2);
-  }
-
-  // SPECIAL CHARACTERS
-  if (state.tamaStage === tamaState[5] && state.foodAnimationGoing === false) {
-    removeAllChildAndTeen();
-    adult5.style.visibility = "visible";
-    autoRandomFlip(adult5);
-  }
-  if (state.tamaStage === tamaState[6] && state.foodAnimationGoing === false) {
-    removeAllChildAndTeen();
-    adult6.style.visibility = "visible";
-    autoRandomFlip(adult6);
-  }
-
-  if (state.tamaStage === tamaState[7] && state.foodAnimationGoing === false) {
-    removeAllChildAndTeen();
-    adult1.style.visibility = "visible";
-    autoRandomFlip(adult1);
-  }
-  if (state.tamaStage === tamaState[8] && state.foodAnimationGoing === false) {
-    removeAllChildAndTeen();
-    adult2.style.visibility = "visible";
-    autoRandomFlip(adult2);
-  }
-  if (state.tamaStage === tamaState[9] && state.foodAnimationGoing === false) {
-    removeAllChildAndTeen();
-    adult3.style.visibility = "visible";
-    autoRandomFlip(adult3);
-  }
-  if (state.tamaStage === tamaState[10] && state.foodAnimationGoing === false) {
-    removeAllChildAndTeen();
-    adult4.style.visibility = "visible";
-    autoRandomFlip(adult4);
-  }
+  updateChracterPicture();
 }
 startAnimation();
 
