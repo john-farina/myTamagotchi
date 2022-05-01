@@ -6,14 +6,6 @@ body {
   align-items:center;
   margin-top: 50px;
 }
-#options {
-  margin-top: 10rem;
-}
-#optionsButton {
-  height: 60px;
-  width: 60px;
-  border-radius: 100%;
-}
 
 :root {
   /* --mintGreen: rgb(113, 249, 177); */
@@ -67,6 +59,53 @@ body {
   margin-left: -285px;
   margin-top: 40px;
   transform: rotate(90deg);
+}
+
+#options {
+  margin-top: 10rem;
+}
+#optionsButton {
+  height: 60px;
+  width: 60px;
+  border-radius: 100%;
+}
+#options-menu {
+  visibility: hidden;
+  display: flex;
+  justify-content:space-evenly;
+  align-items: center;
+  position: absolute;
+  background-color: rgb(148, 148, 148);
+  margin-top: 44rem;
+  width: 350px;
+  height: 80px;
+}
+#color-choice-menu {
+  visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  position: absolute;
+  margin-top: 50.3rem;
+  width: 350px;
+  height: 40px;
+  background-color: rgb(185, 185, 185);
+}
+.color-button{
+  border: none;
+  border-radius: 100%;
+  width: 20px;
+  height: 20px
+}
+#color1 {
+  background-color: var(--mintGreen);
+}
+#color2 {
+  background-color: var(--lightYellow);
+}
+#color3 {
+  background-color: var(--offWhite);
 }
 
 /* ALL CHARACTERS*/

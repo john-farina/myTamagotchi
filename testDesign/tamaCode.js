@@ -54,6 +54,7 @@ let foodIsActive = false;
 let lightsIsActive = false;
 let healthIsActive = false;
 let animateCount = 0;
+let menuIsOpen = false;
 
 const foodScreen = document.querySelector("#food-screen");
 
@@ -166,6 +167,15 @@ const gravestone = document.querySelector("#gravestone");
 
 const hungerMeter = document.querySelector("#hungerMeter");
 
+const tamagotchiContainer = document.querySelector("#tamagotchi-container");
+const color1Button = document.querySelector("#color1");
+const color2Button = document.querySelector("#color2");
+const color3Button = document.querySelector("#color3");
+
+const optionsButton = document.querySelector("#options");
+const optionsMenu = document.querySelector("#options-menu");
+const option1 = document.querySelector("#option1");
+const colorsMenu = document.querySelector("#color-choice-menu");
 /////////////////////////////////////USEFUL FUNCTIONS
 function randomNumGen(percent) {
   let randomNum = Math.floor(Math.random() * percent);
@@ -1667,4 +1677,40 @@ cleanButton.addEventListener("click", function () {
       hideImage(cleaningLine);
     }, 800);
   }
+});
+
+optionsButton.addEventListener("click", function () {
+  if (menuIsOpen === false) {
+    showImage(optionsMenu);
+    menuIsOpen = true;
+  } else if (menuIsOpen === true) {
+    hideImage(optionsMenu);
+    hideImage(colorsMenu);
+    menuIsOpen = false;
+  }
+});
+option1.addEventListener("click", function () {
+  showImage(colorsMenu);
+});
+
+//themes
+color1Button.addEventListener("click", function () {
+  tamagotchiContainer.style.backgroundColor = "var(--mintGreen)";
+  hideImage(optionsMenu);
+  hideImage(colorsMenu);
+  menuIsOpen = false;
+});
+
+color2Button.addEventListener("click", function () {
+  tamagotchiContainer.style.backgroundColor = "var(--lightYellow)";
+  hideImage(optionsMenu);
+  hideImage(colorsMenu);
+  menuIsOpen = false;
+});
+
+color3Button.addEventListener("click", function () {
+  tamagotchiContainer.style.backgroundColor = "var(--offWhite)";
+  hideImage(optionsMenu);
+  hideImage(colorsMenu);
+  menuIsOpen = false;
 });
