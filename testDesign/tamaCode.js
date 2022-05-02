@@ -28,7 +28,7 @@ const state = {
   tamaDiscipline: 0,
   tamaSpoiled: 0,
   tamaNeglect: 0,
-  tamaPoop: 3,
+  tamaPoop: 0,
   tamaSick: false,
   animationCount: 0,
   lightIsOff: false,
