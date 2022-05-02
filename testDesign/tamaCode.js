@@ -20,7 +20,7 @@ const state = {
   tamaHatch: 4,
   tamaStage: tamaState,
   tamaDead: false,
-  tamaHealth: 4,
+  tamaHealth: 1,
   tamaHappy: 4,
   tamaIsHappy: false,
   tamaIsMad: false,
@@ -970,90 +970,132 @@ function childOneMovement() {
   }
 }
 
+function showGravestone() {
+  if (state.tamaDead === true) {
+    hideImage(poop1);
+    hideImage(poop2);
+    hideImage(poop3);
+    hideImage(poop4);
+    childClass.style.visibility = "hidden";
+    teenClass.style.visibility = "hidden";
+    adultClass.style.visibility = "hidden";
+    gravestone.style.visibility = "visible";
+  }
+}
+
 function updateChracterPicture() {
-  childOneSickAnimation();
-  if (
-    state.tamaStage === tamaState[1] &&
-    state.tamaSick === false &&
-    state.foodAnimationGoing === false &&
-    gameIsRunning === false
-  ) {
-    eggClass.style.visibility = "hidden";
-    child1Low.style.visibility = "hidden";
-    child1.style.visibility = "visible";
-    childOneMovement();
-    if (state.tamaHealth > 1 || state.tamaHappy > 2 || state.tamaPoop < 1) {
-      moveLeftToRightRandom(child1);
+  if (state.tamaDead != true) {
+    childOneSickAnimation();
+    if (
+      state.tamaStage === tamaState[1] &&
+      state.tamaSick === false &&
+      state.foodAnimationGoing === false &&
+      gameIsRunning === false
+    ) {
+      eggClass.style.visibility = "hidden";
+      child1Low.style.visibility = "hidden";
+      child1.style.visibility = "visible";
+      childOneMovement();
+      if (state.tamaHealth > 1 || state.tamaHappy > 2 || state.tamaPoop < 1) {
+        moveLeftToRightRandom(child1);
+      }
     }
-  }
 
-  if (state.tamaStage === tamaState[2] && state.foodAnimationGoing === false) {
-    child1.style.visibility = "hidden";
-    child1Low.style.visibility = "hidden";
-    child1Sick.style.visibility = "hidden";
-    child2.style.visibility = "visible";
+    if (
+      state.tamaStage === tamaState[2] &&
+      state.foodAnimationGoing === false
+    ) {
+      child1.style.visibility = "hidden";
+      child1Low.style.visibility = "hidden";
+      child1Sick.style.visibility = "hidden";
+      child2.style.visibility = "visible";
 
-    moveLeftToRightRandom(child2);
-  }
+      moveLeftToRightRandom(child2);
+    }
 
-  if (state.tamaStage === tamaState[3] && state.foodAnimationGoing === false) {
-    child2.style.visibility = "hidden";
-    teen1.style.visibility = "visible";
-    autoRandomFlip(teen1);
+    if (
+      state.tamaStage === tamaState[3] &&
+      state.foodAnimationGoing === false
+    ) {
+      child2.style.visibility = "hidden";
+      teen1.style.visibility = "visible";
+      autoRandomFlip(teen1);
 
-    moveLeftToRightRandom(teen1);
-  }
-  if (state.tamaStage === tamaState[4] && state.foodAnimationGoing === false) {
-    child2.style.visibility = "hidden";
-    teen2.style.visibility = "visible";
-    autoRandomFlip(teen2);
+      moveLeftToRightRandom(teen1);
+    }
+    if (
+      state.tamaStage === tamaState[4] &&
+      state.foodAnimationGoing === false
+    ) {
+      child2.style.visibility = "hidden";
+      teen2.style.visibility = "visible";
+      autoRandomFlip(teen2);
 
-    moveLeftToRightRandom(teen2);
-  }
+      moveLeftToRightRandom(teen2);
+    }
 
-  // SPECIAL CHARACTERS
-  if (state.tamaStage === tamaState[5] && state.foodAnimationGoing === false) {
-    removeAllChildAndTeen();
-    adult5.style.visibility = "visible";
-    autoRandomFlip(adult5);
+    // SPECIAL CHARACTERS
+    if (
+      state.tamaStage === tamaState[5] &&
+      state.foodAnimationGoing === false
+    ) {
+      removeAllChildAndTeen();
+      adult5.style.visibility = "visible";
+      autoRandomFlip(adult5);
 
-    moveLeftToRightRandom(adult5);
-  }
-  if (state.tamaStage === tamaState[6] && state.foodAnimationGoing === false) {
-    removeAllChildAndTeen();
-    adult6.style.visibility = "visible";
-    autoRandomFlip(adult6);
+      moveLeftToRightRandom(adult5);
+    }
+    if (
+      state.tamaStage === tamaState[6] &&
+      state.foodAnimationGoing === false
+    ) {
+      removeAllChildAndTeen();
+      adult6.style.visibility = "visible";
+      autoRandomFlip(adult6);
 
-    moveLeftToRightRandom(adult6);
-  }
+      moveLeftToRightRandom(adult6);
+    }
 
-  if (state.tamaStage === tamaState[7] && state.foodAnimationGoing === false) {
-    removeAllChildAndTeen();
-    adult1.style.visibility = "visible";
-    autoRandomFlip(adult1);
+    if (
+      state.tamaStage === tamaState[7] &&
+      state.foodAnimationGoing === false
+    ) {
+      removeAllChildAndTeen();
+      adult1.style.visibility = "visible";
+      autoRandomFlip(adult1);
 
-    moveLeftToRightRandom(adult1);
-  }
-  if (state.tamaStage === tamaState[8] && state.foodAnimationGoing === false) {
-    removeAllChildAndTeen();
-    adult2.style.visibility = "visible";
-    autoRandomFlip(adult2);
+      moveLeftToRightRandom(adult1);
+    }
+    if (
+      state.tamaStage === tamaState[8] &&
+      state.foodAnimationGoing === false
+    ) {
+      removeAllChildAndTeen();
+      adult2.style.visibility = "visible";
+      autoRandomFlip(adult2);
 
-    moveLeftToRightRandom(adult2);
-  }
-  if (state.tamaStage === tamaState[9] && state.foodAnimationGoing === false) {
-    removeAllChildAndTeen();
-    adult3.style.visibility = "visible";
-    autoRandomFlip(adult3);
+      moveLeftToRightRandom(adult2);
+    }
+    if (
+      state.tamaStage === tamaState[9] &&
+      state.foodAnimationGoing === false
+    ) {
+      removeAllChildAndTeen();
+      adult3.style.visibility = "visible";
+      autoRandomFlip(adult3);
 
-    moveLeftToRightRandom(adult3);
-  }
-  if (state.tamaStage === tamaState[10] && state.foodAnimationGoing === false) {
-    removeAllChildAndTeen();
-    adult4.style.visibility = "visible";
-    autoRandomFlip(adult4);
+      moveLeftToRightRandom(adult3);
+    }
+    if (
+      state.tamaStage === tamaState[10] &&
+      state.foodAnimationGoing === false
+    ) {
+      removeAllChildAndTeen();
+      adult4.style.visibility = "visible";
+      autoRandomFlip(adult4);
 
-    moveLeftToRightRandom(adult4);
+      moveLeftToRightRandom(adult4);
+    }
   }
 }
 
@@ -1075,6 +1117,7 @@ function updatePictures() {
   allEatSnackAnimations();
   updateHeartSvg();
   updateChracterPicture();
+  showGravestone();
 }
 startAnimation();
 
@@ -1423,7 +1466,7 @@ function spoiledAdultAttention() {
 
 function letThereBeLife() {
   if (timeMathToSec(state.timeState.gameStart) < 10) {
-    state.tamaStage = tamaState[1];
+    state.tamaStage = tamaState[2];
   }
 }
 
@@ -1593,10 +1636,10 @@ function autoDeath() {
   ) {
     state.tamaHealth = 1;
   } else if (state.tamaHealth == 0) {
-    childClass.style.visibility = "hidden";
-    teenClass.style.visibility = "hidden";
-    adultClass.style.visibility = "hidden";
-    gravestone.style.visibility = "visible";
+    // childClass.style.visibility = "hidden";
+    // teenClass.style.visibility = "hidden";
+    // adultClass.style.visibility = "hidden";
+    // gravestone.style.visibility = "visible";
     stop();
     state.tamaDead = true;
   }
