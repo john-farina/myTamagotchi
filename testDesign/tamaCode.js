@@ -2149,6 +2149,7 @@ menuButton.addEventListener("click", function () {
     displayFlex(dropDownMenu);
   } else if (menuIsOpen === true) {
     menuIsOpen = false;
+
     displayHide(dropDownMenu);
     displayHide(themeMenu);
   }
