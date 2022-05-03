@@ -454,9 +454,18 @@ button {
   visibility: visible;
 }
 
-#gravestone {
-  height: 60px;
-  visibility: hidden;
+.gravestone {
+  height: 70px;
+  visibility: visible;
+}
+#gravestone-one {
+  display: none;
+}
+#gravestone-two {
+  display: none;
+}
+#gravestone-text{
+  display: none;
 }
 
 #health-screen {

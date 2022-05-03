@@ -10,17 +10,19 @@ let tamaState = [
   "Adult_2", //8 (for Teen_1 && Teen_2) (healthy)
   "Adult_3", //9 (for Teen_1 && Teen_2) (healthy)
   "Adult_4", //10 (for Teen_1 && Teen_2) (sick and unhealthy)
-  "Secret_Adult_Evolve" //11 (ONLY for Secret_Adult_2)
+  "Secret_Adult_Evolve", //11 (ONLY for Secret_Adult_2)
+  "12",
+  "Dead"
 ];
 const state = {
   gameStarted: false,
   tamaTheme: 0,
   tamaName: "Larry",
-  tamaAge: 0,
+  tamaAge: 8,
   tamaHatch: 4,
   tamaStage: tamaState,
   tamaDead: false,
-  tamaHealth: 1,
+  tamaHealth: 2,
   tamaHappy: 4,
   tamaIsHappy: false,
   tamaIsMad: false,
@@ -200,7 +202,9 @@ const snack1Half = document.querySelector("#snack1Half");
 const snack2 = document.querySelector("#snack2");
 const snack2Half = document.querySelector("#snack2Half");
 
-const gravestone = document.querySelector("#gravestone");
+const gravestone = document.querySelector("#gravestone-one");
+const gravestoneTwo = document.querySelector("#gravestone-two");
+const gravestoneText = document.querySelector("#gravestone-text");
 
 const hungerMeter = document.querySelector("#hungerMeter");
 
@@ -1163,9 +1167,7 @@ function updateGameTimerAndRestart() {
   }
 }
 function scoreAutoQuit() {
-  if (playerScore === 2 && computerScore === 2) {
-    gameEnded = true;
-  } else if (playerScore > 2) {
+  if (playerScore > 2) {
     gameEnded = true;
     state.tamaHappy++;
     state.tamaIsHappy = true;
@@ -1174,7 +1176,7 @@ function scoreAutoQuit() {
   }
 }
 
-function updateGameAnimations() {
+function updateAndPlayGameAnimations() {
   if (gameIsRunning != false) {
     updateGameTimerAndRestart();
     chooseOneAnimation();
@@ -1332,6 +1334,9 @@ function updateChracterPicture() {
 
           moveLeftToRightRandom(adult4);
         }
+        if (state.tamaStage === tamaState[13]) {
+          gravestone.style.visibility = "visible";
+        }
       }
     }
   }
@@ -1339,6 +1344,7 @@ function updateChracterPicture() {
 
 function showGravestone() {
   if (state.tamaDead === true) {
+    state.tamaStage = tamaState[13];
     hideImage(poop1);
     hideImage(poop2);
     hideImage(poop3);
@@ -1346,7 +1352,23 @@ function showGravestone() {
     childClass.style.visibility = "hidden";
     teenClass.style.visibility = "hidden";
     adultClass.style.visibility = "hidden";
-    gravestone.style.visibility = "visible";
+    adult1.style.visibility = "hidden";
+    adult2.style.visibility = "hidden";
+    adult3.style.visibility = "hidden";
+    adult4.style.visibility = "hidden";
+    adult5.style.visibility = "hidden";
+    adult6.style.visibility = "hidden";
+    if (timeMathToSec(state.timeState.lastAnimation) % 2 === 0) {
+      displayFlex(gravestoneText);
+      gravestoneText.innerHTML = `${state.tamaAge} Years`;
+      displayHide(gravestone);
+      displayFlex(gravestoneTwo);
+    } else {
+      displayFlex(gravestoneText);
+      gravestoneText.innerHTML = `${state.tamaAge} Years`;
+      displayHide(gravestoneTwo);
+      displayFlex(gravestone);
+    }
   }
 }
 
@@ -1369,7 +1391,7 @@ function updatePictures() {
   updateHeartSvg();
   updateChracterPicture();
   showGravestone();
-  updateGameAnimations();
+  updateAndPlayGameAnimations();
 }
 startAnimation();
 
@@ -1381,11 +1403,8 @@ function autoDeath() {
   ) {
     state.tamaHealth = 1;
   } else if (state.tamaHealth == 0) {
-    // childClass.style.visibility = "hidden";
-    // teenClass.style.visibility = "hidden";
-    // adultClass.style.visibility = "hidden";
-    // gravestone.style.visibility = "visible";
     stop();
+    state.tamaStage = tamaState[13];
     state.tamaDead = true;
   }
 }
@@ -1718,7 +1737,7 @@ function spoiledAdultAttention() {
 
 function letThereBeLife() {
   if (timeMathToSec(state.timeState.gameStart) < 10) {
-    state.tamaStage = tamaState[1];
+    state.tamaStage = tamaState[3];
   }
 }
 
@@ -1888,10 +1907,7 @@ function autoDeath() {
   ) {
     state.tamaHealth = 1;
   } else if (state.tamaHealth == 0) {
-    // childClass.style.visibility = "hidden";
-    // teenClass.style.visibility = "hidden";
-    // adultClass.style.visibility = "hidden";
-    // gravestone.style.visibility = "visible";
+    state.tamaStage = tamaState[13];
     stop();
     state.tamaDead = true;
   }
