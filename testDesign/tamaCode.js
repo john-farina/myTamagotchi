@@ -72,6 +72,7 @@ let gameAnimateCount = 0;
 let healthIsActive = false;
 let animateCount = 0;
 let menuIsOpen = false;
+let themeMenuIsOpen = false;
 
 const foodScreen = document.querySelector("#food-screen");
 const healthButton = document.querySelector("#healthButton");
@@ -213,6 +214,11 @@ const deviceButtons = document.querySelector(".bottom-buttons");
 const button1 = document.querySelector("#buttonOne");
 const button2 = document.querySelector("#buttonTwo");
 const button3 = document.querySelector("#buttonThree");
+
+const menuButton = document.querySelector("#buttonFour");
+const dropDownMenu = document.querySelector("#drop-down-menu");
+const themeButton = document.querySelector("#theme-selection");
+const themeMenu = document.querySelector("#drop-down-color-choice");
 const color1Button = document.querySelector("#color1");
 const color2Button = document.querySelector("#color2");
 const color3Button = document.querySelector("#color3");
@@ -2129,38 +2135,53 @@ cleanButton.addEventListener("click", function () {
   }
 });
 
-optionsButton.addEventListener("click", function () {
+// const menuButton = document.querySelector("#buttonFour");
+// const dropDownMenu = document.querySelector("#drop-down-menu");
+// const themeButton = document.querySelector("#theme-selection");
+// const themeMenu = document.querySelector("#drop-down-color-choice");
+// const color1Button = document.querySelector("#color1");
+// const color2Button = document.querySelector("#color2");
+// const color3Button = document.querySelector("#color3");
+
+menuButton.addEventListener("click", function () {
   if (menuIsOpen === false) {
-    showImage(optionsMenu);
     menuIsOpen = true;
+    displayFlex(dropDownMenu);
   } else if (menuIsOpen === true) {
-    hideImage(optionsMenu);
-    hideImage(colorsMenu);
     menuIsOpen = false;
+    displayHide(dropDownMenu);
+    displayHide(themeMenu);
   }
 });
-option1.addEventListener("click", function () {
-  showImage(colorsMenu);
+
+themeButton.addEventListener("click", function () {
+  if (themeMenuIsOpen === false) {
+    themeMenuIsOpen = true;
+    displayFlex(themeMenu);
+  } else if (themeMenuIsOpen === true) {
+    themeMenuIsOpen = false;
+    displayHide(themeMenu);
+  }
 });
 
 //themes
 color1Button.addEventListener("click", function () {
   state.tamaTheme = 0;
-  hideImage(optionsMenu);
-  hideImage(colorsMenu);
+  displayHide(dropDownMenu);
+  displayHide(themeMenu);
   menuIsOpen = false;
 });
 
 color2Button.addEventListener("click", function () {
   state.tamaTheme = 1;
-  hideImage(optionsMenu);
-  hideImage(colorsMenu);
+  displayHide(dropDownMenu);
+  displayHide(themeMenu);
   menuIsOpen = false;
 });
 
 color3Button.addEventListener("click", function () {
   state.tamaTheme = 2;
-  hideImage(optionsMenu);
-  hideImage(colorsMenu);
+  displayHide(dropDownMenu);
+  displayHide(themeMenu);
   menuIsOpen = false;
 });
