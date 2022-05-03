@@ -2163,7 +2163,7 @@ function animateCloseAllTabs() {
       dropDownMenu.classList.remove("menu-animate-close");
       dropDownMenu.classList.add("menu-animate-open");
       menuIsOpen = false;
-    }, 2000);
+    }, 1000);
   }, 400);
 }
 
@@ -2183,7 +2183,7 @@ menuButton.addEventListener("click", function () {
         dropDownMenu.classList.remove("menu-animate-close");
         dropDownMenu.classList.add("menu-animate-open");
         menuIsOpen = false;
-      }, 2000);
+      }, 1000);
     }
   }
 });

@@ -124,7 +124,7 @@ animation-duration: 2s;
 }
 .menu-animate-close {
   animation-name: growBackwards;
-  animation-duration: 2s;
+  animation-duration: 1s;
 }
 .second-menu-animate-open {
   animation-name: growForwardMini;
