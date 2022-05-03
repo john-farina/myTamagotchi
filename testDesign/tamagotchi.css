@@ -121,7 +121,10 @@ button {
 .menu-animate-open {
 animation-name: growForward;
 animation-duration: 2s;
-
+}
+.menu-animate-close {
+  animation-name: growBackwards;
+  animation-duration: 2s;
 }
 
 @keyframes growForward {
@@ -130,33 +133,31 @@ animation-duration: 2s;
     width: 40px;
   }
   30% {
-    width: 40px;
     margin-top: 10px;
   }
-  60% {
+  40% {
     width: 290px;
   }
   100% {
     width: 290px;
   }
 }
-
-@keyframes growForward {
+@keyframes growBackwards {
   0% {
+    width: 290px;
+  }
+  30% {
+    width: 290px;
+  }
+  40% {
+    margin-top: 10px;
+  }
+  100% {
     margin-top: -50px;
     width: 40px;
   }
-  30% {
-    width: 40px;
-    margin-top: 10px;
-  }
-  60% {
-    width: 290px;
-  }
-  100% {
-    width: 290px;
-  }
 }
+
 
 #drop-down-menu {
   display: none;
@@ -170,6 +171,8 @@ animation-duration: 2s;
   height: 30px;
 }
 .drop-menu-button {
+  border-radius: 2px;
+  border-color: rgb(29, 29, 29);
   background-color: rgb(43, 43, 43);
 }
 #paintBucket {

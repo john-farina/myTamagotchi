@@ -2149,9 +2149,16 @@ menuButton.addEventListener("click", function () {
     displayFlex(dropDownMenu);
   } else if (menuIsOpen === true) {
     menuIsOpen = false;
-
-    displayHide(dropDownMenu);
-    displayHide(themeMenu);
+    console.log(dropDownMenu.classList);
+    dropDownMenu.classList.remove("menu-animate-open");
+    dropDownMenu.classList.add("menu-animate-close");
+    console.log(dropDownMenu.classList);
+    setTimeout(function () {
+      displayHide(dropDownMenu);
+      displayHide(themeMenu);
+      dropDownMenu.classList.remove("menu-animate-close");
+      dropDownMenu.classList.add("menu-animate-open");
+    }, 2000);
   }
 });
 
