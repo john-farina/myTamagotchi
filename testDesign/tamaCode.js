@@ -2143,22 +2143,48 @@ cleanButton.addEventListener("click", function () {
 // const color2Button = document.querySelector("#color2");
 // const color3Button = document.querySelector("#color3");
 
-menuButton.addEventListener("click", function () {
-  if (menuIsOpen === false) {
-    menuIsOpen = true;
-    displayFlex(dropDownMenu);
-  } else if (menuIsOpen === true) {
-    menuIsOpen = false;
-    console.log(dropDownMenu.classList);
+function animateCloseAllTabs() {
+  themeMenu.classList.remove("second-menu-animate-open");
+  themeMenu.classList.add("second-menu-animate-close");
+
+  setTimeout(function () {
+    themeMenuIsOpen = false;
+    displayHide(themeMenu);
+    themeMenu.classList.add("second-menu-animate-open");
+    themeMenu.classList.remove("second-menu-animate-close");
+  }, 1000);
+
+  setTimeout(function () {
     dropDownMenu.classList.remove("menu-animate-open");
     dropDownMenu.classList.add("menu-animate-close");
-    console.log(dropDownMenu.classList);
     setTimeout(function () {
       displayHide(dropDownMenu);
       displayHide(themeMenu);
       dropDownMenu.classList.remove("menu-animate-close");
       dropDownMenu.classList.add("menu-animate-open");
+      menuIsOpen = false;
     }, 2000);
+  }, 400);
+}
+
+menuButton.addEventListener("click", function () {
+  if (menuIsOpen === false) {
+    menuIsOpen = true;
+    displayFlex(dropDownMenu);
+  } else if (menuIsOpen === true) {
+    if (themeMenuIsOpen === true) {
+      animateCloseAllTabs();
+    } else {
+      dropDownMenu.classList.remove("menu-animate-open");
+      dropDownMenu.classList.add("menu-animate-close");
+      setTimeout(function () {
+        displayHide(dropDownMenu);
+        displayHide(themeMenu);
+        dropDownMenu.classList.remove("menu-animate-close");
+        dropDownMenu.classList.add("menu-animate-open");
+        menuIsOpen = false;
+      }, 2000);
+    }
   }
 });
 
@@ -2167,29 +2193,29 @@ themeButton.addEventListener("click", function () {
     themeMenuIsOpen = true;
     displayFlex(themeMenu);
   } else if (themeMenuIsOpen === true) {
-    themeMenuIsOpen = false;
-    displayHide(themeMenu);
+    themeMenu.classList.remove("second-menu-animate-open");
+    themeMenu.classList.add("second-menu-animate-close");
+    setTimeout(function () {
+      themeMenuIsOpen = false;
+      displayHide(themeMenu);
+      themeMenu.classList.add("second-menu-animate-open");
+      themeMenu.classList.remove("second-menu-animate-close");
+    }, 1000);
   }
 });
 
 //themes
 color1Button.addEventListener("click", function () {
   state.tamaTheme = 0;
-  displayHide(dropDownMenu);
-  displayHide(themeMenu);
-  menuIsOpen = false;
+  animateCloseAllTabs();
 });
 
 color2Button.addEventListener("click", function () {
   state.tamaTheme = 1;
-  displayHide(dropDownMenu);
-  displayHide(themeMenu);
-  menuIsOpen = false;
+  animateCloseAllTabs();
 });
 
 color3Button.addEventListener("click", function () {
   state.tamaTheme = 2;
-  displayHide(dropDownMenu);
-  displayHide(themeMenu);
-  menuIsOpen = false;
+  animateCloseAllTabs();
 });

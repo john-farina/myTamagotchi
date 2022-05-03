@@ -37,7 +37,7 @@ button {
 }
 
 #tamagotchi-container {
-  z-index: 9;
+  z-index: 17;
   display: flex;
   gap: 30px;
   justify-content: center;
@@ -126,6 +126,14 @@ animation-duration: 2s;
   animation-name: growBackwards;
   animation-duration: 2s;
 }
+.second-menu-animate-open {
+  animation-name: growForwardMini;
+  animation-duration: 2s;
+}
+.second-menu-animate-close {
+  animation-name: growBackwardsMini;
+  animation-duration: 1s;
+}
 
 @keyframes growForward {
   0% {
@@ -157,10 +165,37 @@ animation-duration: 2s;
     width: 40px;
   }
 }
-
+@keyframes growForwardMini {
+  0% {
+    margin-top: -30px;
+    width: 40px;
+  }
+  30% {
+    margin-top: 6px;
+  }
+  40% {
+    width: 200px;
+  }
+  55% {
+    margin-top: 0px;
+  }
+  100% {
+    width: 200px;
+  }
+}
+@keyframes growBackwardsMini {
+  0% {
+    width: 200px;
+  }
+  100% {
+    margin-top: -30px;
+    width: 40px;
+  }
+}
 
 #drop-down-menu {
   display: none;
+  z-index: 5;
   justify-content: center;
   align-items: center;
   margin-top: 10px;
@@ -179,6 +214,7 @@ animation-duration: 2s;
   color: rgb(255, 254, 243);
 }
 #drop-down-color-choice {
+  z-index: 4;
   display: none;
   justify-content:space-evenly;
   align-items: center;
