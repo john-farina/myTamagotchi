@@ -1737,7 +1737,7 @@ function spoiledAdultAttention() {
 
 function letThereBeLife() {
   if (timeMathToSec(state.timeState.gameStart) < 10) {
-    state.tamaStage = tamaState[3];
+    state.tamaStage = tamaState[1];
   }
 }
 
