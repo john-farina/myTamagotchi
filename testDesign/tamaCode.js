@@ -54,12 +54,24 @@ let myInterval2;
 let foodIsActive = false;
 let lightsIsActive = false;
 let gameIsRunning = false;
+let gameRound = 0;
+let gameTimeCount = 0;
+let gameTimeStore = 0;
+let lastGuessTime;
+let playerSelectedChoice = false;
+let playerSelection = 0;
+let computerSelection = 0;
+let playerScore = 0;
+let computerScore = 0;
+let gameHappy = false;
+let gameMad = false;
+let gameEnded = false;
+let gameAnimateCount = 0;
 let healthIsActive = false;
 let animateCount = 0;
 let menuIsOpen = false;
 
 const foodScreen = document.querySelector("#food-screen");
-
 const healthButton = document.querySelector("#healthButton");
 
 const lightsScreen = document.querySelector("#lights-screen");
@@ -68,8 +80,31 @@ const lightButton = document.querySelector("#lightsButton");
 const lightsOn = document.querySelector("#lightsOnButton");
 const lightsOff = document.querySelector("#lightsOffButton");
 
-const healButton = document.querySelector("#healButton");
+const gameButton = document.querySelector("#gameButton");
+const gameScreen = document.querySelector("#game-screen");
+const gameTimer = document.querySelector("#game-timer");
+const playerChoiceDiv = document.querySelector("#players-choice");
+const choiceText = document.querySelector(".choice-text");
+const gameMadAlertOne = document.querySelector("#game-mad-alert1");
+const gameMadAlertTwo = document.querySelector("#game-mad-alert2");
+const gameHappyAlert = document.querySelector("#game-happy-alert");
+const playerChoiceOne = document.querySelector("#choice-one");
+const playerChoiceTwo = document.querySelector("#choice-two");
+const tamaChoiceOne = document.querySelector("#tama-choice-one");
+const tamaChoiceTwo = document.querySelector("#tama-choice-two");
 
+const gameChildOne = document.querySelector("#game-child-one");
+const gameChildTwo = document.querySelector("#game-child-two");
+const gameTeenOne = document.querySelector("#game-teen-one");
+const gameTeenTwo = document.querySelector("#game-teen-two");
+const gameAdultOne = document.querySelector("#game-adult-one");
+const gameAdultTwo = document.querySelector("#game-adult-two");
+const gameAdultThree = document.querySelector("#game-adult-three");
+const gameAdultFour = document.querySelector("#game-adult-four");
+const gameAdultFive = document.querySelector("#game-adult-five");
+const gameAdultSix = document.querySelector("#game-adult-six");
+
+const healButton = document.querySelector("#healButton");
 const healthScreen = document.querySelector("#health-screen");
 
 const cleanButton = document.querySelector("#clean-button");
@@ -907,6 +942,251 @@ function happyAlertAnimate() {
   }
 }
 
+// let gameIsRunning = false;
+// let gameRound = 0;
+// let gameTimeCount = 0;
+// let gameTimeStore = 0;
+// let playerSelectedChoice = false;
+// let playerSelection = 0;
+// let computerSelection = 0;
+// let playerScore = 0;
+// let computerScore = 0;
+
+function startGame() {
+  gameTimer.innerHTML = "0";
+  gameTimeCount = 0;
+  gameTimeStore = 0;
+}
+
+// const playerChoiceOne = document.querySelector("#choice-one");
+// const playerChoiceTwo = document.querySelector("#choice-two");
+// const tamaChoiceOne = document.querySelector("#tama-choice-one");
+// const tamaChoiceTwo = document.querySelector("#tama-choice-two");
+
+function chooseOneAnimation() {
+  if (playerSelectedChoice === false && gameTimeStore <= 29) {
+    if (timeMathToSec(state.gameStarted) % 3 === 0) {
+      playerChoiceDiv.style.gap = "12px";
+      choiceText.innerHTML = "choose";
+    } else {
+      playerChoiceDiv.style.gap = "24px";
+      choiceText.innerHTML = "one";
+    }
+  } else if (playerSelectedChoice === true && gameTimeStore <= 29) {
+    playerChoiceDiv.style.gap = "37.5px";
+    choiceText.innerHTML = "";
+  } else if (playerSelectedChoice === false && gameTimeStore === 30) {
+    playerChoiceDiv.style.gap = "6px";
+    choiceText.innerHTML = "times up";
+  }
+}
+
+function computerGuess() {
+  let randomNum = randomNumGen(21);
+  if (randomNum <= 10) {
+    computerSelection = 1;
+  } else {
+    computerSelection = 2;
+  }
+}
+
+function displayFlex(value) {
+  value.style.display = "flex";
+  return value;
+}
+function displayHide(value) {
+  value.style.display = "none";
+  return value;
+}
+
+function showGameCharacter() {
+  if (state.tamaStage === tamaState[1]) {
+    displayFlex(gameChildOne);
+    autoRandomFlip(gameChildOne);
+  } else if (state.tamaStage === tamaState[2]) {
+    displayHide(gameChildOne);
+    displayFlex(gameChildTwo);
+    autoRandomFlip(gameChildTwo);
+  } else if (state.tamaStage === tamaState[3]) {
+    displayHide(gameChildOne);
+    displayHide(gameChildTwo);
+    displayFlex(gameTeenOne);
+  } else if (state.tamaStage === tamaState[4]) {
+    displayHide(gameChildOne);
+    displayHide(gameChildTwo);
+    displayHide(gameTeenOne);
+    displayFlex(gameTeenTwo);
+  } else if (state.tamaStage === tamaState[5]) {
+  } else if (state.tamaStage === tamaState[6]) {
+  } else if (state.tamaStage === tamaState[7]) {
+    displayHide(gameChildOne);
+    displayHide(gameChildTwo);
+    displayHide(gameTeenOne);
+    displayHide(gameTeenTwo);
+    displayFlex(gameAdultOne);
+  } else if (state.tamaStage === tamaState[8]) {
+    displayHide(gameChildOne);
+    displayHide(gameChildTwo);
+    displayHide(gameTeenOne);
+    displayHide(gameTeenTwo);
+    displayFlex(gameAdultTwo);
+  } else if (state.tamaStage === tamaState[9]) {
+    displayHide(gameChildOne);
+    displayHide(gameChildTwo);
+    displayHide(gameTeenOne);
+    displayHide(gameTeenTwo);
+    displayFlex(gameAdultThree);
+  } else if (state.tamaStage === tamaState[10]) {
+    displayHide(gameChildOne);
+    displayHide(gameChildTwo);
+    displayHide(gameTeenOne);
+    displayHide(gameTeenTwo);
+    displayFlex(gameAdultFour);
+  }
+}
+
+function characterMadEmoteAnimations() {
+  if (gameMad != false && gameAnimateCount < 5) {
+    if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
+      displayHide(gameMadAlertTwo);
+      displayFlex(gameMadAlertOne);
+      gameAnimateCount++;
+    } else {
+      displayHide(gameMadAlertOne);
+      displayFlex(gameMadAlertTwo);
+      gameAnimateCount++;
+    }
+  } else {
+    gameMad = false;
+    gameHappy = false;
+    gameAnimateCount = 0;
+    displayHide(gameMadAlertTwo);
+    displayHide(gameMadAlertOne);
+  }
+}
+function characterHappyEmoteAnimations() {
+  if (gameHappy != false && gameAnimateCount < 5) {
+    console.log("imhappy");
+    if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
+      displayFlex(gameHappyAlert);
+      gameAnimateCount++;
+    } else {
+      displayHide(gameHappyAlert);
+      gameAnimateCount++;
+    }
+  } else {
+    gameHappy = false;
+    gameMad = false;
+    gameAnimateCount = 0;
+    displayHide(gameHappyAlert);
+  }
+}
+
+// let gameIsRunning = false;
+// let gameRound = 0;
+// let gameTimeCount = 0;
+// let gameTimeStore = 0;
+// let lastGuessTime;
+// let playerSelectedChoice = false;
+// let playerSelection = 0;
+// let computerSelection = 0;
+// let playerScore = 0;
+// let computerScore = 0;
+// let gameHappy = false;
+// let gameMad = false;
+// let gameAnimateCount = 0;
+
+function quitGame() {
+  if (gameEnded != false) {
+    gameHappy = false;
+    gameMad = false;
+    gameAnimateCount = 0;
+    gameIsRunning = false;
+    gameRound = 0;
+    gameTimeCount = 0;
+    gameTimeStore = 0;
+    playerSelectedChoice = false;
+    playerSelection = 0;
+    computerSelection = 0;
+    playerScore = 0;
+    computerScore = 0;
+    hideImage(gameScreen);
+  }
+}
+
+function updateScoreView() {
+  if (playerSelection === 1 && computerSelection === 1) {
+    tamaChoiceOne.style.backgroundColor = "green";
+    playerChoiceOne.style.backgroundColor = "green";
+    gameHappy = true;
+  } else if (playerSelection === 2 && computerSelection === 2) {
+    tamaChoiceTwo.style.backgroundColor = "green";
+    playerChoiceTwo.style.backgroundColor = "green";
+    gameHappy = true;
+  } else if (playerSelection === 1 && computerSelection === 2) {
+    tamaChoiceTwo.style.backgroundColor = "maroon";
+    playerChoiceOne.style.backgroundColor = "maroon";
+    gameMad = true;
+  } else if (playerSelection === 2 && computerSelection === 1) {
+    tamaChoiceOne.style.backgroundColor = "maroon";
+    playerChoiceTwo.style.backgroundColor = "maroon";
+    gameMad = true;
+  } else if (playerSelection === 0) {
+    tamaChoiceOne.style.backgroundColor = "transparent";
+    tamaChoiceTwo.style.backgroundColor = "transparent";
+    playerChoiceOne.style.backgroundColor = "transparent";
+    playerChoiceTwo.style.backgroundColor = "transparent";
+  }
+}
+
+function updateScore() {
+  if (playerSelection === computerSelection) {
+    playerScore++;
+  } else {
+    computerScore++;
+  }
+}
+
+function updateGameTimerAndRestart() {
+  if (gameTimeCount <= 24) {
+    gameTimeCount++;
+    if (gameTimeCount % 3 === 0 && gameTimeStore < 30) {
+      gameTimeStore++;
+      gameTimer.innerHTML = `${gameTimeStore}`;
+    }
+  } else if (gameTimeCount > 24) {
+    gameRound++;
+    playerSelectedChoice = false;
+    playerSelection = 0;
+    gameTimeCount = 0;
+    gameTimeStore = 0;
+  }
+}
+function scoreAutoQuit() {
+  if (playerScore === 2 && computerScore === 2) {
+    gameEnded = true;
+  } else if (playerScore > 2) {
+    gameEnded = true;
+    state.tamaHappy++;
+    state.tamaIsHappy = true;
+  } else if (computerScore > 2) {
+    gameEnded = true;
+  }
+}
+
+function updateGameAnimations() {
+  if (gameIsRunning != false) {
+    updateGameTimerAndRestart();
+    chooseOneAnimation();
+    updateScoreView();
+    showGameCharacter();
+    characterMadEmoteAnimations();
+    characterHappyEmoteAnimations();
+    quitGame();
+    scoreAutoQuit();
+  }
+}
+
 function updateTheme() {
   if (state.tamaTheme === 0) {
     tamagotchiContainer.style.backgroundColor = "var(--mintGreen)";
@@ -970,6 +1250,93 @@ function childOneMovement() {
   }
 }
 
+function updateChracterPicture() {
+  if (state.tamaDead != true) {
+    if (state.foodAnimationGoing != true) {
+      if (gameIsRunning != true) {
+        childOneSickAnimation();
+        if (state.tamaStage === tamaState[1] && state.tamaSick === false) {
+          eggClass.style.visibility = "hidden";
+          child1Low.style.visibility = "hidden";
+          child1.style.visibility = "visible";
+          childOneMovement();
+
+          moveLeftToRightRandom(child1);
+        }
+
+        if (state.tamaStage === tamaState[2]) {
+          child1.style.visibility = "hidden";
+          child1Low.style.visibility = "hidden";
+          child1Sick.style.visibility = "hidden";
+          child2.style.visibility = "visible";
+
+          moveLeftToRightRandom(child2);
+        }
+
+        if (state.tamaStage === tamaState[3]) {
+          child2.style.visibility = "hidden";
+          teen1.style.visibility = "visible";
+          autoRandomFlip(teen1);
+
+          moveLeftToRightRandom(teen1);
+        }
+        if (state.tamaStage === tamaState[4]) {
+          child2.style.visibility = "hidden";
+          teen2.style.visibility = "visible";
+          autoRandomFlip(teen2);
+
+          moveLeftToRightRandom(teen2);
+        }
+
+        // SPECIAL CHARACTERS
+        if (state.tamaStage === tamaState[5]) {
+          removeAllChildAndTeen();
+          adult5.style.visibility = "visible";
+          autoRandomFlip(adult5);
+
+          moveLeftToRightRandom(adult5);
+        }
+        if (state.tamaStage === tamaState[6]) {
+          removeAllChildAndTeen();
+          adult6.style.visibility = "visible";
+          autoRandomFlip(adult6);
+
+          moveLeftToRightRandom(adult6);
+        }
+
+        if (state.tamaStage === tamaState[7]) {
+          removeAllChildAndTeen();
+          adult1.style.visibility = "visible";
+          autoRandomFlip(adult1);
+
+          moveLeftToRightRandom(adult1);
+        }
+        if (state.tamaStage === tamaState[8]) {
+          removeAllChildAndTeen();
+          adult2.style.visibility = "visible";
+          autoRandomFlip(adult2);
+
+          moveLeftToRightRandom(adult2);
+        }
+        if (state.tamaStage === tamaState[9]) {
+          removeAllChildAndTeen();
+          adult3.style.visibility = "visible";
+          autoRandomFlip(adult3);
+
+          moveLeftToRightRandom(adult3);
+        }
+        if (state.tamaStage === tamaState[10]) {
+          removeAllChildAndTeen();
+          adult4.style.visibility = "visible";
+          autoRandomFlip(adult4);
+
+          moveLeftToRightRandom(adult4);
+        }
+      }
+    }
+  }
+}
+
 function showGravestone() {
   if (state.tamaDead === true) {
     hideImage(poop1);
@@ -980,122 +1347,6 @@ function showGravestone() {
     teenClass.style.visibility = "hidden";
     adultClass.style.visibility = "hidden";
     gravestone.style.visibility = "visible";
-  }
-}
-
-function updateChracterPicture() {
-  if (state.tamaDead != true) {
-    childOneSickAnimation();
-    if (
-      state.tamaStage === tamaState[1] &&
-      state.tamaSick === false &&
-      state.foodAnimationGoing === false &&
-      gameIsRunning === false
-    ) {
-      eggClass.style.visibility = "hidden";
-      child1Low.style.visibility = "hidden";
-      child1.style.visibility = "visible";
-      childOneMovement();
-      if (state.tamaHealth > 1 || state.tamaHappy > 2 || state.tamaPoop < 1) {
-        moveLeftToRightRandom(child1);
-      }
-    }
-
-    if (
-      state.tamaStage === tamaState[2] &&
-      state.foodAnimationGoing === false
-    ) {
-      child1.style.visibility = "hidden";
-      child1Low.style.visibility = "hidden";
-      child1Sick.style.visibility = "hidden";
-      child2.style.visibility = "visible";
-
-      moveLeftToRightRandom(child2);
-    }
-
-    if (
-      state.tamaStage === tamaState[3] &&
-      state.foodAnimationGoing === false
-    ) {
-      child2.style.visibility = "hidden";
-      teen1.style.visibility = "visible";
-      autoRandomFlip(teen1);
-
-      moveLeftToRightRandom(teen1);
-    }
-    if (
-      state.tamaStage === tamaState[4] &&
-      state.foodAnimationGoing === false
-    ) {
-      child2.style.visibility = "hidden";
-      teen2.style.visibility = "visible";
-      autoRandomFlip(teen2);
-
-      moveLeftToRightRandom(teen2);
-    }
-
-    // SPECIAL CHARACTERS
-    if (
-      state.tamaStage === tamaState[5] &&
-      state.foodAnimationGoing === false
-    ) {
-      removeAllChildAndTeen();
-      adult5.style.visibility = "visible";
-      autoRandomFlip(adult5);
-
-      moveLeftToRightRandom(adult5);
-    }
-    if (
-      state.tamaStage === tamaState[6] &&
-      state.foodAnimationGoing === false
-    ) {
-      removeAllChildAndTeen();
-      adult6.style.visibility = "visible";
-      autoRandomFlip(adult6);
-
-      moveLeftToRightRandom(adult6);
-    }
-
-    if (
-      state.tamaStage === tamaState[7] &&
-      state.foodAnimationGoing === false
-    ) {
-      removeAllChildAndTeen();
-      adult1.style.visibility = "visible";
-      autoRandomFlip(adult1);
-
-      moveLeftToRightRandom(adult1);
-    }
-    if (
-      state.tamaStage === tamaState[8] &&
-      state.foodAnimationGoing === false
-    ) {
-      removeAllChildAndTeen();
-      adult2.style.visibility = "visible";
-      autoRandomFlip(adult2);
-
-      moveLeftToRightRandom(adult2);
-    }
-    if (
-      state.tamaStage === tamaState[9] &&
-      state.foodAnimationGoing === false
-    ) {
-      removeAllChildAndTeen();
-      adult3.style.visibility = "visible";
-      autoRandomFlip(adult3);
-
-      moveLeftToRightRandom(adult3);
-    }
-    if (
-      state.tamaStage === tamaState[10] &&
-      state.foodAnimationGoing === false
-    ) {
-      removeAllChildAndTeen();
-      adult4.style.visibility = "visible";
-      autoRandomFlip(adult4);
-
-      moveLeftToRightRandom(adult4);
-    }
   }
 }
 
@@ -1118,6 +1369,7 @@ function updatePictures() {
   updateHeartSvg();
   updateChracterPicture();
   showGravestone();
+  updateGameAnimations();
 }
 startAnimation();
 
@@ -1332,35 +1584,35 @@ function clean() {
   }
 }
 
-function playGame() {
-  let score = 0;
-  for (let i = 0; i < 5; i++) {
-    let compChoice = randomNumGen(2);
-    let playerChoice = prompt("Best out of 3: 0 or 1");
-    if (playerChoice == 8) {
-      state.tamaHappy++;
-      break;
-    }
-    if (playerChoice == compChoice) {
-      alert("nice you got it!");
-      score++;
-    } else {
-      alert("woops they chose" + compChoice);
-    }
-    if (score > 2) {
-      break;
-    }
-  }
-  if (score > 2) {
-    alert("you won!!! +1 happy");
-    state.tamaHappy = state.tamaHappy + 1;
-  } else {
-    alert("you lost! try again no happy gained");
-  }
-  if (state.tamaHappy == 5 || state.tamaHappy > 5) {
-    state.tamaHappy = 5;
-  }
-}
+// function playGame() {
+//   let score = 0;
+//   for (let i = 0; i < 5; i++) {
+//     let compChoice = randomNumGen(2);
+//     let playerChoice = prompt("Best out of 3: 0 or 1");
+//     if (playerChoice == 8) {
+//       state.tamaHappy++;
+//       break;
+//     }
+//     if (playerChoice == compChoice) {
+//       alert("nice you got it!");
+//       score++;
+//     } else {
+//       alert("woops they chose" + compChoice);
+//     }
+//     if (score > 2) {
+//       break;
+//     }
+//   }
+//   if (score > 2) {
+//     alert("you won!!! +1 happy");
+//     state.tamaHappy = state.tamaHappy + 1;
+//   } else {
+//     alert("you lost! try again no happy gained");
+//   }
+//   if (state.tamaHappy == 5 || state.tamaHappy > 5) {
+//     state.tamaHappy = 5;
+//   }
+// }
 
 function autoAttentionAlert() {
   if (state.tamaDead == true) {
@@ -1466,7 +1718,7 @@ function spoiledAdultAttention() {
 
 function letThereBeLife() {
   if (timeMathToSec(state.timeState.gameStart) < 10) {
-    state.tamaStage = tamaState[2];
+    state.tamaStage = tamaState[1];
   }
 }
 
@@ -1659,6 +1911,20 @@ function autoAge() {
   autoDeath();
 }
 
+function playGame() {
+  if (gameIsRunning != false) {
+    if (gameTimeStore < 8) {
+      console.log("game running");
+      console.log(playerScore);
+    } else if (gameTimeStore === 8) {
+      playerSelectedChoice = false;
+      playerSelection = 0;
+      gameTimeStore = 0;
+      console.log("game ended");
+    }
+  }
+}
+
 /////////////////////////////////////RUNNING THE GAME
 function updateFunctions() {
   if (state.tamaStage == tamaState[0]) {
@@ -1669,6 +1935,7 @@ function updateFunctions() {
     autoHealthDegen();
     autoHappyDegen();
     autoDisciplineTest();
+    playGame();
   }
   autoAge();
   autoAttentionAlert();
@@ -1770,6 +2037,37 @@ lightsOff.addEventListener("click", function () {
   lightsIsActive = false;
   showImage(lightsOffScreen);
   console.log(state.lightIsOff);
+});
+
+gameButton.addEventListener("click", function () {
+  if (gameIsRunning === false) {
+    gameEnded = false;
+    gameIsRunning = true;
+    removeAllChildAndTeen();
+    showImage(gameScreen);
+  } else if (gameIsRunning === true) {
+    gameEnded = true;
+  }
+});
+playerChoiceOne.addEventListener("click", function () {
+  if (playerSelectedChoice != true) {
+    playerSelectedChoice = true;
+    playerSelection = 1;
+    gameTimeStore = 6;
+    computerGuess();
+    updateScore();
+    lastGuessTime = new Date();
+  }
+});
+playerChoiceTwo.addEventListener("click", function () {
+  if (playerSelectedChoice != true) {
+    playerSelectedChoice = true;
+    playerSelection = 2;
+    gameTimeStore = 6;
+    computerGuess();
+    updateScore();
+    lastGuessTime = new Date();
+  }
 });
 
 healButton.addEventListener("click", function () {

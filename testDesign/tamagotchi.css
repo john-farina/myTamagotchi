@@ -586,6 +586,133 @@ button {
   margin-top: 24px;
 }
 
+#game-screen {
+  visibility: hidden;
+position: absolute;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  flex-direction: column;
+  width: inherit;
+  height: inherit;
+  background-color: rgb(154, 154, 154);
+}
+#game-timer {
+  pointer-events: none;
+  display: flex;
+  width: inherit;
+ margin-left: 10px;
+ margin-top: 0px;
+  justify-content: flex-start;
+  position: absolute;
+}
+#players-choice,
+#tamas-choice {
+display: flex;
+gap: 12px;
+/* gap: 25px; */
+padding: 10px;
+justify-content: center;
+align-items: center;
+}
+
+.choice-buttons {
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border-style: solid;
+  border-width: 3px;
+  border-color: black;
+  padding: 15px;
+}
+.choice-buttons:hover {
+  background-color: black;
+  color: white;
+}
+.choice-text {
+  font-size: 15px;
+  margin: 0;
+}
+
+.game-alert-icons {
+  height: 16px;
+margin-top: -20px;
+
+}
+#game-mad-alert1 {
+  display: none;
+  height: 7px;
+  margin-left: -9.5px;
+  margin-bottom: -7px;
+}
+#game-mad-alert2 {
+  display: none;
+}
+#game-happy-alert {
+  display: none;
+  height: 18px;
+  margin-top: -9px;
+}
+
+
+.game-character {
+  height: 30px;
+}
+
+#game-child-one{
+  height: 20px;
+  display: none;
+}
+#game-child-two{
+  display: none;
+}
+#game-teen-one {
+  display: none;
+  height: 35px;
+}
+#game-teen-two {
+  display: none;
+  height: 35px;
+}
+#game-adult-one {
+  display: none;
+  height: 50px;
+}
+#game-adult-two {
+  display: none;
+  height: 50px;
+}
+#game-adult-three {
+  display: none;
+  height: 50px;
+}
+#game-adult-four {
+  display: none;
+  height: 50px;
+}
+#game-adult-five {
+  display: none;
+  height: 50px;
+}
+#game-adult-six {
+  display: none;
+  height: 50px;
+}
+
+#tamas-choice {
+  gap: 14px;
+}
+
+#tama-choice-one,
+#tama-choice-two {
+  display: flex;
+  padding: 5px;
+}
+
 #top-bar,
 #bottom-bar {
   width: 200px;
