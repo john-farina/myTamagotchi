@@ -3,6 +3,12 @@
   src: url(/fonts/LLPIXEL3.ttf);
 }
 
+html, body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
 body {
   font-family:'LLPixel', Calibri, 'Trebuchet MS', sans-serif;
   background-color: var(--blueBackground);
@@ -10,8 +16,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items:center;
-  margin-top: 50px;
-  margin: 0;
 }
 
 button {
@@ -45,7 +49,45 @@ button {
   --darkRed: rgb(206, 35, 35);
 }
 
+#help-screen {
+  /* margin-bottom: -77.5%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, .8);
+}
+#help-button-container {
+  margin-top: -11.3rem;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 4px;
+}
+#help-top-buttons{
+display: flex;
+gap: 20px;
+}
+#help-center-buttons {
+  background-color: red;
+}
+#help-center-button {
+  height: 120px;
+  width: 195px;
+}
+#help-bottom-buttons{
+  display: flex;
+  gap: 20px;
+}
+
 #header-container {
+  position: fixed;
+  margin-top: -40rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,6 +109,7 @@ font-weight: bolder;
   }
 
 #tamagotchi-container {
+  margin-top: -10rem;
   z-index: 17;
   display: flex;
   gap: 30px;

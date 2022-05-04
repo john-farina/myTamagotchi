@@ -16,7 +16,7 @@ let tamaState = [
 ];
 const state = {
   gameStarted: false,
-  tamaTheme: 3,
+  tamaTheme: 0,
   tamaName: "Larry",
   tamaAge: 8,
   tamaHatch: 4,
@@ -1288,7 +1288,7 @@ function childOneMovement() {
 }
 
 function updateChracterPicture() {
-  if ((state.tamaDead = true)) {
+  if (state.tamaDead != true) {
     if (state.foodAnimationGoing != true) {
       if (gameIsRunning != true) {
         childOneSickAnimation();
@@ -1772,7 +1772,7 @@ function spoiledAdultAttention() {
 
 function letThereBeLife() {
   if (timeMathToSec(state.timeState.gameStart) < 10) {
-    state.tamaStage = tamaState[1];
+    state.tamaStage = tamaState[7];
   }
 }
 
