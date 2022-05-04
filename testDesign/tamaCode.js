@@ -1213,8 +1213,11 @@ function autoTheme(background, tamagotchi, button, buttonBorder) {
   menuButton.style.borderColor = buttonBorder;
 }
 
+const planetExpressLogo = document.querySelector("#express-logo");
+
 function updateTheme() {
   if (state.tamaTheme === 0) {
+    displayFlex(planetExpressLogo);
     autoTheme(
       "var(--greenBackground)",
       "var(--mintGreen)",
@@ -1222,6 +1225,7 @@ function updateTheme() {
       "var(--darkerRedButton)"
     );
   } else if (state.tamaTheme === 1) {
+    displayHide(planetExpressLogo);
     autoTheme(
       "var(--yellowBackground)",
       "var(--lightYellow)",
@@ -1229,6 +1233,7 @@ function updateTheme() {
       "var(--darkerPurpleButton)"
     );
   } else if (state.tamaTheme === 2) {
+    displayHide(planetExpressLogo);
     autoTheme(
       "var(--whiteBackground)",
       "var(--offWhite)",
@@ -1237,6 +1242,7 @@ function updateTheme() {
     );
     dropDownMenu.style.backgroundColor = "var(--offWhiteMenu)";
   } else if (state.tamaTheme === 3) {
+    displayHide(planetExpressLogo);
     autoTheme(
       "var(--blueBackground)",
       "var(--myBlue)",

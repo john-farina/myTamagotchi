@@ -119,8 +119,10 @@ font-weight: bolder;
   flex-direction: column;
   gap: 15px;
 }
+
 #top-device,
 #bottom-device {
+  z-index: 9;
   display: flex;
   gap: 19px;
 }
@@ -306,6 +308,15 @@ animation-duration: 2s;
   width: 20px;
   height: 20px
 }
+
+#express-logo {
+  display: none;
+  margin-top: 100px;
+  margin-left: 80px;
+  height: 100px;
+  position: absolute;
+}
+
 #color1 {
   background-color: var(--mintGreen);
 }
