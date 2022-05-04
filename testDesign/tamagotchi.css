@@ -5,7 +5,7 @@
 
 body {
   font-family:'LLPixel', Calibri, 'Trebuchet MS', sans-serif;
-  background-color: rgb(230, 255, 236);
+  background-color: var(--blueBackground);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,21 +20,51 @@ button {
 
 :root {
   /* --mintGreen: rgb(113, 249, 177); */
+  --greenBackground: rgb(230, 255, 236);
   --mintGreen: rgb(113, 249, 177);
   --redButton: rgb(238, 84, 84);
   --darkerRedButton: rgb(204, 70, 70);
 
+  --whiteBackground: rgb(255, 255, 237);
   --offWhite: rgb(251, 252, 228);
+  --offWhiteMenu: rgb(197, 198, 177);
   --blackButton: rgb(55, 55, 55);
   --darkerBlackButton: rgb(37, 37, 37);
 
+  --yellowBackground: rgb(250, 253, 196);
   --lightYellow: rgb(245, 251, 132);
   --purpleButton: rgb(206, 72, 224);
   --darkerPurpleButton: rgb(150, 49, 163);
 
+  --blueBackground: rgb(129, 175, 224);
+  --myBlue: rgb(8, 116, 231);
+  --myRed: rgb(234, 36, 99);
+  --myDarkerRed: rgb(193, 28, 80);
+
   --hotPink: rgb(179, 79, 186);
   --darkRed: rgb(206, 35, 35);
 }
+
+#header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#header-top-text {
+margin-bottom: 0;
+font-size: 50px;
+}
+#header-bottom-text {
+  margin-top: 0;
+  font-size: 36px;
+  margin-bottom: 50px;
+}
+#header-top-text,
+  #header-bottom-text {
+
+font-weight: bolder;
+  }
 
 #tamagotchi-container {
   z-index: 17;
@@ -48,7 +78,7 @@ button {
   width: 300px;
   height: 240px;
   /* box-shadow: 0px 50px 700px 10px black; */
-  background-color: var(--mintGreen);
+  background-color: var(--myBlue);
 	box-shadow: inset -25px -15px 40px rgba(0,0,0,.5), 30px 20px 100px 0px rgba(0,0,0,50%);
 	background-image: linear-gradient(-145deg, rgba(65, 65, 65, 0.3) 0%, transparent 100%);
 }
@@ -72,7 +102,7 @@ button {
 }
 
 #signatureText {
-  color: var(--mintGreen);
+  color: var(--myBlue);
   text-shadow:2px 1px 3px rgba(0, 0, 0, 0.2);
   position: absolute;
   font-size: 15px;
@@ -268,8 +298,11 @@ animation-duration: 2s;
   background-color: rgb(185, 185, 185);
 }
 .color-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
-  border-radius: 100%;
+  border-radius: 10%;
   width: 20px;
   height: 20px
 }
@@ -282,7 +315,26 @@ animation-duration: 2s;
 #color3 {
   background-color: var(--offWhite);
 }
-
+#color4 {
+  background-color: var(--myBlue);
+}
+.inside-color {
+  height: 6px;
+  width: 6px;
+  border-radius: 100%;
+}
+#color4-inside {
+  background-color: var(--myRed);
+}
+#color3-inside {
+  background-color: var(--blackButton);
+}
+#color2-inside {
+  background-color: var(--purpleButton);
+}
+#color1-inside {
+  background-color: var(--redButton);
+}
 
 .bottom-buttons {
 

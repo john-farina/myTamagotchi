@@ -16,7 +16,7 @@ let tamaState = [
 ];
 const state = {
   gameStarted: false,
-  tamaTheme: 0,
+  tamaTheme: 3,
   tamaName: "Larry",
   tamaAge: 8,
   tamaHatch: 4,
@@ -73,6 +73,8 @@ let healthIsActive = false;
 let animateCount = 0;
 let menuIsOpen = false;
 let themeMenuIsOpen = false;
+
+const body = document.querySelector("body");
 
 const foodScreen = document.querySelector("#food-screen");
 const healthButton = document.querySelector("#healthButton");
@@ -1195,34 +1197,52 @@ function updateAndPlayGameAnimations() {
   }
 }
 
+function autoTheme(background, tamagotchi, button, buttonBorder) {
+  body.style.backgroundColor = background;
+  tamagotchiContainer.style.backgroundColor = tamagotchi;
+  dropDownMenu.style.backgroundColor = tamagotchi;
+
+  button1.style.backgroundColor = button;
+  button2.style.backgroundColor = button;
+  button3.style.backgroundColor = button;
+  menuButton.style.backgroundColor = button;
+
+  button1.style.borderColor = buttonBorder;
+  button2.style.borderColor = buttonBorder;
+  button3.style.borderColor = buttonBorder;
+  menuButton.style.borderColor = buttonBorder;
+}
+
 function updateTheme() {
   if (state.tamaTheme === 0) {
-    tamagotchiContainer.style.backgroundColor = "var(--mintGreen)";
-    button1.style.backgroundColor = "var(--redButton)";
-    button2.style.backgroundColor = "var(--redButton)";
-    button3.style.backgroundColor = "var(--redButton)";
-
-    button1.style.borderColor = "var(--darkerRedButton)";
-    button2.style.borderColor = "var(--darkerRedButton)";
-    button3.style.borderColor = "var(--darkerRedButton)";
+    autoTheme(
+      "var(--greenBackground)",
+      "var(--mintGreen)",
+      "var(--redButton)",
+      "var(--darkerRedButton)"
+    );
   } else if (state.tamaTheme === 1) {
-    tamagotchiContainer.style.backgroundColor = "var(--lightYellow)";
-    button1.style.backgroundColor = "var(--purpleButton)";
-    button2.style.backgroundColor = "var(--purpleButton)";
-    button3.style.backgroundColor = "var(--purpleButton)";
-
-    button1.style.borderColor = "var(--darkerPurpleButton)";
-    button2.style.borderColor = "var(--darkerPurpleButton)";
-    button3.style.borderColor = "var(--darkerPurpleButton)";
+    autoTheme(
+      "var(--yellowBackground)",
+      "var(--lightYellow)",
+      "var(--purpleButton)",
+      "var(--darkerPurpleButton)"
+    );
   } else if (state.tamaTheme === 2) {
-    tamagotchiContainer.style.backgroundColor = "var(--offWhite)";
-    button1.style.backgroundColor = "var(--blackButton)";
-    button2.style.backgroundColor = "var(--blackButton)";
-    button3.style.backgroundColor = "var(--blackButton)";
-
-    button1.style.borderColor = "var(--darkerBlackButton)";
-    button2.style.borderColor = "var(--darkerBlackButton)";
-    button3.style.borderColor = "var(--darkerBlackButton)";
+    autoTheme(
+      "var(--whiteBackground)",
+      "var(--offWhite)",
+      "var(--blackButton)",
+      "var(--darkerBlackButton)"
+    );
+    dropDownMenu.style.backgroundColor = "var(--offWhiteMenu)";
+  } else if (state.tamaTheme === 3) {
+    autoTheme(
+      "var(--blueBackground)",
+      "var(--myBlue)",
+      "var(--myRed)",
+      "var(--myDarkerRed)"
+    );
   }
 }
 
@@ -2217,5 +2237,11 @@ color2Button.addEventListener("click", function () {
 
 color3Button.addEventListener("click", function () {
   state.tamaTheme = 2;
+  animateCloseAllTabs();
+});
+
+const color4Button = document.querySelector("#color4");
+color4Button.addEventListener("click", function () {
+  state.tamaTheme = 3;
   animateCloseAllTabs();
 });
