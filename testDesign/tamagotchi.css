@@ -20,7 +20,7 @@ button {
 
 :root {
   /* --mintGreen: rgb(113, 249, 177); */
-  --greenBackground: rgb(230, 255, 236);
+  --greenBackground: rgb(195, 250, 220);
   --mintGreen: rgb(113, 249, 177);
   --redButton: rgb(238, 84, 84);
   --darkerRedButton: rgb(204, 70, 70);
@@ -36,8 +36,8 @@ button {
   --purpleButton: rgb(206, 72, 224);
   --darkerPurpleButton: rgb(150, 49, 163);
 
-  --blueBackground: rgb(129, 175, 224);
-  --myBlue: rgb(8, 116, 231);
+  --blueBackground: rgb(173, 235, 234);
+  --myBlueAndRed: linear-gradient(90deg, rgba(50,190,216,1) 50%, rgba(235,18,80,1) 50%);
   --myRed: rgb(234, 36, 99);
   --myDarkerRed: rgb(193, 28, 80);
 
@@ -327,25 +327,15 @@ animation-duration: 2s;
   background-color: var(--offWhite);
 }
 #color4 {
-  background-color: var(--myBlue);
+  background: var(--myBlueAndRed);
 }
 .inside-color {
+  display: none;
   height: 6px;
   width: 6px;
   border-radius: 100%;
 }
-#color4-inside {
-  background-color: var(--myRed);
-}
-#color3-inside {
-  background-color: var(--blackButton);
-}
-#color2-inside {
-  background-color: var(--purpleButton);
-}
-#color1-inside {
-  background-color: var(--redButton);
-}
+
 
 .bottom-buttons {
 

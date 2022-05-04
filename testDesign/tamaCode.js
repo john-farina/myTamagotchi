@@ -1199,8 +1199,11 @@ function updateAndPlayGameAnimations() {
 
 function autoTheme(background, tamagotchi, button, buttonBorder) {
   body.style.backgroundColor = background;
+  body.style.background = background;
   tamagotchiContainer.style.backgroundColor = tamagotchi;
+  tamagotchiContainer.style.background = tamagotchi;
   dropDownMenu.style.backgroundColor = tamagotchi;
+  dropDownMenu.style.background = tamagotchi;
 
   button1.style.backgroundColor = button;
   button2.style.backgroundColor = button;
@@ -1245,9 +1248,9 @@ function updateTheme() {
     displayHide(planetExpressLogo);
     autoTheme(
       "var(--blueBackground)",
-      "var(--myBlue)",
-      "var(--myRed)",
-      "var(--myDarkerRed)"
+      "var(--myBlueAndRed)",
+      "var(--blackButton)",
+      "var(--darkerBlackButton)"
     );
   }
 }
