@@ -1288,7 +1288,7 @@ function childOneMovement() {
 }
 
 function updateChracterPicture() {
-  if (state.tamaDead != true) {
+  if ((state.tamaDead = true)) {
     if (state.foodAnimationGoing != true) {
       if (gameIsRunning != true) {
         childOneSickAnimation();
