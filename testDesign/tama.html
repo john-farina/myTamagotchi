@@ -1,281 +1,704 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./tamagotchi.css"/>
-    <script src="./buttons.js" defer></script>
-    <script src="./tamaCode.js" defer></script>
-    <script src="https://kit.fontawesome.com/4c3322bec2.js" crossorigin="anonymous"></script>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tamagotchi</title>
+        <link rel="stylesheet" href="./tamagotchi.css" />
+        <script src="./buttons.js" defer></script>
+        <script src="./tamaCode.js" defer></script>
+        <script
+            src="https://kit.fontawesome.com/4c3322bec2.js"
+            crossorigin="anonymous"
+        ></script>
+        <body>
+            <div id="help-screen">
+                <div id="help-button-container">
+                    <h1 id="help-text">click any button for more info!</h1>
+                    <div id="help-top-buttons">
+                        <button class="help-buttons" id="help-eat">
+                            <i class="fa-solid fa-burger"></i>
+                        </button>
+                        <button class="help-buttons" id="help-light">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </button>
+                        <button class="help-buttons" id="help-game">
+                            <i class="fa-solid fa-baseball-bat-ball"></i>
+                        </button>
+                        <button class="help-buttons" id="help-sick">
+                            <i class="fa-solid fa-syringe"></i>
+                        </button>
+                    </div>
 
-<div id="help-screen">
-    <div id="help-button-container">
-        <div id="help-top-buttons">
-            <button class="help-buttons" id="help-eat">
-                <i class="fa-solid fa-burger"></i>
-            </button>
-            <button class="help-buttons" id="help-light">
-                <i class="fa-solid fa-lightbulb"></i>
-                </button>
-            <button class="help-buttons" id="help-game">
-                <i class="fa-solid fa-baseball-bat-ball"></i>
-                </button>
-            <button class="help-buttons" id="help-sick">
-                <i class="fa-solid fa-syringe"></i>
-            </button>
-        </div>
-        <div id="help-center-buttons">
-            <button id="help-center-button">center</button>
-        </div>
-        <div id="help-bottom-buttons">
-            <button class="help-buttons" id="help-clean">hi</button>
-            <button class="help-buttons" id="help-health">hi</button>
-            <button class="help-buttons" id="help-discipline">hi</button>
-            <button class="help-buttons" id="help-attention">hi</button> 
-        </div>
-    </div>
-</div>
+                    <div id="help-center-buttons">
+                        <button id="help-center-button">center</button>
+                    </div>
+                    <div id="help-bottom-buttons">
+                        <button class="help-buttons" id="help-clean">
+                            <i class="fa-solid fa-bath"></i>
+                        </button>
+                        <button class="help-buttons" id="help-health">
+                            <i class="fa-solid fa-book-medical"></i>
+                        </button>
+                        <button class="help-buttons" id="help-discipline">
+                            <i class="fa-solid fa-face-angry"></i>
+                        </button>
+                        <button class="help-buttons" id="help-attention">
+                            hi
+                        </button>
+                    </div>
+                </div>
 
-    <p id="hungerMeter"></p>
-    <div id="header-container">
-        <h1 id="header-top-text">TAMAGOTCHI</h1>
-        <h1 id="header-bottom-text">CLONE</h1>
-    </div>
-
-<div id="tamagotchi-container">
-    <h2 id="signatureText">farina</h2>
-    <img id="express-logo" src="/tamaPictures2/planetExpress.png">
-    <div id="screen-container">
-        <div id="top-bar">
-            <button id="foodButton" class="screenButons">
-                <i class="fa-solid fa-burger"></i>
-            </button>
-            <button id="lightsButton" class="screenButons">
-                <i class="fa-solid fa-lightbulb"></i>
-            </button>
-            <button id="gameButton" class="screenButons">
-                <i class="fa-solid fa-baseball-bat-ball"></i>
-            </button>
-            <button id="healButton" class="screenButons">
-                <i class="fa-solid fa-syringe"></i>
-            </button>
-            <img id="top-texture" class="screen-texture"" src="/tamaPictures2/screentexture.jpeg">
+                <div id="help-images">
+                    <div id="help-image1" class="helping-image">
+                        <img
+                            id="food-gif"
+                            class="helping-image"
+                            src="/tamaPictures2/gifs/foodGif.GIF"
+                        />
+                        <img
+                            id="lights-gif"
+                            class="helping-image"
+                            src="/tamaPictures2/gifs/lightsGif.GIF"
+                        />
+                        <img
+                            id="game-gif"
+                            class="helping-image"
+                            src="/tamaPictures2/gifs/gameGif.GIF"
+                        />
+                        <img
+                            id="sick-gif"
+                            class="helping-image"
+                            src="/tamaPictures2/gifs/sickGif.GIF"
+                        />
+                        <img
+                            id="poop-gif"
+                            class="helping-image"
+                            src="/tamaPictures2/gifs/poopGif.GIF"
+                        />
+                        <img
+                            id="health-gif"
+                            class="helping-image"
+                            src="/tamaPictures2/gifs/healthGif.GIF"
+                        />
+                    </div>
+                </div>
             </div>
 
-            <div id="main-screen">
-                <!------------------------------------------------ CHARACTERS -->
-                            <!-- EGG -->
-                <img id="eggState1" class="character egg" src="/tamaPictures2/tamaEgg/tama_eggState1.svg">
-                <img id="eggState2" class="character egg" src="/tamaPictures2/tamaEgg/tama_eggState2.svg">
-                <img id="eggState3" class="character egg" src="/tamaPictures2/tamaEgg/tama_eggState3.svg"> 
+            <p id="hungerMeter"></p>
+            <div id="header-container">
+                <h1 id="header-top-text">TAMAGOTCHI</h1>
+                <h1 id="header-bottom-text">CLONE</h1>
+            </div>
 
-                             <!-- CHILD STATE -->
-                <img id="child1" class="character child" src="/tamaPictures2/tamaCharacter/childState1/tama_childState1.svg">
-                <img id="child1-low" class="character child" src="/tamaPictures2/tamaCharacter/childState1/tama_child1-lower.svg">
-                <img id="child1-sick" class="character child" src="/tamaPictures2/tamaCharacter/childState1/tama_child1-sick.svg">
-                <img id="child1-side" class="character child" src="/tamaPictures2/tamaCharacter/childState1/tama_childState1Side.svg">
-                <img id="child1-eat" class="character child" src="/tamaPictures2/tamaCharacter/childState1/tama_childState1Eat.svg">
+            <div id="tamagotchi-container">
+                <h2 id="signatureText">farina</h2>
+                <img id="express-logo" src="/tamaPictures2/planetExpress.png" />
+                <img id="alf-logo" src="/tamaPictures2/alf.png" />
+                <div id="screen-container">
+                    <div id="top-bar">
+                        <button id="foodButton" class="screenButons">
+                            <i class="fa-solid fa-burger"></i>
+                        </button>
+                        <button id="lightsButton" class="screenButons">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </button>
+                        <button id="gameButton" class="screenButons">
+                            <i class="fa-solid fa-baseball-bat-ball"></i>
+                        </button>
+                        <button id="healButton" class="screenButons">
+                            <i class="fa-solid fa-syringe"></i>
+                        </button>
+                        <img id="top-texture" class="screen-texture""
+                        src="/tamaPictures2/screentexture.jpeg">
+                    </div>
 
-                    <img id="child2" class="character child" src="/tamaPictures2/tamaCharacter/childState2/tama_childState2.svg">
-                    <img id="child2-small" class="character child" src="/tamaPictures2/tamaCharacter/childState2/tama_childState2Small.svg">
-                    <img id="child2-side" class="character child" src="/tamaPictures2/tamaCharacter/childState2/tama_childState2Side.svg">
-                    <img id="child2-eat" class="character child" src="/tamaPictures2/tamaCharacter/childState2/tama_childState2Eat.svg">
+                    <div id="main-screen">
+                        <!------------------------------------------------ CHARACTERS -->
+                        <!-- EGG -->
+                        <img
+                            id="eggState1"
+                            class="character egg"
+                            src="/tamaPictures2/tamaEgg/tama_eggState1.svg"
+                        />
+                        <img
+                            id="eggState2"
+                            class="character egg"
+                            src="/tamaPictures2/tamaEgg/tama_eggState2.svg"
+                        />
+                        <img
+                            id="eggState3"
+                            class="character egg"
+                            src="/tamaPictures2/tamaEgg/tama_eggState3.svg"
+                        />
 
-                            <!-- TEEN STATE -->
-                <img id="teen1" class="character teen" src="/tamaPictures2/tamaCharacter/teen1/tama_teen1.svg">
-                <img id="teen1-eat" class="character teen" src="/tamaPictures2/tamaCharacter/teen1/tama_teen1Eat.svg">
-                <img id="teen1-sick" class="character teen" src="/tamaPictures2/tamaCharacter/teen1/tama_teen1sick.svg">
+                        <!-- CHILD STATE -->
+                        <img
+                            id="child1"
+                            class="character child"
+                            src="/tamaPictures2/tamaCharacter/childState1/tama_childState1.svg"
+                        />
+                        <img
+                            id="child1-low"
+                            class="character child"
+                            src="/tamaPictures2/tamaCharacter/childState1/tama_child1-lower.svg"
+                        />
+                        <img
+                            id="child1-sick"
+                            class="character child"
+                            src="/tamaPictures2/tamaCharacter/childState1/tama_child1-sick.svg"
+                        />
+                        <img
+                            id="child1-side"
+                            class="character child"
+                            src="/tamaPictures2/tamaCharacter/childState1/tama_childState1Side.svg"
+                        />
+                        <img
+                            id="child1-eat"
+                            class="character child"
+                            src="/tamaPictures2/tamaCharacter/childState1/tama_childState1Eat.svg"
+                        />
 
-                    <img id="teen2" class="character teen" src="/tamaPictures2/tamaCharacter/teen2/tama_teen2.svg">
-                    <img id="teen2-lips" class="character teen" src="/tamaPictures2/tamaCharacter/teen2/tama_teen2Lips.svg">
-                    <img id="teen2-eat" class="character teen" src="/tamaPictures2/tamaCharacter/teen2/tama_teen2Eat.svg">
-                    <img id="teen2-sick" class="character teen" src="/tamaPictures2/tamaCharacter/teen2/tama_teen2Sick.svg">
-        
-                            <!-- ADULT STATE -->
-                <img id="adult1" class="character adult" src="/tamaPictures2/tamaCharacter/adult1/tama_adult1.svg">
-                <img id="adult1-eat" class="character adult" src="/tamaPictures2/tamaCharacter/adult1/tama_adult1Eat.svg">
-                <img id="adult1-sick" class="character adult" src="/tamaPictures2/tamaCharacter/adult1/tama_adult1Sick.svg">
+                        <img
+                            id="child2"
+                            class="character child"
+                            src="/tamaPictures2/tamaCharacter/childState2/tama_childState2.svg"
+                        />
+                        <img
+                            id="child2-small"
+                            class="character child"
+                            src="/tamaPictures2/tamaCharacter/childState2/tama_childState2Small.svg"
+                        />
+                        <img
+                            id="child2-side"
+                            class="character child"
+                            src="/tamaPictures2/tamaCharacter/childState2/tama_childState2Side.svg"
+                        />
+                        <img
+                            id="child2-eat"
+                            class="character child"
+                            src="/tamaPictures2/tamaCharacter/childState2/tama_childState2Eat.svg"
+                        />
 
-                    <img id="adult2" class="character adult" src="/tamaPictures2/tamaCharacter/adult2/tama_adult2.svg">
-                    <img id="adult2-eat" class="character adult" src="/tamaPictures2/tamaCharacter/adult2/tama_adult2Eat.svg">
-                    <img id="adult2-sick" class="character adult" src="/tamaPictures2/tamaCharacter/adult2/tama_adult2.svg">
-                    <img id="adult2-lips" class="character adult" src="/tamaPictures2/tamaCharacter/adult2/tama_adult2Lips.svg">
+                        <!-- TEEN STATE -->
+                        <img
+                            id="teen1"
+                            class="character teen"
+                            src="/tamaPictures2/tamaCharacter/teen1/tama_teen1.svg"
+                        />
+                        <img
+                            id="teen1-eat"
+                            class="character teen"
+                            src="/tamaPictures2/tamaCharacter/teen1/tama_teen1Eat.svg"
+                        />
+                        <img
+                            id="teen1-sick"
+                            class="character teen"
+                            src="/tamaPictures2/tamaCharacter/teen1/tama_teen1sick.svg"
+                        />
 
-                        <img id="adult3" class="character adult" src="/tamaPictures2/tamaCharacter/adult3/tama_adult3.svg">
-                        <img id="adult3-eat" class="character adult" src="/tamaPictures2/tamaCharacter/adult3/tama_adult3Eat.svg">
-                        <img id="adult3-sick" class="character adult" src="/tamaPictures2/tamaCharacter/adult3/tama_adult3Sick.svg">
+                        <img
+                            id="teen2"
+                            class="character teen"
+                            src="/tamaPictures2/tamaCharacter/teen2/tama_teen2.svg"
+                        />
+                        <img
+                            id="teen2-lips"
+                            class="character teen"
+                            src="/tamaPictures2/tamaCharacter/teen2/tama_teen2Lips.svg"
+                        />
+                        <img
+                            id="teen2-eat"
+                            class="character teen"
+                            src="/tamaPictures2/tamaCharacter/teen2/tama_teen2Eat.svg"
+                        />
+                        <img
+                            id="teen2-sick"
+                            class="character teen"
+                            src="/tamaPictures2/tamaCharacter/teen2/tama_teen2Sick.svg"
+                        />
 
-                            <img id="adult4" class="character adult" src="/tamaPictures2/tamaCharacter/adult4/tama_adult4.svg">
-                            <img id="adult4-eat" class="character adult" src="/tamaPictures2/tamaCharacter/adult4/tama_adult4Eat.svg">
-                            <img id="adult4-sick" class="character adult" src="/tamaPictures2/tamaCharacter/adult4/tama_adult4Sick.svg">
-                            <img id="adult4-lips" class="character adult" src="/tamaPictures2/tamaCharacter/adult4/tama_adult4Lips.svg">
+                        <!-- ADULT STATE -->
+                        <img
+                            id="adult1"
+                            class="character adult"
+                            src="/tamaPictures2/tamaCharacter/adult1/tama_adult1.svg"
+                        />
+                        <img
+                            id="adult1-eat"
+                            class="character adult"
+                            src="/tamaPictures2/tamaCharacter/adult1/tama_adult1Eat.svg"
+                        />
+                        <img
+                            id="adult1-sick"
+                            class="character adult"
+                            src="/tamaPictures2/tamaCharacter/adult1/tama_adult1Sick.svg"
+                        />
 
-                        <img id="adult5" class="character adult" src="/tamaPictures2/tamaCharacter/adult5/tama_adult5.svg">
-                        <img id="adult5-eat" class="character adult" src="/tamaPictures2/tamaCharacter/adult5/tama_adult5Eat.svg">
-                        <img id="adult5-sick" class="character adult" src="/tamaPictures2/tamaCharacter/adult5/tama_adult5Sick.svg">
-                        
+                        <img
+                            id="adult2"
+                            class="character adult"
+                            src="/tamaPictures2/tamaCharacter/adult2/tama_adult2.svg"
+                        />
+                        <img
+                            id="adult2-eat"
+                            class="character adult"
+                            src="/tamaPictures2/tamaCharacter/adult2/tama_adult2Eat.svg"
+                        />
+                        <img
+                            id="adult2-sick"
+                            class="character adult"
+                            src="/tamaPictures2/tamaCharacter/adult2/tama_adult2.svg"
+                        />
+                        <img
+                            id="adult2-lips"
+                            class="character adult"
+                            src="/tamaPictures2/tamaCharacter/adult2/tama_adult2Lips.svg"
+                        />
 
-                    <img id="adult6" class="character adult" src="/tamaPictures2/tamaCharacter/adult6/tama_adult6.svg">
-                <!------------------------------------------------ ALERTS & MISC -->
-                            <!-- POOP -->
-                <img id="poop1" class="poopEmote" src="/tamaPictures2/tamaAlert/tama_poopAlert.svg">
-                <img id="poop2" class="poopEmote" src="/tamaPictures2/tamaAlert/tama_poopAlert.svg">
-                <img id="poop3" class="poopEmote" src="/tamaPictures2/tamaAlert/tama_poopAlert.svg">
-                <img id="poop4" class="poopEmote" src="/tamaPictures2/tamaAlert/tama_poopAlert.svg">
-                            <!-- CLEAN -->
-                  <img id="cleaning-line" src="/tamaPictures2/tamaAlert/tama_cleaningAnimation.svg">
-                            <!-- SICK -->
-                <img id="sickAlert" src="/tamaPictures2/tamaAlert/tama_sickAlert.svg">
-                            <!-- HAPPY&SAD -->
-                <img id="happyAlert" src="/tamaPictures2/tamaAlert/tama_happyAlert.svg">
-                <img id="madAlert1" class="madAlerts" src="/tamaPictures2/tamaAlert/tama_madAlert1.svg">
-                <img id="madAlert2" class="madAlerts" src="/tamaPictures2/tamaAlert/tama_madAlert2.svg">
-                            <!-- FOOD SPRITES -->
-                <img id="meal1" class="foodSprite" src="/tamaPictures2/tamaFood/tama_mealToast.svg">
+                        <img
+                            id="adult3"
+                            class="character adult"
+                            src="/tamaPictures2/tamaCharacter/adult3/tama_adult3.svg"
+                        />
+                        <img
+                            id="adult3-eat"
+                            class="character adult"
+                            src="/tamaPictures2/tamaCharacter/adult3/tama_adult3Eat.svg"
+                        />
+                        <img
+                            id="adult3-sick"
+                            class="character adult"
+                            src="/tamaPictures2/tamaCharacter/adult3/tama_adult3Sick.svg"
+                        />
 
-                <img id="meal2" class="foodSprite" src="/tamaPictures2/tamaFood/tama_mealHamburger.svg">
-                <img id="meal2Half" class="foodSprite" src="/tamaPictures2/tamaFood/tama_mealHamburger2.svg">
+                        <img
+                            id="adult4"
+                            class="character adult"
+                            src="/tamaPictures2/tamaCharacter/adult4/tama_adult4.svg"
+                        />
+                        <img
+                            id="adult4-eat"
+                            class="character adult"
+                            src="/tamaPictures2/tamaCharacter/adult4/tama_adult4Eat.svg"
+                        />
+                        <img
+                            id="adult4-sick"
+                            class="character adult"
+                            src="/tamaPictures2/tamaCharacter/adult4/tama_adult4Sick.svg"
+                        />
+                        <img
+                            id="adult4-lips"
+                            class="character adult"
+                            src="/tamaPictures2/tamaCharacter/adult4/tama_adult4Lips.svg"
+                        />
 
-                <img id="snack1" class="foodSprite" src="/tamaPictures2/tamaFood/tama_snackCandy.svg">
-                <img id="snack1Half" class="foodSprite" src="/tamaPictures2/tamaFood/tama_snackCandy2.svg">
+                        <img
+                            id="adult5"
+                            class="character adult"
+                            src="/tamaPictures2/tamaCharacter/adult5/tama_adult5.svg"
+                        />
+                        <img
+                            id="adult5-eat"
+                            class="character adult"
+                            src="/tamaPictures2/tamaCharacter/adult5/tama_adult5Eat.svg"
+                        />
+                        <img
+                            id="adult5-sick"
+                            class="character adult"
+                            src="/tamaPictures2/tamaCharacter/adult5/tama_adult5Sick.svg"
+                        />
 
-                <img id="snack2" class="foodSprite" src="/tamaPictures2/tamaFood/tama_snackDonut.svg">
-                <img id="snack2Half" class="foodSprite" src="/tamaPictures2/tamaFood/tama_snackDonut2.svg">
-                            <!-- GRAVESTONE -->
-                            <div id="gravestone-container">
+                        <img
+                            id="adult6"
+                            class="character adult"
+                            src="/tamaPictures2/tamaCharacter/adult6/tama_adult6.svg"
+                        />
+                        <!------------------------------------------------ ALERTS & MISC -->
+                        <!-- POOP -->
+                        <img
+                            id="poop1"
+                            class="poopEmote"
+                            src="/tamaPictures2/tamaAlert/tama_poopAlert.svg"
+                        />
+                        <img
+                            id="poop2"
+                            class="poopEmote"
+                            src="/tamaPictures2/tamaAlert/tama_poopAlert.svg"
+                        />
+                        <img
+                            id="poop3"
+                            class="poopEmote"
+                            src="/tamaPictures2/tamaAlert/tama_poopAlert.svg"
+                        />
+                        <img
+                            id="poop4"
+                            class="poopEmote"
+                            src="/tamaPictures2/tamaAlert/tama_poopAlert.svg"
+                        />
+                        <!-- CLEAN -->
+                        <img
+                            id="cleaning-line"
+                            src="/tamaPictures2/tamaAlert/tama_cleaningAnimation.svg"
+                        />
+                        <!-- SICK -->
+                        <img
+                            id="sickAlert"
+                            src="/tamaPictures2/tamaAlert/tama_sickAlert.svg"
+                        />
+                        <!-- HAPPY&SAD -->
+                        <img
+                            id="happyAlert"
+                            src="/tamaPictures2/tamaAlert/tama_happyAlert.svg"
+                        />
+                        <img
+                            id="madAlert1"
+                            class="madAlerts"
+                            src="/tamaPictures2/tamaAlert/tama_madAlert1.svg"
+                        />
+                        <img
+                            id="madAlert2"
+                            class="madAlerts"
+                            src="/tamaPictures2/tamaAlert/tama_madAlert2.svg"
+                        />
+                        <!-- FOOD SPRITES -->
+                        <img
+                            id="meal1"
+                            class="foodSprite"
+                            src="/tamaPictures2/tamaFood/tama_mealToast.svg"
+                        />
+
+                        <img
+                            id="meal2"
+                            class="foodSprite"
+                            src="/tamaPictures2/tamaFood/tama_mealHamburger.svg"
+                        />
+                        <img
+                            id="meal2Half"
+                            class="foodSprite"
+                            src="/tamaPictures2/tamaFood/tama_mealHamburger2.svg"
+                        />
+
+                        <img
+                            id="snack1"
+                            class="foodSprite"
+                            src="/tamaPictures2/tamaFood/tama_snackCandy.svg"
+                        />
+                        <img
+                            id="snack1Half"
+                            class="foodSprite"
+                            src="/tamaPictures2/tamaFood/tama_snackCandy2.svg"
+                        />
+
+                        <img
+                            id="snack2"
+                            class="foodSprite"
+                            src="/tamaPictures2/tamaFood/tama_snackDonut.svg"
+                        />
+                        <img
+                            id="snack2Half"
+                            class="foodSprite"
+                            src="/tamaPictures2/tamaFood/tama_snackDonut2.svg"
+                        />
+                        <!-- GRAVESTONE -->
+                        <div id="gravestone-container">
                             <h2 id="gravestone-text">0 Years</h2>
-               <img id="gravestone-one" class="gravestone" src="/tamaPictures2/tamaAlert/tama_graveStoneAndGhost.svg">
-                <img id="gravestone-two" class="gravestone" src="/tamaPictures2/tamaAlert/tama_graveStoneandGhost2.svg">
+                            <img
+                                id="gravestone-one"
+                                class="gravestone"
+                                src="/tamaPictures2/tamaAlert/tama_graveStoneAndGhost.svg"
+                            />
+                            <img
+                                id="gravestone-two"
+                                class="gravestone"
+                                src="/tamaPictures2/tamaAlert/tama_graveStoneandGhost2.svg"
+                            />
+                        </div>
+                        <!------------------------------------------------ MENU SCREENS -->
+                        <div id="food-screen">
+                            <button id="mealButton">MEAL</button>
+                            <button id="snackButton">SNACK</button>
+                        </div>
+
+                        <div id="lights-screen">
+                            <button id="lightsOnButton">ON</button>
+                            <button id="lightsOffButton">OFF</button>
+                        </div>
+                        <div id="lights-off-screen">
+                            <div id="sleeping-alert">zzz</div>
+                        </div>
+
+                        <div id="game-screen">
+                            <h3 id="game-timer">0</h3>
+                            <div id="players-choice">
+                                <button id="choice-one" class="choice-buttons">
+                                    1
+                                </button>
+                                <h2 class="choice-text">choose</h2>
+                                <button id="choice-two" class="choice-buttons">
+                                    2
+                                </button>
                             </div>
-                <!------------------------------------------------ MENU SCREENS -->
-                <div id="food-screen">
-                    <button id="mealButton">
-                        MEAL
-                    </button>
-                    <button id="snackButton">
-                        SNACK
-                    </button>
-                </div>
 
-                <div id="lights-screen">
-                    <button id="lightsOnButton">
-                        ON
-                    </button>
-                    <button id="lightsOffButton">
-                        OFF
-                    </button>
-                </div>
-                <div id="lights-off-screen">
-                    <div id="sleeping-alert">
-                        zzz
+                            <img
+                                id="game-mad-alert1"
+                                class="game-alert-icons"
+                                src="/tamaPictures2/tamaAlert/tama_madAlert1.svg"
+                            />
+                            <img
+                                id="game-mad-alert2"
+                                class="game-alert-icons"
+                                src="/tamaPictures2/tamaAlert/tama_madAlert2.svg"
+                            />
+                            <img
+                                src="/tamaPictures2/tamaAlert/tama_happyAlert.svg"
+                                alt=""
+                                id="game-happy-alert"
+                                class="game-alert-icons"
+                            />
+
+                            <div id="tamas-choice">
+                                <div
+                                    id="tama-choice-one"
+                                    class="choice-buttons"
+                                ></div>
+
+                                <img
+                                    id="game-teen-one"
+                                    class="game-character"
+                                    src="/tamaPictures2/tamaCharacter/teen1/tama_teen1.svg"
+                                />
+                                <img
+                                    src="/tamaPictures2/tamaCharacter/childState1/tama_childState1Side.svg"
+                                    alt=""
+                                    id="game-child-one"
+                                    class="game-character"
+                                />
+                                <img
+                                    src="/tamaPictures2/tamaCharacter/childState2/tama_childState2Side.svg"
+                                    alt=""
+                                    id="game-child-two"
+                                    class="game-character"
+                                />
+                                <img
+                                    src="/tamaPictures2/tamaCharacter/teen2/tama_teen2.svg"
+                                    alt=""
+                                    id="game-teen-two"
+                                    class="game-character"
+                                />
+                                <img
+                                    src="/tamaPictures2/tamaCharacter/adult1/tama_adult1.svg"
+                                    alt=""
+                                    id="game-adult-one"
+                                    class="game-character"
+                                />
+                                <img
+                                    src="/tamaPictures2/tamaCharacter/adult2/tama_adult2.svg"
+                                    alt=""
+                                    id="game-adult-two"
+                                    class="game-character"
+                                />
+                                <img
+                                    src="/tamaPictures2/tamaCharacter/adult3/tama_adult3.svg"
+                                    alt=""
+                                    id="game-adult-three"
+                                    class="game-character"
+                                />
+                                <img
+                                    src="/tamaPictures2/tamaCharacter/adult4/tama_adult4.svg"
+                                    alt=""
+                                    id="game-adult-four"
+                                    class="game-character"
+                                />
+                                <img
+                                    src="/tamaPictures2/tamaCharacter/adult5/tama_adult5.svg"
+                                    alt=""
+                                    id="game-adult-five"
+                                    class="game-character"
+                                />
+                                <img
+                                    src="/tamaPictures2/tamaCharacter/adult6/"
+                                    alt=""
+                                    id="game-adult-six"
+                                    class="game-character"
+                                />
+
+                                <div
+                                    id="tama-choice-two"
+                                    class="choice-buttons"
+                                ></div>
+                            </div>
+                        </div>
+
+                        <div id="health-screen">
+                            <h3 class="health-text">Hunger</h3>
+                            <div id="hunger-hearts" class="hearts-container">
+                                <img
+                                    id="heart1"
+                                    class="hearts"
+                                    src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg"
+                                />
+                                <img
+                                    id="heart2"
+                                    class="hearts"
+                                    src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg"
+                                />
+                                <img
+                                    id="heart3"
+                                    class="hearts"
+                                    src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg"
+                                />
+                                <img
+                                    id="heart4"
+                                    class="hearts"
+                                    src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg"
+                                />
+                                <img
+                                    id="heart5"
+                                    class="hearts"
+                                    src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg"
+                                />
+                            </div>
+                            <h3 class="health-text">Happy</h3>
+                            <div id="happy-hearts" class="hearts-container">
+                                <img
+                                    id="hunger1"
+                                    class="hearts"
+                                    src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg"
+                                />
+                                <img
+                                    id="hunger2"
+                                    class="hearts"
+                                    src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg"
+                                />
+                                <img
+                                    id="hunger3"
+                                    class="hearts"
+                                    src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg"
+                                />
+                                <img
+                                    id="hunger4"
+                                    class="hearts"
+                                    src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg"
+                                />
+                                <img
+                                    id="hunger5"
+                                    class="hearts"
+                                    src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg"
+                                />
+                            </div>
+                        </div>
+                        <div id="health-screen2">
+                            <div id="health2-contents">
+                                <div id="discipline-meter">
+                                    <div id="discipline-text">Discipline</div>
+                                    <div id="bar-contents">
+                                        <img
+                                            id="discipline-one"
+                                            class="discipline-bar"
+                                            src="/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter1.svg"
+                                        />
+                                        <img
+                                            id="discipline-two"
+                                            class="discipline-bar"
+                                            src="/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter1.svg"
+                                        />
+                                        <img
+                                            id="discipline-three"
+                                            class="discipline-bar"
+                                            src="/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter1.svg"
+                                        />
+                                        <img
+                                            id="discipline-four"
+                                            class="discipline-bar"
+                                            src="/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter1.svg"
+                                        />
+                                        <img
+                                            id="discipline-five"
+                                            class="discipline-bar"
+                                            src="/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter1.svg"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div id="age-meter">
+                                    <div id="age-pic">
+                                        <img
+                                            class="age-pic"
+                                            src="/tamaPictures2/tamaEgg/tama_eggState1.svg"
+                                        />
+                                    </div>
+                                    <div id="age-text">0 Years</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <img
+                            class="screen-texture"
+                            src="/tamaPictures2/screentexture.jpeg"
+                        />
+                    </div>
+
+                    <div id="bottom-bar">
+                        <button id="clean-button" class="screenButons">
+                            <i class="fa-solid fa-bath"></i>
+                        </button>
+                        <button id="healthButton" class="screenButons">
+                            <i class="fa-solid fa-book-medical"></i>
+                        </button>
+                        <button id="discipline-button" class="screenButons">
+                            <i class="fa-solid fa-face-angry"></i>
+                        </button>
+                        <div id="alertButtonImage"></div>
+                        <img id="bottom-texture" class="screen-texture""
+                        src="/tamaPictures2/screentexture.jpeg">
                     </div>
                 </div>
 
-                <div id="game-screen">
-                    <h3 id="game-timer">0</h3>
-                    <div id="players-choice">
-                        <button id="choice-one" class="choice-buttons">1</button>
-                        <h2 class="choice-text">choose</h2>
-                        <button id="choice-two" class="choice-buttons">2</button>
+                <div id="device-buttons">
+                    <div id="top-device">
+                        <button class="bottom-buttons" id="buttonOne"></button>
+                        <button class="bottom-buttons" id="buttonTwo"></button>
+                        <button
+                            class="bottom-buttons"
+                            id="buttonThree"
+                        ></button>
                     </div>
-
-
-                    <img id="game-mad-alert1" class="game-alert-icons" src="/tamaPictures2/tamaAlert/tama_madAlert1.svg">
-                    <img id="game-mad-alert2" class="game-alert-icons" src="/tamaPictures2/tamaAlert/tama_madAlert2.svg">
-                    <img src="/tamaPictures2/tamaAlert/tama_happyAlert.svg" alt="" id="game-happy-alert" class="game-alert-icons">
-
-                    <div id="tamas-choice">
-                       <div id="tama-choice-one" class="choice-buttons"></i></div>
-
-                       <img id="game-teen-one"class="game-character" src="/tamaPictures2/tamaCharacter/teen1/tama_teen1.svg">
-                        <img src="/tamaPictures2/tamaCharacter/childState1/tama_childState1Side.svg" alt="" id="game-child-one" class="game-character">
-                        <img src="/tamaPictures2/tamaCharacter/childState2/tama_childState2Side.svg" alt="" id="game-child-two" class="game-character">
-                        <img src="/tamaPictures2/tamaCharacter/teen2/tama_teen2.svg" alt="" id="game-teen-two" class="game-character">
-                        <img src="/tamaPictures2/tamaCharacter/adult1/tama_adult1.svg" alt="" id="game-adult-one" class="game-character">
-                        <img src="/tamaPictures2/tamaCharacter/adult2/tama_adult2.svg" alt="" id="game-adult-two" class="game-character">
-                        <img src="/tamaPictures2/tamaCharacter/adult3/tama_adult3.svg" alt="" id="game-adult-three" class="game-character">
-                        <img src="/tamaPictures2/tamaCharacter/adult4/tama_adult4.svg" alt="" id="game-adult-four" class="game-character">
-                        <img src="/tamaPictures2/tamaCharacter/adult5/tama_adult5.svg" alt="" id="game-adult-five" class="game-character">
-                        <img src="/tamaPictures2/tamaCharacter/adult6/" alt="" id="game-adult-six" class="game-character">
-
-                       <div id="tama-choice-two" class="choice-buttons"></div>
+                    <div id="bottom-device">
+                        <button class="bottom-buttons" id="buttonFour">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
                     </div>
                 </div>
-
-                <div id="health-screen">
-                    <h3 class="health-text">Hunger</h3>
-                    <div id="hunger-hearts" class="hearts-container">
-                        <img id="heart1" class="hearts" src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg">
-                        <img id="heart2" class="hearts" src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg">
-                        <img id="heart3" class="hearts" src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg">
-                        <img id="heart4" class="hearts" src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg">
-                        <img id="heart5" class="hearts" src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg">
-                    </div>
-                    <h3 class="health-text">Happy</h3>
-                    <div id="happy-hearts" class="hearts-container">
-                        <img id="hunger1" class="hearts" src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg">
-                        <img id="hunger2" class="hearts" src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg">
-                        <img id="hunger3" class="hearts" src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg">
-                        <img id="hunger4" class="hearts" src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg">
-                        <img id="hunger5" class="hearts" src="/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg">
-                    </div>
-                </div>
-                
-
-                <img class="screen-texture" src="/tamaPictures2/screentexture.jpeg">
             </div>
 
-        <div id="bottom-bar">
-            <button id="clean-button" class="screenButons">
-                <i class="fa-solid fa-bath"></i>
-            </button>
-            <button id="healthButton" class="screenButons">
-                <i class="fa-solid fa-book-medical"></i>
-            </button>
-            <button id="discipline-button" class="screenButons">
-                <i class="fa-solid fa-face-angry"></i>
-            </button>
-            <div id="alertButtonImage"></div>
-            <img id="bottom-texture" class="screen-texture"" src="/tamaPictures2/screentexture.jpeg">
-        </div>
+            <div id="drop-down-menu" class="menu-animate-open">
+                <button class="drop-menu-button" id="theme-selection">
+                    <i id="paintBucket" class="fa-solid fa-fill-drip"></i>
+                </button>
+                <button class="drop-menu-button" id="help-menu">
+                    <i id="paintBucket" class="fa-solid fa-circle-info"></i>
+                </button>
+            </div>
 
-    </div>
-
-    <div id="device-buttons">
-        <div id="top-device">
-            <button class="bottom-buttons" id="buttonOne"></button>
-            <button class="bottom-buttons" id="buttonTwo"></button>
-            <button class="bottom-buttons" id="buttonThree"></button>
-        </div>
-        <div id="bottom-device">
-            <button class="bottom-buttons" id="buttonFour">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        </div>
-    </div>
-</div>
-
-<div id="drop-down-menu" class="menu-animate-open">
-  <button class="drop-menu-button" id="theme-selection"><i id="paintBucket" class="fa-solid fa-fill-drip"></i></button>  
-</div>
-
-<div id="drop-down-color-choice" class="second-menu-animate-open">
-    <button id="color4" class="color-button">
-        <div id="color4-inside" class="inside-color"></div>
-    </button>
-    <button id="color2" class="color-button">
-        <div id="color2-inside" class="inside-color"></div>
-    </button>
-    <button id="color3" class="color-button">
-        <div id="color3-inside" class="inside-color"></div>
-    </button>
-    <button id="color1" class="color-button">
-        <div id="color1-inside" class="inside-color"></div>
-    </button>
-</div>
-
-</body>
+            <div id="drop-down-color-choice" class="second-menu-animate-open">
+                <button id="color4" class="color-button">
+                    <div id="color4-inside" class="inside-color"></div>
+                </button>
+                <button id="color2" class="color-button">
+                    <div id="color2-inside" class="inside-color"></div>
+                </button>
+                <button id="color3" class="color-button">
+                    <div id="color3-inside" class="inside-color"></div>
+                </button>
+                <button id="color1" class="color-button">
+                    <div id="color1-inside" class="inside-color"></div>
+                </button>
+                <button id="color5" class="color-button">
+                    <div id="color5-inside" class="inside-color"></div>
+                </button>
+            </div>
+        </body>
+    </head>
 </html>
