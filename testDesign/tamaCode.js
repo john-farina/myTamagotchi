@@ -16,7 +16,7 @@ let tamaState = [
 ];
 const state = {
     gameStarted: false,
-    tamaTheme: 2,
+    tamaTheme: 3,
     tamaName: 'Larry',
     tamaAge: 8,
     tamaHatch: 4,
