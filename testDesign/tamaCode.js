@@ -19,7 +19,7 @@ const state = {
     tamaTheme: 3,
     tamaName: 'Larry',
     tamaAge: 8,
-    tamaHatch: 4,
+    tamaHatch: 2,
     tamaStage: tamaState,
     tamaDead: false,
     tamaHealth: 5,
@@ -74,6 +74,7 @@ let health2IsActive = false;
 let animateCount = 0;
 let menuIsOpen = false;
 let themeMenuIsOpen = false;
+let alertSoundPlayed = false;
 
 const body = document.querySelector('body');
 
@@ -1862,7 +1863,6 @@ function autoDisciplineTest() {
                     if (randomNum >= 50 && randomNum <= 58) {
                         //make an attention call
                         state.needAttention = true;
-
                         state.timeState.lastComplain = new Date();
                     }
                 }
@@ -1871,11 +1871,10 @@ function autoDisciplineTest() {
                     state.needAttention == true &&
                     timeMathToSec(state.timeState.lastComplain) < 30
                 ) {
+                    alertSoundPlayed = true;
                     alertButton.style.backgroundColor = 'red';
-                    hungerMeter.textContent = ' i want attention';
                 } else {
                     alertButton.style.backgroundColor = 'green';
-                    hungerMeter.textContent = '';
                     state.needAttention = false;
                     if (randomNumGen(5) === 2) {
                         state.tamaNeglect++;
@@ -1942,11 +1941,10 @@ function eggHatch() {
             //every 2 seconds have a chance to hatch
             let randomNum = randomNumGen(500);
             if (
-                (randomNum >= 0 && randomNum <= 400) ||
+                (randomNum >= 100 && randomNum <= 180) ||
                 (randomNum >= 300 && randomNum <= 310)
             ) {
-                if (state.tamaHatch == 3) {
-                } else {
+                if (state.tamaHatch != 3) {
                     state.tamaHatch++;
                 }
             }
@@ -2127,6 +2125,18 @@ function playGame() {
     }
 }
 
+//i cant make it so it only plays once in the loop. its very annoying
+function playAlertSound() {
+    let alertSound = new Audio('/tamaPictures2/alert.wav');
+    if (alertSoundPlayed === true) {
+        alertSound.play();
+    }
+    setInterval(function () {
+        alertSound.pause();
+        alertSoundPlayed = false;
+    }, 400);
+}
+
 /////////////////////////////////////RUNNING THE GAME
 function updateFunctions() {
     if (state.tamaStage == tamaState[0]) {
@@ -2166,6 +2176,18 @@ function gameLoop() {
     updateFunctions();
 }
 start();
+
+function hideAllExtraScreens() {
+    hideImage(foodScreen);
+    foodIsActive = false;
+    hideImage(lightsScreen);
+    lightsIsActive = false;
+    quitGame();
+    hideImage(healthScreen);
+    healthIsActive = false;
+    hideImage(healthScreen2);
+    health2IsActive = false;
+}
 
 foodButton.addEventListener('click', function () {
     if (state.foodAnimationGoing != true) {
