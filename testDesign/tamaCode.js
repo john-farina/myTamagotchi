@@ -22,11 +22,11 @@ const state = {
     tamaHatch: 2,
     tamaStage: tamaState,
     tamaDead: false,
-    tamaHealth: 5,
-    tamaHappy: 5,
+    tamaHealth: 3,
+    tamaHappy: 4,
     tamaIsHappy: false,
     tamaIsMad: false,
-    needAttention: true,
+    needAttention: false,
     tamaDiscipline: 0,
     tamaSpoiled: 0,
     tamaNeglect: 0,
@@ -56,6 +56,7 @@ let myInterval2;
 let foodIsActive = false;
 let lightsIsActive = false;
 let gameIsRunning = false;
+let tooSpoiledForGame = false;
 let gameRound = 0;
 let gameTimeCount = 0;
 let gameTimeStore = 0;
@@ -1058,7 +1059,7 @@ function madAlertAnimate() {
             hideImage(madAlert1);
             showImage(madAlert2);
         }
-    } else if (animateCount > 11 && state.tamaIsMad === true) {
+    } else if (animateCount > 7 && state.tamaIsMad === true) {
         state.tamaIsMad = false;
         animateCount = 0;
         hideImage(madAlert1);
@@ -1206,7 +1207,6 @@ function characterMadEmoteAnimations() {
 }
 function characterHappyEmoteAnimations() {
     if (gameHappy != false && gameAnimateCount < 5) {
-        console.log('imhappy');
         if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
             displayFlex(gameHappyAlert);
             gameAnimateCount++;
@@ -1590,20 +1590,6 @@ function autoDeath() {
     }
 }
 
-function autoAge() {
-    if (timeMathToSec(state.timeState.gameStart) % 86400 == 0) {
-        //1 DAY
-        state.tamaAge++;
-        console.log(tamaState);
-    }
-    letThereBeLife();
-    eggHatch();
-    eggToBaby();
-    babyToTeen();
-    teenToAdult();
-    autoDeath();
-}
-
 function givePoop() {
     let randomNum = randomNumGen(1000);
     if (state.tamaPoop == 4) {
@@ -1647,8 +1633,11 @@ function givePoop() {
 
 /////////////////////////////////////AUTO DEGENERATION FUNCTIONS
 function autoHealthDegen() {
-    let randomNum = randomNumGen(3000);
-    if (timeMathToSec(state.timeState.gameStart) % 5 == 0) {
+    let randomNum = randomNumGen(2500);
+    if (
+        timeMathToSec(state.timeState.gameStart) % 10 == 0 &&
+        timeMathToSec(state.timeState.lastHealth) > 11
+    ) {
         //every 5 seconds check
         if (state.tamaHappy <= 2) {
             // if not happy
@@ -1665,9 +1654,9 @@ function autoHealthDegen() {
             //NORMAL HEALTH DEGEN
             if (
                 //3% chance to loose health 90/3000
-                (randomNum >= 10 && randomNum <= 30) ||
-                (randomNum >= 900 && randomNum <= 930) ||
-                (randomNum >= 2300 && randomNum <= 2330)
+                (randomNum >= 10 && randomNum <= 69) ||
+                (randomNum >= 880 && randomNum <= 930) ||
+                (randomNum >= 2280 && randomNum <= 2330)
             ) {
                 state.tamaHealth -= 1;
                 state.timeState.lastHealth = new Date();
@@ -1741,23 +1730,16 @@ function ifSick() {
 /////////////////////////////////////GAME FUNCTIONS
 function feed(type) {
     //1 == meal && 2 == snack
-    if (state.needAttention === true && type === 2) {
-        state.tamaHealth = 5;
-        state.needAttention = false;
-        state.tamaSpoiled++;
-    }
-
     if (type == 1 && state.tamaHealth < 5) {
         state.tamaHealth++;
     } else if (type == 2 && state.tamaHealth < 5) {
-        state.tamaHealth = state.tamaHealth + 0.5;
         if (state.tamaHappy < 5) {
-            state.tamaHappy = state.tamaHappy + 0.5;
+            state.tamaHappy = state.tamaHappy + 1;
         }
     } else if (type == 2) {
         state.tamaHealth = state.tamaHealth + 0;
         if (state.tamaHappy < 5) {
-            state.tamaHappy = state.tamaHappy + 0.5;
+            state.tamaHappy = state.tamaHappy + 1;
         }
     }
     if (state.tamaHealth >= 5) {
@@ -1885,6 +1867,8 @@ function autoDisciplineTest() {
     }
 }
 
+navigator.vibrate(200);
+
 function spoiledAdultAttention() {
     if (
         state.tamaSpoiled >= 7 &&
@@ -1986,7 +1970,8 @@ function eggToBaby() {
     if (
         state.tamaStage == tamaState[1] &&
         timeMathToSec(state.timeState.lastEvolve) > 10 &&
-        timeMathToSec(state.timeState.lastEvolve) < 120
+        timeMathToSec(state.timeState.lastEvolve) < 120 &&
+        state.foodAnimationGoing != true
     ) {
         if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
             let randomNum = randomNumGen(500);
@@ -2008,7 +1993,8 @@ function babyToTeen() {
     //BABY TO TEEN
     if (
         state.tamaStage == tamaState[2] &&
-        timeMathToSec(state.timeState.lastEvolve) >= 60 //10 min
+        timeMathToSec(state.timeState.lastEvolve) >= 60 && //10 min
+        state.foodAnimationGoing != true
     ) {
         //1% percent chance to grow early every 60 seconds
         if (timeMathToSec(state.gameStarted) % 30 == 0) {
@@ -2115,7 +2101,6 @@ function playGame() {
     if (gameIsRunning != false) {
         if (gameTimeStore < 8) {
             console.log('game running');
-            console.log(playerScore);
         } else if (gameTimeStore === 8) {
             playerSelectedChoice = false;
             playerSelection = 0;
@@ -2183,6 +2168,7 @@ function hideAllExtraScreens() {
     hideImage(lightsScreen);
     lightsIsActive = false;
     quitGame();
+    gameEnded = true;
     hideImage(healthScreen);
     healthIsActive = false;
     hideImage(healthScreen2);
@@ -2191,61 +2177,87 @@ function hideAllExtraScreens() {
 
 foodButton.addEventListener('click', function () {
     if (state.foodAnimationGoing != true) {
-        if (healthIsActive === true) {
-            healthIsActive = false;
-            healthScreen.style.visibility = 'hidden';
-            foodScreen.style.visibility = 'visible';
-            foodIsActive = true;
-        } else if (lightsIsActive === true) {
-            lightsIsActive = false;
-            hideImage(lightsScreen);
-            showImage(foodScreen);
-            foodIsActive = true;
-        } else if (foodIsActive === false) {
-            foodScreen.style.visibility = 'visible';
-            foodIsActive = true;
-        } else if (foodIsActive === true) {
-            foodScreen.style.visibility = 'hidden';
-            foodIsActive = false;
+        if (state.tamaIsMad != true) {
+            if (lightsIsActive === true) {
+                hideAllExtraScreens();
+                showImage(foodScreen);
+                foodIsActive = true;
+            } else if (gameIsRunning === true) {
+                hideAllExtraScreens();
+                showImage(foodScreen);
+                foodIsActive = true;
+            } else if (healthIsActive === true) {
+                hideAllExtraScreens();
+                foodScreen.style.visibility = 'visible';
+                foodIsActive = true;
+            } else if (foodIsActive === false) {
+                foodScreen.style.visibility = 'visible';
+                foodIsActive = true;
+            } else if (foodIsActive === true) {
+                foodScreen.style.visibility = 'hidden';
+                foodIsActive = false;
+            }
         }
     }
 });
 
 mealButton.addEventListener('click', function () {
-    if (state.foodAnimationGoing === false && state.tamaHealth < 5) {
+    if (state.tamaHealth < 5) {
         state.foodAnimationGoing = true;
         feed(1);
         allEatSnackAnimations();
     }
 });
 
+// if (state.needAttention === true) {
+//     state.tamaIsMad = true;
+//     state.needAttention = false;
+//     state.tamaDiscipline++;
+// } else {
+//     state.tamaIsMad = true;
+// }
+
 snackButton.addEventListener('click', function () {
-    if (state.foodAnimationGoing === false && state.tamaHappy < 5) {
+    if (state.tamaHappy <= 5) {
         state.foodAnimationGoing = true;
         feed(2);
         allEatSnackAnimations();
+        if (state.needAttention === true) {
+            state.needAttention = false;
+            state.tamaSpoiled++;
+        }
     }
 });
 
 lightButton.addEventListener('click', function () {
-    if (state.lightIsOff === true && lightsIsActive === false) {
-        hideImage(lightsOffScreen);
-        showImage(lightsScreen);
-        lightsIsActive = true;
-    } else if (state.lightIsOff === true && lightsIsActive === true) {
-        hideImage(lightsScreen);
-        showImage(lightsOffScreen);
-        lightsIsActive = false;
-    } else if (foodIsActive === true) {
-        hideImage(foodScreen);
-        foodIsActive = false;
-        showImage(lightsScreen);
-    } else if (lightsIsActive === false) {
-        lightsScreen.style.visibility = 'visible';
-        lightsIsActive = true;
-    } else if (lightsIsActive === true) {
-        lightsScreen.style.visibility = 'hidden';
-        lightsIsActive = false;
+    if (state.foodAnimationGoing != true) {
+        if (foodIsActive === true) {
+            hideAllExtraScreens();
+            showImage(lightsScreen);
+            lightsIsActive = true;
+        } else if (gameIsRunning === true) {
+            hideAllExtraScreens();
+            showImage(lightsScreen);
+            lightsIsActive = true;
+        } else if (healthIsActive === true || health2IsActive === true) {
+            hideAllExtraScreens();
+            showImage(lightsScreen);
+            lightsIsActive = true;
+        } else if (state.lightIsOff === true && lightsIsActive === false) {
+            hideImage(lightsOffScreen);
+            showImage(lightsScreen);
+            lightsIsActive = true;
+        } else if (state.lightIsOff === true && lightsIsActive === true) {
+            hideImage(lightsScreen);
+            showImage(lightsOffScreen);
+            lightsIsActive = false;
+        } else if (lightsIsActive === false) {
+            lightsScreen.style.visibility = 'visible';
+            lightsIsActive = true;
+        } else if (lightsIsActive === true) {
+            lightsScreen.style.visibility = 'hidden';
+            lightsIsActive = false;
+        }
     }
 });
 lightsOn.addEventListener('click', function () {
@@ -2264,13 +2276,21 @@ lightsOff.addEventListener('click', function () {
 });
 
 gameButton.addEventListener('click', function () {
-    if (gameIsRunning === false) {
-        gameEnded = false;
-        gameIsRunning = true;
-        removeAllChildAndTeen();
-        showImage(gameScreen);
-    } else if (gameIsRunning === true) {
-        gameEnded = true;
+    if (state.tamaIsMad != true) {
+        hideAllExtraScreens();
+        if (foodIsActive === true) {
+            hideAllExtraScreens();
+            removeAllChildAndTeen();
+            showImage(gameScreen);
+            gameIsRunning = true;
+        } else if (gameIsRunning === false) {
+            gameEnded = false;
+            gameIsRunning = true;
+            removeAllChildAndTeen();
+            showImage(gameScreen);
+        } else if (gameIsRunning === true) {
+            gameEnded = true;
+        }
     }
 });
 playerChoiceOne.addEventListener('click', function () {
@@ -2295,35 +2315,49 @@ playerChoiceTwo.addEventListener('click', function () {
 });
 
 healButton.addEventListener('click', function () {
+    hideAllExtraScreens();
     if (state.tamaIsMad != true) {
-        heal();
-        state.tamaIsMad = true;
-        //add a angry animation here
+        if (state.tamaSick === true) {
+            heal();
+            state.tamaIsMad = true;
+        } else {
+            state.tamaIsMad = true;
+        }
     }
 });
 
 healthButton.addEventListener('click', function () {
-    if (foodIsActive === true) {
-        foodIsActive = false;
-        foodScreen.style.visibility = 'hidden';
-        healthScreen.style.visibility = 'visible';
-        healthIsActive = true;
-    } else if (healthIsActive === false) {
-        healthScreen.style.visibility = 'visible';
-        healthIsActive = true;
-    } else if (healthIsActive === true && health2IsActive === false) {
-        hideImage(healthScreen);
-        showImage(healthScreen2);
-        health2IsActive = true;
-    } else if (healthIsActive === true && healthIsActive === true) {
-        hideImage(healthScreen2);
-        hideImage(healthScreen);
-        healthIsActive = false;
-        health2IsActive = false;
+    if (state.foodAnimationGoing != true) {
+        if (foodIsActive === true) {
+            hideAllExtraScreens();
+            healthScreen.style.visibility = 'visible';
+            healthIsActive = true;
+        } else if (lightsIsActive === true) {
+            hideAllExtraScreens();
+            showImage(healthScreen);
+            healthIsActive = true;
+        } else if (gameIsRunning === true) {
+            hideAllExtraScreens();
+            showImage(healthScreen);
+            healthIsActive = true;
+        } else if (healthIsActive === false) {
+            healthScreen.style.visibility = 'visible';
+            healthIsActive = true;
+        } else if (healthIsActive === true && health2IsActive === false) {
+            hideImage(healthScreen);
+            showImage(healthScreen2);
+            health2IsActive = true;
+        } else if (healthIsActive === true && healthIsActive === true) {
+            hideImage(healthScreen2);
+            hideImage(healthScreen);
+            healthIsActive = false;
+            health2IsActive = false;
+        }
     }
 });
 
 cleanButton.addEventListener('click', function () {
+    hideAllExtraScreens();
     if (state.tamaPoop > 0) {
         clean();
         cleaningLine.classList.add('cleanAnimation');
@@ -2344,10 +2378,17 @@ cleanButton.addEventListener('click', function () {
 });
 
 disciplineButton.addEventListener('click', function () {
+    hideAllExtraScreens();
     if (state.needAttention === true) {
         state.tamaIsMad = true;
         state.needAttention = false;
         state.tamaDiscipline++;
+    } else {
+        state.tamaIsMad = true;
+        let randomNum = randomNumGen(5);
+        if (randomNum === 2) {
+            state.tamaHappy--;
+        }
     }
 });
 
