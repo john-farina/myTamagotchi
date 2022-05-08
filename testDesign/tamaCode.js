@@ -1867,8 +1867,6 @@ function autoDisciplineTest() {
     }
 }
 
-navigator.vibrate(200);
-
 function spoiledAdultAttention() {
     if (
         state.tamaSpoiled >= 7 &&
@@ -2202,6 +2200,7 @@ foodButton.addEventListener('click', function () {
 });
 
 mealButton.addEventListener('click', function () {
+    navigator.vibrate(200);
     if (state.tamaHealth < 5) {
         state.foodAnimationGoing = true;
         feed(1);
