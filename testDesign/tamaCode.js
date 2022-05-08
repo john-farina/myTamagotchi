@@ -22,11 +22,11 @@ const state = {
     tamaHatch: 4,
     tamaStage: tamaState,
     tamaDead: false,
-    tamaHealth: 3,
-    tamaHappy: 4,
+    tamaHealth: 5,
+    tamaHappy: 5,
     tamaIsHappy: false,
     tamaIsMad: false,
-    needAttention: false,
+    needAttention: true,
     tamaDiscipline: 0,
     tamaSpoiled: 0,
     tamaNeglect: 0,
@@ -133,6 +133,8 @@ const healthScreen2 = document.querySelector('#health-screen2');
 
 const cleanButton = document.querySelector('#clean-button');
 const cleaningLine = document.querySelector('#cleaning-line');
+
+const disciplineButton = document.querySelector('#discipline-button');
 
 const alertButton = document.querySelector('#alertButtonImage');
 
@@ -1812,35 +1814,37 @@ function clean() {
 // }
 
 function autoAttentionAlert() {
-    if (state.tamaDead == true) {
-        hungerMeter.textContent = 'im ded';
-    } else if (state.tamaStage === tamaState[0]) {
-        hungerMeter.textContent = 'egg';
-    } else if (state.tamaNeglect >= 8) {
-        //doesnt tell you when its actually hungry
-    } else {
-        if (state.tamaHappy <= 2 && state.tamaHealth <= 2) {
-            alertButton.style.backgroundColor = 'red';
-            // hungerMeter.textContent = "im not happy and hungry";
-        } else if (state.tamaHappy <= 2) {
-            alertButton.style.backgroundColor = 'red';
-            // hungerMeter.textContent = "im not happy";
-        } else if (state.tamaHealth <= 2) {
-            alertButton.style.backgroundColor = 'red';
-            // hungerMeter.textContent = "im hungry";
-        } else if (state.tamaHappy > 2) {
-            alertButton.style.backgroundColor = 'green';
-            // hungerMeter.textContent = "";
-        } else if (state.tamaHealth >= 2) {
-            alertButton.style.backgroundColor = 'green';
-            // hungerMeter.textContent = "";
+    if (state.needAttention != true) {
+        if (state.tamaDead == true) {
+            hungerMeter.textContent = 'im ded';
+        } else if (state.tamaStage === tamaState[0]) {
+            hungerMeter.textContent = 'egg';
+        } else if (state.tamaNeglect >= 8) {
+            //doesnt tell you when its actually hungry
+        } else {
+            if (state.tamaHappy <= 2 && state.tamaHealth <= 2) {
+                alertButton.style.backgroundColor = 'red';
+                // hungerMeter.textContent = "im not happy and hungry";
+            } else if (state.tamaHappy <= 2) {
+                alertButton.style.backgroundColor = 'red';
+                // hungerMeter.textContent = "im not happy";
+            } else if (state.tamaHealth <= 2) {
+                alertButton.style.backgroundColor = 'red';
+                // hungerMeter.textContent = "im hungry";
+            } else if (state.tamaHappy > 2) {
+                alertButton.style.backgroundColor = 'green';
+                // hungerMeter.textContent = "";
+            } else if (state.tamaHealth >= 2) {
+                alertButton.style.backgroundColor = 'green';
+                // hungerMeter.textContent = "";
+            }
         }
     }
 }
 
 function autoDisciplineTest() {
     //make a noise when full (if dont disicpline increses spoil meter by one
-    if (state.tamaHappy === 5 && state.tamaHealth === 5) {
+    if (state.tamaHappy >= 5 && state.tamaHealth >= 5) {
         //only happen if full happy and health
         if (
             state.tamaStage == tamaState[1] ||
@@ -1849,15 +1853,16 @@ function autoDisciplineTest() {
             state.tamaStage == tamaState[4]
         ) {
             //only happen when in teen state
-            if (state.tamaDiscipline == 10) {
+            if (state.tamaDiscipline == 5) {
                 //if disciplined dont happen
-            } else if (state.tamaDiscipline < 10) {
+            } else if (state.tamaDiscipline < 3) {
                 if (timeMathToSec(state.timeState.lastComplain) > 60) {
                     //only chance to happen 30 min after last happened
                     let randomNum = randomNumGen(100);
-                    if (randomNum >= 40 && randomNum <= 50) {
+                    if (randomNum >= 50 && randomNum <= 58) {
                         //make an attention call
                         state.needAttention = true;
+
                         state.timeState.lastComplain = new Date();
                     }
                 }
@@ -1866,8 +1871,10 @@ function autoDisciplineTest() {
                     state.needAttention == true &&
                     timeMathToSec(state.timeState.lastComplain) < 30
                 ) {
+                    alertButton.style.backgroundColor = 'red';
                     hungerMeter.textContent = ' i want attention';
                 } else {
+                    alertButton.style.backgroundColor = 'green';
                     hungerMeter.textContent = '';
                     state.needAttention = false;
                     if (randomNumGen(5) === 2) {
@@ -2314,6 +2321,14 @@ cleanButton.addEventListener('click', function () {
     }
 });
 
+disciplineButton.addEventListener('click', function () {
+    if (state.needAttention === true) {
+        state.tamaIsMad = true;
+        state.needAttention = false;
+        state.tamaDiscipline++;
+    }
+});
+
 // const menuButton = document.querySelector("#buttonFour");
 // const dropDownMenu = document.querySelector("#drop-down-menu");
 // const themeButton = document.querySelector("#theme-selection");
@@ -2331,7 +2346,7 @@ function animateCloseAllTabs() {
         displayHide(themeMenu);
         themeMenu.classList.add('second-menu-animate-open');
         themeMenu.classList.remove('second-menu-animate-close');
-    }, 1000);
+    }, 990);
 
     setTimeout(function () {
         dropDownMenu.classList.remove('menu-animate-open');
@@ -2342,7 +2357,7 @@ function animateCloseAllTabs() {
             dropDownMenu.classList.remove('menu-animate-close');
             dropDownMenu.classList.add('menu-animate-open');
             menuIsOpen = false;
-        }, 1000);
+        }, 990);
     }, 400);
 }
 
