@@ -2173,8 +2173,22 @@ function hideAllExtraScreens() {
     health2IsActive = false;
 }
 
+function vibrate() {
+    if (!window) {
+        return;
+    }
+    if (!window.navigator) {
+        return;
+    }
+    if (!window.navigator.vibrate) {
+        return;
+    }
+    window.navigator.vibrate(500);
+}
+
 foodButton.addEventListener('click', function () {
     if (state.foodAnimationGoing != true) {
+        vibrate();
         if (state.tamaIsMad != true) {
             if (lightsIsActive === true) {
                 hideAllExtraScreens();
@@ -2200,7 +2214,6 @@ foodButton.addEventListener('click', function () {
 });
 
 mealButton.addEventListener('click', function () {
-    window.navigator.vibrate(200);
     if (state.tamaHealth < 5) {
         state.foodAnimationGoing = true;
         feed(1);
