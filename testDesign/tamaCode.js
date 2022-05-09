@@ -2173,22 +2173,8 @@ function hideAllExtraScreens() {
     health2IsActive = false;
 }
 
-function vibrate() {
-    if (!window) {
-        return;
-    }
-    if (!window.navigator) {
-        return;
-    }
-    if (!window.navigator.vibrate) {
-        return;
-    }
-    window.navigator.vibrate(500);
-}
-
 foodButton.addEventListener('click', function () {
     if (state.foodAnimationGoing != true) {
-        vibrate();
         if (state.tamaIsMad != true) {
             if (lightsIsActive === true) {
                 hideAllExtraScreens();
