@@ -2200,7 +2200,7 @@ foodButton.addEventListener('click', function () {
 });
 
 mealButton.addEventListener('click', function () {
-    navigator.vibrate(200);
+    window.navigator.vibrate(200);
     if (state.tamaHealth < 5) {
         state.foodAnimationGoing = true;
         feed(1);
