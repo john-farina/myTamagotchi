@@ -1,0 +1,24 @@
+{
+  "name": "mytamagotchi",
+  "version": "1.0.0",
+  "description": "#### Created with vanillaJavaScript ##### (and alot of if statements)",
+  "main": "buttons.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "dev": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/john-farina/myTamagotchi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/john-farina/myTamagotchi/issues"
+  },
+  "homepage": "https://github.com/john-farina/myTamagotchi#readme",
+  "devDependencies": {
+    "webpack-cli": "^5.0.1"
+  }
+}
