@@ -855,139 +855,139 @@ function eggHatchAnimation() {
 
 function updateHeartSvg() {
   if (state.tamaHealth === 0) {
-    heart1.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart2.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart3.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart4.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart5.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHealth === 0.5) {
-    heart1.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartHalf.svg";
-    heart2.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart3.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart4.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart5.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHealth === 1) {
-    heart1.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart2.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart3.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart4.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart5.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHealth === 1.5) {
-    heart1.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart2.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartHalf.svg";
-    heart3.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart4.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart5.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHealth === 2) {
-    heart1.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart2.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart3.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart4.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart5.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHealth === 2.5) {
-    heart1.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart2.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart3.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartHalf.svg";
-    heart4.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart5.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHealth === 3) {
-    heart1.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart2.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart3.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart4.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart5.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHealth === 3.5) {
-    heart1.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart2.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart3.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart4.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartHalf.svg";
-    heart5.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHealth === 4) {
-    heart1.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart2.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart3.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart4.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart5.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHealth === 4.5) {
-    heart1.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart2.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart3.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart4.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart5.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
   } else if (state.tamaHealth === 5) {
-    heart1.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart2.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart3.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart4.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart5.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
   }
 
   if (state.tamaHappy === 0) {
-    happy1.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy2.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy3.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy4.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy5.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHappy === 0.5) {
-    happy1.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartHalf.svg";
-    happy2.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy3.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy4.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy5.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHappy === 1) {
-    happy1.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy2.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy3.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy4.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy5.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHappy === 1.5) {
-    happy1.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy2.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartHalf.svg";
-    happy3.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy4.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy5.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHappy === 2) {
-    happy1.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy2.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy3.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy4.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy5.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHappy === 2.5) {
-    happy1.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy2.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy3.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartHalf.svg";
-    happy4.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy5.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHappy === 3) {
-    happy1.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy2.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy3.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy4.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy5.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHappy === 3.5) {
-    happy1.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy2.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy3.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy4.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartHalf.svg";
-    happy5.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHappy === 4) {
-    happy1.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy2.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy3.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy4.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy5.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+    happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHappy === 4.5) {
-    happy1.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy2.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy3.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy4.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy5.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
   } else if (state.tamaHappy === 5) {
-    happy1.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy2.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy3.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy4.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy5.src = "/tamaPictures2/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
+    happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
   }
 }
 
@@ -1000,69 +1000,69 @@ const discipline5 = document.querySelector("#discipline-five");
 function updateDisciplineSvg() {
   if (state.tamaDiscipline === 0) {
     discipline1.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
     discipline2.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
     discipline3.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
     discipline4.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
     discipline5.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
   } else if (state.tamaDiscipline === 1) {
     discipline1.classList.add("full");
     discipline1.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
     discipline2.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
     discipline3.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
     discipline4.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
     discipline5.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
   } else if (state.tamaDiscipline === 2) {
     discipline1.classList.add("full");
     discipline2.classList.add("full");
     discipline1.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
     discipline2.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
     discipline3.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
     discipline4.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
     discipline5.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
   } else if (state.tamaDiscipline === 3) {
     discipline1.classList.add("full");
     discipline2.classList.add("full");
     discipline3.classList.add("full");
     discipline1.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
     discipline2.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
     discipline3.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
     discipline4.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
     discipline5.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
   } else if (state.tamaDiscipline === 4) {
     discipline1.classList.add("full");
     discipline2.classList.add("full");
     discipline3.classList.add("full");
     discipline4.classList.add("full");
     discipline1.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
     discipline2.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
     discipline3.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
     discipline4.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
     discipline5.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
   } else if (state.tamaDiscipline === 5) {
     discipline1.classList.add("full");
     discipline2.classList.add("full");
@@ -1070,15 +1070,15 @@ function updateDisciplineSvg() {
     discipline4.classList.add("full");
     discipline5.classList.add("full");
     discipline1.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
     discipline2.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
     discipline3.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
     discipline4.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
     discipline5.src =
-      "/tamaPictures2/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
+      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
   }
 }
 
@@ -2139,7 +2139,7 @@ function playGame() {
 
 //i cant make it so it only plays once in the loop. its very annoying
 function playAlertSound() {
-  let alertSound = new Audio("/tamaPictures2/alert.wav");
+  let alertSound = new Audio("../src/tamaPictures/alert.wav");
   if (alertSoundPlayed === true) {
     alertSound.play();
   }
@@ -2509,6 +2509,7 @@ color4Button.addEventListener("click", function () {
   state.tamaTheme = 3;
   animateCloseAllTabs();
 });
+
 color5Button.addEventListener("click", function () {
   state.tamaTheme = 4;
   animateCloseAllTabs();
@@ -2567,22 +2568,27 @@ helpEat.addEventListener("click", function () {
   hideAllGifs();
   displayFlex(foodGif);
 });
+
 helpLights.addEventListener("click", function () {
   hideAllGifs();
   displayFlex(lightsGif);
 });
+
 helpGame.addEventListener("click", function () {
   hideAllGifs();
   displayFlex(gameGif);
 });
+
 helpSick.addEventListener("click", function () {
   hideAllGifs();
   displayFlex(sickGif);
 });
+
 helpClean.addEventListener("click", function () {
   hideAllGifs();
   displayFlex(poopGif);
 });
+
 helpHealth.addEventListener("click", function () {
   hideAllGifs();
   displayFlex(healthGif);
