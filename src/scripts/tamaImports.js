@@ -60,6 +60,11 @@ const happy2 = document.querySelector("#hunger2");
 const happy3 = document.querySelector("#hunger3");
 const happy4 = document.querySelector("#hunger4");
 const happy5 = document.querySelector("#hunger5");
+const discipline1 = document.querySelector("#discipline-one");
+const discipline2 = document.querySelector("#discipline-two");
+const discipline3 = document.querySelector("#discipline-three");
+const discipline4 = document.querySelector("#discipline-four");
+const discipline5 = document.querySelector("#discipline-five");
 const sickAlert = document.querySelector("#sickAlert");
 const madAlert1 = document.querySelector("#madAlert1");
 const madAlert2 = document.querySelector("#madAlert2");
@@ -286,4 +291,9 @@ export {
   helpEat,
   helpScreen,
   helpMenuButton,
+  discipline1,
+  discipline2,
+  discipline3,
+  discipline4,
+  discipline5,
 };

@@ -1,66 +1,10 @@
-let tamaState = [
-  "Egg", //0
-  "Child_1", //1
-  "Child_2", //2
-  "Teen_1", //3 (for Child_1)
-  "Teen_2", //4 (for Child_2)
-  "Secret_Adult", //5 (for Teen_1 (small chance of getting))
-  "Secret_Adult_2", //6 (for Teen_2 (small chance of getting)))
-  "Adult_1", //7 (for Teen_1 && Teen_2) (healthy and good care)
-  "Adult_2", //8 (for Teen_1 && Teen_2) (healthy)
-  "Adult_3", //9 (for Teen_1 && Teen_2) (healthy)
-  "Adult_4", //10 (for Teen_1 && Teen_2) (sick and unhealthy)
-  "Secret_Adult_Evolve", //11 (ONLY for Secret_Adult_2)
-  "12",
-  "Dead",
-];
-const state = {
-  gameStarted: false,
-  tamaTheme: 3,
-  tamaName: "Larry",
-  tamaAge: 8,
-  tamaHatch: 2,
-  tamaStage: tamaState,
-  tamaDead: false,
-  tamaHealth: 3,
-  tamaHappy: 4,
-  tamaIsHappy: false,
-  tamaIsMad: false,
-  needAttention: false,
-  tamaDiscipline: 0,
-  tamaSpoiled: 0,
-  tamaNeglect: 0,
-  tamaPoop: 0,
-  tamaSick: false,
-  animationCount: 0,
-  lightIsOff: false,
-  foodAnimationGoing: false,
-  timeState: {
-    gameStart: new Date(),
-    lastHatchCycle: new Date(),
-    lastInteract: new Date(),
-    lastEvolve: new Date(),
-    lastPoop: new Date(),
-    lastSick: new Date(),
-    lastHealth: new Date(),
-    lastHappy: new Date(),
-    lastComplain: new Date(),
-    lastAnimation: new Date(),
-  },
-};
-let count = 0;
-let minCount = 0;
-let hourCount = 0;
+import { state, tamaState } from "./scripts/state";
 let myInterval;
-let myInterval2;
 let foodIsActive = false;
 let lightsIsActive = false;
 let gameIsRunning = false;
-let tooSpoiledForGame = false;
-let gameRound = 0;
 let gameTimeCount = 0;
 let gameTimeStore = 0;
-let lastGuessTime;
 let playerSelectedChoice = false;
 let playerSelection = 0;
 let computerSelection = 0;
@@ -76,6 +20,8 @@ let animateCount = 0;
 let menuIsOpen = false;
 let themeMenuIsOpen = false;
 let alertSoundPlayed = false;
+
+/////////////////////////////////////All of Tama's query selections
 import {
   alfLogo,
   colorsMenu,
@@ -99,13 +45,6 @@ import {
   gravestoneText,
   gravestoneTwo,
   gravestone,
-  snack2Half,
-  snack2,
-  snack1Half,
-  snack1,
-  meal2Half,
-  meal2,
-  meal1,
   snackButton,
   mealButton,
   poop4,
@@ -150,24 +89,11 @@ import {
   child1,
   childClass,
   characterClass,
-  eggState3,
-  eggState2,
-  eggState1,
   eggClass,
   happyAlert,
   madAlert2,
   madAlert1,
   sickAlert,
-  happy5,
-  happy4,
-  happy3,
-  happy2,
-  happy1,
-  heart5,
-  heart4,
-  heart3,
-  heart2,
-  heart1,
   alertButton,
   disciplineButton,
   cleaningLine,
@@ -222,112 +148,18 @@ import {
   helpMenuButton,
 } from "./scripts/tamaImports";
 
-const body = document.querySelector("body");
-
-import {
-  randomNumGen,
-  timeMathToSec,
-  greaterAndLessThen,
-} from "./scripts/usefulFunctions";
-
 /////////////////////////////////////USEFUL FUNCTIONS
+import { randomNumGen, timeMathToSec } from "./scripts/usefulFunctions";
 
-if (greaterAndLessThen(10, 20, randomNumGen(30)) === true) {
-  console.log("its true!");
-}
+/////////////////////////////////////MOVEMENT FUNCTIONS
+import {
+  hideImage,
+  showImage,
+  moveLeftToRightRandom,
+  autoRandomFlip,
+} from "./scripts/MovmentAnimation";
 
-/////////////////////////////////////MOVEMENTS/ANIMATION
-function hideImage(character) {
-  character.style.visibility = "hidden";
-}
-
-function showImage(character) {
-  character.style.visibility = "visible";
-}
-
-function moveLeftToRightRandom(character) {
-  if (state.foodAnimationGoing != true) {
-    if (state.tamaPoop <= 2) {
-      if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
-        let randomChoice = randomNumGen(3);
-
-        if (randomChoice === 1) {
-          let randomChoice2 = randomNumGen(5);
-
-          if (randomChoice2 === 3) {
-            character.classList.remove("left");
-
-            character.classList.remove("right");
-
-            character.classList.remove("rightSmall");
-
-            character.classList.add("leftSmall");
-          } else {
-            let randomChoice3 = randomNumGen(5);
-
-            if (randomChoice3 === 3) {
-              character.classList.remove("right");
-
-              character.classList.remove("rightSmall");
-
-              character.classList.remove("leftSmall");
-
-              character.classList.add("left");
-            }
-          }
-        } else if (randomChoice === 2) {
-          let randomChoice4 = randomNumGen(5);
-
-          if (randomChoice4 === 3) {
-            character.classList.remove("left");
-
-            character.classList.remove("leftSmall");
-
-            character.classList.remove("right");
-
-            character.classList.add("rightSmall");
-          } else {
-            let randomChoice5 = randomNumGen(5);
-
-            if (randomChoice5 === 3) {
-              character.classList.remove("left");
-
-              character.classList.remove("leftSmall");
-
-              character.classList.remove("rightSmall");
-
-              character.classList.add("right");
-            }
-          }
-        } else {
-          character.classList.remove("left");
-
-          character.classList.remove("leftSmall");
-
-          character.classList.remove("rightSmall");
-
-          character.classList.remove("right");
-        }
-      }
-    }
-  }
-}
-
-function autoRandomFlip(character) {
-  if (state.foodAnimationGoing != true) {
-    if (timeMathToSec(state.timeState.gameStart) % 1 === 0) {
-      let randomChoice = randomNumGen(3);
-
-      if (randomChoice === 1 || randomChoice === 2) {
-        character.classList.add("flip");
-      } else {
-        character.classList.remove("flip");
-      }
-    }
-  }
-}
-
-function autoLips(character) {}
+const body = document.querySelector("body");
 
 function autoAlert() {
   if (state.tamaSick === true) {
@@ -377,710 +209,40 @@ function placePoop() {
   }
 }
 
-function updateFood() {
-  if (timeMathToSec(state.timeState.lastAnimation) > 1) {
-    meal1.style.visibility = "hidden";
+import { updateFood } from "./scripts/FoodFunctions";
 
-    meal2.style.visibility = "hidden";
-
-    snack1.style.visibility = "hidden";
-
-    snack2.style.visibility = "hidden";
-  }
-}
-
-function hideAllFood() {
-  hideImage(meal1);
-  hideImage(meal2);
-  hideImage(meal2Half);
-  hideImage(snack1);
-  hideImage(snack1Half);
-  hideImage(snack2);
-  hideImage(snack2Half);
-}
-
-function foodAnimation(type) {
-  if (type === 1) {
-    //meal1
-    //FOOD ANIMATION
-  } else if (type === 2) {
-    hideAllFood();
-    //meal2
-    //FOOD ANIMATION
-    if (state.animationCount > 0 && state.animationCount <= 2) {
-      showImage(meal2);
-    }
-
-    if (state.animationCount == 3) {
-      hideImage(meal2);
-
-      showImage(meal2Half);
-    }
-
-    if (state.animationCount == 5) {
-      hideImage(meal2Half);
-    }
-  } else if (type === 3) {
-    //snack1
-    //FOOD ANIMATION
-    if (state.animationCount > 0 && state.animationCount <= 2) {
-      showImage(snack2);
-    }
-
-    if (state.animationCount == 3) {
-      hideImage(snack2);
-
-      showImage(snack2Half);
-    }
-
-    if (state.animationCount == 5) {
-      hideImage(snack2Half);
-    }
-  } else if (type === 4) {
-    //snack2
-    //FOOD ANIMATION
-    if (state.animationCount > 0 && state.animationCount <= 2) {
-      showImage(snack1);
-    }
-
-    if (state.animationCount == 3) {
-      hideImage(snack1);
-
-      showImage(snack1Half);
-    }
-
-    if (state.animationCount == 5) {
-      hideImage(snack1Half);
-    }
-  }
-}
-
-function childOpenMouthAnimate() {
-  if (state.tamaStage === tamaState[1]) {
-    if (state.foodAnimationGoing === true) {
-      if (
-        timeMathToSec(state.timeState.gameStart) % 1 === 0 &&
-        state.animationCount <= 6
-      ) {
-        state.animationCount++;
-      }
-      //CHARACTER ANIMATION
-      if (state.animationCount == 1) {
-        hideImage(child1);
-
-        hideImage(child1Sick);
-
-        hideImage(child1Low);
-
-        showImage(child1Side);
-      }
-
-      if (state.animationCount == 2 || state.animationCount == 4) {
-        hideImage(child1Side);
-
-        showImage(child1Eat);
-      }
-
-      if (state.animationCount == 3 || state.animationCount == 5) {
-        hideImage(child1Eat);
-
-        showImage(child1Side);
-      }
-
-      if (state.animationCount == 6) {
-        hideImage(child1Side);
-        state.foodAnimationGoing = false;
-
-        state.animationCount = 0;
-      }
-    }
-  }
-}
-
-function childEatSnackAnimation() {
-  childOpenMouthAnimate();
-
-  foodAnimation(3);
-}
-
-function childTwoOpenMouthAnimate() {
-  if (state.tamaStage === tamaState[2]) {
-    if (state.foodAnimationGoing === true) {
-      if (
-        timeMathToSec(state.timeState.gameStart) % 1 === 0 &&
-        state.animationCount <= 6
-      ) {
-        state.animationCount++;
-      }
-      //CHARACTER ANIMATION
-      if (state.animationCount == 1) {
-        hideImage(child2Small);
-
-        hideImage(child2Eat);
-
-        hideImage(child2);
-
-        showImage(child2Side);
-      }
-
-      if (state.animationCount == 2 || state.animationCount == 4) {
-        hideImage(child2);
-
-        hideImage(child2Side);
-
-        showImage(child2Eat);
-      }
-
-      if (state.animationCount == 3 || state.animationCount == 5) {
-        hideImage(child2);
-
-        hideImage(child2Eat);
-
-        showImage(child2Side);
-      }
-
-      if (state.animationCount == 6) {
-        hideImage(child2Side);
-
-        state.foodAnimationGoing = false;
-
-        state.animationCount = 0;
-      }
-    }
-  }
-}
-
-function childTwoEatSnackAnimation() {
-  childTwoOpenMouthAnimate();
-
-  foodAnimation(3);
-}
-
-function teenOpenMouthAnimate() {
-  if (state.tamaStage === tamaState[3]) {
-    if (state.foodAnimationGoing === true) {
-      if (
-        timeMathToSec(state.timeState.gameStart) % 1 === 0 &&
-        state.animationCount <= 6
-      ) {
-        state.animationCount++;
-      }
-      //CHARACTER ANIMATION
-      if (state.animationCount == 1) {
-        hideImage(teenClass);
-        showImage(teen1);
-      }
-      if (state.animationCount == 2 || state.animationCount == 4) {
-        hideImage(teen1);
-        showImage(teen1Eat);
-      }
-      if (state.animationCount == 3 || state.animationCount == 5) {
-        hideImage(teen1Eat);
-        showImage(teen1);
-      }
-      if (state.animationCount == 6) {
-        hideImage(teen1);
-        state.foodAnimationGoing = false;
-        state.animationCount = 0;
-      }
-    }
-  }
-}
-function teenEatSnackAnimation() {
-  teenOpenMouthAnimate();
-  foodAnimation(3);
-}
-
-function teenTwoOpenMouthAnimate() {
-  if (state.tamaStage === tamaState[4]) {
-    if (state.foodAnimationGoing === true) {
-      if (
-        timeMathToSec(state.timeState.gameStart) % 1 === 0 &&
-        state.animationCount <= 6
-      ) {
-        state.animationCount++;
-      }
-      //CHARACTER ANIMATION
-      if (state.animationCount == 1) {
-        hideImage(teenClass);
-        showImage(teen2);
-      }
-      if (state.animationCount == 2 || state.animationCount == 4) {
-        hideImage(teen2);
-        showImage(teen2Eat);
-      }
-      if (state.animationCount == 3 || state.animationCount == 5) {
-        hideImage(teen2Eat);
-        showImage(teen2);
-      }
-      if (state.animationCount == 6) {
-        hideImage(teen2);
-        state.foodAnimationGoing = false;
-        state.animationCount = 0;
-      }
-    }
-  }
-}
-function teenTwoEatSnackAnimation() {
-  teenTwoOpenMouthAnimate();
-  foodAnimation(3);
-}
-
-function adultOneOpenMouthAnimate() {
-  if (state.tamaStage === tamaState[7]) {
-    if (state.foodAnimationGoing === true) {
-      if (
-        timeMathToSec(state.timeState.gameStart) % 1 === 0 &&
-        state.animationCount <= 6
-      ) {
-        state.animationCount++;
-      }
-      //CHARACTER ANIMATION
-      if (state.animationCount == 1) {
-        hideImage(adultClass);
-        showImage(adult1);
-      }
-      if (state.animationCount == 2 || state.animationCount == 4) {
-        hideImage(adult1);
-        showImage(adult1Eat);
-      }
-      if (state.animationCount == 3 || state.animationCount == 5) {
-        hideImage(adult1Eat);
-        showImage(adult1);
-      }
-      if (state.animationCount == 6) {
-        hideImage(adult1);
-        state.foodAnimationGoing = false;
-        state.animationCount = 0;
-      }
-    }
-  }
-}
-function adultOneEatSnackAnimation() {
-  adultOneOpenMouthAnimate();
-  foodAnimation(3);
-}
-
-function adultTwoOpenMouthAnimate() {
-  if (state.tamaStage === tamaState[8]) {
-    if (state.foodAnimationGoing === true) {
-      if (
-        timeMathToSec(state.timeState.gameStart) % 1 === 0 &&
-        state.animationCount <= 6
-      ) {
-        state.animationCount++;
-      }
-      //CHARACTER ANIMATION
-      if (state.animationCount == 1) {
-        hideImage(adultClass);
-        showImage(adult2);
-      }
-      if (state.animationCount == 2 || state.animationCount == 4) {
-        hideImage(adult2);
-        showImage(adult2Eat);
-      }
-      if (state.animationCount == 3 || state.animationCount == 5) {
-        hideImage(adult2Eat);
-        showImage(adult2);
-      }
-      if (state.animationCount == 6) {
-        hideImage(adult2);
-        state.foodAnimationGoing = false;
-        state.animationCount = 0;
-      }
-    }
-  }
-}
-function adultTwoEatSnackAnimation() {
-  adultTwoOpenMouthAnimate();
-  foodAnimation(3);
-}
-
-function adultThreeOpenMouthAnimate() {
-  if (state.tamaStage === tamaState[9]) {
-    if (state.foodAnimationGoing === true) {
-      if (
-        timeMathToSec(state.timeState.gameStart) % 1 === 0 &&
-        state.animationCount <= 6
-      ) {
-        state.animationCount++;
-      }
-      //CHARACTER ANIMATION
-      if (state.animationCount == 1) {
-        hideImage(adultClass);
-        showImage(adult3);
-      }
-      if (state.animationCount == 2 || state.animationCount == 4) {
-        hideImage(adult3);
-        showImage(adult3Eat);
-      }
-      if (state.animationCount == 3 || state.animationCount == 5) {
-        hideImage(adult3Eat);
-        showImage(adult3);
-      }
-      if (state.animationCount == 6) {
-        hideImage(adult3);
-        state.foodAnimationGoing = false;
-        state.animationCount = 0;
-      }
-    }
-  }
-}
-function adultThreeEatSnackAnimation() {
-  adultThreeOpenMouthAnimate();
-  foodAnimation(3);
-}
-
-function adultFourOpenMouthAnimate() {
-  if (state.tamaStage === tamaState[10]) {
-    if (state.foodAnimationGoing === true) {
-      if (
-        timeMathToSec(state.timeState.gameStart) % 1 === 0 &&
-        state.animationCount <= 6
-      ) {
-        state.animationCount++;
-      }
-      //CHARACTER ANIMATION
-      if (state.animationCount == 1) {
-        hideImage(adultClass);
-        showImage(adult4);
-      }
-      if (state.animationCount == 2 || state.animationCount == 4) {
-        hideImage(adult4);
-        showImage(adult4Eat);
-      }
-      if (state.animationCount == 3 || state.animationCount == 5) {
-        hideImage(adult4Eat);
-        showImage(adult4);
-      }
-      if (state.animationCount == 6) {
-        hideImage(adult4);
-        state.foodAnimationGoing = false;
-        state.animationCount = 0;
-      }
-    }
-  }
-}
-function adultFourEatSnackAnimation() {
-  adultFourOpenMouthAnimate();
-  foodAnimation(3);
-}
-
-function adultFiveOpenMouthAnimate() {
-  if (state.tamaStage === tamaState[5]) {
-    if (state.foodAnimationGoing === true) {
-      if (
-        timeMathToSec(state.timeState.gameStart) % 1 === 0 &&
-        state.animationCount <= 6
-      ) {
-        state.animationCount++;
-      }
-      //CHARACTER ANIMATION
-      if (state.animationCount == 1) {
-        hideImage(adultClass);
-        showImage(adult5);
-      }
-      if (state.animationCount == 2 || state.animationCount == 4) {
-        hideImage(adult5);
-        showImage(adult5Eat);
-      }
-      if (state.animationCount == 3 || state.animationCount == 5) {
-        hideImage(adult5Eat);
-        showImage(adult5);
-      }
-      if (state.animationCount == 6) {
-        hideImage(adult5);
-        state.foodAnimationGoing = false;
-        state.animationCount = 0;
-      }
-    }
-  }
-}
-function adultFiveEatSnackAnimation() {
-  adultFiveOpenMouthAnimate();
-  foodAnimation(3);
-}
+import {
+  childEatSnackAnimation,
+  childTwoEatSnackAnimation,
+  teenEatSnackAnimation,
+  teenTwoEatSnackAnimation,
+  adultOneEatSnackAnimation,
+  adultTwoEatSnackAnimation,
+  adultThreeEatSnackAnimation,
+  adultFourEatSnackAnimation,
+  adultFiveEatSnackAnimation,
+} from "./scripts/EatingAnimations";
 
 function allEatSnackAnimations() {
-  childEatSnackAnimation();
-  childTwoEatSnackAnimation();
-  teenEatSnackAnimation();
-  teenTwoEatSnackAnimation();
-  adultOneEatSnackAnimation();
-  adultTwoEatSnackAnimation();
-  adultThreeEatSnackAnimation();
-  adultFourEatSnackAnimation();
-  adultFiveEatSnackAnimation();
-  // TEST
+  childEatSnackAnimation(state);
+  childTwoEatSnackAnimation(state);
+  teenEatSnackAnimation(state);
+  teenTwoEatSnackAnimation(state);
+  adultOneEatSnackAnimation(state);
+  adultTwoEatSnackAnimation(state);
+  adultThreeEatSnackAnimation(state);
+  adultFourEatSnackAnimation(state);
+  adultFiveEatSnackAnimation(state);
 }
 
-function removeAllChildAndTeen() {
-  eggState1.style.visibility = "hidden";
-  eggState2.style.visibility = "hidden";
-  eggState3.style.visibility = "hidden";
+//////////////////////////////// FOOD END
 
-  child1.style.visibility = "hidden";
-  child1Low.style.visibility = "hidden";
-  child1Sick.style.visibility = "hidden";
-  child1Eat.style.visibility = "hidden";
+import {
+  removeAllChildAndTeen,
+  eggHatchAnimation,
+} from "./scripts/MiscTamaAnimation";
 
-  child2.style.visibility = "hidden";
-  child2Side.style.visibility = "hidden";
-  child2Eat.style.visibility = "hidden";
-  child2Small.style.visibility = "hidden";
-  childClass.style.visibility = "hidden";
-
-  teen1.style.visibility = "hidden";
-  teen1Eat.style.visibility = "hidden";
-  teen1Sick.style.visibility = "hidden";
-  teen2.style.visibility = "hidden";
-
-  teen2Eat.style.visibility = "hidden";
-  teen2Sick.style.visibility = "hidden";
-  teen2Lips.style.visibility = "hidden";
-  teenClass.style.visibility = "hidden";
-}
-
-function eggHatchAnimation() {
-  if (state.tamaStage === tamaState[0]) {
-    if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
-      eggState2.style.visibility = "hidden";
-      eggState1.style.visibility = "visible";
-    } else {
-      eggState1.style.visibility = "hidden";
-      eggState2.style.visibility = "visible";
-    }
-  }
-}
-
-function updateHeartSvg() {
-  if (state.tamaHealth === 0) {
-    heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-  } else if (state.tamaHealth === 0.5) {
-    heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
-    heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-  } else if (state.tamaHealth === 1) {
-    heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-  } else if (state.tamaHealth === 1.5) {
-    heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
-    heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-  } else if (state.tamaHealth === 2) {
-    heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-  } else if (state.tamaHealth === 2.5) {
-    heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
-    heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-  } else if (state.tamaHealth === 3) {
-    heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-  } else if (state.tamaHealth === 3.5) {
-    heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
-    heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-  } else if (state.tamaHealth === 4) {
-    heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-  } else if (state.tamaHealth === 4.5) {
-    heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
-  } else if (state.tamaHealth === 5) {
-    heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-  }
-
-  if (state.tamaHappy === 0) {
-    happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-  } else if (state.tamaHappy === 0.5) {
-    happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
-    happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-  } else if (state.tamaHappy === 1) {
-    happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-  } else if (state.tamaHappy === 1.5) {
-    happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
-    happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-  } else if (state.tamaHappy === 2) {
-    happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-  } else if (state.tamaHappy === 2.5) {
-    happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
-    happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-  } else if (state.tamaHappy === 3) {
-    happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-  } else if (state.tamaHappy === 3.5) {
-    happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
-    happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-  } else if (state.tamaHappy === 4) {
-    happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-  } else if (state.tamaHappy === 4.5) {
-    happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
-  } else if (state.tamaHappy === 5) {
-    happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-  }
-}
-
-const discipline1 = document.querySelector("#discipline-one");
-const discipline2 = document.querySelector("#discipline-two");
-const discipline3 = document.querySelector("#discipline-three");
-const discipline4 = document.querySelector("#discipline-four");
-const discipline5 = document.querySelector("#discipline-five");
-
-function updateDisciplineSvg() {
-  if (state.tamaDiscipline === 0) {
-    discipline1.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
-    discipline2.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
-    discipline3.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
-    discipline4.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
-    discipline5.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
-  } else if (state.tamaDiscipline === 1) {
-    discipline1.classList.add("full");
-    discipline1.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
-    discipline2.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
-    discipline3.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
-    discipline4.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
-    discipline5.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
-  } else if (state.tamaDiscipline === 2) {
-    discipline1.classList.add("full");
-    discipline2.classList.add("full");
-    discipline1.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
-    discipline2.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
-    discipline3.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
-    discipline4.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
-    discipline5.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
-  } else if (state.tamaDiscipline === 3) {
-    discipline1.classList.add("full");
-    discipline2.classList.add("full");
-    discipline3.classList.add("full");
-    discipline1.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
-    discipline2.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
-    discipline3.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
-    discipline4.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
-    discipline5.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
-  } else if (state.tamaDiscipline === 4) {
-    discipline1.classList.add("full");
-    discipline2.classList.add("full");
-    discipline3.classList.add("full");
-    discipline4.classList.add("full");
-    discipline1.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
-    discipline2.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
-    discipline3.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
-    discipline4.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
-    discipline5.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter1.svg";
-  } else if (state.tamaDiscipline === 5) {
-    discipline1.classList.add("full");
-    discipline2.classList.add("full");
-    discipline3.classList.add("full");
-    discipline4.classList.add("full");
-    discipline5.classList.add("full");
-    discipline1.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
-    discipline2.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
-    discipline3.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
-    discipline4.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
-    discipline5.src =
-      "../src/tamaPictures/tamaAlert/tamaHeart/tama_disciplineMeter2.svg";
-  }
-}
+import { updateHeartSvg, updateDisciplineSvg } from "./scripts/Hearts";
 
 function madAlertAnimate() {
   if (animateCount <= 11 && state.tamaIsMad === true) {
@@ -1117,26 +279,11 @@ function happyAlertAnimate() {
   }
 }
 
-// let gameIsRunning = false;
-// let gameRound = 0;
-// let gameTimeCount = 0;
-// let gameTimeStore = 0;
-// let playerSelectedChoice = false;
-// let playerSelection = 0;
-// let computerSelection = 0;
-// let playerScore = 0;
-// let computerScore = 0;
-
 function startGame() {
   gameTimer.innerHTML = "0";
   gameTimeCount = 0;
   gameTimeStore = 0;
 }
-
-// const playerChoiceOne = document.querySelector("#choice-one");
-// const playerChoiceTwo = document.querySelector("#choice-two");
-// const tamaChoiceOne = document.querySelector("#tama-choice-one");
-// const tamaChoiceTwo = document.querySelector("#tama-choice-two");
 
 function chooseOneAnimation() {
   if (playerSelectedChoice === false && gameTimeStore <= 29) {
@@ -1177,11 +324,12 @@ function displayHide(value) {
 function showGameCharacter() {
   if (state.tamaStage === tamaState[1]) {
     displayFlex(gameChildOne);
-    autoRandomFlip(gameChildOne);
+
+    autoRandomFlip(gameChildOne, state);
   } else if (state.tamaStage === tamaState[2]) {
     displayHide(gameChildOne);
     displayFlex(gameChildTwo);
-    autoRandomFlip(gameChildTwo);
+    autoRandomFlip(gameChildTwo, state);
   } else if (state.tamaStage === tamaState[3]) {
     displayHide(gameChildOne);
     displayHide(gameChildTwo);
@@ -1453,102 +601,127 @@ function childOneMovement() {
     if (randomChoice === 3) {
       child1.style.visibility = "hidden";
       child1Low.style.visibility = "visible";
-      moveLeftToRightRandom(child1Low);
+      moveLeftToRightRandom(child1Low, state);
     } else {
       child1Low.style.visibility = "hidden";
       child1.style.visibility = "visible";
-      moveLeftToRightRandom(child1);
+      moveLeftToRightRandom(child1, state);
     }
   }
 }
 
 function updateChracterPicture() {
-  if (state.tamaDead != true) {
-    if (state.foodAnimationGoing != true) {
-      if (gameIsRunning != true) {
-        childOneSickAnimation();
-        if (state.tamaStage === tamaState[1] && state.tamaSick === false) {
-          eggClass.style.visibility = "hidden";
-          child1Low.style.visibility = "hidden";
-          child1.style.visibility = "visible";
-          childOneMovement();
+  if (state.tamaDead || state.foodAnimationGoing || gameIsRunning) {
+    return;
+  }
 
-          moveLeftToRightRandom(child1);
-        }
+  // childOneSickAnimation();
+  if (state.tamaStage === tamaState[1] && state.tamaSick === false) {
+    eggClass.style.visibility = "hidden";
 
-        if (state.tamaStage === tamaState[2]) {
-          child1.style.visibility = "hidden";
-          child1Low.style.visibility = "hidden";
-          child1Sick.style.visibility = "hidden";
-          child2.style.visibility = "visible";
+    child1Low.style.visibility = "hidden";
 
-          moveLeftToRightRandom(child2);
-        }
+    child1.style.visibility = "visible";
 
-        if (state.tamaStage === tamaState[3]) {
-          child2.style.visibility = "hidden";
-          teen1.style.visibility = "visible";
-          autoRandomFlip(teen1);
+    childOneMovement();
 
-          moveLeftToRightRandom(teen1);
-        }
-        if (state.tamaStage === tamaState[4]) {
-          child2.style.visibility = "hidden";
-          teen2.style.visibility = "visible";
-          autoRandomFlip(teen2);
+    moveLeftToRightRandom(child1, state);
+  }
 
-          moveLeftToRightRandom(teen2);
-        }
+  if (state.tamaStage === tamaState[2]) {
+    child1.style.visibility = "hidden";
 
-        // SPECIAL CHARACTERS
-        if (state.tamaStage === tamaState[5]) {
-          removeAllChildAndTeen();
-          adult5.style.visibility = "visible";
-          autoRandomFlip(adult5);
+    child1Low.style.visibility = "hidden";
 
-          moveLeftToRightRandom(adult5);
-        }
-        if (state.tamaStage === tamaState[6]) {
-          removeAllChildAndTeen();
-          adult6.style.visibility = "visible";
-          autoRandomFlip(adult6);
+    child1Sick.style.visibility = "hidden";
 
-          moveLeftToRightRandom(adult6);
-        }
+    child2.style.visibility = "visible";
 
-        if (state.tamaStage === tamaState[7]) {
-          removeAllChildAndTeen();
-          adult1.style.visibility = "visible";
-          autoRandomFlip(adult1);
+    moveLeftToRightRandom(child2, state);
+  }
 
-          moveLeftToRightRandom(adult1);
-        }
-        if (state.tamaStage === tamaState[8]) {
-          removeAllChildAndTeen();
-          adult2.style.visibility = "visible";
-          autoRandomFlip(adult2);
+  if (state.tamaStage === tamaState[3]) {
+    child2.style.visibility = "hidden";
 
-          moveLeftToRightRandom(adult2);
-        }
-        if (state.tamaStage === tamaState[9]) {
-          removeAllChildAndTeen();
-          adult3.style.visibility = "visible";
-          autoRandomFlip(adult3);
+    teen1.style.visibility = "visible";
 
-          moveLeftToRightRandom(adult3);
-        }
-        if (state.tamaStage === tamaState[10]) {
-          removeAllChildAndTeen();
-          adult4.style.visibility = "visible";
-          autoRandomFlip(adult4);
+    autoRandomFlip(teen1, state);
 
-          moveLeftToRightRandom(adult4);
-        }
-        if (state.tamaStage === tamaState[13]) {
-          gravestone.style.visibility = "visible";
-        }
-      }
-    }
+    moveLeftToRightRandom(teen1, state);
+  }
+
+  if (state.tamaStage === tamaState[4]) {
+    child2.style.visibility = "hidden";
+
+    teen2.style.visibility = "visible";
+
+    autoRandomFlip(teen2, state);
+
+    moveLeftToRightRandom(teen2, state);
+  }
+
+  // SPECIAL CHARACTERS
+  if (state.tamaStage === tamaState[5]) {
+    removeAllChildAndTeen();
+
+    adult5.style.visibility = "visible";
+
+    autoRandomFlip(adult5, state);
+
+    moveLeftToRightRandom(adult5, state);
+  }
+  if (state.tamaStage === tamaState[6]) {
+    removeAllChildAndTeen();
+
+    adult6.style.visibility = "visible";
+
+    autoRandomFlip(adult6, state);
+
+    moveLeftToRightRandom(adult6, state);
+  }
+
+  if (state.tamaStage === tamaState[7]) {
+    removeAllChildAndTeen();
+
+    adult1.style.visibility = "visible";
+
+    autoRandomFlip(adult1, state);
+
+    moveLeftToRightRandom(adult1, state);
+  }
+
+  if (state.tamaStage === tamaState[8]) {
+    removeAllChildAndTeen();
+
+    adult2.style.visibility = "visible";
+
+    autoRandomFlip(adult2, state);
+
+    moveLeftToRightRandom(adult2, state);
+  }
+
+  if (state.tamaStage === tamaState[9]) {
+    removeAllChildAndTeen();
+
+    adult3.style.visibility = "visible";
+
+    autoRandomFlip(adult3, state);
+
+    moveLeftToRightRandom(adult3, state);
+  }
+
+  if (state.tamaStage === tamaState[10]) {
+    removeAllChildAndTeen();
+
+    adult4.style.visibility = "visible";
+
+    autoRandomFlip(adult4, state);
+
+    moveLeftToRightRandom(adult4, state);
+  }
+
+  if (state.tamaStage === tamaState[13]) {
+    gravestone.style.visibility = "visible";
   }
 }
 
@@ -1593,13 +766,13 @@ function updatePictures() {
   updateTheme();
   happyAlertAnimate();
   madAlertAnimate();
-  updateFood();
+  updateFood(state);
   placePoop();
   autoAlert();
-  eggHatchAnimation();
+  eggHatchAnimation(state);
   allEatSnackAnimations();
-  updateHeartSvg();
-  updateDisciplineSvg();
+  updateHeartSvg(state);
+  updateDisciplineSvg(state);
   updateChracterPicture();
   showGravestone();
   updateAndPlayGameAnimations();
@@ -2234,6 +1407,7 @@ mealButton.addEventListener("click", function () {
     feed(1);
     allEatSnackAnimations();
   }
+  hideAllExtraScreens();
 });
 
 // if (state.needAttention === true) {
@@ -2254,6 +1428,7 @@ snackButton.addEventListener("click", function () {
       state.tamaSpoiled++;
     }
   }
+  hideAllExtraScreens();
 });
 
 lightButton.addEventListener("click", function () {
