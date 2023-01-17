@@ -80,10 +80,10 @@ import {
   teenClass,
   child2Eat,
   child2Side,
-  child2Small,
   child2,
   child1Eat,
   child1Side,
+  child2Small,
   child1Sick,
   child1Low,
   child1,
@@ -197,41 +197,7 @@ import {
 } from "./scripts/MiscTamaAnimation";
 
 import { updateHeartSvg, updateDisciplineSvg } from "./scripts/Hearts";
-
-function madAlertAnimate() {
-  if (animateCount <= 11 && state.tamaIsMad === true) {
-    if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
-      animateCount++;
-      hideImage(madAlert2);
-      showImage(madAlert1);
-    } else {
-      animateCount++;
-      hideImage(madAlert1);
-      showImage(madAlert2);
-    }
-  } else if (animateCount > 7 && state.tamaIsMad === true) {
-    state.tamaIsMad = false;
-    animateCount = 0;
-    hideImage(madAlert1);
-    hideImage(madAlert2);
-  }
-}
-
-function happyAlertAnimate() {
-  if (animateCount <= 5 && state.tamaIsHappy === true) {
-    if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
-      animateCount++;
-      showImage(happyAlert);
-    } else {
-      animateCount++;
-      hideImage(happyAlert);
-    }
-  } else if (animateCount > 5 && state.tamaIsHappy === true) {
-    state.tamaIsHappy = false;
-    animateCount = 0;
-    hideImage(happyAlert);
-  }
-}
+import { madAlertAnimate, happyAlertAnimate } from "./scripts/AlertAnimations";
 
 function startGame() {
   gameTimer.innerHTML = "0";
@@ -283,6 +249,7 @@ function showGameCharacter() {
   } else if (state.tamaStage === tamaState[2]) {
     displayHide(gameChildOne);
     displayFlex(gameChildTwo);
+
     autoRandomFlip(gameChildTwo, state);
   } else if (state.tamaStage === tamaState[3]) {
     displayHide(gameChildOne);
@@ -326,10 +293,12 @@ function characterMadEmoteAnimations() {
   if (gameMad != false && gameAnimateCount < 5) {
     if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
       displayHide(gameMadAlertTwo);
+
       displayFlex(gameMadAlertOne);
       gameAnimateCount++;
     } else {
       displayHide(gameMadAlertOne);
+
       displayFlex(gameMadAlertTwo);
       gameAnimateCount++;
     }
@@ -338,6 +307,7 @@ function characterMadEmoteAnimations() {
     gameHappy = false;
     gameAnimateCount = 0;
     displayHide(gameMadAlertTwo);
+
     displayHide(gameMadAlertOne);
   }
 }
@@ -365,7 +335,7 @@ function quitGame() {
     gameMad = false;
     gameAnimateCount = 0;
     gameIsRunning = false;
-    gameRound = 0;
+    state.gameState.gameRound = 0;
     gameTimeCount = 0;
     gameTimeStore = 0;
     playerSelectedChoice = false;
@@ -418,7 +388,7 @@ function updateGameTimerAndRestart() {
       gameTimer.innerHTML = `${gameTimeStore}`;
     }
   } else if (gameTimeCount > 24) {
-    gameRound++;
+    state.gameState.gameRound += 1;
     playerSelectedChoice = false;
     playerSelection = 0;
     gameTimeCount = 0;
@@ -705,8 +675,8 @@ function startAnimation() {
 
 function updatePictures() {
   updateTheme();
-  happyAlertAnimate();
-  madAlertAnimate();
+  happyAlertAnimate(animateCount, state);
+  madAlertAnimate(animateCount, state);
   updateFood(state);
   placePoop(state);
   autoAlert(state);
@@ -718,6 +688,7 @@ function updatePictures() {
   showGravestone();
   updateAndPlayGameAnimations();
 }
+
 startAnimation();
 
 // function autoDeath() {

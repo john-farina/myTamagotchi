@@ -47,6 +47,9 @@ let state = {
     lastComplain: new Date(),
     lastAnimation: new Date(),
   },
+  gameState: {
+    gameRound: 0,
+  },
 };
 
 export { state, tamaState };

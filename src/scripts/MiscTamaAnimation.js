@@ -9,6 +9,7 @@ import {
   child2,
   child2Side,
   child2Eat,
+  child2Small,
   childClass,
   teenClass,
   teen1,
