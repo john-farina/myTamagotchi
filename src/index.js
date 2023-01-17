@@ -161,54 +161,6 @@ import {
 
 const body = document.querySelector("body");
 
-function autoAlert() {
-  if (state.tamaSick === true) {
-    sickAlert.style.visibility = "visible";
-  } else {
-    sickAlert.style.visibility = "hidden";
-  }
-}
-
-function placePoop() {
-  if (state.tamaPoop === 1) {
-    poop1.style.visibility = "visible";
-  }
-
-  if (state.tamaPoop === 2) {
-    poop1.style.visibility = "visible";
-
-    poop2.style.visibility = "visible";
-  }
-
-  if (state.tamaPoop === 3) {
-    poop1.style.visibility = "visible";
-
-    poop2.style.visibility = "visible";
-
-    poop3.style.visibility = "visible";
-  }
-
-  if (state.tamaPoop === 4) {
-    poop1.style.visibility = "visible";
-
-    poop2.style.visibility = "visible";
-
-    poop3.style.visibility = "visible";
-
-    poop4.style.visibility = "visible";
-  }
-
-  if (state.tamaPoop === 0) {
-    poop1.style.visibility = "hidden";
-
-    poop2.style.visibility = "hidden";
-
-    poop3.style.visibility = "hidden";
-
-    poop4.style.visibility = "hidden";
-  }
-}
-
 import { updateFood } from "./scripts/FoodFunctions";
 
 import {
@@ -240,6 +192,8 @@ function allEatSnackAnimations() {
 import {
   removeAllChildAndTeen,
   eggHatchAnimation,
+  placePoop,
+  autoAlert,
 } from "./scripts/MiscTamaAnimation";
 
 import { updateHeartSvg, updateDisciplineSvg } from "./scripts/Hearts";
@@ -387,6 +341,7 @@ function characterMadEmoteAnimations() {
     displayHide(gameMadAlertOne);
   }
 }
+
 function characterHappyEmoteAnimations() {
   if (gameHappy != false && gameAnimateCount < 5) {
     if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
@@ -403,20 +358,6 @@ function characterHappyEmoteAnimations() {
     displayHide(gameHappyAlert);
   }
 }
-
-// let gameIsRunning = false;
-// let gameRound = 0;
-// let gameTimeCount = 0;
-// let gameTimeStore = 0;
-// let lastGuessTime;
-// let playerSelectedChoice = false;
-// let playerSelection = 0;
-// let computerSelection = 0;
-// let playerScore = 0;
-// let computerScore = 0;
-// let gameHappy = false;
-// let gameMad = false;
-// let gameAnimateCount = 0;
 
 function quitGame() {
   if (gameEnded != false) {
@@ -767,8 +708,8 @@ function updatePictures() {
   happyAlertAnimate();
   madAlertAnimate();
   updateFood(state);
-  placePoop();
-  autoAlert();
+  placePoop(state);
+  autoAlert(state);
   eggHatchAnimation(state);
   allEatSnackAnimations();
   updateHeartSvg(state);

@@ -21,6 +21,11 @@ import {
   eggState1,
   eggState2,
   eggState3,
+  poop1,
+  poop2,
+  poop3,
+  poop4,
+  sickAlert,
 } from "./tamaImports";
 import { tamaState } from "./state";
 
@@ -63,4 +68,52 @@ function eggHatchAnimation(state) {
   }
 }
 
-export { removeAllChildAndTeen, eggHatchAnimation };
+function placePoop(state) {
+  if (state.tamaPoop === 1) {
+    poop1.style.visibility = "visible";
+  }
+
+  if (state.tamaPoop === 2) {
+    poop1.style.visibility = "visible";
+
+    poop2.style.visibility = "visible";
+  }
+
+  if (state.tamaPoop === 3) {
+    poop1.style.visibility = "visible";
+
+    poop2.style.visibility = "visible";
+
+    poop3.style.visibility = "visible";
+  }
+
+  if (state.tamaPoop === 4) {
+    poop1.style.visibility = "visible";
+
+    poop2.style.visibility = "visible";
+
+    poop3.style.visibility = "visible";
+
+    poop4.style.visibility = "visible";
+  }
+
+  if (state.tamaPoop === 0) {
+    poop1.style.visibility = "hidden";
+
+    poop2.style.visibility = "hidden";
+
+    poop3.style.visibility = "hidden";
+
+    poop4.style.visibility = "hidden";
+  }
+}
+
+function autoAlert(state) {
+  if (state.tamaSick === true) {
+    sickAlert.style.visibility = "visible";
+  } else {
+    sickAlert.style.visibility = "hidden";
+  }
+}
+
+export { removeAllChildAndTeen, eggHatchAnimation, placePoop, autoAlert };
