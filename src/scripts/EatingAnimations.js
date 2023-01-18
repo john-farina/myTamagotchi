@@ -421,6 +421,18 @@ function adultFiveEatSnackAnimation(state) {
   foodAnimation(3, state);
 }
 
+function allEatSnackAnimations(state) {
+  childEatSnackAnimation(state);
+  childTwoEatSnackAnimation(state);
+  teenEatSnackAnimation(state);
+  teenTwoEatSnackAnimation(state);
+  adultOneEatSnackAnimation(state);
+  adultTwoEatSnackAnimation(state);
+  adultThreeEatSnackAnimation(state);
+  adultFourEatSnackAnimation(state);
+  adultFiveEatSnackAnimation(state);
+}
+
 export {
   childEatSnackAnimation,
   childTwoEatSnackAnimation,
@@ -431,4 +443,5 @@ export {
   adultThreeEatSnackAnimation,
   adultFourEatSnackAnimation,
   adultFiveEatSnackAnimation,
+  allEatSnackAnimations,
 };

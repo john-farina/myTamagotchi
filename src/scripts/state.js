@@ -48,8 +48,32 @@ let state = {
     lastAnimation: new Date(),
   },
   gameState: {
-    gameRound: 0,
+    gameIsRunning: false,
+    gameTimeCount: 0,
+    gameTimeStore: 0,
+    playerSelectedChoice: false,
+    playerSelection: 0,
+    computerSelection: 0,
+    playerScore: 0,
+    computerScore: 0,
+    gameHappy: false,
+    gameMad: false,
+    gameEnded: false,
+    gameAnimateCount: 0,
   },
 };
+
+let gameIsRunning = false;
+let gameTimeCount = 0;
+let gameTimeStore = 0;
+let playerSelectedChoice = false;
+let playerSelection = 0;
+let computerSelection = 0;
+let playerScore = 0;
+let computerScore = 0;
+let gameHappy = false;
+let gameMad = false;
+let gameEnded = false;
+let gameAnimateCount = 0;
 
 export { state, tamaState };

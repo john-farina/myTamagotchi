@@ -1,4 +1,5 @@
 import { randomNumGen, timeMathToSec } from "./usefulFunctions";
+import { child1, child1Low } from "./tamaImports";
 
 function hideImage(character) {
   character.style.visibility = "hidden";
@@ -87,4 +88,25 @@ function autoRandomFlip(character, state) {
   }
 }
 
-export { hideImage, showImage, moveLeftToRightRandom, autoRandomFlip };
+function childOneMovement(state) {
+  if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
+    let randomChoice = randomNumGen(4);
+    if (randomChoice === 3) {
+      child1.style.visibility = "hidden";
+      child1Low.style.visibility = "visible";
+      moveLeftToRightRandom(child1Low, state);
+    } else {
+      child1Low.style.visibility = "hidden";
+      child1.style.visibility = "visible";
+      moveLeftToRightRandom(child1, state);
+    }
+  }
+}
+
+export {
+  hideImage,
+  showImage,
+  moveLeftToRightRandom,
+  autoRandomFlip,
+  childOneMovement,
+};

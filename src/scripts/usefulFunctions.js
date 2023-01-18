@@ -16,4 +16,20 @@ function greaterAndLessThen(num1, num2, name) {
   return outcome;
 }
 
-export { randomNumGen, timeMathToSec, greaterAndLessThen };
+function displayFlex(value) {
+  value.style.display = "flex";
+  return value;
+}
+
+function displayHide(value) {
+  value.style.display = "none";
+  return value;
+}
+
+export {
+  randomNumGen,
+  timeMathToSec,
+  greaterAndLessThen,
+  displayFlex,
+  displayHide,
+};

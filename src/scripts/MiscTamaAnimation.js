@@ -24,8 +24,20 @@ import {
   poop3,
   poop4,
   sickAlert,
+  adultClass,
+  adult1,
+  adult2,
+  adult3,
+  adult4,
+  adult5,
+  adult6,
+  gravestoneText,
+  gravestoneTwo,
+  gravestone,
 } from "./tamaImports";
 import { tamaState } from "./state";
+import { displayFlex, displayHide } from "./usefulFunctions";
+import { hideImage } from "./MovmentAnimation";
 
 function removeAllChildAndTeen() {
   eggState1.style.visibility = "hidden";
@@ -114,4 +126,40 @@ function autoAlert(state) {
   }
 }
 
-export { removeAllChildAndTeen, eggHatchAnimation, placePoop, autoAlert };
+function showGravestone(state) {
+  if (state.tamaDead === true) {
+    state.tamaStage = tamaState[13];
+    hideImage(poop1);
+    hideImage(poop2);
+    hideImage(poop3);
+    hideImage(poop4);
+    childClass.style.visibility = "hidden";
+    teenClass.style.visibility = "hidden";
+    adultClass.style.visibility = "hidden";
+    adult1.style.visibility = "hidden";
+    adult2.style.visibility = "hidden";
+    adult3.style.visibility = "hidden";
+    adult4.style.visibility = "hidden";
+    adult5.style.visibility = "hidden";
+    adult6.style.visibility = "hidden";
+    if (timeMathToSec(state.timeState.lastAnimation) % 2 === 0) {
+      displayFlex(gravestoneText);
+      gravestoneText.innerHTML = `${state.tamaAge} Years`;
+      displayHide(gravestone);
+      displayFlex(gravestoneTwo);
+    } else {
+      displayFlex(gravestoneText);
+      gravestoneText.innerHTML = `${state.tamaAge} Years`;
+      displayHide(gravestoneTwo);
+      displayFlex(gravestone);
+    }
+  }
+}
+
+export {
+  removeAllChildAndTeen,
+  eggHatchAnimation,
+  placePoop,
+  autoAlert,
+  showGravestone,
+};

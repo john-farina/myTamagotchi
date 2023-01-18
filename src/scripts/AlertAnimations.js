@@ -1,8 +1,9 @@
 import { hideImage, showImage } from "./MovmentAnimation";
 import { timeMathToSec } from "./usefulFunctions";
 import { madAlert1, madAlert2, happyAlert } from "./tamaImports";
+let animateCount = 0;
 
-function madAlertAnimate(animateCount, state) {
+function madAlertAnimate(state) {
   if (animateCount <= 11 && state.tamaIsMad === true) {
     if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
       animateCount++;
@@ -21,7 +22,7 @@ function madAlertAnimate(animateCount, state) {
   }
 }
 
-function happyAlertAnimate(animateCount, state) {
+function happyAlertAnimate(state) {
   if (animateCount <= 5 && state.tamaIsHappy === true) {
     if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
       animateCount++;

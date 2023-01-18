@@ -146,8 +146,10 @@ const optionsMenu = document.querySelector("#options-menu");
 const option1 = document.querySelector("#option1");
 const colorsMenu = document.querySelector("#color-choice-menu");
 const alfLogo = document.querySelector("#alf-logo");
+const planetExpressLogo = document.querySelector("#express-logo");
 
 export {
+  planetExpressLogo,
   alfLogo,
   colorsMenu,
   option1,
