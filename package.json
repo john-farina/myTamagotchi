@@ -5,7 +5,7 @@
   "main": "buttons.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "dev": "webpack --watch"
+    "dev": "webpack --watch --mode=development"
   },
   "repository": {
     "type": "git",
