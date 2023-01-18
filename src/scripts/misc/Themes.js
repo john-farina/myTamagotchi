@@ -7,7 +7,7 @@ import {
   menuButton,
   planetExpressLogo,
   alfLogo,
-} from "./tamaImports";
+} from "../tamaImports";
 import { displayFlex, displayHide } from "./usefulFunctions";
 const body = document.querySelector("body");
 

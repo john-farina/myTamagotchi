@@ -3,7 +3,7 @@ import {
   randomNumGen,
   displayFlex,
   displayHide,
-} from "./usefulFunctions";
+} from "../misc/usefulFunctions";
 
 import {
   playerChoiceDiv,
@@ -25,11 +25,11 @@ import {
   tamaChoiceTwo,
   playerChoiceTwo,
   gameTimer,
-} from "./tamaImports";
+} from "../tamaImports";
 
-import { autoRandomFlip } from "./MovmentAnimation";
+import { autoRandomFlip } from "../animations/MovmentAnimation";
 
-import { tamaState } from "./state";
+import { tamaState } from "../state";
 
 function chooseOneAnimation(state, playerSelectedChoice, gameTimeStore) {
   if (playerSelectedChoice === false && gameTimeStore <= 29) {

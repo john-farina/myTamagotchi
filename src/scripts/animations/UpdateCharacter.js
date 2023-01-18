@@ -13,14 +13,14 @@ import {
   adult3,
   adult4,
   gravestone,
-} from "./tamaImports";
+} from "../tamaImports";
 import {
   childOneMovement,
   moveLeftToRightRandom,
   autoRandomFlip,
 } from "./MovmentAnimation";
 import { removeAllChildAndTeen } from "./MiscTamaAnimation";
-import { tamaState } from "./state";
+import { tamaState } from "../state";
 
 function updateChracterPicture(state, gameIsRunning) {
   if (state.tamaDead || state.foodAnimationGoing || gameIsRunning) {

@@ -34,9 +34,9 @@ import {
   gravestoneText,
   gravestoneTwo,
   gravestone,
-} from "./tamaImports";
-import { tamaState } from "./state";
-import { displayFlex, displayHide } from "./usefulFunctions";
+} from "../tamaImports";
+import { tamaState } from "../state";
+import { displayFlex, displayHide } from "../misc/usefulFunctions";
 import { hideImage } from "./MovmentAnimation";
 
 function removeAllChildAndTeen() {

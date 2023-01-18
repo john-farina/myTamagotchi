@@ -14,7 +14,7 @@ import {
   discipline3,
   discipline4,
   discipline5,
-} from "./tamaImports";
+} from "../tamaImports";
 
 function updateHeartSvg(state) {
   if (state.tamaHealth === 0) {

@@ -1,6 +1,6 @@
 import { hideImage, showImage } from "./MovmentAnimation";
-import { timeMathToSec } from "./usefulFunctions";
-import { tamaState } from "./state";
+import { timeMathToSec } from "../misc/usefulFunctions";
+import { tamaState } from "../state";
 import {
   child1,
   child1Sick,
@@ -27,7 +27,7 @@ import {
   adult4Eat,
   adult5,
   adult5Eat,
-} from "./tamaImports";
+} from "../tamaImports";
 import { foodAnimation } from "./FoodFunctions";
 
 function childOpenMouthAnimate(state) {

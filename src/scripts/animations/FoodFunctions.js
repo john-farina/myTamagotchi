@@ -1,4 +1,4 @@
-import { timeMathToSec } from "./usefulFunctions";
+import { timeMathToSec } from "../misc/usefulFunctions";
 import {
   meal1,
   meal2,
@@ -7,7 +7,7 @@ import {
   meal2Half,
   snack1Half,
   snack2Half,
-} from "./tamaImports";
+} from "../tamaImports";
 import { hideImage, showImage } from "./MovmentAnimation";
 
 function updateFood(state) {

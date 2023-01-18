@@ -1,5 +1,5 @@
-import { randomNumGen, timeMathToSec } from "./usefulFunctions";
-import { child1, child1Low } from "./tamaImports";
+import { randomNumGen, timeMathToSec } from "../misc/usefulFunctions";
+import { child1, child1Low } from "../tamaImports";
 
 function hideImage(character) {
   character.style.visibility = "hidden";

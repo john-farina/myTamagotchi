@@ -1,6 +1,6 @@
 import { hideImage, showImage } from "./MovmentAnimation";
-import { timeMathToSec } from "./usefulFunctions";
-import { madAlert1, madAlert2, happyAlert } from "./tamaImports";
+import { timeMathToSec } from "../misc/usefulFunctions";
+import { madAlert1, madAlert2, happyAlert } from "../tamaImports";
 let animateCount = 0;
 
 function madAlertAnimate(state) {
