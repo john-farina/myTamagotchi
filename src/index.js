@@ -1,13 +1,8 @@
 import { state, tamaState } from "./scripts/state";
 let myInterval;
-let foodIsActive = false;
-let lightsIsActive = false;
-let healthIsActive = false;
-let health2IsActive = false;
 let menuIsOpen = false;
 let themeMenuIsOpen = false;
 
-/////////////////////////////////////All of Tama's query selections
 import {
   option1,
   optionsMenu,
@@ -103,6 +98,7 @@ import {
   updateScore,
   quitGame,
   scoreAutoQuit,
+  playGame,
 } from "./scripts/mainFeatures/game/Game";
 
 function updateGameTimerAndRestart() {
@@ -155,19 +151,6 @@ function updateAndPlayGameAnimations() {
   }
 
   scoreAutoQuit(state);
-}
-
-function playGame() {
-  if (state.gameState.gameIsRunning != false) {
-    if (state.gameState.gameTimeStore < 8) {
-      console.log("game running", state.gameState.gameTimeStore);
-    } else if (state.gameState.gameTimeStore === 8) {
-      state.gameState.playerSelectedChoice = false;
-      state.gameState.playerSelection = 0;
-      state.gameState.gameTimeStore = 0;
-      console.log("game ended", state.gameState.gameTimeStore);
-    }
-  }
 }
 
 import {
@@ -263,7 +246,7 @@ function updateFunctions() {
     autoHealthDegen(state);
     autoHappyDegen(state);
     autoDisciplineTest(state);
-    playGame();
+    playGame(state);
   }
   autoAge();
   autoAttentionAlert(state);
@@ -296,153 +279,57 @@ function hideAllExtraScreens() {
   state.screenState.health2IsActive = false;
 }
 
-foodButton.addEventListener("click", function () {
-  if (state.foodAnimationGoing || state.tamaIsMad) {
-    return;
-  }
+import {
+  FoodEvent,
+  MealEvent,
+  SnackEvent,
+} from "./scripts/mainFeatures/events/FoodEvent";
 
-  if (
-    state.screenState.lightsIsActive ||
-    state.gameState.gameIsRunning ||
-    state.screenState.healthIsActive ||
-    state.screenState.health2IsActive ||
-    state.screenState.foodIsActive === false
-  ) {
-    hideAllExtraScreens();
-    showImage(foodScreen);
-    state.screenState.foodIsActive = true;
-    return;
-  }
-
-  if (state.screenState.foodIsActive === true) {
-    foodScreen.style.visibility = "hidden";
-    state.screenState.foodIsActive = false;
-  }
+foodButton.addEventListener("click", () => {
+  FoodEvent(state);
 });
 
-mealButton.addEventListener("click", function () {
-  if (state.tamaHealth < 5) {
-    state.foodAnimationGoing = true;
-    feed(1, state);
-    allEatSnackAnimations(state);
-  }
-
-  hideAllExtraScreens();
+mealButton.addEventListener("click", () => {
+  MealEvent(state);
 });
 
-snackButton.addEventListener("click", function () {
-  if (state.tamaHappy <= 5) {
-    state.foodAnimationGoing = true;
-    feed(2, state);
-    allEatSnackAnimations(state);
-
-    if (state.needAttention === true) {
-      state.needAttention = false;
-      state.tamaSpoiled++;
-    }
-  }
-
-  hideAllExtraScreens();
+snackButton.addEventListener("click", () => {
+  SnackEvent(state);
 });
 
-lightButton.addEventListener("click", function () {
-  if (state.foodAnimationGoing) {
-    return;
-  }
+import {
+  LightEvent,
+  LightsOnAndOff,
+} from "./scripts/mainFeatures/events/LightsEvent";
 
-  if (
-    state.screenState.foodIsActive ||
-    state.gameState.gameIsRunning ||
-    state.screenState.healthIsActive ||
-    state.screenState.health2IsActive
-  ) {
-    hideAllExtraScreens();
-    showImage(lightsScreen);
-    state.screenState.lightsIsActive = true;
-  }
-
-  if (state.lightIsOff === true && state.screenState.lightsIsActive === false) {
-    hideImage(lightsOffScreen);
-    showImage(lightsScreen);
-    state.screenState.lightsIsActive = true;
-  } else if (
-    state.lightIsOff === true &&
-    state.screenState.lightsIsActive === true
-  ) {
-    hideImage(lightsScreen);
-    showImage(lightsOffScreen);
-    state.screenState.lightsIsActive = false;
-  } else if (state.screenState.lightsIsActive === false) {
-    lightsScreen.style.visibility = "visible";
-    state.screenState.lightsIsActive = true;
-  } else if (state.screenState.lightsIsActive === true) {
-    lightsScreen.style.visibility = "hidden";
-    state.screenState.lightsIsActive = false;
-  }
+lightButton.addEventListener("click", () => {
+  LightEvent(state);
 });
 
-lightsOn.addEventListener("click", function () {
-  hideImage(lightsScreen);
-  state.screenState.lightsIsActive = false;
-  hideImage(lightsOffScreen);
-  state.lightIsOff = false;
-  console.log(state.lightIsOff);
+lightsOn.addEventListener("click", () => {
+  LightsOnAndOff(state, false);
 });
 
 lightsOff.addEventListener("click", function () {
-  state.lightIsOff = true;
-  hideImage(lightsScreen);
-  state.screenState.lightsIsActive = false;
-  showImage(lightsOffScreen);
+  LightsOnAndOff(state, true);
 });
 
-gameButton.addEventListener("click", function () {
-  if (state.tamaIsMad != true) {
-    hideAllExtraScreens();
-    if (foodIsActive === true) {
-      hideAllExtraScreens();
-      removeAllChildAndTeen();
-      showImage(gameScreen);
-      state.gameState.gameIsRunning = true;
-    } else if (state.gameState.gameIsRunning === false) {
-      state.gameState.gameEnded = false;
-      state.gameState.gameIsRunning = true;
-      removeAllChildAndTeen();
-      showImage(gameScreen);
-    } else if (state.gameState.gameIsRunning === true) {
-      state.gameState.gameEnded = true;
-    }
-  }
+import {
+  GameButton,
+  PlayerChoiceOne,
+  PlayerChoiceTwo,
+} from "./scripts/mainFeatures/game/GameEventListeners";
+
+gameButton.addEventListener("click", () => {
+  GameButton(state);
 });
 
-playerChoiceOne.addEventListener("click", function () {
-  if (state.gameState.playerSelectedChoice != true) {
-    state.gameState.playerSelectedChoice = true;
-    state.gameState.playerSelection = 1;
-    state.gameState.gameTimeStore = 6;
-    state.gameState.computerSelection = computerGuess();
-    updateScore(
-      state.gameState.playerSelection,
-      state.gameState.playerScore,
-      state.gameState.computerSelection,
-      state.gameState.computerScore
-    );
-  }
+playerChoiceOne.addEventListener("click", () => {
+  PlayerChoiceOne(state);
 });
 
-playerChoiceTwo.addEventListener("click", function () {
-  if (state.gameState.playerSelectedChoice != true) {
-    state.gameState.playerSelectedChoice = true;
-    state.gameState.playerSelection = 2;
-    state.gameState.gameTimeStore = 6;
-    state.gameState.computerSelection = computerGuess();
-    updateScore(
-      state.gameState.playerSelection,
-      state.gameState.playerScore,
-      state.gameState.computerSelection,
-      state.gameState.computerScore
-    );
-  }
+playerChoiceTwo.addEventListener("click", () => {
+  PlayerChoiceTwo(state);
 });
 
 healButton.addEventListener("click", function () {
@@ -457,85 +344,25 @@ healButton.addEventListener("click", function () {
   }
 });
 
+import { HealthEvent } from "./scripts/mainFeatures/events/HealthEvent";
+
 healthButton.addEventListener("click", function () {
-  if (state.foodAnimationGoing) {
-    return;
-  }
-
-  if (
-    state.screenState.healthIsActive === true &&
-    state.screenState.health2IsActive === false
-  ) {
-    hideImage(healthScreen);
-    showImage(healthScreen2);
-    state.screenState.health2IsActive = true;
-  } else if (
-    state.screenState.healthIsActive &&
-    state.screenState.healthIsActive
-  ) {
-    hideImage(healthScreen2);
-    hideImage(healthScreen);
-    state.screenState.healthIsActive = false;
-    state.screenState.health2IsActive = false;
-
-    return;
-  }
-
-  if (
-    state.screenState.foodIsActive ||
-    state.screenState.lightsIsActive ||
-    state.gameState.gameIsRunning ||
-    !state.screenState.healthIsActive
-  ) {
-    hideAllExtraScreens();
-    healthScreen.style.visibility = "visible";
-    state.screenState.healthIsActive = true;
-  }
+  HealthEvent(state);
 });
+
+import { CleanEvent } from "./scripts/mainFeatures/events/CleanEvent";
 
 cleanButton.addEventListener("click", function () {
-  hideAllExtraScreens();
-  if (state.tamaPoop > 0) {
-    clean(state);
-    cleaningLine.classList.add("cleanAnimation");
-    showImage(cleaningLine);
-    setTimeout(function () {
-      cleaningLine.classList.remove("cleanAnimation");
-      hideImage(cleaningLine);
-      state.tamaIsHappy = true;
-    }, 800);
-  } else {
-    cleaningLine.classList.add("cleanAnimation");
-    showImage(cleaningLine);
-    setTimeout(function () {
-      cleaningLine.classList.remove("cleanAnimation");
-      hideImage(cleaningLine);
-    }, 800);
-  }
+  CleanEvent(state);
 });
+
+import { DisciplineEvent } from "./scripts/mainFeatures/events/DisciplineEvent";
 
 disciplineButton.addEventListener("click", function () {
-  hideAllExtraScreens();
-  if (state.needAttention === true) {
-    state.tamaIsMad = true;
-    state.needAttention = false;
-    state.tamaDiscipline++;
-  } else {
-    state.tamaIsMad = true;
-    let randomNum = randomNumGen(5);
-    if (randomNum === 2) {
-      state.tamaHappy--;
-    }
-  }
+  DisciplineEvent(state);
 });
 
-// const menuButton = document.querySelector("#buttonFour");
-// const dropDownMenu = document.querySelector("#drop-down-menu");
-// const themeButton = document.querySelector("#theme-selection");
-// const themeMenu = document.querySelector("#drop-down-color-choice");
-// const color1Button = document.querySelector("#color1");
-// const color2Button = document.querySelector("#color2");
-// const color3Button = document.querySelector("#color3");
+///////////////////// need to finish rest and clean code
 
 function animateCloseAllTabs() {
   themeMenu.classList.remove("second-menu-animate-open");
@@ -615,6 +442,7 @@ color3Button.addEventListener("click", function () {
 });
 
 const color4Button = document.querySelector("#color4");
+
 color4Button.addEventListener("click", function () {
   state.tamaTheme = 3;
   animateCloseAllTabs();
@@ -624,31 +452,6 @@ color5Button.addEventListener("click", function () {
   state.tamaTheme = 4;
   animateCloseAllTabs();
 });
-
-// const helpEat = document.querySelector('#help-eat');
-// const foodGif = document.querySelector('#food-gif');
-
-// const helpLights = document.querySelector('#help-light');
-// const lightsGif = document.querySelector('#lights-gif');
-
-// const helpGame = document.querySelector('#help-game');
-// const gameGif = document.querySelector('#game-gif');
-
-// const helpSick = document.querySelector('#help-sick');
-// const sickGif = document.querySelector('#sick-gif');
-
-// const helpClean = document.querySelector('#help-clean');
-// const poopGif = document.querySelector('#poop-gif');
-
-// const helpHealth = document.querySelector('#help-health');
-// const healthGif = document.querySelector('#health-gif');
-
-// const helpDiscpline = document.querySelector('#help-discipline');
-
-// const helpAttention = document.querySelector('#help-attention');
-
-// const helpMenuButton = document.querySelector('#help-menu');
-// const helpScreen = document.querySelector('#help-screen');
 
 helpMenuButton.addEventListener("click", function () {
   dropDownMenu.classList.remove("menu-animate-open");

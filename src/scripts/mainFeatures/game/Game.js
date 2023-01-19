@@ -6,11 +6,9 @@ import {
 } from "../../misc/usefulFunctions";
 import { hideImage } from "../../animations/MovmentAnimation";
 import { gameScreen } from "../../tamaImports";
-
 import {
   playerChoiceDiv,
   choiceText,
-  gameButton,
   gameChildOne,
   gameChildTwo,
   gameTeenOne,
@@ -28,9 +26,7 @@ import {
   playerChoiceTwo,
   gameTimer,
 } from "../../tamaImports";
-
 import { autoRandomFlip } from "../../animations/MovmentAnimation";
-
 import { tamaState } from "../../state";
 
 function chooseOneAnimation(state, playerSelectedChoice, gameTimeStore) {
@@ -198,9 +194,9 @@ function updateScore(
   computerScore
 ) {
   if (playerSelection === computerSelection) {
-    playerScore++;
+    playerScore = playerScore + 1;
   } else {
-    computerScore++;
+    computerScore = computerScore + 1;
   }
 }
 
@@ -254,6 +250,19 @@ function quitGame(state) {
   }
 }
 
+function playGame(state) {
+  if (state.gameState.gameIsRunning != false) {
+    if (state.gameState.gameTimeStore < 8) {
+      console.log("game running", state.gameState.gameTimeStore);
+    } else if (state.gameState.gameTimeStore === 8) {
+      state.gameState.playerSelectedChoice = false;
+      state.gameState.playerSelection = 0;
+      state.gameState.gameTimeStore = 0;
+      console.log("game ended", state.gameState.gameTimeStore);
+    }
+  }
+}
+
 export {
   chooseOneAnimation,
   computerGuess,
@@ -265,4 +274,5 @@ export {
   updateGameTimerAndRestart,
   scoreAutoQuit,
   quitGame,
+  playGame,
 };

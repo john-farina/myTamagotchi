@@ -1,3 +1,25 @@
+import { hideImage } from "../animations/MovmentAnimation";
+import {
+  foodScreen,
+  lightsScreen,
+  healthScreen,
+  healthScreen2,
+} from "../tamaImports";
+import { quitGame } from "../mainFeatures/game/Game";
+
+function hideAllExtraScreens(state) {
+  hideImage(foodScreen);
+  state.screenState.foodIsActive = false;
+  hideImage(lightsScreen);
+  state.screenState.lightsIsActive = false;
+  state.gameState.gameEnded = true;
+  quitGame(state);
+  hideImage(healthScreen);
+  state.screenState.healthIsActive = false;
+  hideImage(healthScreen2);
+  state.screenState.health2IsActive = false;
+}
+
 function randomNumGen(percent) {
   let randomNum = Math.floor(Math.random() * percent);
 
@@ -32,4 +54,5 @@ export {
   greaterAndLessThen,
   displayFlex,
   displayHide,
+  hideAllExtraScreens,
 };
