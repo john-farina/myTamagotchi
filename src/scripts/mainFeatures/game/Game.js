@@ -3,7 +3,9 @@ import {
   randomNumGen,
   displayFlex,
   displayHide,
-} from "../misc/usefulFunctions";
+} from "../../misc/usefulFunctions";
+import { hideImage } from "../../animations/MovmentAnimation";
+import { gameScreen } from "../../tamaImports";
 
 import {
   playerChoiceDiv,
@@ -25,11 +27,11 @@ import {
   tamaChoiceTwo,
   playerChoiceTwo,
   gameTimer,
-} from "../tamaImports";
+} from "../../tamaImports";
 
-import { autoRandomFlip } from "../animations/MovmentAnimation";
+import { autoRandomFlip } from "../../animations/MovmentAnimation";
 
-import { tamaState } from "../state";
+import { tamaState } from "../../state";
 
 function chooseOneAnimation(state, playerSelectedChoice, gameTimeStore) {
   if (playerSelectedChoice === false && gameTimeStore <= 29) {
@@ -234,6 +236,24 @@ function scoreAutoQuit(gameEnded, playerScore, computerScore, state) {
   }
 }
 
+function quitGame(state) {
+  if (state.gameState.gameEnded) {
+    state.gameState.gameHappy = false;
+    state.gameState.gameMad = false;
+    state.gameState.gameAnimateCount = 0;
+    state.gameState.gameIsRunning = false;
+    state.gameState.gameRound = 0;
+    state.gameState.gameTimeCount = 0;
+    state.gameState.gameTimeStore = 0;
+    state.gameState.playerSelectedChoice = false;
+    state.gameState.playerSelection = 0;
+    state.gameState.computerSelection = 0;
+    state.gameState.playerScore = 0;
+    state.gameState.computerScore = 0;
+    hideImage(gameScreen);
+  }
+}
+
 export {
   chooseOneAnimation,
   computerGuess,
@@ -244,4 +264,5 @@ export {
   updateScore,
   updateGameTimerAndRestart,
   scoreAutoQuit,
+  quitGame,
 };

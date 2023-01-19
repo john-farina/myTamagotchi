@@ -61,19 +61,14 @@ let state = {
     gameEnded: false,
     gameAnimateCount: 0,
   },
+  screenState: {
+    foodIsActive: false,
+    lightsIsActive: false,
+    healthIsActive: false,
+    health2IsActive: false,
+    menuIsOpen: false,
+    themeMenuIsOpen: false,
+  },
 };
-
-let gameIsRunning = false;
-let gameTimeCount = 0;
-let gameTimeStore = 0;
-let playerSelectedChoice = false;
-let playerSelection = 0;
-let computerSelection = 0;
-let playerScore = 0;
-let computerScore = 0;
-let gameHappy = false;
-let gameMad = false;
-let gameEnded = false;
-let gameAnimateCount = 0;
 
 export { state, tamaState };

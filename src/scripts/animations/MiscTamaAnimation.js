@@ -36,7 +36,11 @@ import {
   gravestone,
 } from "../tamaImports";
 import { tamaState } from "../state";
-import { displayFlex, displayHide } from "../misc/usefulFunctions";
+import {
+  displayFlex,
+  displayHide,
+  timeMathToSec,
+} from "../misc/usefulFunctions";
 import { hideImage } from "./MovmentAnimation";
 
 function removeAllChildAndTeen() {

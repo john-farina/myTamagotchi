@@ -16,6 +16,9 @@ import {
   discipline5,
 } from "../tamaImports";
 
+let emptyHeart = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
+let halfHeart = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
+
 function updateHeartSvg(state) {
   if (state.tamaHealth === 0) {
     heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
@@ -24,7 +27,7 @@ function updateHeartSvg(state) {
     heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
     heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHealth === 0.5) {
-    heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    heart1.src = halfHeart;
     heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
     heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
     heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
@@ -37,7 +40,7 @@ function updateHeartSvg(state) {
     heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHealth === 1.5) {
     heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    heart2.src = halfHeart;
     heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
     heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
     heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
@@ -50,7 +53,7 @@ function updateHeartSvg(state) {
   } else if (state.tamaHealth === 2.5) {
     heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
     heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    heart3.src = halfHeart;
     heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
     heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHealth === 3) {
@@ -63,7 +66,7 @@ function updateHeartSvg(state) {
     heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
     heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
     heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    heart4.src = halfHeart;
     heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHealth === 4) {
     heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
@@ -76,7 +79,7 @@ function updateHeartSvg(state) {
     heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
     heart3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
     heart4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    heart5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    heart5.src = halfHeart;
   } else if (state.tamaHealth === 5) {
     heart1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
     heart2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
@@ -92,7 +95,7 @@ function updateHeartSvg(state) {
     happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
     happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHappy === 0.5) {
-    happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    happy1.src = halfHeart;
     happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
     happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
     happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
@@ -105,7 +108,7 @@ function updateHeartSvg(state) {
     happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHappy === 1.5) {
     happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
-    happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    happy2.src = halfHeart;
     happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
     happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
     happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
@@ -118,7 +121,7 @@ function updateHeartSvg(state) {
   } else if (state.tamaHappy === 2.5) {
     happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
     happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    happy3.src = halfHeart;
     happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
     happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHappy === 3) {
@@ -131,7 +134,7 @@ function updateHeartSvg(state) {
     happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
     happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
     happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    happy4.src = halfHeart;
     happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartEmpty.svg";
   } else if (state.tamaHappy === 4) {
     happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
@@ -144,7 +147,7 @@ function updateHeartSvg(state) {
     happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
     happy3.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
     happy4.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
-    happy5.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartHalf.svg";
+    happy5.src = halfHeart;
   } else if (state.tamaHappy === 5) {
     happy1.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
     happy2.src = "../src/tamaPictures/tamaAlert/tamaHeart/tama_heartFull.svg";
