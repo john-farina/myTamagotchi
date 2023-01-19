@@ -18,14 +18,19 @@ function FoodEvent(state) {
     state.screenState.foodIsActive === false
   ) {
     hideAllExtraScreens(state);
+
     showImage(foodScreen);
+
     state.screenState.foodIsActive = true;
+
     return;
   }
 
   if (state.screenState.foodIsActive === true) {
     hideAllExtraScreens(state);
+
     foodScreen.style.visibility = "hidden";
+
     state.screenState.foodIsActive = false;
   }
 }
@@ -33,7 +38,9 @@ function FoodEvent(state) {
 function MealEvent(state) {
   if (state.tamaHealth < 5) {
     state.foodAnimationGoing = true;
+
     feed(1, state);
+
     allEatSnackAnimations(state);
   }
 
@@ -43,11 +50,14 @@ function MealEvent(state) {
 function SnackEvent(state) {
   if (state.tamaHappy <= 5) {
     state.foodAnimationGoing = true;
+
     feed(2, state);
+
     allEatSnackAnimations(state);
 
     if (state.needAttention === true) {
       state.needAttention = false;
+
       state.tamaSpoiled++;
     }
   }
