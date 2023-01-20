@@ -24,31 +24,37 @@ export function ReturnHelpEventListeners(state) {
 
   helpEat.addEventListener("click", function () {
     hideAllGifs();
+
     displayFlex(foodGif);
   });
 
   helpLights.addEventListener("click", function () {
     hideAllGifs();
+
     displayFlex(lightsGif);
   });
 
   helpGame.addEventListener("click", function () {
     hideAllGifs();
+
     displayFlex(gameGif);
   });
 
   helpSick.addEventListener("click", function () {
     hideAllGifs();
+
     displayFlex(sickGif);
   });
 
   helpClean.addEventListener("click", function () {
     hideAllGifs();
+
     displayFlex(poopGif);
   });
 
   helpHealth.addEventListener("click", function () {
     hideAllGifs();
+
     displayFlex(healthGif);
   });
 }
