@@ -31,44 +31,43 @@ import {
 import { foodAnimation } from "./FoodFunctions";
 
 function childOpenMouthAnimate(state) {
-  if (state.tamaStage === tamaState[1]) {
-    if (state.foodAnimationGoing === true) {
-      if (
-        timeMathToSec(state.timeState.gameStart) % 1 === 0 &&
-        state.animationCount <= 6
-      ) {
-        state.animationCount++;
-      }
-      //CHARACTER ANIMATION
-      if (state.animationCount == 1) {
-        hideImage(child1);
+  if (state.tamaStage != tamaState[1] || !state.foodAnimationGoing) {
+    return;
+  }
 
-        hideImage(child1Sick);
+  if (
+    timeMathToSec(state.timeState.gameStart) % 1 === 0 &&
+    state.animationCount <= 6
+  ) {
+    state.animationCount++;
+  }
+  //CHARACTER ANIMATION
+  if (state.animationCount == 1) {
+    hideImage(child1);
+    hideImage(child1Sick);
+    hideImage(child1Low);
 
-        hideImage(child1Low);
+    showImage(child1Side);
+  }
 
-        showImage(child1Side);
-      }
+  if (state.animationCount == 2 || state.animationCount == 4) {
+    hideImage(child1Side);
 
-      if (state.animationCount == 2 || state.animationCount == 4) {
-        hideImage(child1Side);
+    showImage(child1Eat);
+  }
 
-        showImage(child1Eat);
-      }
+  if (state.animationCount == 3 || state.animationCount == 5) {
+    hideImage(child1Eat);
 
-      if (state.animationCount == 3 || state.animationCount == 5) {
-        hideImage(child1Eat);
+    showImage(child1Side);
+  }
 
-        showImage(child1Side);
-      }
+  if (state.animationCount == 6) {
+    hideImage(child1Side);
 
-      if (state.animationCount == 6) {
-        hideImage(child1Side);
-        state.foodAnimationGoing = false;
+    state.foodAnimationGoing = false;
 
-        state.animationCount = 0;
-      }
-    }
+    state.animationCount = 0;
   }
 }
 

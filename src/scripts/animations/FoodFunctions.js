@@ -1,6 +1,7 @@
 import { timeMathToSec } from "../misc/usefulFunctions";
 import {
   meal1,
+  meal1Half,
   meal2,
   snack1,
   snack2,
@@ -32,59 +33,37 @@ function hideAllFood() {
   hideImage(snack2Half);
 }
 
+function animateFood(meal, mealHalf, state) {
+  if (state.animationCount > 0 && state.animationCount <= 2) {
+    showImage(meal);
+  }
+
+  if (state.animationCount == 3) {
+    hideImage(meal);
+
+    showImage(mealHalf);
+  }
+
+  if (state.animationCount == 5) {
+    hideImage(mealHalf);
+  }
+}
+
 function foodAnimation(type, state) {
   if (type === 1) {
-    //meal1
-    //FOOD ANIMATION
-  } else if (type === 2) {
-    hideAllFood();
-    //meal2
-    //FOOD ANIMATION
-    if (state.animationCount > 0 && state.animationCount <= 2) {
-      showImage(meal2);
-    }
+    animateFood(meal1, meal1Half, state);
+  }
 
-    if (state.animationCount == 3) {
-      hideImage(meal2);
+  if (type === 2) {
+    animateFood(meal2, meal2Half, state);
+  }
 
-      showImage(meal2Half);
-    }
+  if (type === 3) {
+    animateFood(snack2, snack2Half, state);
+  }
 
-    if (state.animationCount == 5) {
-      hideImage(meal2Half);
-    }
-  } else if (type === 3) {
-    //snack1
-    //FOOD ANIMATION
-    if (state.animationCount > 0 && state.animationCount <= 2) {
-      showImage(snack2);
-    }
-
-    if (state.animationCount == 3) {
-      hideImage(snack2);
-
-      showImage(snack2Half);
-    }
-
-    if (state.animationCount == 5) {
-      hideImage(snack2Half);
-    }
-  } else if (type === 4) {
-    //snack2
-    //FOOD ANIMATION
-    if (state.animationCount > 0 && state.animationCount <= 2) {
-      showImage(snack1);
-    }
-
-    if (state.animationCount == 3) {
-      hideImage(snack1);
-
-      showImage(snack1Half);
-    }
-
-    if (state.animationCount == 5) {
-      hideImage(snack1Half);
-    }
+  if (type === 4) {
+    animateFood(snack1, snack1Half, state);
   }
 }
 
