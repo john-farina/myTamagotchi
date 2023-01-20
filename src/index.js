@@ -207,14 +207,6 @@ foodButton.addEventListener("click", () => {
   FoodEvent(state);
 });
 
-mealButton.addEventListener("click", () => {
-  MealEvent(state);
-});
-
-snackButton.addEventListener("click", () => {
-  SnackEvent(state);
-});
-
 import {
   LightEvent,
   LightsOnAndOff,
@@ -232,24 +224,6 @@ lightsOff.addEventListener("click", function () {
   LightsOnAndOff(state, true);
 });
 
-import {
-  GameButton,
-  PlayerChoiceOne,
-  PlayerChoiceTwo,
-} from "./scripts/mainFeatures/game/GameEventListeners";
-
-gameButton.addEventListener("click", () => {
-  GameButton(state);
-});
-
-playerChoiceOne.addEventListener("click", () => {
-  PlayerChoiceOne(state);
-});
-
-playerChoiceTwo.addEventListener("click", () => {
-  PlayerChoiceTwo(state);
-});
-
 healButton.addEventListener("click", function () {
   hideAllExtraScreens();
   if (state.tamaIsMad != true) {
@@ -262,24 +236,9 @@ healButton.addEventListener("click", function () {
   }
 });
 
-import { HealthEvent } from "./scripts/mainFeatures/events/HealthEvent";
+import { ReturnAllEvents } from "./scripts/mainFeatures/events/ReturnAllEvents";
 
-healthButton.addEventListener("click", function () {
-  HealthEvent(state);
-});
-
-import { CleanEvent } from "./scripts/mainFeatures/events/CleanEvent";
-
-cleanButton.addEventListener("click", function () {
-  CleanEvent(state);
-});
-
-import { DisciplineEvent } from "./scripts/mainFeatures/events/DisciplineEvent";
-
-disciplineButton.addEventListener("click", function () {
-  DisciplineEvent(state);
-});
-
+ReturnAllEvents(state);
 ///////////////////// need to finish rest and clean code
 
 function animateCloseAllTabs() {
