@@ -41,7 +41,7 @@ import {
   displayHide,
   timeMathToSec,
 } from "../misc/usefulFunctions";
-import { hideImage } from "./MovmentAnimation";
+import { hideImage, showImage } from "./MovmentAnimation";
 
 function removeAllChildAndTeen() {
   eggState1.style.visibility = "hidden";
@@ -71,93 +71,92 @@ function removeAllChildAndTeen() {
 }
 
 function eggHatchAnimation(state) {
-  if (state.tamaStage === tamaState[0]) {
-    if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
-      eggState2.style.visibility = "hidden";
-      eggState1.style.visibility = "visible";
-    } else {
-      eggState1.style.visibility = "hidden";
-      eggState2.style.visibility = "visible";
-    }
+  if (state.tamaStage != tamaState[0]) {
+    return;
+  }
+
+  if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
+    eggState2.style.visibility = "hidden";
+    eggState1.style.visibility = "visible";
+  } else {
+    eggState1.style.visibility = "hidden";
+    eggState2.style.visibility = "visible";
   }
 }
 
 function placePoop(state) {
   if (state.tamaPoop === 1) {
-    poop1.style.visibility = "visible";
+    showImage(poop1);
   }
 
   if (state.tamaPoop === 2) {
-    poop1.style.visibility = "visible";
-
-    poop2.style.visibility = "visible";
+    showImage(poop1);
+    showImage(poop2);
   }
 
   if (state.tamaPoop === 3) {
-    poop1.style.visibility = "visible";
-
-    poop2.style.visibility = "visible";
-
-    poop3.style.visibility = "visible";
+    showImage(poop1);
+    showImage(poop2);
+    showImage(poop3);
   }
 
   if (state.tamaPoop === 4) {
-    poop1.style.visibility = "visible";
-
-    poop2.style.visibility = "visible";
-
-    poop3.style.visibility = "visible";
-
-    poop4.style.visibility = "visible";
+    showImage(poop1);
+    showImage(poop2);
+    showImage(poop3);
+    showImage(poop4);
   }
 
   if (state.tamaPoop === 0) {
-    poop1.style.visibility = "hidden";
-
-    poop2.style.visibility = "hidden";
-
-    poop3.style.visibility = "hidden";
-
-    poop4.style.visibility = "hidden";
+    hideImage(poop1);
+    hideImage(poop2);
+    hideImage(poop3);
+    hideImage(poop4);
   }
 }
 
 function autoAlert(state) {
   if (state.tamaSick === true) {
-    sickAlert.style.visibility = "visible";
-  } else {
-    sickAlert.style.visibility = "hidden";
+    showImage(sickAlert);
+
+    return;
   }
+
+  hideImage(sickAlert);
 }
 
 function showGravestone(state) {
-  if (state.tamaDead === true) {
-    state.tamaStage = tamaState[13];
-    hideImage(poop1);
-    hideImage(poop2);
-    hideImage(poop3);
-    hideImage(poop4);
-    childClass.style.visibility = "hidden";
-    teenClass.style.visibility = "hidden";
-    adultClass.style.visibility = "hidden";
-    adult1.style.visibility = "hidden";
-    adult2.style.visibility = "hidden";
-    adult3.style.visibility = "hidden";
-    adult4.style.visibility = "hidden";
-    adult5.style.visibility = "hidden";
-    adult6.style.visibility = "hidden";
-    if (timeMathToSec(state.timeState.lastAnimation) % 2 === 0) {
-      displayFlex(gravestoneText);
-      gravestoneText.innerHTML = `${state.tamaAge} Years`;
-      displayHide(gravestone);
-      displayFlex(gravestoneTwo);
-    } else {
-      displayFlex(gravestoneText);
-      gravestoneText.innerHTML = `${state.tamaAge} Years`;
-      displayHide(gravestoneTwo);
-      displayFlex(gravestone);
-    }
+  if (!state.tamaDead) {
+    return;
   }
+
+  state.tamaStage = tamaState[13];
+
+  hideImage(poop1);
+  hideImage(poop2);
+  hideImage(poop3);
+  hideImage(poop4);
+
+  hideImage(childClass);
+  hideImage(teenClass);
+  hideImage(adultClass);
+  hideImage(adult1);
+  hideImage(adult2);
+  hideImage(adult3);
+  hideImage(adult4);
+  hideImage(adult5);
+  hideImage(adult6);
+
+  if (timeMathToSec(state.timeState.lastAnimation) % 2 === 0) {
+    displayHide(gravestone);
+    displayFlex(gravestoneTwo);
+  } else {
+    displayHide(gravestoneTwo);
+    displayFlex(gravestone);
+  }
+
+  gravestoneText.innerHTML = `${state.tamaAge} Years`;
+  displayFlex(gravestoneText);
 }
 
 export {

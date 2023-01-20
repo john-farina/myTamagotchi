@@ -75,32 +75,40 @@ function moveLeftToRightRandom(character, state) {
 }
 
 function autoRandomFlip(character, state) {
-  if (state.foodAnimationGoing != true) {
-    if (timeMathToSec(state.timeState.gameStart) % 1 === 0) {
-      let randomChoice = randomNumGen(3);
+  let randomChoice = randomNumGen(3);
 
-      if (randomChoice === 1 || randomChoice === 2) {
-        character.classList.add("flip");
-      } else {
-        character.classList.remove("flip");
-      }
-    }
+  if (state.foodAnimationGoing) {
+    return;
   }
+
+  if (randomChoice === 1 || randomChoice === 2) {
+    character.classList.add("flip");
+
+    return;
+  }
+
+  character.classList.remove("flip");
 }
 
 function childOneMovement(state) {
-  if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
-    let randomChoice = randomNumGen(4);
-    if (randomChoice === 3) {
-      child1.style.visibility = "hidden";
-      child1Low.style.visibility = "visible";
-      moveLeftToRightRandom(child1Low, state);
-    } else {
-      child1Low.style.visibility = "hidden";
-      child1.style.visibility = "visible";
-      moveLeftToRightRandom(child1, state);
-    }
+  let randomChoice = randomNumGen(4);
+
+  if (timeMathToSec(state.timeState.gameStart) % 2 !== 0) {
+    return;
   }
+
+  if (randomChoice === randomNumGen(4)) {
+    hideImage(child1);
+    showImage(child1Low);
+
+    moveLeftToRightRandom(child1Low, state);
+
+    return;
+  }
+
+  hideImage(child1Low);
+  showImage(child1);
+  moveLeftToRightRandom(child1, state);
 }
 
 export {

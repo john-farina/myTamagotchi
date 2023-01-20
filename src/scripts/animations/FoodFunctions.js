@@ -1,7 +1,6 @@
 import { timeMathToSec } from "../misc/usefulFunctions";
 import {
   meal1,
-  meal1Half,
   meal2,
   snack1,
   snack2,
@@ -51,7 +50,7 @@ function animateFood(meal, mealHalf, state) {
 
 function foodAnimation(type, state) {
   if (type === 1) {
-    animateFood(meal1, meal1Half, state);
+    animateFood(meal1, meal2Half, state);
   }
 
   if (type === 2) {
