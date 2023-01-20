@@ -4,9 +4,6 @@ let menuIsOpen = false;
 let themeMenuIsOpen = false;
 
 import {
-  option1,
-  optionsMenu,
-  optionsButton,
   color5Button,
   color3Button,
   color2Button,
@@ -15,40 +12,22 @@ import {
   themeButton,
   dropDownMenu,
   menuButton,
-  button3,
-  button2,
-  button1,
-  deviceButtons,
   snackButton,
   mealButton,
-  child1Sick,
-  child1Low,
-  child1,
-  childClass,
-  characterClass,
-  eggClass,
-  alertButton,
   disciplineButton,
-  cleaningLine,
   cleanButton,
   healthScreen2,
   healthScreen,
   healButton,
   playerChoiceTwo,
   playerChoiceOne,
-  playerChoiceDiv,
-  gameTimer,
-  gameScreen,
   gameButton,
   lightsOff,
   lightsOn,
   lightButton,
-  lightsOffScreen,
   lightsScreen,
   healthButton,
   foodScreen,
-  helpAttention,
-  helpDiscpline,
   healthGif,
   helpHealth,
   poopGif,
@@ -66,13 +45,12 @@ import {
 } from "./scripts/tamaImports";
 
 import {
-  randomNumGen,
   timeMathToSec,
   displayFlex,
   displayHide,
 } from "./scripts/misc/usefulFunctions";
 
-import { hideImage, showImage } from "./scripts/animations/MovmentAnimation";
+import { hideImage } from "./scripts/animations/MovmentAnimation";
 
 import { updateFood } from "./scripts/animations/FoodFunctions";
 
@@ -89,72 +67,12 @@ import {
 } from "./scripts/animations/AlertAnimations";
 
 import {
-  chooseOneAnimation,
-  computerGuess,
-  showGameCharacter,
-  characterMadEmoteAnimations,
-  characterHappyEmoteAnimations,
-  updateScoreView,
-  updateScore,
   quitGame,
-  scoreAutoQuit,
   playGame,
+  updateAndPlayGameAnimations,
 } from "./scripts/mainFeatures/game/Game";
 
-function updateGameTimerAndRestart() {
-  if (state.gameState.gameTimeCount <= 24) {
-    state.gameState.gameTimeCount++;
-    if (
-      state.gameState.gameTimeCount % 3 === 0 &&
-      state.gameState.gameTimeStore < 30
-    ) {
-      state.gameState.gameTimeStore++;
-      gameTimer.innerHTML = `${state.gameState.gameTimeStore}`;
-    }
-  } else if (state.gameState.gameTimeCount > 24) {
-    state.gameState.gameRound += 1;
-    state.gameState.playerSelectedChoice = false;
-    state.gameState.playerSelection = 0;
-    state.gameState.gameTimeCount = 0;
-    state.gameState.gameTimeStore = 0;
-  }
-}
-
-function updateAndPlayGameAnimations() {
-  if (state.gameState.gameIsRunning) {
-    updateGameTimerAndRestart();
-    chooseOneAnimation(
-      state,
-      state.gameState.playerSelectedChoice,
-      state.gameState.gameTimeStore
-    );
-    updateScoreView(
-      state.gameState.playerSelection,
-      state.gameState.computerSelection,
-      state.gameState.gameHappy,
-      state.gameState.gameMad
-    );
-    showGameCharacter(state);
-    characterMadEmoteAnimations(
-      state.gameState.gameMad,
-      state.gameState.gameHappy,
-      state.gameState.gameAnimateCount,
-      state
-    );
-    characterHappyEmoteAnimations(
-      state.gameState.gameHappy,
-      state.gameState.gameMad,
-      state.gameState.gameAnimateCount,
-      state
-    );
-    quitGame(state);
-  }
-
-  scoreAutoQuit(state);
-}
-
 import {
-  removeAllChildAndTeen,
   eggHatchAnimation,
   placePoop,
   autoAlert,
@@ -164,31 +82,6 @@ import {
 import { updateTheme } from "./scripts/misc/Themes";
 
 import { updateChracterPicture } from "./scripts/animations/UpdateCharacter";
-
-function updatePictures() {
-  updateTheme(state);
-  happyAlertAnimate(state);
-  madAlertAnimate(state);
-  updateFood(state);
-  placePoop(state);
-  autoAlert(state);
-  eggHatchAnimation(state);
-  allEatSnackAnimations(state);
-  updateHeartSvg(state);
-  updateDisciplineSvg(state);
-  updateChracterPicture(state, state.gameState.gameIsRunning);
-  showGravestone(state);
-  updateAndPlayGameAnimations();
-}
-
-function startAnimation() {
-  myInterval = setInterval(updatePictures, 400);
-  state.gameStarted = true;
-  state.tamaDead = false;
-  state.timeState.gameStart = new Date();
-}
-
-startAnimation();
 
 import {
   givePoop,
@@ -206,6 +99,31 @@ import {
   teenToAdult,
   autoDeath,
 } from "./scripts/mainFeatures/CreateUpdateLife";
+
+function updatePictures() {
+  updateTheme(state);
+  happyAlertAnimate(state);
+  madAlertAnimate(state);
+  updateFood(state);
+  placePoop(state);
+  autoAlert(state);
+  eggHatchAnimation(state);
+  allEatSnackAnimations(state);
+  updateHeartSvg(state);
+  updateDisciplineSvg(state);
+  updateChracterPicture(state);
+  showGravestone(state);
+  updateAndPlayGameAnimations(state);
+}
+
+function startAnimation() {
+  myInterval = setInterval(updatePictures, 400);
+  state.gameStarted = true;
+  state.tamaDead = false;
+  state.timeState.gameStart = new Date();
+}
+
+startAnimation();
 
 function stop() {
   clearInterval(myInterval);
@@ -228,9 +146,7 @@ function autoAge() {
 }
 
 import {
-  feed,
   heal,
-  clean,
   autoAttentionAlert,
   autoDisciplineTest,
   spoiledAdultAttention,
@@ -238,17 +154,19 @@ import {
 
 /////////////////////////////////////RUNNING THE GAME
 function updateFunctions() {
-  if (state.tamaStage == tamaState[0]) {
-  } else {
-    getSick(state);
-    givePoop(state);
-    ifSick(state);
-    autoHealthDegen(state);
-    autoHappyDegen(state);
-    autoDisciplineTest(state);
-    playGame(state);
-  }
   autoAge();
+
+  if (state.tamaStage === tamaState[0]) {
+    return;
+  }
+
+  getSick(state);
+  givePoop(state);
+  ifSick(state);
+  autoHealthDegen(state);
+  autoHappyDegen(state);
+  autoDisciplineTest(state);
+  playGame(state);
   autoAttentionAlert(state);
   spoiledAdultAttention(state);
 }

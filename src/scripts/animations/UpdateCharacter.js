@@ -22,8 +22,12 @@ import {
 import { removeAllChildAndTeen } from "./MiscTamaAnimation";
 import { tamaState } from "../state";
 
-function updateChracterPicture(state, gameIsRunning) {
-  if (state.tamaDead || state.foodAnimationGoing || gameIsRunning) {
+function updateChracterPicture(state) {
+  if (
+    state.tamaDead ||
+    state.foodAnimationGoing ||
+    state.gameState.gameIsRunning
+  ) {
     return;
   }
 

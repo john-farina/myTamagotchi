@@ -200,28 +200,6 @@ function updateScore(
   }
 }
 
-function updateGameTimerAndRestart(
-  gameTimeCount,
-  gameTimeStore,
-  playerSelectedChoice,
-  playerSelection,
-  state
-) {
-  if (gameTimeCount <= 24) {
-    gameTimeCount++;
-    if (gameTimeCount % 3 === 0 && gameTimeStore < 30) {
-      gameTimeStore++;
-      gameTimer.innerHTML = `${gameTimeStore}`;
-    }
-  } else if (gameTimeCount > 24) {
-    state.gameState.gameRound += 1;
-    playerSelectedChoice = false;
-    playerSelection = 0;
-    gameTimeCount = 0;
-    gameTimeStore = 0;
-  }
-}
-
 function scoreAutoQuit(gameEnded, playerScore, computerScore, state) {
   if (playerScore > 2) {
     gameEnded = true;
@@ -263,6 +241,58 @@ function playGame(state) {
   }
 }
 
+function updateGameTimerAndRestart(state) {
+  if (state.gameState.gameTimeCount <= 24) {
+    state.gameState.gameTimeCount++;
+    if (
+      state.gameState.gameTimeCount % 3 === 0 &&
+      state.gameState.gameTimeStore < 30
+    ) {
+      state.gameState.gameTimeStore++;
+      gameTimer.innerHTML = `${state.gameState.gameTimeStore}`;
+    }
+  } else if (state.gameState.gameTimeCount > 24) {
+    state.gameState.gameRound += 1;
+    state.gameState.playerSelectedChoice = false;
+    state.gameState.playerSelection = 0;
+    state.gameState.gameTimeCount = 0;
+    state.gameState.gameTimeStore = 0;
+  }
+}
+
+function updateAndPlayGameAnimations(state) {
+  if (state.gameState.gameIsRunning) {
+    updateGameTimerAndRestart(state);
+    chooseOneAnimation(
+      state,
+      state.gameState.playerSelectedChoice,
+      state.gameState.gameTimeStore
+    );
+    updateScoreView(
+      state.gameState.playerSelection,
+      state.gameState.computerSelection,
+      state.gameState.gameHappy,
+      state.gameState.gameMad
+    );
+    showGameCharacter(state);
+    characterMadEmoteAnimations(
+      state.gameState.gameMad,
+      state.gameState.gameHappy,
+      state.gameState.gameAnimateCount,
+      state
+    );
+    characterHappyEmoteAnimations(
+      state.gameState.gameHappy,
+      state.gameState.gameMad,
+      state.gameState.gameAnimateCount,
+      state
+    );
+    quitGame(state);
+  }
+
+  scoreAutoQuit(state);
+}
+
 export {
   chooseOneAnimation,
   computerGuess,
@@ -275,4 +305,5 @@ export {
   scoreAutoQuit,
   quitGame,
   playGame,
+  updateAndPlayGameAnimations,
 };
