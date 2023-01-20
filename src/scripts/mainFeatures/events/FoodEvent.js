@@ -10,29 +10,19 @@ function FoodEvent(state) {
     return;
   }
 
-  if (
-    state.screenState.lightsIsActive ||
-    state.gameState.gameIsRunning ||
-    state.screenState.healthIsActive ||
-    state.screenState.health2IsActive ||
-    state.screenState.foodIsActive === false
-  ) {
-    hideAllExtraScreens(state);
+  if (state.screenState.foodIsActive === true) {
+    hideImage(foodScreen);
 
-    showImage(foodScreen);
-
-    state.screenState.foodIsActive = true;
+    state.screenState.foodIsActive = false;
 
     return;
   }
 
-  if (state.screenState.foodIsActive === true) {
-    hideAllExtraScreens(state);
+  hideAllExtraScreens(state);
 
-    foodScreen.style.visibility = "hidden";
+  state.screenState.foodIsActive = true;
 
-    state.screenState.foodIsActive = false;
-  }
+  showImage(foodScreen);
 }
 
 function MealEvent(state) {

@@ -4,16 +4,19 @@ import { disciplineButton } from "../../tamaImports";
 
 function DisciplineEvent(state) {
   hideAllExtraScreens(state);
+
+  state.tamaIsMad = true;
+
   if (state.needAttention === true) {
-    state.tamaIsMad = true;
     state.needAttention = false;
+
     state.tamaDiscipline++;
-  } else {
-    state.tamaIsMad = true;
-    let randomNum = randomNumGen(5);
-    if (randomNum === 2) {
-      state.tamaHappy--;
-    }
+
+    return;
+  }
+
+  if (randomNumGen(5) === randomNumGen(5)) {
+    state.tamaHappy--;
   }
 }
 

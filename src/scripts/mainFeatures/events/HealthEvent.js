@@ -3,38 +3,30 @@ import { hideAllExtraScreens } from "../../misc/usefulFunctions";
 import { healthScreen, healthScreen2 } from "../../tamaImports";
 
 function HealthEvent(state) {
+  let screenState = state.screenState;
+
   if (state.foodAnimationGoing) {
     return;
   }
 
-  if (
-    state.screenState.healthIsActive === true &&
-    state.screenState.health2IsActive === false
-  ) {
-    hideImage(healthScreen);
-    showImage(healthScreen2);
-    state.screenState.health2IsActive = true;
-  } else if (
-    state.screenState.healthIsActive &&
-    state.screenState.healthIsActive
-  ) {
-    hideImage(healthScreen2);
-    hideImage(healthScreen);
-    state.screenState.healthIsActive = false;
-    state.screenState.health2IsActive = false;
+  if (!screenState.healthIsActive && !screenState.health2IsActive) {
+    showImage(healthScreen);
+
+    screenState.healthIsActive = true;
 
     return;
   }
 
-  if (
-    state.screenState.foodIsActive ||
-    state.screenState.lightsIsActive ||
-    state.gameState.gameIsRunning ||
-    !state.screenState.healthIsActive
-  ) {
+  if (screenState.healthIsActive && !screenState.health2IsActive) {
+    showImage(healthScreen2);
+    screenState.healthIsActive = false;
+    screenState.health2IsActive = true;
+
+    return;
+  }
+
+  if (screenState.health2IsActive) {
     hideAllExtraScreens(state);
-    healthScreen.style.visibility = "visible";
-    state.screenState.healthIsActive = true;
   }
 }
 

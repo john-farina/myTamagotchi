@@ -7,50 +7,55 @@ function LightEvent(state) {
     return;
   }
 
-  if (
-    state.screenState.foodIsActive ||
-    state.gameState.gameIsRunning ||
-    state.screenState.healthIsActive ||
-    state.screenState.health2IsActive
-  ) {
+  if (state.screenState.lightsIsActive) {
     hideAllExtraScreens(state);
-    showImage(lightsScreen);
-    state.screenState.lightsIsActive = true;
+
+    hideImage(lightsScreen);
+
+    state.screenState.lightsIsActive = false;
+
+    return;
   }
 
-  if (state.lightIsOff === true && state.screenState.lightsIsActive === false) {
+  if (state.lightIsOff && !state.screenState.lightsIsActive) {
     hideImage(lightsOffScreen);
+
     showImage(lightsScreen);
+
     state.screenState.lightsIsActive = true;
-  } else if (
-    state.lightIsOff === true &&
-    state.screenState.lightsIsActive === true
-  ) {
-    hideImage(lightsScreen);
-    showImage(lightsOffScreen);
-    state.screenState.lightsIsActive = false;
-  } else if (state.screenState.lightsIsActive === false) {
-    lightsScreen.style.visibility = "visible";
-    state.screenState.lightsIsActive = true;
-  } else if (state.screenState.lightsIsActive === true) {
-    lightsScreen.style.visibility = "hidden";
-    state.screenState.lightsIsActive = false;
+
+    return;
   }
+
+  hideAllExtraScreens(state);
+
+  showImage(lightsScreen);
+
+  state.screenState.lightsIsActive = true;
 }
 
 function LightsOnAndOff(state, isOff) {
-  if (!isOff) {
-    hideImage(lightsScreen);
-    state.screenState.lightsIsActive = false;
-    hideImage(lightsOffScreen);
-    state.lightIsOff = false;
-    console.log(state.lightIsOff);
-  } else {
+  if (isOff) {
     state.lightIsOff = true;
+
     hideImage(lightsScreen);
+
     state.screenState.lightsIsActive = false;
+
     showImage(lightsOffScreen);
+
+    return;
   }
+
+  hideImage(lightsScreen);
+
+  state.screenState.lightsIsActive = false;
+
+  hideImage(lightsOffScreen);
+
+  state.lightIsOff = false;
+
+  console.log(state.lightIsOff);
 }
 
 export { LightEvent, LightsOnAndOff };

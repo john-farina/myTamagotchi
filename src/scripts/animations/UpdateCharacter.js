@@ -18,6 +18,8 @@ import {
   childOneMovement,
   moveLeftToRightRandom,
   autoRandomFlip,
+  hideImage,
+  showImage,
 } from "./MovmentAnimation";
 import { removeAllChildAndTeen } from "./MiscTamaAnimation";
 import { tamaState } from "../state";
@@ -31,13 +33,11 @@ function updateChracterPicture(state) {
     return;
   }
 
-  // childOneSickAnimation();
   if (state.tamaStage === tamaState[1] && state.tamaSick === false) {
-    eggClass.style.visibility = "hidden";
+    hideImage(eggClass);
+    hideImage(child1Low);
 
-    child1Low.style.visibility = "hidden";
-
-    child1.style.visibility = "visible";
+    showImage(child1);
 
     childOneMovement(state);
 
@@ -45,21 +45,19 @@ function updateChracterPicture(state) {
   }
 
   if (state.tamaStage === tamaState[2]) {
-    child1.style.visibility = "hidden";
+    hideImage(child1);
+    hideImage(child1Low);
+    hideImage(child1Sick);
 
-    child1Low.style.visibility = "hidden";
-
-    child1Sick.style.visibility = "hidden";
-
-    child2.style.visibility = "visible";
+    showImage(child2);
 
     moveLeftToRightRandom(child2, state);
   }
 
   if (state.tamaStage === tamaState[3]) {
-    child2.style.visibility = "hidden";
+    hideImage(child2);
 
-    teen1.style.visibility = "visible";
+    showImage(teen1);
 
     autoRandomFlip(teen1, state);
 
@@ -68,28 +66,29 @@ function updateChracterPicture(state) {
 
   if (state.tamaStage === tamaState[4]) {
     child2.style.visibility = "hidden";
+    hideImage(child2);
 
-    teen2.style.visibility = "visible";
+    showImage(teen2);
 
     autoRandomFlip(teen2, state);
 
     moveLeftToRightRandom(teen2, state);
   }
 
-  // SPECIAL CHARACTERS
   if (state.tamaStage === tamaState[5]) {
     removeAllChildAndTeen();
 
-    adult5.style.visibility = "visible";
+    showImage(adult5);
 
     autoRandomFlip(adult5, state);
 
     moveLeftToRightRandom(adult5, state);
   }
+
   if (state.tamaStage === tamaState[6]) {
     removeAllChildAndTeen();
 
-    adult6.style.visibility = "visible";
+    showImage(adult6);
 
     autoRandomFlip(adult6, state);
 
@@ -99,7 +98,7 @@ function updateChracterPicture(state) {
   if (state.tamaStage === tamaState[7]) {
     removeAllChildAndTeen();
 
-    adult1.style.visibility = "visible";
+    showImage(adult1);
 
     autoRandomFlip(adult1, state);
 
@@ -109,7 +108,7 @@ function updateChracterPicture(state) {
   if (state.tamaStage === tamaState[8]) {
     removeAllChildAndTeen();
 
-    adult2.style.visibility = "visible";
+    showImage(adult2);
 
     autoRandomFlip(adult2, state);
 
@@ -119,7 +118,7 @@ function updateChracterPicture(state) {
   if (state.tamaStage === tamaState[9]) {
     removeAllChildAndTeen();
 
-    adult3.style.visibility = "visible";
+    showImage(adult3);
 
     autoRandomFlip(adult3, state);
 
@@ -129,7 +128,7 @@ function updateChracterPicture(state) {
   if (state.tamaStage === tamaState[10]) {
     removeAllChildAndTeen();
 
-    adult4.style.visibility = "visible";
+    showImage(adult4);
 
     autoRandomFlip(adult4, state);
 
@@ -137,7 +136,7 @@ function updateChracterPicture(state) {
   }
 
   if (state.tamaStage === tamaState[13]) {
-    gravestone.style.visibility = "visible";
+    showImage(gravestone);
   }
 }
 
