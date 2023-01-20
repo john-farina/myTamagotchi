@@ -6,52 +6,71 @@ import { computerGuess } from "./Game";
 import { updateScore } from "./Game";
 
 function GameButton(state) {
-  if (state.tamaIsMad != true) {
-    hideAllExtraScreens(state);
-    if (state.screenState.foodIsActive === true) {
-      hideAllExtraScreens();
-      removeAllChildAndTeen();
-      showImage(gameScreen);
-      state.gameState.gameIsRunning = true;
-    } else if (state.gameState.gameIsRunning === false) {
-      state.gameState.gameEnded = false;
-      state.gameState.gameIsRunning = true;
-      removeAllChildAndTeen();
-      showImage(gameScreen);
-    } else if (state.gameState.gameIsRunning === true) {
-      state.gameState.gameEnded = true;
-    }
+  let gameState = state.gameState;
+
+  if (state.tamaIsMad) {
+    return;
   }
+
+  if (!gameState.gameIsRunning) {
+    hideAllExtraScreens(state);
+
+    gameState.gameEnded = false;
+
+    gameState.gameIsRunning = true;
+
+    removeAllChildAndTeen();
+
+    showImage(gameScreen);
+
+    return;
+  }
+
+  hideAllExtraScreens(state);
+
+  gameState.gameEnded = true;
+
+  gameState.gameIsRunning = false;
 }
 
 function PlayerChoiceOne(state) {
-  if (state.gameState.playerSelectedChoice != true) {
-    state.gameState.playerSelectedChoice = true;
-    state.gameState.playerSelection = 1;
-    state.gameState.gameTimeStore = 6;
-    state.gameState.computerSelection = computerGuess();
-    updateScore(
-      state.gameState.playerSelection,
-      state.gameState.playerScore,
-      state.gameState.computerSelection,
-      state.gameState.computerScore
-    );
+  let gameState = state.gameState;
+
+  if (gameState.playerSelectedChoice) {
+    return;
   }
+
+  gameState.playerSelectedChoice = true;
+  gameState.playerSelection = 1;
+  gameState.gameTimeStore = 6;
+  gameState.computerSelection = computerGuess();
+
+  updateScore(
+    gameState.playerSelection,
+    gameState.playerScore,
+    gameState.computerSelection,
+    gameState.computerScore
+  );
 }
 
 function PlayerChoiceTwo(state) {
-  if (state.gameState.playerSelectedChoice != true) {
-    state.gameState.playerSelectedChoice = true;
-    state.gameState.playerSelection = 2;
-    state.gameState.gameTimeStore = 6;
-    state.gameState.computerSelection = computerGuess();
-    updateScore(
-      state.gameState.playerSelection,
-      state.gameState.playerScore,
-      state.gameState.computerSelection,
-      state.gameState.computerScore
-    );
+  let gameState = state.gameState;
+
+  if (gameState.playerSelectedChoice) {
+    return;
   }
+
+  gameState.playerSelectedChoice = true;
+  gameState.playerSelection = 2;
+  gameState.gameTimeStore = 6;
+  gameState.computerSelection = computerGuess();
+
+  updateScore(
+    gameState.playerSelection,
+    gameState.playerScore,
+    gameState.computerSelection,
+    gameState.computerScore
+  );
 }
 
 export { GameButton, PlayerChoiceOne, PlayerChoiceTwo };
