@@ -25,7 +25,7 @@ import {
 import { HealEvent } from "./HealEvent";
 import { LightEvent, LightsOnAndOff } from "./LightsEvent";
 
-function ReturnAllEvents(state) {
+function ReturnMainEvents(state) {
   ////////// FOOD
   foodButton.addEventListener("click", () => {
     FoodEvent(state);
@@ -86,4 +86,4 @@ function ReturnAllEvents(state) {
   });
 }
 
-export { ReturnAllEvents };
+export { ReturnMainEvents };

@@ -1,9 +1,5 @@
 import { state, tamaState } from "./scripts/state";
 let myInterval;
-let menuIsOpen = false;
-let themeMenuIsOpen = false;
-
-import { menuButton } from "./scripts/tamaImports";
 
 import { timeMathToSec } from "./scripts/misc/usefulFunctions";
 
@@ -54,6 +50,17 @@ import {
   autoDeath,
 } from "./scripts/mainFeatures/CreateUpdateLife";
 
+import {
+  autoAttentionAlert,
+  autoDisciplineTest,
+  spoiledAdultAttention,
+} from "./scripts/mainFeatures/mainFunctions";
+
+import { ReturnMainEvents } from "./scripts/mainFeatures/events/ReturnMainEvents";
+
+import { ReturnMenuEvents } from "./scripts/deviceMenu/helpScreen/ReturnMenuEvents";
+
+/////////////////////////////////////RUNNING ANIMATIONS
 function updatePictures() {
   updateTheme(state);
   happyAlertAnimate(state);
@@ -86,7 +93,6 @@ function stop() {
 
 function autoAge() {
   if (timeMathToSec(state.timeState.gameStart) % 86400 == 0) {
-    //1 DAY
     state.tamaAge++;
     console.log(tamaState);
   }
@@ -98,12 +104,6 @@ function autoAge() {
   teenToAdult(state);
   autoDeath(state, stop);
 }
-
-import {
-  autoAttentionAlert,
-  autoDisciplineTest,
-  spoiledAdultAttention,
-} from "./scripts/mainFeatures/mainFunctions";
 
 /////////////////////////////////////RUNNING THE GAME
 function updateFunctions() {
@@ -137,22 +137,7 @@ function start() {
 
 start();
 
-import { ReturnAllEvents } from "./scripts/mainFeatures/events/ReturnAllEvents";
+/////////////////////////////////////EVENT LISTENERS
+ReturnMainEvents(state);
 
-ReturnAllEvents(state);
-
-///////////////////// need to finish rest and clean code
-
-import { MenuEvent } from "./scripts/deviceMenu/MenuEvent";
-
-menuButton.addEventListener("click", function () {
-  MenuEvent(state);
-});
-
-import { ReturnThemeEventListeners } from "./scripts/deviceMenu/themes/ReturnThemeEventListeners";
-
-ReturnThemeEventListeners(state);
-
-import { ReturnHelpEventListeners } from "./scripts/deviceMenu/helpScreen/ReturnHelpEventListeners";
-
-ReturnHelpEventListeners(state);
+ReturnMenuEvents(state);
