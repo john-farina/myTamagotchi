@@ -12,14 +12,6 @@ import {
   themeButton,
   dropDownMenu,
   menuButton,
-  healthScreen2,
-  healthScreen,
-  healButton,
-  lightsOff,
-  lightsOn,
-  lightButton,
-  lightsScreen,
-  foodScreen,
   healthGif,
   helpHealth,
   poopGif,
@@ -41,8 +33,6 @@ import {
   displayFlex,
   displayHide,
 } from "./scripts/misc/usefulFunctions";
-
-import { hideImage } from "./scripts/animations/MovmentAnimation";
 
 import { updateFood } from "./scripts/animations/FoodFunctions";
 
@@ -138,7 +128,6 @@ function autoAge() {
 }
 
 import {
-  heal,
   autoAttentionAlert,
   autoDisciplineTest,
   spoiledAdultAttention,
@@ -176,57 +165,10 @@ function start() {
 
 start();
 
-function hideAllExtraScreens() {
-  hideImage(foodScreen);
-  state.screenState.foodIsActive = false;
-  hideImage(lightsScreen);
-  state.screenState.lightsIsActive = false;
-  state.gameState.gameEnded = true;
-  quitGame(state);
-  hideImage(healthScreen);
-  state.screenState.healthIsActive = false;
-  hideImage(healthScreen2);
-  state.screenState.health2IsActive = false;
-}
-
-import { FoodEvent } from "./scripts/mainFeatures/events/FoodEvent";
-
-foodButton.addEventListener("click", () => {
-  FoodEvent(state);
-});
-
-import {
-  LightEvent,
-  LightsOnAndOff,
-} from "./scripts/mainFeatures/events/LightsEvent";
-
-lightButton.addEventListener("click", () => {
-  LightEvent(state);
-});
-
-lightsOn.addEventListener("click", () => {
-  LightsOnAndOff(state, false);
-});
-
-lightsOff.addEventListener("click", function () {
-  LightsOnAndOff(state, true);
-});
-
-healButton.addEventListener("click", function () {
-  hideAllExtraScreens();
-  if (state.tamaIsMad != true) {
-    if (state.tamaSick === true) {
-      heal(state);
-      state.tamaIsMad = true;
-    } else {
-      state.tamaIsMad = true;
-    }
-  }
-});
-
 import { ReturnAllEvents } from "./scripts/mainFeatures/events/ReturnAllEvents";
 
 ReturnAllEvents(state);
+
 ///////////////////// need to finish rest and clean code
 
 function animateCloseAllTabs() {
@@ -243,6 +185,7 @@ function animateCloseAllTabs() {
   setTimeout(function () {
     dropDownMenu.classList.remove("menu-animate-open");
     dropDownMenu.classList.add("menu-animate-close");
+
     setTimeout(function () {
       displayHide(dropDownMenu);
       displayHide(themeMenu);

@@ -17,9 +17,20 @@ import {
   foodButton,
   mealButton,
   snackButton,
+  lightButton,
+  lightsOn,
+  lightsOff,
+  healButton,
 } from "../../tamaImports";
+import { HealEvent } from "./HealEvent";
+import { LightEvent, LightsOnAndOff } from "./LightsEvent";
 
 function ReturnAllEvents(state) {
+  ////////// FOOD
+  foodButton.addEventListener("click", () => {
+    FoodEvent(state);
+  });
+
   mealButton.addEventListener("click", () => {
     MealEvent(state);
   });
@@ -28,18 +39,20 @@ function ReturnAllEvents(state) {
     SnackEvent(state);
   });
 
-  healthButton.addEventListener("click", function () {
-    HealthEvent(state);
+  ////////// LIGHTS
+  lightButton.addEventListener("click", () => {
+    LightEvent(state);
   });
 
-  disciplineButton.addEventListener("click", function () {
-    DisciplineEvent(state);
+  lightsOn.addEventListener("click", () => {
+    LightsOnAndOff(state, false);
   });
 
-  cleanButton.addEventListener("click", function () {
-    CleanEvent(state);
+  lightsOff.addEventListener("click", function () {
+    LightsOnAndOff(state, true);
   });
 
+  ////////// GAMES
   gameButton.addEventListener("click", () => {
     GameButton(state);
   });
@@ -50,6 +63,26 @@ function ReturnAllEvents(state) {
 
   playerChoiceTwo.addEventListener("click", () => {
     PlayerChoiceTwo(state);
+  });
+
+  ////////// HEALING
+  healButton.addEventListener("click", function () {
+    HealEvent(state);
+  });
+
+  ////////// CLEAN
+  cleanButton.addEventListener("click", function () {
+    CleanEvent(state);
+  });
+
+  ////////// HEALTH STATS
+  healthButton.addEventListener("click", function () {
+    HealthEvent(state);
+  });
+
+  ////////// DISCIPLINE
+  disciplineButton.addEventListener("click", function () {
+    DisciplineEvent(state);
   });
 }
 

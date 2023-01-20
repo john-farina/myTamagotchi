@@ -115,6 +115,7 @@ export const poop1 = document.querySelector("#poop1");
 export const poop2 = document.querySelector("#poop2");
 export const poop3 = document.querySelector("#poop3");
 export const poop4 = document.querySelector("#poop4");
+export const foodButton = document.querySelector("#foodButton");
 export const mealButton = document.querySelector("#mealButton");
 export const snackButton = document.querySelector("#snackButton");
 export const meal1 = document.querySelector("#meal1");
