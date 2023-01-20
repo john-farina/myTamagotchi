@@ -69,6 +69,8 @@ let state = {
     menuIsOpen: false,
     themeMenuIsOpen: false,
   },
+  menuIsOpen: false,
+  themeMenuIsOpen: false,
 };
 
 export { state, tamaState };

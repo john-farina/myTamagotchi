@@ -143,6 +143,7 @@ export const themeMenu = document.querySelector("#drop-down-color-choice");
 export const color1Button = document.querySelector("#color1");
 export const color2Button = document.querySelector("#color2");
 export const color3Button = document.querySelector("#color3");
+export const color4Button = document.querySelector("#color4");
 export const color5Button = document.querySelector("#color5");
 export const optionsButton = document.querySelector("#options");
 export const optionsMenu = document.querySelector("#options-menu");

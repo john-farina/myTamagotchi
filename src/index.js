@@ -3,36 +3,9 @@ let myInterval;
 let menuIsOpen = false;
 let themeMenuIsOpen = false;
 
-import {
-  color5Button,
-  color3Button,
-  color2Button,
-  color1Button,
-  themeMenu,
-  themeButton,
-  dropDownMenu,
-  menuButton,
-  healthGif,
-  helpHealth,
-  poopGif,
-  helpClean,
-  sickGif,
-  helpSick,
-  gameGif,
-  helpGame,
-  lightsGif,
-  helpLights,
-  foodGif,
-  helpEat,
-  helpScreen,
-  helpMenuButton,
-} from "./scripts/tamaImports";
+import { menuButton } from "./scripts/tamaImports";
 
-import {
-  timeMathToSec,
-  displayFlex,
-  displayHide,
-} from "./scripts/misc/usefulFunctions";
+import { timeMathToSec } from "./scripts/misc/usefulFunctions";
 
 import { updateFood } from "./scripts/animations/FoodFunctions";
 
@@ -49,7 +22,6 @@ import {
 } from "./scripts/animations/AlertAnimations";
 
 import {
-  quitGame,
   playGame,
   updateAndPlayGameAnimations,
 } from "./scripts/mainFeatures/game/Game";
@@ -171,146 +143,16 @@ ReturnAllEvents(state);
 
 ///////////////////// need to finish rest and clean code
 
-function animateCloseAllTabs() {
-  themeMenu.classList.remove("second-menu-animate-open");
-  themeMenu.classList.add("second-menu-animate-close");
-
-  setTimeout(function () {
-    themeMenuIsOpen = false;
-    displayHide(themeMenu);
-    themeMenu.classList.add("second-menu-animate-open");
-    themeMenu.classList.remove("second-menu-animate-close");
-  }, 990);
-
-  setTimeout(function () {
-    dropDownMenu.classList.remove("menu-animate-open");
-    dropDownMenu.classList.add("menu-animate-close");
-
-    setTimeout(function () {
-      displayHide(dropDownMenu);
-      displayHide(themeMenu);
-      dropDownMenu.classList.remove("menu-animate-close");
-      dropDownMenu.classList.add("menu-animate-open");
-      menuIsOpen = false;
-    }, 990);
-  }, 400);
-}
+import { MenuEvent } from "./scripts/deviceMenu/MenuEvent";
 
 menuButton.addEventListener("click", function () {
-  if (menuIsOpen === false) {
-    menuIsOpen = true;
-    displayFlex(dropDownMenu);
-  } else if (menuIsOpen === true) {
-    if (themeMenuIsOpen === true) {
-      animateCloseAllTabs();
-    } else {
-      dropDownMenu.classList.remove("menu-animate-open");
-      dropDownMenu.classList.add("menu-animate-close");
-      setTimeout(function () {
-        displayHide(dropDownMenu);
-        displayHide(themeMenu);
-        dropDownMenu.classList.remove("menu-animate-close");
-        dropDownMenu.classList.add("menu-animate-open");
-        menuIsOpen = false;
-      }, 1000);
-    }
-  }
+  MenuEvent(state);
 });
 
-themeButton.addEventListener("click", function () {
-  if (themeMenuIsOpen === false) {
-    themeMenuIsOpen = true;
-    displayFlex(themeMenu);
-  } else if (themeMenuIsOpen === true) {
-    themeMenu.classList.remove("second-menu-animate-open");
-    themeMenu.classList.add("second-menu-animate-close");
-    setTimeout(function () {
-      themeMenuIsOpen = false;
-      displayHide(themeMenu);
-      themeMenu.classList.add("second-menu-animate-open");
-      themeMenu.classList.remove("second-menu-animate-close");
-    }, 1000);
-  }
-});
+import { ReturnThemeEventListeners } from "./scripts/deviceMenu/themes/ReturnThemeEventListeners";
 
-//themes
-color1Button.addEventListener("click", function () {
-  state.tamaTheme = 0;
-  animateCloseAllTabs();
-});
+ReturnThemeEventListeners(state);
 
-color2Button.addEventListener("click", function () {
-  state.tamaTheme = 1;
-  animateCloseAllTabs();
-});
+import { ReturnHelpEventListeners } from "./scripts/deviceMenu/helpScreen/ReturnHelpEventListeners";
 
-color3Button.addEventListener("click", function () {
-  state.tamaTheme = 2;
-  animateCloseAllTabs();
-});
-
-const color4Button = document.querySelector("#color4");
-
-color4Button.addEventListener("click", function () {
-  state.tamaTheme = 3;
-  animateCloseAllTabs();
-});
-
-color5Button.addEventListener("click", function () {
-  state.tamaTheme = 4;
-  animateCloseAllTabs();
-});
-
-helpMenuButton.addEventListener("click", function () {
-  dropDownMenu.classList.remove("menu-animate-open");
-  dropDownMenu.classList.add("menu-animate-close");
-  setTimeout(function () {
-    displayHide(dropDownMenu);
-    displayHide(themeMenu);
-    dropDownMenu.classList.remove("menu-animate-close");
-    dropDownMenu.classList.add("menu-animate-open");
-    menuIsOpen = false;
-  }, 1000);
-  setTimeout(function () {
-    displayFlex(helpScreen);
-  }, 500);
-});
-
-function hideAllGifs() {
-  displayHide(foodGif);
-  displayHide(lightsGif);
-  displayHide(gameGif);
-  displayHide(sickGif);
-  displayHide(poopGif);
-  displayHide(healthGif);
-}
-
-helpEat.addEventListener("click", function () {
-  hideAllGifs();
-  displayFlex(foodGif);
-});
-
-helpLights.addEventListener("click", function () {
-  hideAllGifs();
-  displayFlex(lightsGif);
-});
-
-helpGame.addEventListener("click", function () {
-  hideAllGifs();
-  displayFlex(gameGif);
-});
-
-helpSick.addEventListener("click", function () {
-  hideAllGifs();
-  displayFlex(sickGif);
-});
-
-helpClean.addEventListener("click", function () {
-  hideAllGifs();
-  displayFlex(poopGif);
-});
-
-helpHealth.addEventListener("click", function () {
-  hideAllGifs();
-  displayFlex(healthGif);
-});
+ReturnHelpEventListeners(state);
