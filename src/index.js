@@ -12,21 +12,13 @@ import {
   themeButton,
   dropDownMenu,
   menuButton,
-  snackButton,
-  mealButton,
-  disciplineButton,
-  cleanButton,
   healthScreen2,
   healthScreen,
   healButton,
-  playerChoiceTwo,
-  playerChoiceOne,
-  gameButton,
   lightsOff,
   lightsOn,
   lightButton,
   lightsScreen,
-  healthButton,
   foodScreen,
   healthGif,
   helpHealth,
@@ -197,11 +189,7 @@ function hideAllExtraScreens() {
   state.screenState.health2IsActive = false;
 }
 
-import {
-  FoodEvent,
-  MealEvent,
-  SnackEvent,
-} from "./scripts/mainFeatures/events/FoodEvent";
+import { FoodEvent } from "./scripts/mainFeatures/events/FoodEvent";
 
 foodButton.addEventListener("click", () => {
   FoodEvent(state);
