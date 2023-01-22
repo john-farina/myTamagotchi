@@ -3,27 +3,27 @@ import { tamaState } from "../state";
 import { randomNumGen, timeMathToSec } from "../misc/usefulFunctions";
 
 function feed(type, state) {
-  //1 == meal && 2 == snack
-  if (type == 1 && state.tamaHealth < 5) {
-    state.tamaHealth++;
-  } else if (type == 2 && state.tamaHealth < 5) {
-    if (state.tamaHappy < 5) {
-      state.tamaHappy = state.tamaHappy + 1;
-    }
-  } else if (type == 2) {
-    state.tamaHealth = state.tamaHealth + 0;
-    if (state.tamaHappy < 5) {
-      state.tamaHappy = state.tamaHappy + 1;
+  // Check if the type is a meal
+  if (type === 1) {
+    if (state.tamaHealth < 5) {
+      state.tamaHealth++;
     }
   }
-  if (state.tamaHealth >= 5) {
-    state.tamaHealth += 0;
+
+  // Check if the type is a snack
+  if (type === 2) {
+    if (state.tamaHealth < 5) {
+      state.tamaHealth++;
+    }
+
+    if (state.tamaHappy < 5) {
+      state.tamaHappy++;
+    }
   }
-  if (type == 2 && state.tamaHealth >= 5) {
+
+  // Limit tamagotchi's health to 5
+  if (state.tamaHealth > 5) {
     state.tamaHealth = 5;
-  } else if (type == 1 && state.tamaHealth >= 5) {
-    state.tamaHealth = 5;
-    console.log("tamagotchi is full");
   }
 }
 
@@ -33,9 +33,9 @@ function heal(state) {
 }
 
 function clean(state) {
-  if (state.tamaPoop == 0) {
-  } else {
+  if (state.tamaPoop !== 0) {
     state.tamaPoop = 0;
+
     state.tamaHappy++;
   }
 }

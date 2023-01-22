@@ -20,7 +20,7 @@ console.log(randomReturnPercentage(10));
 
 function letThereBeLife(state) {
   if (timeMathToSec(state.timeState.gameStart) < 10) {
-    state.tamaStage = tamaState[0];
+    state.tamaStage = tamaState[1];
   }
 }
 
@@ -117,9 +117,7 @@ function toddlerToTeen(state) {
     if (timeMathToSec(state.gameStarted) % 30 == 0) {
       console.log("Toddler to teen evolve is running");
 
-      let randomNum = randomNumGen(2);
-
-      if (randomNum === 0) {
+      if (randomReturnPercentage(10)) {
         state.tamaStage = tamaState[3];
       } else {
         state.tamaStage = tamaState[4];
@@ -131,8 +129,7 @@ function toddlerToTeen(state) {
   ) {
     //10% every 60 seconds
     if (timeMathToSec(state.gameStarted) % 60 == 0) {
-      let randomNum = randomNumGen(2);
-      if (randomNum === 0) {
+      if (randomReturnPercentage(10)) {
         state.tamaStage = tamaState[3];
       } else {
         state.tamaStage = tamaState[4];
@@ -143,8 +140,7 @@ function toddlerToTeen(state) {
     timeMathToSec(state.timeState.lastEvolve > 86400) //1 day
   ) {
     //grow up no matter what
-    let randomNum = randomNumGen(2);
-    if (randomNum === 0) {
+    if (randomReturnPercentage(100)) {
       state.tamaStage = tamaState[3];
     } else {
       state.tamaStage = tamaState[4];
