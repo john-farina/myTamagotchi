@@ -19,7 +19,7 @@ let state = {
   tamaTheme: 3,
   tamaName: "Larry",
   tamaAge: 8,
-  tamaHatch: 2,
+  tamaHatch: 0,
   tamaStage: tamaState,
   tamaDead: false,
   tamaHealth: 3,

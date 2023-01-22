@@ -45,7 +45,8 @@ import {
   letThereBeLife,
   eggHatch,
   eggToBaby,
-  babyToTeen,
+  babyToToddler,
+  toddlerToTeen,
   teenToAdult,
   autoDeath,
 } from "./scripts/mainFeatures/CreateUpdateLife";
@@ -100,7 +101,8 @@ function autoAge() {
   letThereBeLife(state);
   eggHatch(state);
   eggToBaby(state);
-  babyToTeen(state);
+  babyToToddler(state);
+  toddlerToTeen(state);
   teenToAdult(state);
   autoDeath(state, stop);
 }

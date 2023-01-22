@@ -1,9 +1,26 @@
 import { timeMathToSec, randomNumGen } from "../misc/usefulFunctions";
 import { tamaState } from "../state";
 
+function randomReturnPercentage(percentage) {
+  // 15 out of 100 = 15%
+  let randomNumber = Math.floor(Math.random() * 100);
+
+  if (percentage === 1) {
+    return randomNumber === 4;
+  }
+
+  if (randomNumber > 0 && randomNumber <= percentage) {
+    return true;
+  }
+
+  return false;
+}
+
+console.log(randomReturnPercentage(10));
+
 function letThereBeLife(state) {
   if (timeMathToSec(state.timeState.gameStart) < 10) {
-    state.tamaStage = tamaState[1];
+    state.tamaStage = tamaState[0];
   }
 }
 
@@ -13,16 +30,10 @@ function eggHatch(state) {
   }
 
   if (state.tamaHatch < 3 && timeMathToSec(state.timeState.gameStart) > 2) {
-    if (timeMathToSec(state.timeState.gameStart) % 2 == 0) {
-      //every 2 seconds have a chance to hatch
-      let randomNum = randomNumGen(500);
-      if (
-        (randomNum >= 100 && randomNum <= 180) ||
-        (randomNum >= 300 && randomNum <= 310)
-      ) {
-        if (state.tamaHatch != 3) {
-          state.tamaHatch++;
-        }
+    if (timeMathToSec(state.timeState.gameStart) % 1 == 0) {
+      //every 2 sec 70% to hatch more
+      if (randomReturnPercentage(70)) {
+        state.tamaHatch++;
       }
     }
   }
@@ -32,6 +43,8 @@ function eggHatch(state) {
 
     state.tamaHatch = 4;
   }
+
+  console.log(state.tamaHatch);
 }
 
 function eggToBaby(state) {
@@ -42,15 +55,10 @@ function eggToBaby(state) {
 
   let lastHatchCycle = state.timeState.lastHatchCycle;
 
-  if (
-    timeMathToSec(lastHatchCycle) > 10 &&
-    timeMathToSec(lastHatchCycle) < 120 //2 min
-  ) {
+  if (timeMathToSec(lastHatchCycle) < 120) {
     if (timeMathToSec(state.timeState.gameStart) % 2 == 0) {
-      let randomNum = randomNumGen(100);
-
-      if (randomNum >= 75 && randomNum <= 80) {
-        //5% chance every 4 sec to hatch early
+      //every 2 sec - 45% chance to hatch
+      if (randomReturnPercentage(100)) {
         state.tamaStage = tamaState[1];
 
         state.tamaName = state.tamaStage;
@@ -58,6 +66,8 @@ function eggToBaby(state) {
         state.timeState.lastEvolve = new Date();
       }
     }
+
+    return;
   } else if (
     timeMathToSec(lastHatchCycle) > 120 //2 min
   ) {
@@ -66,18 +76,23 @@ function eggToBaby(state) {
 
     state.timeState.lastEvolve = new Date();
   }
+}
 
+function babyToToddler(state) {
   //second KID evolve
+  if (state.tamaStage !== tamaState[1] || state.foodAnimationGoing) {
+  }
   if (
-    state.tamaStage == tamaState[1] &&
     timeMathToSec(state.timeState.lastEvolve) > 10 &&
-    timeMathToSec(state.timeState.lastEvolve) < 120 &&
-    state.foodAnimationGoing != true
+    timeMathToSec(state.timeState.lastEvolve) < 120
   ) {
     if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
+      console.log("second kid evolve is running");
       let randomNum = randomNumGen(500);
-      if (randomNum >= 35 && randomNum <= 45) {
+
+      if (randomReturnPercentage(80)) {
         state.tamaStage = tamaState[2];
+
         state.timeState.lastEvolve = new Date();
       }
     }
@@ -86,20 +101,24 @@ function eggToBaby(state) {
     timeMathToSec(state.timeState.lastEvolve) > 120
   ) {
     state.tamaStage = tamaState[2];
+
     state.timeState.lastEvolve = new Date();
   }
 }
 
-function babyToTeen(state) {
+function toddlerToTeen(state) {
+  if (state.tamaStage !== tamaState[2] || state.foodAnimationGoing) {
+    return;
+  }
+
   //BABY TO TEEN
-  if (
-    state.tamaStage == tamaState[2] &&
-    timeMathToSec(state.timeState.lastEvolve) >= 60 && //10 min
-    state.foodAnimationGoing != true
-  ) {
+  if (timeMathToSec(state.timeState.lastEvolve) >= 60) {
     //1% percent chance to grow early every 60 seconds
     if (timeMathToSec(state.gameStarted) % 30 == 0) {
+      console.log("Toddler to teen evolve is running");
+
       let randomNum = randomNumGen(2);
+
       if (randomNum === 0) {
         state.tamaStage = tamaState[3];
       } else {
@@ -183,7 +202,8 @@ export {
   letThereBeLife,
   eggHatch,
   eggToBaby,
-  babyToTeen,
+  babyToToddler,
+  toddlerToTeen,
   teenToAdult,
   autoDeath,
 };

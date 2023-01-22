@@ -13,6 +13,9 @@ import {
   adult3,
   adult4,
   gravestone,
+  eggState1,
+  eggState2,
+  eggState3,
 } from "../tamaImports";
 import {
   childOneMovement,
@@ -35,6 +38,10 @@ function updateChracterPicture(state) {
 
   if (state.tamaStage === tamaState[1] && state.tamaSick === false) {
     hideImage(eggClass);
+    hideImage(eggState1);
+    hideImage(eggState2);
+    hideImage(eggState3);
+
     hideImage(child1Low);
 
     showImage(child1);
