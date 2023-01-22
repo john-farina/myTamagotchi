@@ -29,19 +29,27 @@ import {
 import { autoRandomFlip } from "../../animations/MovmentAnimation";
 import { tamaState } from "../../state";
 
-function chooseOneAnimation(state, playerSelectedChoice, gameTimeStore) {
-  if (playerSelectedChoice === false && gameTimeStore <= 29) {
-    if (timeMathToSec(state.gameStarted) % 3 === 0) {
-      playerChoiceDiv.style.gap = "12px";
-      choiceText.innerHTML = "choose";
-    } else {
-      playerChoiceDiv.style.gap = "24px";
-      choiceText.innerHTML = "one";
+function chooseOneAnimation(state) {
+  let gameState = state.gameState;
+
+  if (gameState.gameTimeStore <= 29) {
+    if (!gameState.playerSelectedChoice) {
+      if (timeMathToSec(state.gameStarted) % 3 === 0) {
+        playerChoiceDiv.style.gap = "12px";
+        choiceText.innerHTML = "choose";
+      } else {
+        playerChoiceDiv.style.gap = "24px";
+        choiceText.innerHTML = "one";
+      }
+
+      return;
     }
-  } else if (playerSelectedChoice === true && gameTimeStore <= 29) {
+
     playerChoiceDiv.style.gap = "37.5px";
     choiceText.innerHTML = "";
-  } else if (playerSelectedChoice === false && gameTimeStore === 30) {
+  }
+
+  if (!gameState.playerSelectedChoice) {
     playerChoiceDiv.style.gap = "6px";
     choiceText.innerHTML = "times up";
   }
@@ -71,6 +79,8 @@ function showGameCharacter(state) {
     displayHide(gameChildOne);
     displayHide(gameChildTwo);
     displayFlex(gameTeenOne);
+
+    autoRandomFlip(gameTeenOne, state);
   } else if (state.tamaStage === tamaState[4]) {
     displayHide(gameChildOne);
     displayHide(gameChildTwo);
@@ -84,129 +94,162 @@ function showGameCharacter(state) {
     displayHide(gameTeenOne);
     displayHide(gameTeenTwo);
     displayFlex(gameAdultOne);
+
+    autoRandomFlip(gameAdultOne, state);
   } else if (state.tamaStage === tamaState[8]) {
     displayHide(gameChildOne);
     displayHide(gameChildTwo);
     displayHide(gameTeenOne);
     displayHide(gameTeenTwo);
     displayFlex(gameAdultTwo);
+
+    autoRandomFlip(gameAdultTwo, state);
   } else if (state.tamaStage === tamaState[9]) {
     displayHide(gameChildOne);
     displayHide(gameChildTwo);
     displayHide(gameTeenOne);
     displayHide(gameTeenTwo);
     displayFlex(gameAdultThree);
+
+    autoRandomFlip(gameAdultThree, state);
   } else if (state.tamaStage === tamaState[10]) {
     displayHide(gameChildOne);
     displayHide(gameChildTwo);
     displayHide(gameTeenOne);
     displayHide(gameTeenTwo);
     displayFlex(gameAdultFour);
+
+    autoRandomFlip(gameAdultFour, state);
   }
 }
 
-function characterMadEmoteAnimations(
-  gameMad,
-  gameHappy,
-  gameAnimateCount,
-  state
-) {
-  if (gameMad != false && gameAnimateCount < 5) {
+function characterMadEmoteAnimations(state) {
+  let gameState = state.gameState;
+
+  if (gameState.gameMad && gameState.gameAnimateCount < 5) {
     if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
       displayHide(gameMadAlertTwo);
 
       displayFlex(gameMadAlertOne);
-      gameAnimateCount++;
+      gameState.gameAnimateCount++;
     } else {
       displayHide(gameMadAlertOne);
 
       displayFlex(gameMadAlertTwo);
-      gameAnimateCount++;
+      gameState.gameAnimateCount++;
     }
-  } else {
-    gameMad = false;
-    gameHappy = false;
-    gameAnimateCount = 0;
-    displayHide(gameMadAlertTwo);
 
-    displayHide(gameMadAlertOne);
+    return;
   }
+
+  gameState.gameMad = false;
+  gameState.gameHappy = false;
+  gameState.gameAnimateCount = 0;
+
+  displayHide(gameMadAlertTwo);
+  displayHide(gameMadAlertOne);
 }
 
-function characterHappyEmoteAnimations(
-  gameHappy,
-  gameMad,
-  gameAnimateCount,
-  state
-) {
-  if (gameHappy != false && gameAnimateCount < 5) {
+function characterHappyEmoteAnimations(state) {
+  let gameState = state.gameState;
+
+  if (gameState.gameHappy && gameState.gameAnimateCount < 5) {
+    console.log("im happy");
     if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
       displayFlex(gameHappyAlert);
-      gameAnimateCount++;
+      gameState.gameAnimateCount++;
     } else {
       displayHide(gameHappyAlert);
-      gameAnimateCount++;
+      gameState.gameAnimateCount++;
     }
   } else {
-    gameHappy = false;
-    gameMad = false;
-    gameAnimateCount = 0;
+    gameState.gameHappy = false;
+    gameState.gameMad = false;
+    gameState.gameAnimateCount = 0;
     displayHide(gameHappyAlert);
   }
 }
 
-function updateScoreView(
-  playerSelection,
-  computerSelection,
-  gameHappy,
-  gameMad
-) {
-  if (playerSelection === 1 && computerSelection === 1) {
-    tamaChoiceOne.style.backgroundColor = "green";
+function updateScoreView(state) {
+  let gameState = state.gameState;
 
-    playerChoiceOne.style.backgroundColor = "green";
+  if (gameState.playerSelection === 1) {
+    if (gameState.computerSelection === 1) {
+      tamaChoiceOne.style.backgroundColor = "green";
 
-    gameHappy = true;
-  } else if (playerSelection === 2 && computerSelection === 2) {
-    tamaChoiceTwo.style.backgroundColor = "green";
-    playerChoiceTwo.style.backgroundColor = "green";
-    gameHappy = true;
-  } else if (playerSelection === 1 && computerSelection === 2) {
-    tamaChoiceTwo.style.backgroundColor = "maroon";
-    playerChoiceOne.style.backgroundColor = "maroon";
-    gameMad = true;
-  } else if (playerSelection === 2 && computerSelection === 1) {
-    tamaChoiceOne.style.backgroundColor = "maroon";
-    playerChoiceTwo.style.backgroundColor = "maroon";
-    gameMad = true;
-  } else if (playerSelection === 0) {
-    tamaChoiceOne.style.backgroundColor = "transparent";
-    tamaChoiceTwo.style.backgroundColor = "transparent";
-    playerChoiceOne.style.backgroundColor = "transparent";
-    playerChoiceTwo.style.backgroundColor = "transparent";
+      playerChoiceOne.style.backgroundColor = "green";
+
+      gameState.gameHappy = true;
+
+      return;
+    }
+
+    if (gameState.computerSelection === 2) {
+      tamaChoiceTwo.style.backgroundColor = "maroon";
+
+      playerChoiceOne.style.backgroundColor = "maroon";
+
+      gameState.gameMad = true;
+
+      return;
+    }
   }
+
+  if (gameState.playerSelection === 2) {
+    if (gameState.computerSelection === 1) {
+      tamaChoiceOne.style.backgroundColor = "maroon";
+      playerChoiceTwo.style.backgroundColor = "maroon";
+      gameState.gameMad = true;
+
+      return;
+    }
+
+    if (gameState.computerSelection === 2) {
+      tamaChoiceTwo.style.backgroundColor = "green";
+      playerChoiceTwo.style.backgroundColor = "green";
+      gameState.gameHappy = true;
+
+      return;
+    }
+  }
+
+  tamaChoiceOne.style.backgroundColor = "transparent";
+  tamaChoiceTwo.style.backgroundColor = "transparent";
+  playerChoiceOne.style.backgroundColor = "transparent";
+  playerChoiceTwo.style.backgroundColor = "transparent";
 }
 
-function updateScore(
-  playerSelection,
-  playerScore,
-  computerSelection,
-  computerScore
-) {
-  if (playerSelection === computerSelection) {
-    playerScore = playerScore + 1;
-  } else {
-    computerScore = computerScore + 1;
+function updateScore(state) {
+  let gameState = state.gameState;
+
+  if (gameState.playerSelection === gameState.computerSelection) {
+    gameState.playerScore += 1;
+
+    return;
   }
+
+  gameState.computerScore += 1;
 }
 
-function scoreAutoQuit(gameEnded, playerScore, computerScore, state) {
-  if (playerScore > 2) {
-    gameEnded = true;
+function scoreAutoQuit(state) {
+  let gameState = state.gameState;
+
+  if (gameState.playerScore > 2) {
+    gameState.gameEnded = true;
+
     state.tamaHappy++;
+
     state.tamaIsHappy = true;
-  } else if (computerScore > 2) {
-    gameEnded = true;
+
+    return;
+  }
+
+  if (gameState.computerScore > 2) {
+    gameState.gameEnded = true;
+
+    state.tamaIsMad = true;
+
+    return;
   }
 }
 
@@ -229,21 +272,25 @@ function quitGame(state) {
 }
 
 function playGame(state) {
-  if (state.gameState.gameIsRunning != false) {
-    if (state.gameState.gameTimeStore < 8) {
-      console.log("game running", state.gameState.gameTimeStore);
-    } else if (state.gameState.gameTimeStore === 8) {
-      state.gameState.playerSelectedChoice = false;
-      state.gameState.playerSelection = 0;
-      state.gameState.gameTimeStore = 0;
-      console.log("game ended", state.gameState.gameTimeStore);
-    }
+  if (!state.gameState.gameIsRunning) {
+    return;
+  }
+
+  if (state.gameState.gameTimeStore === 8) {
+    state.gameState.playerSelectedChoice = false;
+
+    state.gameState.playerSelection = 0;
+
+    state.gameState.gameTimeStore = 0;
+
+    console.log("Round ended", state.gameState.gameTimeStore);
   }
 }
 
 function updateGameTimerAndRestart(state) {
   if (state.gameState.gameTimeCount <= 24) {
     state.gameState.gameTimeCount++;
+
     if (
       state.gameState.gameTimeCount % 3 === 0 &&
       state.gameState.gameTimeStore < 30
@@ -251,7 +298,9 @@ function updateGameTimerAndRestart(state) {
       state.gameState.gameTimeStore++;
       gameTimer.innerHTML = `${state.gameState.gameTimeStore}`;
     }
-  } else if (state.gameState.gameTimeCount > 24) {
+  }
+
+  if (state.gameState.gameTimeCount > 24) {
     state.gameState.gameRound += 1;
     state.gameState.playerSelectedChoice = false;
     state.gameState.playerSelection = 0;
@@ -263,34 +312,14 @@ function updateGameTimerAndRestart(state) {
 function updateAndPlayGameAnimations(state) {
   if (state.gameState.gameIsRunning) {
     updateGameTimerAndRestart(state);
-    chooseOneAnimation(
-      state,
-      state.gameState.playerSelectedChoice,
-      state.gameState.gameTimeStore
-    );
-    updateScoreView(
-      state.gameState.playerSelection,
-      state.gameState.computerSelection,
-      state.gameState.gameHappy,
-      state.gameState.gameMad
-    );
+    chooseOneAnimation(state);
+    updateScoreView(state);
     showGameCharacter(state);
-    characterMadEmoteAnimations(
-      state.gameState.gameMad,
-      state.gameState.gameHappy,
-      state.gameState.gameAnimateCount,
-      state
-    );
-    characterHappyEmoteAnimations(
-      state.gameState.gameHappy,
-      state.gameState.gameMad,
-      state.gameState.gameAnimateCount,
-      state
-    );
+    characterMadEmoteAnimations(state);
+    characterHappyEmoteAnimations(state);
+    scoreAutoQuit(state);
     quitGame(state);
   }
-
-  scoreAutoQuit(state);
 }
 
 export {

@@ -45,12 +45,7 @@ function PlayerChoiceOne(state) {
   gameState.gameTimeStore = 6;
   gameState.computerSelection = computerGuess();
 
-  updateScore(
-    gameState.playerSelection,
-    gameState.playerScore,
-    gameState.computerSelection,
-    gameState.computerScore
-  );
+  updateScore(state);
 }
 
 function PlayerChoiceTwo(state) {
@@ -65,12 +60,7 @@ function PlayerChoiceTwo(state) {
   gameState.gameTimeStore = 6;
   gameState.computerSelection = computerGuess();
 
-  updateScore(
-    gameState.playerSelection,
-    gameState.playerScore,
-    gameState.computerSelection,
-    gameState.computerScore
-  );
+  updateScore(state);
 }
 
 export { GameButton, PlayerChoiceOne, PlayerChoiceTwo };
