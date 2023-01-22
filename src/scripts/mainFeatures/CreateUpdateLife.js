@@ -8,18 +8,11 @@ function letThereBeLife(state) {
 }
 
 function eggHatch(state) {
-  // if (not hatched) {
-  //   give random chance every 30 sec to
-  //   add a increase in hatching stage
-  //   if doesnt increase in 10 min add a increase (every 10 min)
-  //   if hatching stage to 3 go to eggToBaby
-  // }
+  if (state.tamaStage !== tamaState[0]) {
+    return;
+  }
 
-  if (
-    state.tamaStage == tamaState[0] && //if egg and 20 seconds has passed
-    state.tamaHatch < 3 &&
-    timeMathToSec(state.timeState.gameStart) > 2
-  ) {
+  if (state.tamaHatch < 3 && timeMathToSec(state.timeState.gameStart) > 2) {
     if (timeMathToSec(state.timeState.gameStart) % 2 == 0) {
       //every 2 seconds have a chance to hatch
       let randomNum = randomNumGen(500);
@@ -33,35 +26,44 @@ function eggHatch(state) {
       }
     }
   }
+
   if (state.tamaHatch == 3) {
     state.timeState.lastHatchCycle = new Date();
+
     state.tamaHatch = 4;
   }
 }
 
 function eggToBaby(state) {
   //first KID evolve
+  if (state.tamaStage !== tamaState[0] || state.tamaHatch !== 4) {
+    return;
+  }
+
+  let lastHatchCycle = state.timeState.lastHatchCycle;
+
   if (
-    state.tamaStage == tamaState[0] && //if stil egg
-    state.tamaHatch == 4 && //and egg is at hatch level 3
-    timeMathToSec(state.timeState.lastHatchCycle) > 10 &&
-    timeMathToSec(state.timeState.lastHatchCycle) < 120 //2 min
+    timeMathToSec(lastHatchCycle) > 10 &&
+    timeMathToSec(lastHatchCycle) < 120 //2 min
   ) {
     if (timeMathToSec(state.timeState.gameStart) % 2 == 0) {
       let randomNum = randomNumGen(100);
+
       if (randomNum >= 75 && randomNum <= 80) {
         //5% chance every 4 sec to hatch early
         state.tamaStage = tamaState[1];
+
         state.tamaName = state.tamaStage;
+
         state.timeState.lastEvolve = new Date();
       }
     }
   } else if (
-    state.tamaStage == tamaState[0] &&
-    timeMathToSec(state.timeState.lastHatchCycle) > 120 //2 min
+    timeMathToSec(lastHatchCycle) > 120 //2 min
   ) {
     //100% chance to hatch
     state.tamaStage = tamaState[1];
+
     state.timeState.lastEvolve = new Date();
   }
 
