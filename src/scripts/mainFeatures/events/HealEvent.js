@@ -1,4 +1,5 @@
 import { hideAllExtraScreens } from "../../misc/usefulFunctions";
+import { heal } from "../mainFunctions";
 
 export function HealEvent(state) {
   if (state.tamaIsMad) {
