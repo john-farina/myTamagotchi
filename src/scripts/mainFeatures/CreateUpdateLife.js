@@ -19,19 +19,23 @@ function randomReturnPercentage(percentage) {
 console.log(randomReturnPercentage(10));
 
 function letThereBeLife(state) {
-  if (timeMathToSec(state.timeState.gameStart) < 10) {
-    state.tamaStage = tamaState[1];
+  const secondsSinceGameStart = timeMathToSec(state.timeState.gameStart);
+
+  if (secondsSinceGameStart < 10) {
+    state.tamaStage = tamaState[3];
   }
 }
 
 function eggHatch(state) {
+  const secondsSinceGameStart = timeMathToSec(state.timeState.gameStart);
+
   if (state.tamaStage !== tamaState[0]) {
     return;
   }
 
-  if (state.tamaHatch < 3 && timeMathToSec(state.timeState.gameStart) > 2) {
-    if (timeMathToSec(state.timeState.gameStart) % 1 == 0) {
-      //every 2 sec 70% to hatch more
+  if (state.tamaHatch < 3 && secondsSinceGameStart > 2) {
+    //every 2 sec 70% to hatch more
+    if (secondsSinceGameStart % 2 == 0) {
       if (randomReturnPercentage(70)) {
         state.tamaHatch++;
       }
@@ -43,8 +47,6 @@ function eggHatch(state) {
 
     state.tamaHatch = 4;
   }
-
-  console.log(state.tamaHatch);
 }
 
 function eggToBaby(state) {
@@ -53,12 +55,13 @@ function eggToBaby(state) {
     return;
   }
 
-  let lastHatchCycle = state.timeState.lastHatchCycle;
+  let secondsSinceLastHatch = timeMathToSec(state.timeState.lastHatchCycle);
+  let secondsSinceGameStart = timeMathToSec(state.timeState.gameStart);
 
-  if (timeMathToSec(lastHatchCycle) < 120) {
-    if (timeMathToSec(state.timeState.gameStart) % 2 == 0) {
+  if (secondsSinceLastHatch < 120) {
+    if (secondsSinceGameStart % 2 == 0) {
       //every 2 sec - 45% chance to hatch
-      if (randomReturnPercentage(100)) {
+      if (randomReturnPercentage(70)) {
         state.tamaStage = tamaState[1];
 
         state.tamaName = state.tamaStage;
@@ -68,41 +71,40 @@ function eggToBaby(state) {
     }
 
     return;
-  } else if (
-    timeMathToSec(lastHatchCycle) > 120 //2 min
-  ) {
-    //100% chance to hatch
-    state.tamaStage = tamaState[1];
-
-    state.timeState.lastEvolve = new Date();
   }
+
+  //100% chance to hatch
+  state.tamaStage = tamaState[1];
+
+  state.timeState.lastEvolve = new Date();
 }
 
 function babyToToddler(state) {
   //second KID evolve
   if (state.tamaStage !== tamaState[1] || state.foodAnimationGoing) {
+    return;
   }
-  if (
-    timeMathToSec(state.timeState.lastEvolve) > 10 &&
-    timeMathToSec(state.timeState.lastEvolve) < 120
-  ) {
-    if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
-      console.log("second kid evolve is running");
-      let randomNum = randomNumGen(500);
 
-      if (randomReturnPercentage(80)) {
-        state.tamaStage = tamaState[2];
+  let secondsSinceLastEvolve = timeMathToSec(state.timeState.lastEvolve);
+  let secondsSinceGameStart = timeMathToSec(state.timeState.gameStart);
 
-        state.timeState.lastEvolve = new Date();
-      }
+  if (secondsSinceLastEvolve > 10 && secondsSinceLastEvolve < 120) {
+    if (secondsSinceGameStart % 2 === 0 && randomReturnPercentage(20)) {
+      state.tamaStage = tamaState[2];
+
+      state.timeState.lastEvolve = new Date();
     }
-  } else if (
-    state.tamaStage === tamaState[1] &&
-    timeMathToSec(state.timeState.lastEvolve) > 120
-  ) {
+
+    return;
+  }
+
+  // after the 120 so 2 mins
+  if (secondsSinceLastEvolve > 120) {
     state.tamaStage = tamaState[2];
 
     state.timeState.lastEvolve = new Date();
+
+    return;
   }
 }
 
@@ -111,69 +113,111 @@ function toddlerToTeen(state) {
     return;
   }
 
-  //BABY TO TEEN
-  if (timeMathToSec(state.timeState.lastEvolve) >= 60) {
-    //1% percent chance to grow early every 60 seconds
-    if (timeMathToSec(state.gameStarted) % 30 == 0) {
-      console.log("Toddler to teen evolve is running");
+  let secondsSinceLastEvolve = timeMathToSec(state.timeState.lastEvolve);
+  let secondsSinceGameStarted = timeMathToSec(state.gameStarted);
 
-      if (randomReturnPercentage(10)) {
-        state.tamaStage = tamaState[3];
-      } else {
-        state.tamaStage = tamaState[4];
-      }
-    }
-  } else if (
-    state.tamaStage == tamaState[2] &&
-    timeMathToSec(state.timeState.lastEvolve > 43200) //.5 day
-  ) {
-    //10% every 60 seconds
-    if (timeMathToSec(state.gameStarted) % 60 == 0) {
-      if (randomReturnPercentage(10)) {
-        state.tamaStage = tamaState[3];
-      } else {
-        state.tamaStage = tamaState[4];
-      }
-    }
-  } else if (
-    state.tamaStage == tamaState[2] &&
-    timeMathToSec(state.timeState.lastEvolve > 86400) //1 day
-  ) {
-    //grow up no matter what
+  // 1 day - half day - 30 min
+  if (secondsSinceLastEvolve > 86400) {
     if (randomReturnPercentage(100)) {
       state.tamaStage = tamaState[3];
     } else {
       state.tamaStage = tamaState[4];
+    }
+  } else if (secondsSinceLastEvolve > 43200) {
+    if (secondsSinceGameStarted % 60 == 0) {
+      if (randomReturnPercentage(10)) {
+        state.tamaStage = tamaState[3];
+      } else {
+        state.tamaStage = tamaState[4];
+      }
+    }
+  } else if (secondsSinceLastEvolve >= 2) {
+    if (secondsSinceGameStarted % 30 == 0) {
+      if (randomReturnPercentage(10)) {
+        state.tamaStage = tamaState[3];
+      } else {
+        state.tamaStage = tamaState[4];
+      }
+    }
+  }
+}
+
+function randomAdultPicker(stateTamaStage) {
+  if (randomReturnPercentage(100)) {
+    let teenChoice = randomNumGen(100);
+    console.log("Inside RandomAdultRunning ", teenChoice);
+
+    // 4 MAIN ADULTS - 2 SECRET
+    // 100/90 - 92% - 23% each
+    // 100/10 - 8% - 4% each
+
+    //23% EACH
+    if (teenChoice >= 0 && teenChoice <= 22) {
+      stateTamaStage = tamaState[7];
+    } else if (teenChoice >= 23 && teenChoice <= 46) {
+      stateTamaStage = tamaState[8];
+    } else if (teenChoice >= 47 && teenChoice <= 69) {
+      stateTamaStage = tamaState[9];
+    } else if (teenChoice >= 70 && teenChoice <= 92) {
+      stateTamaStage = tamaState[10];
+    } else if (teenChoice >= 93) {
+      //8% - 2 SECRET CHARACTERS
+      if (randomReturnPercentage(50)) {
+        stateTamaStage = tamaState[5];
+      } else {
+        stateTamaStage = tamaState[6];
+      }
     }
   }
 }
 
 function teenToAdult(state) {
   if (
-    (state.tamaStage == tamaState[3] || state.tamaStage == tamaState[4]) &&
-    timeMathToSec(state.timeState.lastEvolve) > 20 //60 min
+    (state.tamaStage === tamaState[3] || state.tamaStage === tamaState[4]) &&
+    timeMathToSec(state.timeState.lastEvolve) > 10 //60 min
   ) {
     if (timeMathToSec(state.timeState.gameStart) % 2 == 0) {
-      //1 % chance every 30 seconds to grow up early
-      let randomNum = randomNumGen(100);
-      if (randomNum > 46) {
+      if (randomReturnPercentage(10)) {
         let teenChoice = randomNumGen(100);
-        if (teenChoice >= 0 && teenChoice <= 23) {
+
+        state.timeState.lastEvolve = new Date();
+
+        //23% EACH
+        if (teenChoice >= 0 && teenChoice <= 22) {
           state.tamaStage = tamaState[7];
-        } else if (teenChoice >= 24 && teenChoice <= 47) {
+
+          return;
+        }
+
+        if (teenChoice >= 23 && teenChoice <= 46) {
           state.tamaStage = tamaState[8];
-        } else if (teenChoice >= 48 && teenChoice <= 71) {
+
+          return;
+        }
+
+        if (teenChoice >= 47 && teenChoice <= 69) {
           state.tamaStage = tamaState[9];
-        } else if (teenChoice >= 72 && teenChoice <= 95) {
-          //24%
+
+          return;
+        }
+
+        if (teenChoice >= 70 && teenChoice <= 92) {
           state.tamaStage = tamaState[10];
-        } else if (teenChoice >= 96) {
-          //4% - SECRET CHARACTER
-          if (state.tamaStage == tamaState[3]) {
-            state.tamaStage = tamaState[5]; //secret characters for that character
-          } else if (state.tamaStage == tamaState[4]) {
-            state.tamaStage = tamaState[6]; //secret characters for that character
+
+          return;
+        }
+
+        //8% - 2 SECRET CHARACTERS
+        if (teenChoice >= 93) {
+          if (randomReturnPercentage(50)) {
+            state.tamaStage = tamaState[5];
+
+            return;
           }
+
+          state.tamaStage = tamaState[6];
+
+          return;
         }
       }
     }

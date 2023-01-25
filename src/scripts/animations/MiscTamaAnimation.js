@@ -71,16 +71,15 @@ function removeAllChildAndTeen() {
 }
 
 function eggHatchAnimation(state) {
-  if (state.tamaStage != tamaState[0]) {
-    return;
-  }
-
-  if (timeMathToSec(state.timeState.gameStart) % 2 === 0) {
-    eggState2.style.visibility = "hidden";
-    eggState1.style.visibility = "visible";
+  if (
+    timeMathToSec(state.timeState.gameStart) % 2 === 0 &&
+    state.tamaStage === tamaState[0]
+  ) {
+    hideImage(eggState2);
+    showImage(eggState1);
   } else {
-    eggState1.style.visibility = "hidden";
-    eggState2.style.visibility = "visible";
+    hideImage(eggState1);
+    showImage(eggState2);
   }
 }
 

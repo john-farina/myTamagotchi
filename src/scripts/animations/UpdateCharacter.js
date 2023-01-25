@@ -16,6 +16,9 @@ import {
   eggState1,
   eggState2,
   eggState3,
+  teenClass,
+  childClass,
+  adultClass,
 } from "../tamaImports";
 import {
   childOneMovement,
@@ -24,8 +27,41 @@ import {
   hideImage,
   showImage,
 } from "./MovmentAnimation";
-import { removeAllChildAndTeen } from "./MiscTamaAnimation";
 import { tamaState } from "../state";
+
+function hideAllPlayerImages() {
+  hideImage(eggClass);
+  hideImage(adultClass);
+  hideImage(childClass);
+  hideImage(teenClass);
+  hideImage(eggState3);
+  hideImage(eggState2);
+  hideImage(eggState1);
+  hideImage(adult4);
+  hideImage(adult3);
+  hideImage(adult2);
+  hideImage(adult1);
+  hideImage(adult6);
+  hideImage(adult5);
+  hideImage(teen2);
+  hideImage(teen1);
+  hideImage(child2);
+  hideImage(child1Low);
+  hideImage(child1Sick);
+  hideImage(child1);
+  hideImage(eggClass);
+}
+
+function updateAndMoveCharacters(character, state) {
+  // hide everything else
+  hideAllPlayerImages();
+
+  showImage(character);
+
+  autoRandomFlip(character, state);
+
+  moveLeftToRightRandom(character, state);
+}
 
 function updateChracterPicture(state) {
   if (
@@ -37,112 +73,51 @@ function updateChracterPicture(state) {
   }
 
   if (state.tamaStage === tamaState[1] && state.tamaSick === false) {
-    hideImage(eggClass);
-    hideImage(eggState1);
-    hideImage(eggState2);
-    hideImage(eggState3);
+    updateAndMoveCharacters(child1, state);
 
-    hideImage(child1Low);
-
-    showImage(child1);
-
+    // special movement only for the child
     childOneMovement(state);
-
-    moveLeftToRightRandom(child1, state);
   }
 
   if (state.tamaStage === tamaState[2]) {
-    hideImage(child1);
-    hideImage(child1Low);
-    hideImage(child1Sick);
-
-    showImage(child2);
-
-    moveLeftToRightRandom(child2, state);
+    updateAndMoveCharacters(child2, state);
   }
 
   if (state.tamaStage === tamaState[3]) {
-    hideImage(child2);
-
-    showImage(teen1);
-
-    autoRandomFlip(teen1, state);
-
-    moveLeftToRightRandom(teen1, state);
+    updateAndMoveCharacters(teen1, state);
   }
 
   if (state.tamaStage === tamaState[4]) {
-    child2.style.visibility = "hidden";
-    hideImage(child2);
-
-    showImage(teen2);
-
-    autoRandomFlip(teen2, state);
-
-    moveLeftToRightRandom(teen2, state);
+    updateAndMoveCharacters(teen2, state);
   }
 
   if (state.tamaStage === tamaState[5]) {
-    removeAllChildAndTeen();
-
-    showImage(adult5);
-
-    autoRandomFlip(adult5, state);
-
-    moveLeftToRightRandom(adult5, state);
+    updateAndMoveCharacters(adult5, state);
   }
 
   if (state.tamaStage === tamaState[6]) {
-    removeAllChildAndTeen();
-
-    showImage(adult6);
-
-    autoRandomFlip(adult6, state);
-
-    moveLeftToRightRandom(adult6, state);
+    updateAndMoveCharacters(adult6, state);
   }
 
   if (state.tamaStage === tamaState[7]) {
-    removeAllChildAndTeen();
-
-    showImage(adult1);
-
-    autoRandomFlip(adult1, state);
-
-    moveLeftToRightRandom(adult1, state);
+    updateAndMoveCharacters(adult1, state);
   }
 
   if (state.tamaStage === tamaState[8]) {
-    removeAllChildAndTeen();
-
-    showImage(adult2);
-
-    autoRandomFlip(adult2, state);
-
-    moveLeftToRightRandom(adult2, state);
+    updateAndMoveCharacters(adult2, state);
   }
 
   if (state.tamaStage === tamaState[9]) {
-    removeAllChildAndTeen();
-
-    showImage(adult3);
-
-    autoRandomFlip(adult3, state);
-
-    moveLeftToRightRandom(adult3, state);
+    updateAndMoveCharacters(adult3, state);
   }
 
   if (state.tamaStage === tamaState[10]) {
-    removeAllChildAndTeen();
-
-    showImage(adult4);
-
-    autoRandomFlip(adult4, state);
-
-    moveLeftToRightRandom(adult4, state);
+    updateAndMoveCharacters(adult4, state);
   }
 
   if (state.tamaStage === tamaState[13]) {
+    hideAllPlayerImages();
+
     showImage(gravestone);
   }
 }
