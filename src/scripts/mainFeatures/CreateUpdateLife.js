@@ -1,7 +1,7 @@
 import { timeMathToSec, randomNumGen } from "../misc/usefulFunctions";
 import { tamaState } from "../state";
 
-function randomReturnPercentage(percentage) {
+export function randomReturnPercentage(percentage) {
   // 15 out of 100 = 15%
   let randomNumber = Math.floor(Math.random() * 100);
 
@@ -16,13 +16,11 @@ function randomReturnPercentage(percentage) {
   return false;
 }
 
-console.log(randomReturnPercentage(10));
-
 function letThereBeLife(state) {
   const secondsSinceGameStart = timeMathToSec(state.timeState.gameStart);
 
   if (secondsSinceGameStart < 10) {
-    state.tamaStage = tamaState[3];
+    state.tamaStage = tamaState[0];
   }
 }
 
@@ -137,35 +135,6 @@ function toddlerToTeen(state) {
         state.tamaStage = tamaState[3];
       } else {
         state.tamaStage = tamaState[4];
-      }
-    }
-  }
-}
-
-function randomAdultPicker(stateTamaStage) {
-  if (randomReturnPercentage(100)) {
-    let teenChoice = randomNumGen(100);
-    console.log("Inside RandomAdultRunning ", teenChoice);
-
-    // 4 MAIN ADULTS - 2 SECRET
-    // 100/90 - 92% - 23% each
-    // 100/10 - 8% - 4% each
-
-    //23% EACH
-    if (teenChoice >= 0 && teenChoice <= 22) {
-      stateTamaStage = tamaState[7];
-    } else if (teenChoice >= 23 && teenChoice <= 46) {
-      stateTamaStage = tamaState[8];
-    } else if (teenChoice >= 47 && teenChoice <= 69) {
-      stateTamaStage = tamaState[9];
-    } else if (teenChoice >= 70 && teenChoice <= 92) {
-      stateTamaStage = tamaState[10];
-    } else if (teenChoice >= 93) {
-      //8% - 2 SECRET CHARACTERS
-      if (randomReturnPercentage(50)) {
-        stateTamaStage = tamaState[5];
-      } else {
-        stateTamaStage = tamaState[6];
       }
     }
   }

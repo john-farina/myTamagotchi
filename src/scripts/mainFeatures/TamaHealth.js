@@ -1,138 +1,117 @@
 import { randomNumGen, timeMathToSec } from "../misc/usefulFunctions";
+import { randomReturnPercentage } from "./CreateUpdateLife";
 
 function autoHealthDegen(state) {
-  let randomNum = randomNumGen(2500);
-  if (
-    timeMathToSec(state.timeState.gameStart) % 10 == 0 &&
-    timeMathToSec(state.timeState.lastHealth) > 11
-  ) {
-    //every 5 seconds check
+  const secondsSinceGameStart = timeMathToSec(state.timeState.gameStart);
+  const secondsSinceLastHealth = timeMathToSec(state.timeState.lastHealth);
+
+  //every 5 seconds check
+  if (secondsSinceGameStart % 10 == 0 && secondsSinceLastHealth > 11) {
     if (state.tamaHappy <= 2) {
-      // if not happy
-      if (
-        //15% chance to loose health 200/3000
-        (randomNum >= 10 && randomNum <= 70) ||
-        (randomNum >= 900 && randomNum <= 970) ||
-        (randomNum >= 2300 && randomNum <= 2370)
-      ) {
+      //15% chance to loose health 200/3000
+      if (randomReturnPercentage(15)) {
         state.tamaHealth -= 1;
+
         state.timeState.lastHealth = new Date();
       }
-    } else {
-      //NORMAL HEALTH DEGEN
-      if (
-        //3% chance to loose health 90/3000
-        (randomNum >= 10 && randomNum <= 69) ||
-        (randomNum >= 880 && randomNum <= 930) ||
-        (randomNum >= 2280 && randomNum <= 2330)
-      ) {
-        state.tamaHealth -= 1;
-        state.timeState.lastHealth = new Date();
-      }
+
+      return;
+    }
+
+    //NORMAL HEALTH DEGEN
+    //3% chance to loose health 90/3000
+    if (randomReturnPercentage(3)) {
+      state.tamaHealth -= 1;
+
+      state.timeState.lastHealth = new Date();
     }
   }
 }
 
 function autoHappyDegen(state) {
-  let randomNum = randomNumGen(3000);
-  if (timeMathToSec(state.timeState.gameStart) % 5 == 0) {
-    //every 5 seconds run
+  const secondsSinceGameStart = timeMathToSec(state.timeState.gameStart);
+
+  //every 5 seconds run
+  if (secondsSinceGameStart % 5 == 0) {
     if (state.tamaHealth <= 2) {
-      //if health 2 MORE HAPPY DEGEN
-      //15% percent
-      if (
-        (randomNum >= 100 && randomNum <= 160) ||
-        (randomNum >= 1200 && randomNum <= 1280) ||
-        (randomNum >= 2800 && randomNum <= 2880)
-      ) {
+      if (randomReturnPercentage(15)) {
         state.tamaHappy -= 1;
+
         state.timeState.lastHappy = new Date();
       }
-    } else {
-      //NORMAL HEAPPY DEGEN
-      //3% percent 90/3000
-      if (
-        (randomNum >= 50 && randomNum <= 80) ||
-        (randomNum >= 1600 && randomNum <= 1630) ||
-        (randomNum >= 2200 && randomNum <= 2230)
-      ) {
-        state.tamaHappy -= 1;
-        state.timeState.lastHappy = new Date();
-      }
+
+      return;
+    }
+
+    //3% percent 90/3000
+    if (randomReturnPercentage(3)) {
+      state.tamaHappy -= 1;
+
+      state.timeState.lastHappy = new Date();
     }
   }
 }
 
 function getSick(state) {
-  let randomNumber = randomNumGen(4000);
+  const secondsSinceLastPoop = timeMathToSec(state.timeState.lastPoop);
+  const secondsSinceLastSick = timeMathToSec(state.timeState.lastSick);
 
   if (state.tamaPoop == 4) {
-    if (timeMathToSec(state.timeState.lastPoop) > 15) {
-      //if 6 poop for 15 sec get sick
+    //if 6 poop for 15 sec get sick
+    if (secondsSinceLastPoop > 15) {
       state.tamaSick = true;
       state.timeState.lastSick = new Date();
     }
   }
 
+  //cant get sick 2 min after getting sick
   if (
-    timeMathToSec(state.timeState.lastSick) > 60 ||
+    secondsSinceLastSick > 60 ||
     state.timeState.lastSick == state.timeState.gameStart
   ) {
-    //cant get sick 2 min after getting sick
-    if (randomNumber == 8 || randomNumber == 573 || randomNumber == 1362) {
+    if (randomReturnPercentage(2)) {
       state.tamaSick = true;
       state.timeState.lastSick = new Date();
     }
-  } else {
-    //no poop
   }
 }
 
 function givePoop(state) {
-  let randomNum = randomNumGen(1000);
+  if (state.tamaPoop === 4) {
+    return;
+  }
+  const secondsSinceLastPoop = timeMathToSec(state.timeState.lastPoop);
 
-  if (state.tamaPoop == 4) {
-    //cant poop anymore
-  } else if (state.tamaSick == true) {
-    if (timeMathToSec(state.timeState.lastPoop) % 10 == 0) {
-      if (
-        //25.5%: 255/1000 - every 10 sec if sick
-        (randomNum <= 10 && randomNum >= 95) ||
-        (randomNum <= 510 && randomNum >= 595) ||
-        (randomNum <= 800 && randomNum >= 885)
-      ) {
+  if (state.tamaSick == true) {
+    if (secondsSinceLastPoop % 10 == 0) {
+      if (randomReturnPercentage(25)) {
         state.tamaPoop++;
         state.timeState.lastPoop = new Date();
       }
     }
-  } else {
-    //normally
-    if (timeMathToSec(state.timeState.lastPoop) % 30 == 0) {
-      if (
-        //10.5%: 105/1000
-        (randomNum >= 10 && randomNum <= 45) ||
-        (randomNum >= 400 && randomNum <= 435) ||
-        (randomNum >= 900 && randomNum <= 935)
-      ) {
-        state.tamaPoop++;
-        state.timeState.lastPoop = new Date();
-        let randomNum2 = randomNumGen(4);
-        if (randomNum2 == 2) {
-          //25%: 1/4
-          state.tamaHealth--;
-        } else {
-        }
-      }
-    }
+
+    return;
   }
 
-  if (state.tamaPoop === 0) {
+  //normally
+  if (secondsSinceLastPoop % 30 == 0) {
+    if (randomReturnPercentage(11)) {
+      state.tamaPoop++;
+
+      state.timeState.lastPoop = new Date();
+
+      if (randomReturnPercentage(25)) {
+        //25%: 1/4
+        state.tamaHealth--;
+      }
+    }
   }
 }
 
 function ifSick(state) {
+  const secondsSinceLastSick = timeMathToSec(state.timeState.lastSick);
   if (state.tamaSick == true) {
-    if (timeMathToSec(state.timeState.lastSick) % 15 == 0) {
+    if (secondsSinceLastSick % 15 == 0) {
       state.tamaHealth -= 0.5;
     }
   }
