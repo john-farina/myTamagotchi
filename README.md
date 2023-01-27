@@ -2,11 +2,11 @@
 
 # what did i do in this project
 
-## JAVSCRIPT
+<!-- ## JAVSCRIPT
 - manipualted the DOM images to create the illusion of a alive pet,
 - set a game state that the whole game revolves arounds saving values,
 - Game that is oriented around time so it will hatch and grow up depending on how long it is open for.
-- Set a custom health degen and food so the player can interact and feed the tamagotchi
+- Set a custom health degen and food so the player can interact and feed the tamagotchi -->
 
 ### JS EVOLVE
 - for the tamagotchi growing up i am basing it off of randomness and time, everytime the player grows up it saves a new time value and then compares it to what time the game was started, then throwing a random number untill the desired one is chosen. Making it entirely random and each game slightly different
@@ -102,6 +102,17 @@ In this project i am manipulating the DOM objects i have mostly already placed i
 
 ### Updating Game & Animations
 For updating the game and animations i am using two setIntervals that are both updating on there own interval, for the game interval it is set at a higher pace because i want it to be fluent and not feel laggy, but i did the opposite for the animation frame because i do want the animations to be choppy, to try to go for the tamagotchi style
+
+## Tamagotchi Game Logic
+
+### Time Oriented & Random
+The core mechanics of tamagotchi are centered around the use of time and randomness. These elements are used to create a unique and unpredictable experience for the player. For instance, the tamagotchi's evolution is determined by both time and random chance. The game state is updated with the current time each time the Tamagotchi evolves, and the value is compared with the start time of the game. When the preffered time for evolution is reached, the game uses a random percent generation function to determine the specific outcome of the evolution, adding an element of surprise and replayability for each aspect of the game.
+
+### Evolution States
+
+### Health/Happy Degeneration
+
+### Guessing Game
 
 <!-- USAGE EXAMPLES -->
 ## Usage
