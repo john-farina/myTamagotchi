@@ -92,6 +92,17 @@ Here's a blank template to get started: this is wherre you should be explaining 
  - Javascript
  - CSS & HTML
 
+## Javascript
+
+### State
+I used a single gameState object to run the game, to make it easier if i wanted to make a saving functionality for the future, and to keep the code clean and easily changable. the state object stores things like, screenState, gameState,Tamagotchi Health and more
+
+### DOM
+In this project i am manipulating the DOM objects i have mostly already placed in the html, showing and hiding the correct images that correlate with the state i used this method to keep track of the images and what images go in what screens.
+
+### Updating Game & Animations
+For updating the game and animations i am using two setIntervals that are both updating on there own interval, for the game interval it is set at a higher pace because i want it to be fluent and not feel laggy, but i did the opposite for the animation frame because i do want the animations to be choppy, to try to go for the tamagotchi style
+
 <!-- USAGE EXAMPLES -->
 ## Usage
 
