@@ -109,8 +109,19 @@ For updating the game and animations i am using two setIntervals that are both u
 The core mechanics of tamagotchi are centered around the use of time and randomness. These elements are used to create a unique and unpredictable experience for the player. For instance, the tamagotchi's evolution is determined by both time and random chance. The game state is updated with the current time each time the Tamagotchi evolves, and the value is compared with the start time of the game. When the preffered time for evolution is reached, the game uses a random percent generation function to determine the specific outcome of the evolution, adding an element of surprise and replayability for each aspect of the game.
 
 ### Evolution States
+I am controlling the evolution using a Array with all of the values, there are 4 main Evolution states. Baby, Toddler, Teen, Adult.
+#### Baby & Toddler
+For the baby and toddler there is only one character but this is where all characters can evolve from, each player gets the same baby and toddler then they will recivie a random teen based on how happy it is.
+
+#### Teens
+There are two teens a player can get there tamagotchi to evolve into they both act the same, but have different looks.
+
+#### Adults
+There are 6 different adults (and one i created myself lol) so there are many chances to get a unqiue character. The gameplay is all the same and looks are only aesthitic. (Some characters in the original tamagotchi get more sick, etc.)
 
 ### Health/Happy Degeneration
+Both Health and happy degneration are based off a 3% chance and it runs every 10 seconds or so, if the value is true then the tamagotchis health or happiness degenerates, The user can then feed the tamagotchi or play with it to increase their health. <br>
+All other random tamaogtchi generations are following the same rules but with a higher or lower percentage depending on what it is. For example random Pooping can get turned into a higher chance if the tamagotchi is sick for a set amount of seconds/minutes.
 
 ### Guessing Game
 
