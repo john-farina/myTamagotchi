@@ -132,7 +132,7 @@ For the game i am generating a random number 1 or 2, and each button correlates 
 ### Characters
 I recreated the original tamagotchi chacracters but in a svg form so its better for the web and i could resize them when needed. This was a long process of finding videos of every tamagotchi character since it was hard for me to get each one on my actual tamagotchi. *(the ending gravestone scene when ur tamagotchi dies is actually from a discontinued version of the actual tamagotchi. they then replaced that with the character growing wings.)* <br>
 here are most of the images i created.
-<div style="display: flex; flex-wrap: wrap; gap: 5px;">
+<div style="display: flex; flex-wrap: wrap; gap: 5px; justify-content: center;background-color: gray;">
     <img src="./src/tamaPictures/tamaCharacter/childState1/tama_childState1.svg" width="50" height="50" />
     <img src="./src/tamaPictures/tamaCharacter/childState2/tama_childState2.svg" width="50" height="50" />
     <img src="./src/tamaPictures/tamaCharacter/teen1/tama_teen1.svg" width="50" height="50" />
