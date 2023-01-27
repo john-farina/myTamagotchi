@@ -59,19 +59,35 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">JavaScript</a>
+      <a href="#javascript">JavaScript</a>
       <ul>
-        <li><a href="#prerequisites">State</a></li>
-        <li><a href="#installation">Gameplay</a></li>
-        <li><a href="#installation">Animations</a></li>
+        <li><a href="#state">State</a></li>
+        <li><a href="#dom">DOM</a></li>
+        <li><a href="#updating-game--animations">Updating Game & Animations</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Design</a>
+      <a href="#tamagotchi-game-logic">Tamagotchi Game Logic</a>
       <ul>
-        <li><a href="#prerequisites">Characters</a></li>
-        <li><a href="#installation">Device</a></li>
-        <li><a href="#installation">More</a></li>
+        <li><a href="#time-oriented--random">Time Oriented & Random</a></li>
+        <li><a href="#evolution-states">Evolution States</a></li>
+        <ul>
+            <li><a href="#baby--toddler">Baby & Toddler</a></li>
+            <li><a href="#teens">Teens</a></li>
+            <li><a href="#adults">Adults</a></li>
+        </ul>
+        <li><a href="#healthhappy-degeneration">Health/Happy Degeneration</a></li>
+        <li><a href="#guessing-game">Guessing Game</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#design">Design</a>
+      <ul>
+        <li><a href="#characters">Characters</a></li>
+        <li><a href="#the-device">The Device</a></li>
+        <li><a href="#screen">Screen</a></li>
+        <li><a href="#menus">Menus</a></li>
+        <li><a href="#themes">Themes</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -147,8 +163,6 @@ here are most of the images i created.
 ### Screen
 
 ### Menus
-
-### Buttons
 
 ### Themes
 
