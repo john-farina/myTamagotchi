@@ -23,10 +23,19 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#getting-started">JavaScript</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#prerequisites">State</a></li>
+        <li><a href="#installation">Gameplay</a></li>
+        <li><a href="#installation">Animations</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Design</a>
+      <ul>
+        <li><a href="#prerequisites">Characters</a></li>
+        <li><a href="#installation">Device</a></li>
+        <li><a href="#installation">More</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -49,7 +58,7 @@ Here's a blank template to get started: this is wherre you should be explaining 
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
-_For more examples, please refer to the [Documentation](https://example.com)
+## What I Would Do If I Had More Time.
 
 
 <!-- CONTACT -->
@@ -57,7 +66,7 @@ _For more examples, please refer to the [Documentation](https://example.com)
 
 **John Farina** - johnfarina8@gmail.com
 
-Project Link: [github.com/john-farina/Zoltar](https://github.com/john-farina/Zoltar)
+Project Link: [github.com/john-farina/myTamagotchi](https://github.com/john-farina/myTamagotchi)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
