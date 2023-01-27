@@ -28,13 +28,13 @@
 - for the eating animations every tamagotchi has a side angle, and a open mouth angle. it detects which evolve state you are at and switches it out every other frame along with the food that its eating.
  -->
 
-## DESIGN
+<!-- ## DESIGN
 - Re created all tamagotchi sprites i could find into SVG'S and then manipulate those images
 - tried to create the actual feel of a tamagotchi so players will feel more nostalgic for the website
 - made my own custom tamagotchi color layout,
 - recreated all the different menus to my best abilitys.
 - Font choice used and why
-- A screen layer over the screen to make it blurry as a actual tamagotchi would be
+- A screen layer over the screen to make it blurry as a actual tamagotchi would be -->
 
 <!-- PROJECT LOGO -->
 <br />
@@ -85,9 +85,11 @@
       <ul>
         <li><a href="#characters">Characters</a></li>
         <li><a href="#the-device">The Device</a></li>
-        <li><a href="#screen">Screen</a></li>
-        <li><a href="#menus">Menus</a></li>
-        <li><a href="#themes">Themes</a></li>
+        <ul>
+            <li><a href="#screen">Screen</a></li>
+            <li><a href="#menus">Menus</a></li>
+            <li><a href="#themes">Themes</a></li>
+        </ul>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -99,7 +101,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Here's a blank template to get started: this is wherre you should be explaining what ur project does
 
 ### Built With
  - Javascript
@@ -145,7 +146,9 @@ For the game i am generating a random number 1 or 2, and each button correlates 
 ### Characters
 I recreated the original tamagotchi chacracters but in a svg form so its better for the web and i could resize them when needed. This was a long process of finding videos of every tamagotchi character since it was hard for me to get each one on my actual tamagotchi. *(the ending gravestone scene when ur tamagotchi dies is actually from a discontinued version of the actual tamagotchi. they then replaced that with the character growing wings.)* <br>
 here are most of the images i created.
+
 <div style="display: flex; flex-wrap: wrap; gap: 5px; justify-content: center;background-color: gray;">
+    <img src="./src/tamaPictures/tamaEgg/tama_eggState1.svg" width="50" height="50" />
     <img src="./src/tamaPictures/tamaCharacter/childState1/tama_childState1.svg" width="50" height="50" />
     <img src="./src/tamaPictures/tamaCharacter/childState2/tama_childState2.svg" width="50" height="50" />
     <img src="./src/tamaPictures/tamaCharacter/teen1/tama_teen1.svg" width="50" height="50" />
@@ -159,17 +162,18 @@ here are most of the images i created.
 </div>
 
 ### The Device
+The device was created rounding a div to get that egg shape that a tamagotchi usually is. I tried creating mostly everything about the device in pure css and html, using divs and shaping them as needed.
 
-### Screen
+#### **Screen**
 
-### Menus
 
-### Themes
+#### **Menus**
+
+#### **Themes**
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
 ## What I Would Do If I Had More Time.
 
