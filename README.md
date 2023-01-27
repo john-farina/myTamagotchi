@@ -1,35 +1,32 @@
 <a name="readme-top"></a>
 
-# what did i do in this project
-
+<!-- # what did i do in this project -->
 <!-- ## JAVSCRIPT
 - manipualted the DOM images to create the illusion of a alive pet,
 - set a game state that the whole game revolves arounds saving values,
 - Game that is oriented around time so it will hatch and grow up depending on how long it is open for.
 - Set a custom health degen and food so the player can interact and feed the tamagotchi -->
-
-### JS EVOLVE
+<!-- ### JS EVOLVE
 - for the tamagotchi growing up i am basing it off of randomness and time, everytime the player grows up it saves a new time value and then compares it to what time the game was started, then throwing a random number untill the desired one is chosen. Making it entirely random and each game slightly different
 - Hatching is defined by how many Cracks it has in the state, it slowly gathers up cracks untill it has 4 and then there is a possibility of the tamagotchi hatching
 - There are Two Random choices for what teenager tamagothci you will get, and then there are 6 Random choices you can get for a adult
-- each basing its randomness off of percentage out of 100 with a custom function.
-
-### JS HEALTH
+- each basing its randomness off of percentage out of 100 with a custom function. -->
+<!-- ### JS HEALTH
 - the tamagotchi will get hungry, less happy, sick, and poop. All randomly but will be less random if more then one applies at once.
 - For Every random thing that happens it is based off of the same percentage random chance as everything else.
 - When the tamaogtchi gets hungry you can feed it which will increase tamagtochis health by one. (if only fed treats your tamagotchi will get spoiled and call for attention when it is not needed.)
 - Pooping is controlled by if the tamagotchi is sick (if it is sick it will poop more then usual) and then can clean up the poop by cleaning the tamagotchi,
-- Randomly get sick at different times, and having to heal it before it looses all of the health.
+- Randomly get sick at different times, and having to heal it before it looses all of the health. -->
 
-### JS ANIMATION
+<!-- ### JS ANIMATION
 - I am controlling the animation within a animation set Interval and counting the seconds. So on every other second i play the frame. etc.
 - for the animation where the character moves around the screen this is also based off of a random chance, so it creates the feeling taht the tamagtochi is moving on its own.
 - this animation is controlled using class names that rely off of what position i want it. there are 4 defined classes for the position the tamagotchi can move. left, far-left, right, and far-right. With these being based off of random chance it gives off the feeling it is making its own mind up
-- the same is for the random flipping that teens and adults do. where they will flip right to left this is also based off of random percentage and not hard coded.
+- the same is for the random flipping that teens and adults do. where they will flip right to left this is also based off of random percentage and not hard coded. -->
 
-#### EATING
+<!-- #### EATING
 - for the eating animations every tamagotchi has a side angle, and a open mouth angle. it detects which evolve state you are at and switches it out every other frame along with the food that its eating.
-
+ -->
 
 ## DESIGN
 - Re created all tamagotchi sprites i could find into SVG'S and then manipulate those images
