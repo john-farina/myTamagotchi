@@ -165,23 +165,34 @@ here are most of the images i created.
 The device was created rounding a div to get that egg shape that a tamagotchi usually is. I tried creating mostly everything about the device in pure css and html, using divs and shaping them as needed.
 
 #### **Screen**
-
+For the screen i added a screen texture over the div using z-index to finalize the retro effect and to make it more accurate.
 
 #### **Menus**
+Each menu i made was inspired directly from the menus created for the original tamgotchi, i did change some aspects to make it better for the web but its mostly the same as the original tamagotchi is.
 
 #### **Themes**
+I created custom themes because that is a anohter important part of tamagotchi which is customization the basic themes are inspired directly from the color schemes used for tamagotchis.
+
+i did add some of my own custom ones to test what i could do, for the red and blue default color it was done using a css gradient on the div object. And for the Futurama and Alf one i created using color schemes from the show and added a logo.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-
+To Use tamagotchi open up the website and wait for ur own Tamagotchi to hatch, when it hatches make sure to keep it happy and healthy by feeding it regularly, and playing games with it to keep it happy.
+Clean ur tamagotchi after it poops and heal it when it gets sick. See what kind of tamagotchi yours will grow into and see how long you can get it to live.
 
 ## What I Would Do If I Had More Time.
+If i had more time to work on this project i would add a saving functionality either with local storage or using rails as a database.
+I would then work on making the game last for days and not hours, Because then the user can close and save their progress.
+and i could add stuff that happens depending on the last time you where online.
+I would also like to add more themes and maybe a make your own themes using a color dial.
 
 
 <!-- CONTACT -->
 ## Contact
 
 **John Farina** - johnfarina8@gmail.com
+
+My Website: [johnfarina.co](https://johnfarina.co)
 
 Project Link: [github.com/john-farina/myTamagotchi](https://github.com/john-farina/myTamagotchi)
 
