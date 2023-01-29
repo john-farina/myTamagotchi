@@ -177,13 +177,13 @@ i did add some of my own custom ones to test what i could do, for the red and bl
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-To Use tamagotchi open up the website and wait for ur own Tamagotchi to hatch, when it hatches make sure to keep it happy and healthy by feeding it regularly, and playing games with it to keep it happy.
+To Use tamagotchi open up the website and wait for ur own Tamagotchi to hatch, when it hatches make sure to keep it happy and healthy by feeding it regularly, and playing games with it to keep it happy. <br>
 Clean ur tamagotchi after it poops and heal it when it gets sick. See what kind of tamagotchi yours will grow into and see how long you can get it to live.
 
 ## What I Would Do If I Had More Time.
-If i had more time to work on this project i would add a saving functionality either with local storage or using rails as a database.
+If i had more time to work on this project i would add a saving functionality either with local storage or using rails as a database. <br>
 I would then work on making the game last for days and not hours, Because then the user can close and save their progress.
-and i could add stuff that happens depending on the last time you where online.
+and i could add stuff that happens depending on the last time you where online. <br>
 I would also like to add more themes and maybe a make your own themes using a color dial.
 
 
