@@ -150,13 +150,13 @@ here are most of the images i created.
 ### The Device
 The device was created rounding a div to get that egg shape that a tamagotchi usually is. I tried creating mostly everything about the device in pure css and html, using divs and shaping them as needed.
 
-<img src="./src/tamaPictures/readme/Tamagotchi%20Device.png" width="200">
+<img src="./src/tamaPictures/readme/Tamagotchi-Device.png" width="200">
 <br>
 
 #### **Screen**
 For the screen i added a screen texture over the div using z-index to finalize the retro effect and to make it more accurate.
 
-<img src="./src/tamaPictures/readme/Tamagotchi%20Screen.png" width="200">
+<img src="./src/tamaPictures/readme/Tamagotchi-Screen.png" width="200">
 <br>
 
 #### **Menus**
