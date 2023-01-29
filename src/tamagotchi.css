@@ -426,15 +426,15 @@ button {
 
 #express-logo {
     display: none;
-    margin-top: 100px;
-    margin-left: 80px;
+    margin-top: 200px;
+    margin-left: 160px;
     height: 100px;
     position: absolute;
 }
 #alf-logo {
     display: none;
-    margin-top: 6.8rem;
-    margin-left: 4.1rem;
+    margin-top: 200px;
+    margin-left: 160px;
     transform: rotate(-13deg);
     height: 69px;
     position: absolute;

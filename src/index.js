@@ -144,17 +144,18 @@ ReturnMainEvents(state);
 
 ReturnMenuEvents(state);
 
-let devNumber = 1;
+let devNumber = 0;
 
 document.addEventListener("keydown", (event) => {
   const code = event.code;
 
   if (code === "KeyX") {
-    // if (devNumber < tamaState.length) {
-    //   devNumber++;
-    // } else {
-    //   devNumber = 0;
-    // }
+    if (devNumber < 4) {
+      devNumber++;
+    } else {
+      devNumber = 0;
+    }
+
     // if (devNumber < tamaState.length - 1) {
     //   state.tamaStage = tamaState[devNumber];
     //   setTimeout(() => {

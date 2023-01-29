@@ -150,16 +150,27 @@ here are most of the images i created.
 ### The Device
 The device was created rounding a div to get that egg shape that a tamagotchi usually is. I tried creating mostly everything about the device in pure css and html, using divs and shaping them as needed.
 
+<img src="./src/tamaPictures/readme/Tamagotchi%20Device.png" width="200">
+<br>
+
 #### **Screen**
 For the screen i added a screen texture over the div using z-index to finalize the retro effect and to make it more accurate.
 
+<img src="./src/tamaPictures/readme/Tamagotchi%20Screen.png" width="200">
+<br>
+
 #### **Menus**
 Each menu i made was inspired directly from the menus created for the original tamgotchi, i did change some aspects to make it better for the web but its mostly the same as the original tamagotchi is.
+
+<img src="./src/tamaPictures/readme/Tamagotchi-Menus.gif" width="200">
+<br>
 
 #### **Themes**
 I created custom themes because that is a anohter important part of tamagotchi which is customization the basic themes are inspired directly from the color schemes used for tamagotchis.
 
 i did add some of my own custom ones to test what i could do, for the red and blue default color it was done using a css gradient on the div object. And for the Futurama and Alf one i created using color schemes from the show and added a logo.
+
+<img src="./src/tamaPictures/readme/Tamagotchi-Themes.gif">
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
