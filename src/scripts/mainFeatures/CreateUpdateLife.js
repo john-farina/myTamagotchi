@@ -20,7 +20,7 @@ function letThereBeLife(state) {
   const secondsSinceGameStart = timeMathToSec(state.timeState.gameStart);
 
   if (secondsSinceGameStart < 10) {
-    state.tamaStage = tamaState[0];
+    state.tamaStage = tamaState[1];
   }
 }
 

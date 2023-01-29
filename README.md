@@ -64,7 +64,8 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
+This Tamagotchi project is a digital recreation of the classic virtual pet. Built with Vanilla JavaScript and CSS, I tried to capture the essence of the original while adding to the web experience. With this project, you can take care of your Tamagotchi by feeding, playing, and healing it. Get ready to relive the tramatic experiences of taking care of the Tamagotchi but all on the web!
+<img src="./src/tamaPictures/readme/Tamgotchi-Intro.gif">
 
 ### Built With
  - Javascript
@@ -81,12 +82,15 @@ In this project i am manipulating the DOM objects i have mostly already placed i
 ### Updating Game & Animations
 For updating the game and animations i am using two setIntervals that are both updating on there own interval, for the game interval it is set at a higher pace because i want it to be fluent and not feel laggy, but i did the opposite for the animation frame because i do want the animations to be choppy, to try to go for the tamagotchi style
 
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Tamagotchi Game Logic
 
 ### Time Oriented & Random
 The core mechanics of tamagotchi are centered around the use of time and randomness. These elements are used to create a unique and unpredictable experience for the player. For instance, the tamagotchi's evolution is determined by both time and random chance. The game state is updated with the current time each time the Tamagotchi evolves, and the value is compared with the start time of the game. When the preffered time for evolution is reached, the game uses a random percent generation function to determine the specific outcome of the evolution, adding an element of surprise and replayability for each aspect of the game.
+
+<img src="./src/tamaPictures/readme/Tamagotchi-Movement.gif" width="300" >
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -101,17 +105,23 @@ There are two teens a player can get there tamagotchi to evolve into they both a
 #### **Adults**
 There are 6 different adults (and one i created myself lol) so there are many chances to get a unqiue character. The gameplay is all the same and looks are only aesthitic. (Some characters in the original tamagotchi get more sick, etc.)
 
+<img src="./src/tamaPictures/readme/Tamagotchi-Evolve.gif" width="300" >
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Health/Happy Degeneration
 Both Health and happy degneration are based off a 3% chance and it runs every 10 seconds or so, if the value is true then the tamagotchis health or happiness degenerates, The user can then feed the tamagotchi or play with it to increase their health. <br>
 All other random tamaogtchi generations are following the same rules but with a higher or lower percentage depending on what it is. For example random Pooping can get turned into a higher chance if the tamagotchi is sick for a set amount of seconds/minutes.
 
+<img src="./src/tamaPictures/readme/Tamagotchi-Health.gif" width="300" >
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Guessing Game
 The guessing game was inspired by the original game on the tamagotchi itself, where you have to guess what direction the tamagotchi is going to be facing. This is the only part of the game i tweaked for the web experience, making it so you can click the screen instead of having to click the buttons on the device. <br>
 For the game i am generating a random number 1 or 2, and each button correlates with ur guess, if you guessed the same number then the round continues and you get a point, the first one to 3 points wins. If you loose against the tamagotchi it wont make it happy. But if you win the tamagotchi will get happy.
+
+<img src="./src/tamaPictures/readme/Tamagotchi-Guessing.gif" width="300" >
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -155,8 +165,7 @@ i did add some of my own custom ones to test what i could do, for the red and bl
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-To Use tamagotchi open up the website and wait for ur own Tamagotchi to hatch, when it hatches make sure to keep it happy and healthy by feeding it regularly, and playing games with it to keep it happy. <br>
-Clean ur tamagotchi after it poops and heal it when it gets sick. See what kind of tamagotchi yours will grow into and see how long you can get it to live.
+To use the Tamagotchi, open the site and wait for your Tamagotchi to hatch. Once it's born, make sure to keep it healthy and happy by feeding it regularly and playing games with it. It's important to clean your Tamagotchi after it poops and heal it when it becomes sick. As an owner, you can observe your Tamagotchi's growth and see what kind of Tamagotchi it will become. The goal is to extend its lifespan by providing the best possible care.
 
 ## What I Would Do If I Had More Time.
 If i had more time to work on this project i would add a saving functionality either with local storage or using rails as a database. <br>

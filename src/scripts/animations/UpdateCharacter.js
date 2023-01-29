@@ -29,7 +29,7 @@ import {
 } from "./MovmentAnimation";
 import { tamaState } from "../state";
 
-function hideAllPlayerImages() {
+export function hideAllPlayerImages() {
   hideImage(eggClass);
   hideImage(adultClass);
   hideImage(childClass);

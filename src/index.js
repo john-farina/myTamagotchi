@@ -143,3 +143,29 @@ start();
 ReturnMainEvents(state);
 
 ReturnMenuEvents(state);
+
+let devNumber = 1;
+
+document.addEventListener("keydown", (event) => {
+  const code = event.code;
+
+  if (code === "KeyX") {
+    // if (devNumber < tamaState.length) {
+    //   devNumber++;
+    // } else {
+    //   devNumber = 0;
+    // }
+    // if (devNumber < tamaState.length - 1) {
+    //   state.tamaStage = tamaState[devNumber];
+    //   setTimeout(() => {
+    //     state.tamaStage = tamaState[devNumber];
+    //   }, 500);
+    //   setTimeout(() => {
+    //     state.tamaStage = tamaState[devNumber];
+    //   }, 1000);
+    //   setTimeout(() => {
+    //     state.tamaStage = tamaState[devNumber];
+    //   }, 2000);
+    // }
+  }
+});

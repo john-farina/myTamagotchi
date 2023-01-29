@@ -28,11 +28,14 @@ import {
   adult5Eat,
 } from "../tamaImports";
 import { foodAnimation } from "./FoodFunctions";
+import { hideAllPlayerImages } from "./UpdateCharacter";
 
 function childOpenMouthAnimate(state) {
   if (state.tamaStage != tamaState[1] || !state.foodAnimationGoing) {
     return;
   }
+
+  hideAllPlayerImages();
 
   if (state.animationCount <= 6) {
     state.animationCount++;
@@ -72,6 +75,8 @@ function childTwoOpenMouthAnimate(state) {
     return;
   }
 
+  hideAllPlayerImages();
+
   if (state.animationCount <= 6) {
     state.animationCount++;
   }
@@ -110,6 +115,8 @@ function teenOpenMouthAnimate(state) {
     return;
   }
 
+  hideAllPlayerImages();
+
   if (state.animationCount <= 6) {
     state.animationCount++;
   }
@@ -146,6 +153,8 @@ function teenTwoOpenMouthAnimate(state) {
   if (state.tamaStage != tamaState[4] || !state.foodAnimationGoing) {
     return;
   }
+
+  hideAllPlayerImages();
 
   if (state.animationCount <= 6) {
     state.animationCount++;
@@ -184,6 +193,8 @@ function adultOneOpenMouthAnimate(state) {
     return;
   }
 
+  hideAllPlayerImages();
+
   if (state.animationCount <= 6) {
     state.animationCount++;
   }
@@ -214,6 +225,8 @@ function adultTwoOpenMouthAnimate(state) {
   if (state.tamaStage != tamaState[8] || !state.foodAnimationGoing) {
     return;
   }
+
+  hideAllPlayerImages();
 
   if (state.animationCount <= 6) {
     state.animationCount++;
@@ -247,6 +260,8 @@ function adultThreeOpenMouthAnimate(state) {
     return;
   }
 
+  hideAllPlayerImages();
+
   if (state.animationCount <= 6) {
     state.animationCount++;
   }
@@ -277,6 +292,8 @@ function adultFourOpenMouthAnimate(state) {
   if (state.tamaStage != tamaState[10] || !state.foodAnimationGoing) {
     return;
   }
+
+  hideAllPlayerImages();
 
   if (state.animationCount <= 6) {
     state.animationCount++;
@@ -309,6 +326,8 @@ function adultFiveOpenMouthAnimate(state) {
   if (state.tamaStage != tamaState[5] || !state.foodAnimationGoing) {
     return;
   }
+
+  hideAllPlayerImages();
 
   if (state.animationCount <= 6) {
     state.animationCount++;
