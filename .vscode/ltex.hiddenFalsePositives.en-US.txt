@@ -1,0 +1,6 @@
+{"rule":"COMMA_COMPOUND_SENTENCE","sentence":"^\\QMaking it so you can click the screen instead of having to click the buttons on the device.\\E$"}
+{"rule":"COMMA_COMPOUND_SENTENCE","sentence":"^\\QFor the game I am generating a random number 1 or 2, and each button correlates with your guess, if you guessed the same number then the round continues and you get a point, the first one to 3 points wins.\\E$"}
+{"rule":"COMMA_COMPOUND_SENTENCE","sentence":"^\\QCharacters\nI recreated the original Tamagotchi characters but in an SVG form so it's better for the web and i could resize them when needed.\\E$"}
+{"rule":"COMMA_COMPOUND_SENTENCE","sentence":"^\\QCharacters\nI recreated the original Tamagotchi characters in an SVG form so it's better for the web and I could resize them when needed.\\E$"}
+{"rule":"PHRASE_REPETITION","sentence":"^\\QThe Device\nThe device was created rounding a div to get that egg shape that a tamagotchi usually is.\\E$"}
+{"rule":"COMMA_COMPOUND_SENTENCE","sentence":"^\\QMenus\nEach menu I made was inspired directly from the menus created for the original Tamagotchi, I did change some aspects to make it better for the web but it's mostly the same as the original Tamagotchi is.\\E$"}
